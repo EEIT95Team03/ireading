@@ -24,13 +24,38 @@ public class testServlet extends HttpServlet{
 	       // TODO Auto-generated method stub
 	        System.out.println("Servlet順利執行");//此為測試用，用來確認Servlet有順利被執行
 
-	        BCDetailBean bean = new BCDetailBean();
-	        bean.setBCID("99999");
-	        bean.setISBN("9999");
-	        bean.setBookRank((short) 3);
-	        BCDetailDAO dao = new BCDetailDAO();
-	        int update = dao.insert(bean);
-	        System.out.println("------"+update+"------");
+//	        BCDetail書櫃測試
+	        
+//insert
+//	        BCDetailBean bean = new BCDetailBean();
+//	        bean.setBCID("99999");
+//	        bean.setISBN("9999");
+//	        bean.setBookRank((short) 0);
+//	        BCDetailDAO dao = new BCDetailDAO();
+//	        int insert = dao.insert(bean);
+//	        System.out.println("insert---"+insert+"---");	        
+//update
+//	        BCDetailBean bean = new BCDetailBean();
+//	        bean.setBCID("99999");
+//	        bean.setISBN("9999");
+//	        bean.setBookRank((short) 1);
+//	        BCDetailDAO dao = new BCDetailDAO();
+//	        int update = dao.update(bean);
+//	        System.out.println("update---"+update+"---");	        
+//delete
+//	        BCDetailDAO dao=new BCDetailDAO();
+//	        int delete=dao.delete("9999");
+//	        System.out.println("delete---"+delete+"---");
+//findByID
+//	        BCDetailDAO dao=new BCDetailDAO();
+//	        BCDetailBean bean=dao.findByPK("9999");
+//	        System.out.println(bean.getBCID()+":"+bean.getISBN()+":"+bean.getBookRank());	        
+//selectAll
+//	        BCDetailDAO dao=new BCDetailDAO();
+//	        List<BCDetailBean> list=dao.getAll();
+//	        for(BCDetailBean bean:list){
+//	        System.out.println(bean.getBCID()+":"+bean.getISBN()+":"+bean.getBookRank());	        
+// 			}
 	        
 	        
 	     //已下為Order測試程式
