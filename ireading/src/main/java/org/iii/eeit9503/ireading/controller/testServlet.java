@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 public class testServlet extends HttpServlet{
 	 @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	       // TODO Auto-generated method stub
+	       
 	        System.out.println("Servlet順利執行");//此為測試用，用來確認Servlet有順利被執行
 	    }
 
 	    @Override
 	    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	       // TODO Auto-generated method stub
+	       
 	       this.doGet(req, resp);
 	    }
 

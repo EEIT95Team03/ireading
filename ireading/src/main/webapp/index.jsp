@@ -9,17 +9,7 @@
 </head>
 
 <body>
-
-<h1>歡迎</h1>
-
-
-<body>
-
 <h1>歡迎進入專題的無底深淵</h1>
-
-<h1>ヽ(∀ﾟ )人(ﾟ∀ﾟ)人( ﾟ∀)人(∀ﾟ )人(ﾟ∀ﾟ)人( ﾟ∀)ﾉ</h1>
-
-<p>倒數一個月，讚讚讚讚</p>
 <hr>
 <h1>Servlet測試</h1>
 <a href="<c:url value='/test.controller'/>">Servlet測試</a>
