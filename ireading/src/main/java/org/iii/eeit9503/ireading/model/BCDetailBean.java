@@ -29,7 +29,7 @@ public class BCDetailBean {
 	}
 	public void setBookRank(short bookRank) {
 		BookRank = bookRank;
-	}
+	}	
 	
 	
 
