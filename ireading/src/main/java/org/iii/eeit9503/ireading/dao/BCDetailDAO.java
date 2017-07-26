@@ -30,7 +30,8 @@ public class BCDetailDAO implements IBCDetailDAO{
 		pstmt.setString(1, BCDetail.getISBN());
 		pstmt.setString(2, BCDetail.getBCID());
 		pstmt.setShort(3, BCDetail.getBookRank());
-		updateCount = pstmt.executeUpdate();
+		updateCount = pstmt.executeUpdate();	
+		System.out.println(updateCount+"insert");
 		return updateCount;		
 	}
 	
@@ -42,15 +43,17 @@ public class BCDetailDAO implements IBCDetailDAO{
 		pstmt.setString(2, BCDetail.getBCID());
 		pstmt.setShort(3, BCDetail.getBookRank());
 		updateCount = pstmt.executeUpdate();
+		System.out.println(updateCount+"update");
 		return updateCount;		
 	}
 	
 //	delete
-	public int delete(String ISBN) throws SQLException{
+	public int delete(BCDetailDAO BCDetail) throws SQLException{
 		int updateCount = 0;
 		PreparedStatement pstmt = conn.prepareStatement(DELETE_STMT);
-		pstmt.setString(1, ISBN);
+		pstmt.setString(1, "ISBN");
 		updateCount = pstmt.executeUpdate();
+		System.out.println(updateCount+"delete");
 		return updateCount;		
 	}
 	
@@ -64,8 +67,8 @@ public class BCDetailDAO implements IBCDetailDAO{
 			BCDetail = new BCDetailVO();
 			BCDetail.setISBN(rs.getString("ISBN"));
 			BCDetail.setBCID(rs.getString("BCID"));
-			BCDetail.setBookRank(rs.getShort("BookRank"));
-		}
+			BCDetail.setBookRank(rs.getShort("BookRank"));			
+		}		
 		return BCDetail;
 	}
 	
@@ -89,6 +92,36 @@ public class BCDetailDAO implements IBCDetailDAO{
 	if(conn != null)
 		conn.close();
 }
+
+	@Override
+	public void getConnection() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int insert(BCDetailDAO dao) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(String ISBN) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public BCDetailDAO findbyPrimaryKey(String ISBN) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(BCDetailDAO dao) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
 
