@@ -2,7 +2,7 @@ package org.iii.eeit9503.ireading.dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
+import org.hibernate.query.Query;
 
 import org.hibernate.Session;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
@@ -89,7 +89,7 @@ public class BCDetailDAO {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 			Query query = session.createQuery("from BCDetailBean");
-			List<BCDetailBean> list = query.list;
+			List<BCDetailBean> list = query.list();
 
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 			return list;

@@ -24,31 +24,31 @@ public class testServlet extends HttpServlet{
 	       // TODO Auto-generated method stub
 	        System.out.println("Servlet順利執行");//此為測試用，用來確認Servlet有順利被執行
 
-//	        BCDetailBean bean = new BCDetailBean();
-//	        bean.setBCID("99999");
-//	        bean.setISBN("9999");
-//	        bean.setBookRank((short) 3);
-//	        BCDetailDAO dao = new BCDetailDAO();
-//	        int update = dao.insert(bean);
-//	        System.out.println("------"+update+"------");
+	        BCDetailBean bean = new BCDetailBean();
+	        bean.setBCID("99999");
+	        bean.setISBN("9999");
+	        bean.setBookRank((short) 3);
+	        BCDetailDAO dao = new BCDetailDAO();
+	        int update = dao.insert(bean);
+	        System.out.println("------"+update+"------");
 	        
 	        
 	     //已下為Order測試程式
 	        //insert
-	        OrderBean bean=new OrderBean();
-			bean.setOrderID("O170726002");
-			bean.setPayID("P0001");
-			bean.setMemberID("M170000007");
-			bean.setStatusID("OS001");
-			bean.setInvoice("SR89510541");
-			bean.setOaddr("台北市松山區健康路243號8樓");
-			bean.setOdate(new Date(new java.util.Date().getTime()));
-			bean.setOtotal(123);
-			bean.setOmemo(null);
-			bean.setReciepient("張景一");			
-			OrderDAO dao=new OrderDAO();
-			int update=dao.insert(bean);
-	        System.out.println("--"+update+"--");
+//	        OrderBean bean=new OrderBean();
+//			bean.setOrderID("O170726002");
+//			bean.setPayID("P0001");
+//			bean.setMemberID("M170000007");
+//			bean.setStatusID("OS001");
+//			bean.setInvoice("SR89510541");
+//			bean.setOaddr("台北市松山區健康路243號8樓");
+//			bean.setOdate(new Date(new java.util.Date().getTime()));
+//			bean.setOtotal(123);
+//			bean.setOmemo(null);
+//			bean.setReciepient("張景一");			
+//			OrderDAO dao=new OrderDAO();
+//			int update=dao.insert(bean);
+//	        System.out.println("--"+update+"--");
 	        
 	        
 	        
