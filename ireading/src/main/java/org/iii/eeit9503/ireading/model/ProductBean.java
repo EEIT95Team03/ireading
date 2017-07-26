@@ -1,8 +1,19 @@
 package org.iii.eeit9503.ireading.model;
 
 import java.sql.Date;
+import java.io.Serializable;
 
-public class ProductBean {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
+@Entity
+@Table(name = "[ireadDB].[dbo].[Product]")
+public class ProductBean implements Serializable{
+	@Id
 	private String ProductID;
 	private String StatusID;
 	private String SellListID;
@@ -68,4 +79,28 @@ public class ProductBean {
 		Expiration = expiration;
 	}
 	
-}	
+	public boolean equals(Object obj) {
+        if(obj == this) {
+            return true;
+        }
+ 
+        if(!(obj instanceof ProductBean)) {
+            return false;
+        }
+		return false;
+ 
+    }
+
+}
+	// 必須重新定義equals()與hashCode()
+//	public boolean equals(Object obj){
+//		if(obj==this){
+//			return true;
+//			}		
+//		if(!(obj instanceof ProductBean)){
+//			return false;
+//			}
+//		ProductBean productBean =(ProductBean)obj;
+//		return new 
+//				
+//	}

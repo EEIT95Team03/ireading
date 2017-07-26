@@ -14,6 +14,6 @@
         <property name="hibernate.show_sql">true</property>
 
         <mapping class="org.iii.eeit9503.ireading.model.OrderBean"/>
-
+		<mapping class="org.iii.eeit9503.ireading.model.ProductBean"/>
     </session-factory>
 </hibernate-configuration>

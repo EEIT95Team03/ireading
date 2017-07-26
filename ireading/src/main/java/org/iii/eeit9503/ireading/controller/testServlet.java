@@ -69,11 +69,11 @@ public class testServlet extends HttpServlet{
 //	        System.out.println(bean.getOrderID()+":"+bean.getMemberID()+":"+bean.getOaddr());
 	        
 	        //selectAll
-//	        OrderDAO dao=new OrderDAO();
-//	        List<OrderBean> list=dao.getAll();
-//	        for(OrderBean bean:list){
-//	        	System.out.println(bean.getOrderID()+":"+bean.getMemberID()+":"+bean.getOaddr());
-	       // }
+	        OrderDAO dao=new OrderDAO();
+	        List<OrderBean> list=dao.getAll();
+	        for(OrderBean bean:list){
+	        	System.out.println(bean.getOrderID()+":"+bean.getMemberID()+":"+bean.getOaddr());
+	        }
 	        
 	        
 	    }
