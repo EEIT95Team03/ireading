@@ -1,6 +1,13 @@
-package org.iii.eeit9503.ireading.dao;
+package org.iii.eeit9503.ireading.model;
 
-public class BCDetailVO {	
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "[ireadDB].[dbo].[BCDetail]")
+public class BCDetailBean {
+	@Id
 	private String ISBN; //PK, FK
 	private String BCID; //PK, FK
 	private short BookRank; 	
@@ -9,19 +16,19 @@ public class BCDetailVO {
 		return ISBN;
 	}
 	public void setISBN(String iSBN) {
-		this.ISBN = iSBN;
+		ISBN = iSBN;
 	}
 	public String getBCID() {
 		return BCID;
 	}
 	public void setBCID(String bCID) {
-		this.BCID = bCID;
+		BCID = bCID;
 	}
 	public short getBookRank() {
 		return BookRank;
 	}
 	public void setBookRank(short bookRank) {
-		this.BookRank = bookRank;
+		BookRank = bookRank;
 	}
 	
 	
