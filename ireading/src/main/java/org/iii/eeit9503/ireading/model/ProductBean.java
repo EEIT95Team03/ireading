@@ -1,4 +1,4 @@
-package model;
+package org.iii.eeit9503.ireading.model;
 
 import java.sql.Date;
 
