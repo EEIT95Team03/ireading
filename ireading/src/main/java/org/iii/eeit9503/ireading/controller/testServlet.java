@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.iii.eeit9503.ireading.dao.BCDetailDAO;
+import org.iii.eeit9503.ireading.dao.BookCaseDAO;
 import org.iii.eeit9503.ireading.dao.OrderDAO;
-
+import org.iii.eeit9503.ireading.model.BCDetailBean;
+import org.iii.eeit9503.ireading.model.BookCaseBean;
 import org.iii.eeit9503.ireading.model.OrderBean;
 
 @WebServlet(
@@ -20,9 +23,87 @@ import org.iii.eeit9503.ireading.model.OrderBean;
 public class testServlet extends HttpServlet{
 	 @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	       // TODO Auto-generated method stub
+	       
 	        System.out.println("Servlet順利執行");//此為測試用，用來確認Servlet有順利被執行
 
+//	        BookCase書櫃測試
+	        
+//insert
+//	        BookCaseBean bean = new BookCaseBean();
+//	        bean.setMemberID("M170000003");
+//	        bean.setBCID("BC00000007");
+//	        bean.setBCName("測試緣緣堂");
+//	        bean.setCaseRank(true);
+//	        bean.setDisplay(true);
+//	        BookCaseDAO dao = new BookCaseDAO();
+//	        int insert = dao.insert(bean);
+//	        System.out.println("insert---"+insert+"---");	        
+//update
+//	        BookCaseBean bean = new BookCaseBean();
+///	        bean.setMemberID("M170000003");
+//	        bean.setBCID("BC00000007");
+//	        bean.setBCName("緣緣堂");
+//	        bean.setCaseRank(false);
+//	        bean.setDisplay(false);
+//	        BookCaseDAO dao = new BookCaseDAO();
+//	        int update = dao.update(bean);
+//	        System.out.println("update---"+update+"---");	        
+//delete
+//	        BookCaseDAO dao=new BookCaseDAO();
+//	        int delete=dao.delete("BC00000007");
+//	        System.out.println("delete---"+delete+"---");
+//findByID
+//	        BookCaseDAO dao=new BookCaseDAO();
+//	        BookCaseBean bean=dao.findByPK("BC00000007");
+//	        System.out.println(bean.getMemberID()+":"+bean.getBCID()+":"+bean.getBCName()+":"+bean.CaseRank()+":"+bean.Display());	        
+//selectAll
+//	        BookCaseDAO dao=new BookCaseDAO();
+//	        List<BookCaseBean> list=dao.getAll();
+//	        for(BookCaseBean bean:list){
+//	        System.out.println(bean.getMemberID()+":"+bean.getBCID()+":"+bean.getBCName()+":"+bean.CaseRank()+":"+bean.Display());		        
+// 			}
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+//	        BCDetail書櫃清單測試
+	        
+//insert
+//	        BCDetailBean bean = new BCDetailBean();
+//	        bean.setBCID("BC00000007");
+//	        bean.setISBN("9789869452809");
+//	        bean.setBookRank((short) 0);
+//	        BCDetailDAO dao = new BCDetailDAO();
+//	        int insert = dao.insert(bean);
+//	        System.out.println("insert---"+insert+"---");	        
+//update
+//	        BCDetailBean bean = new BCDetailBean();
+//	        bean.setBCID("BC00000007");
+//	        bean.setISBN("9789869458023");
+//	        bean.setBookRank((short) 0);
+//	        BCDetailDAO dao = new BCDetailDAO();
+//	        int update = dao.update(bean);
+//	        System.out.println("update---"+update+"---");	        
+//delete
+//	        BCDetailDAO dao=new BCDetailDAO();
+//	        int delete=dao.delete("9999");
+//	        System.out.println("delete---"+delete+"---");
+//findByID
+//	        BCDetailDAO dao=new BCDetailDAO();
+//	        BCDetailBean bean=dao.findByPK("9999");
+//	        System.out.println(bean.getBCID()+":"+bean.getISBN()+":"+bean.getBookRank());	        
+//selectAll
+//	        BCDetailDAO dao=new BCDetailDAO();
+//	        List<BCDetailBean> list=dao.getAll();
+//	        for(BCDetailBean bean:list){
+//	        System.out.println(bean.getBCID()+":"+bean.getISBN()+":"+bean.getBookRank());	        
+// 			}
+	        
+	        
 	     //已下為Order測試程式
 	        //insert
 //	        OrderBean bean=new OrderBean();
@@ -80,7 +161,7 @@ public class testServlet extends HttpServlet{
 
 	    @Override
 	    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	       // TODO Auto-generated method stub
+	       
 	       this.doGet(req, resp);
 	    }
 

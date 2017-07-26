@@ -13,7 +13,11 @@
         <property name="hibernate.current_session_context_class">thread</property> 
         <property name="hibernate.show_sql">true</property>
 
-        <mapping class="org.iii.eeit9503.ireading.model.OrderBean"/>
 		<mapping class="org.iii.eeit9503.ireading.model.ProductBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.OrderBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.BCDetailBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.BookCaseBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.EventBean"/>
+
     </session-factory>
 </hibernate-configuration>
