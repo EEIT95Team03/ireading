@@ -24,7 +24,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderDAOHibernate implements OrderDAO{
 	@Autowired
-	private SessionFactory sessionFactory = null;
+	private SessionFactory sessionFactory;
 
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
