@@ -1,22 +1,21 @@
 package org.iii.eeit9503.ireading.model;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="[ireadDB].[dbo].[Review]")
-public class ReviewBean {
+@Table(name ="Review")
+public class ReviewBean implements Serializable{
 	@Id
-	private String MemberID;
+	private String MemberID; //PK, FK
 	@Id
-	private String ISBN;
+	private String ISBN; //PK, FK
 	private int Rate;
-	private String Content;
-	private Date PostTime;
+	private String Cont;
+	private java.util.Date PostTime;
 	
 	public String getMemberID() {
 		return MemberID;
@@ -36,21 +35,20 @@ public class ReviewBean {
 	public void setRate(int rate) {
 		Rate = rate;
 	}
-	public String getContent() {
-		return Content;
+	public String getCont() {
+		return Cont;
 	}
-	public void setContent(String content) {
-		Content = content;
+	public void setCont(String cont) {
+		Cont = cont;
 	}
-	public Date getPostTime() {
+	public java.util.Date getPostTime() {
 		return PostTime;
 	}
-	public void setPostTime(Date postTime) {
+	public void setPostTime(java.util.Date postTime) {
 		PostTime = postTime;
 	}
-	public void setPostTime(SimpleDateFormat dateFormat) {		
-		
-	}
-
+	
+	
+	
 
 }

@@ -18,20 +18,19 @@ public class ReviewDAOHibernate implements ReviewDAO {
 		
 		ReviewBean bean = new ReviewBean();
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("1999-01-01 11:22:33");
 		
 //insert
-//		bean.setMemberID("M170000011");
-//		bean.setISBN("9789861754604");
-//		bean.setRate(3);
-//		bean.setContent("GOOOOOOOOOOOOOOOOOOOOOOOOOD!");		
-//		bean.setPostTime(dateFormat);
-//		dao.insert(bean);
+		bean.setMemberID("M170000011");
+		bean.setISBN("9789861754604");
+		bean.setRate(3);
+		bean.setCont("GOOOOOOOOOOOOOOOOOOOOOOOOOD!");		
+		bean.setPostTime(new java.util.Date());
+		dao.insert(bean);
 		
 		
 //update
 //		bean.setMemberID("M170000007");
-//		bean.setContent("AAAA");
+//		bean.setCont("AAAA");
 //		bean.setPostTime();
 //		dao.update(bean);
 		
@@ -39,13 +38,13 @@ public class ReviewDAOHibernate implements ReviewDAO {
 //		bean.setMemberID("M170000011");
 //		bean.setISBN("9789861754604");
 //		bean.setRate(3);
-//		bean.setContent("GOOOOOOOOOOOOOOOOOOOOOOOOOD!");		
-//		bean.setPostTime(dateFormat);
+//		bean.setCont("GOOOOOOOOOOOOOOOOOOOOOOOOOD!");		
+//		bean.setPostTime(new java.util.Date());
 //		dao.delete("M170000011");
 		
 		List<ReviewBean>list = dao.getAll();
 		for(ReviewBean o:list){
-			System.out.println(o.getMemberID()+", "+o.getISBN()+", "+o.getContent()+", "+o.getRate()+", "+o.getPostTime());
+			System.out.println(o.getMemberID()+", "+o.getISBN()+", "+o.getCont()+", "+o.getRate()+", "+o.getPostTime());
 		}	
 
 	}	
@@ -83,7 +82,7 @@ public class ReviewDAOHibernate implements ReviewDAO {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			ReviewBean bean = (ReviewBean)session.get(ReviewBean.class, MemberID);
+			ReviewBean bean = (ReviewBean)session.get(ReviewBean.class, MemberID);			
 			session.delete(bean);
 			session.getTransaction().commit();
 		} catch (RuntimeException e) {
