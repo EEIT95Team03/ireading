@@ -18,10 +18,10 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 		BCDetailBean bean = new BCDetailBean(); 
 		
 //insert
-//		bean.setBCID("BC00000001");
-//		bean.setISBN("9789869458023");
-//		bean.setBookRank(1);
-//		dao.insert(bean);		
+		bean.setBCID("BC00000001");
+		bean.setISBN("9789869458023");
+		bean.setBookRank(1);
+		dao.insert(bean);		
 	
 //update
 //		bean.setBCID("BC00000003");

@@ -1,5 +1,7 @@
 package org.iii.eeit9503.ireading.dao;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -18,20 +20,25 @@ public class ReviewDAOHibernate implements ReviewDAO {
 		
 		ReviewBean bean = new ReviewBean();
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 //insert
 		bean.setMemberID("M170000011");
 		bean.setISBN("9789861754604");
 		bean.setRate(3);
 		bean.setCont("GOOOOOOOOOOOOOOOOOOOOOOOOOD!");		
-		bean.setPostTime(new java.util.Date());
+		try {
+			bean.setPostTime(new Timestamp(sdf.parse("1999-11-11 01:22:33").getTime()));
+			//sdf.parse得到日期 .getTime換成秒數
+		} catch (ParseException e) {			
+			e.printStackTrace();
+		}
 		dao.insert(bean);
 		
 		
 //update
 //		bean.setMemberID("M170000007");
 //		bean.setCont("AAAA");
-//		bean.setPostTime();
 //		dao.update(bean);
 		
 //delete
@@ -39,7 +46,12 @@ public class ReviewDAOHibernate implements ReviewDAO {
 //		bean.setISBN("9789861754604");
 //		bean.setRate(3);
 //		bean.setCont("GOOOOOOOOOOOOOOOOOOOOOOOOOD!");		
-//		bean.setPostTime(new java.util.Date());
+//		try {
+//			bean.setPostTime(new Timestamp(sdf.parse("1999-11-11 01:22:33").getTime()));
+//			//sdf.parse得到日期 .getTime換成秒數
+//		} catch (ParseException e) {			
+//			e.printStackTrace();
+//		}		
 //		dao.delete("M170000011");
 		
 		List<ReviewBean>list = dao.getAll();

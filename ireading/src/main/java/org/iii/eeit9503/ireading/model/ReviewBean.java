@@ -1,6 +1,7 @@
 package org.iii.eeit9503.ireading.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ public class ReviewBean implements Serializable{
 	private String ISBN; //PK, FK
 	private int Rate;
 	private String Cont;
-	private java.util.Date PostTime;
+	private Timestamp PostTime;
 	
 	public String getMemberID() {
 		return MemberID;
@@ -41,10 +42,10 @@ public class ReviewBean implements Serializable{
 	public void setCont(String cont) {
 		Cont = cont;
 	}
-	public java.util.Date getPostTime() {
+	public Timestamp getPostTime() {
 		return PostTime;
 	}
-	public void setPostTime(java.util.Date postTime) {
+	public void setPostTime(Timestamp postTime) {
 		PostTime = postTime;
 	}
 	
