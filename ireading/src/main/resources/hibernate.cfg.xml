@@ -20,5 +20,8 @@
         <mapping class="org.iii.eeit9503.ireading.model.EventBean"/>
         <mapping class="org.iii.eeit9503.ireading.model.MemberBean"/>
         <mapping class="org.iii.eeit9503.ireading.model.OutputBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.EventBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.JoinListBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.MemberBean"/>
     </session-factory>
 </hibernate-configuration>

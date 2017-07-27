@@ -1,16 +1,17 @@
-package org.iii.eeit9503.ireading.order.dao;
+package org.iii.eeit9503.ireading.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.iii.eeit9503.ireading.order.bean.OrderBean;
+import org.hibernate.query.Query;
+import org.iii.eeit9503.ireading.model.EventBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class OrderDAOHibernate implements OrderDAO{
+public class EventDAOHibernate implements EventDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -19,18 +20,19 @@ public class OrderDAOHibernate implements OrderDAO{
 	}
 
 	@Override
-	public int insert(OrderBean orderbean) {
-		// TODO Auto-generated method stub
-		try {
-			
-			Session session = this.getSession();
-			
-			 OrderBean bean=session.get(OrderBean.class, orderbean.getOrderID());
-			
-			if(bean==null){
-			session.saveOrUpdate(orderbean);
+	public int insert(EventBean eventbean) {
 
-			return 1;}
+		try {
+
+			Session session = this.getSession();
+
+			EventBean bean = session.get(EventBean.class, eventbean.getEventID());
+
+			if (bean == null) {
+				session.saveOrUpdate(eventbean);
+
+				return 1;
+			}
 			return 0;
 		} catch (Exception e) {
 			return 0;
@@ -38,12 +40,12 @@ public class OrderDAOHibernate implements OrderDAO{
 	}
 
 	@Override
-	public int update(OrderBean orderbean) {
-		// TODO Auto-generated method stub
+	public int update(EventBean eventbean) {
+
 		try {
 			Session session = this.getSession();
 
-			session.saveOrUpdate(orderbean);
+			session.saveOrUpdate(eventbean);
 
 			return 1;
 		} catch (Exception e) {
@@ -53,12 +55,12 @@ public class OrderDAOHibernate implements OrderDAO{
 	}
 
 	@Override
-	public int delete(String OrderID) {
+	public int delete(String EventID) {
 		try {
 			Session session = this.getSession();
 
-			Query query = session.createQuery("delete from OrderBean where OrderID=?");
-			query.setParameter(0, OrderID);
+			Query query = session.createQuery("delete from EvnetBean where EventID=?");
+			query.setParameter(0, EventID);
 			int delete = query.executeUpdate();
 
 			return delete;
@@ -70,11 +72,11 @@ public class OrderDAOHibernate implements OrderDAO{
 	}
 
 	@Override
-	public OrderBean findByID(String OrderID) {
+	public EventBean findByID(String EventID) {
 		try {
 			Session session = this.getSession();
 
-			OrderBean bean = session.get(OrderBean.class, OrderID);
+			EventBean bean = session.get(EventBean.class, EventID);
 
 			return bean;
 		} catch (Exception e) {
@@ -85,19 +87,17 @@ public class OrderDAOHibernate implements OrderDAO{
 	}
 
 	@Override
-	public List<OrderBean> getAll() {
+	public List<EventBean> getAll() {
 		try {
 			Session session = this.getSession();
 
-			Query query = session.createQuery("from OrderBean");
-			List<OrderBean> list = query.list();
+			Query query = session.createQuery("from EventBean");
+			List<EventBean> list = query.list();
 
 			return list;
 		} catch (Exception e) {
 			return null;
-		} 
+		}
 	}
-
-	
 
 }

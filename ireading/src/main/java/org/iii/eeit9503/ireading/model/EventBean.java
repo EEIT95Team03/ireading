@@ -5,37 +5,37 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "[ireadDB].[dbo].[Event]")
+@Table(name = "Event")
 public class EventBean {
 @Id
-private String EvtID;
-private String EvtName;
-private java.sql.Date EvtDate;
+private String EventID;
+private String EventName;
+private java.sql.Date EventDate;
 private String Host;
-private String EvtPhone;
-private String EvtPlace;
-private String EvtImg;
-private java.sql.Date EvtDeadline;
-private String EvtCont;
-private int EvtMax;
+private String EventPhone;
+private String EventPlace;
+private String EventImg;
+private java.sql.Date Deadline;
+private String EventContent;
+private int Max;
 
-public String getEvtID() {
-	return EvtID;
+public String getEventID() {
+	return EventID;
 }
-public void setEvtID(String evtID) {
-	EvtID = evtID;
+public void setEventID(String eventID) {
+	EventID = eventID;
 }
-public String getEvtName() {
-	return EvtName;
+public String getEventName() {
+	return EventName;
 }
-public void setEvtName(String evtName) {
-	EvtName = evtName;
+public void setEventName(String eventName) {
+	EventName = eventName;
 }
-public java.sql.Date getEvtDate() {
-	return EvtDate;
+public java.sql.Date getEventDate() {
+	return EventDate;
 }
-public void setEvtDate(java.sql.Date evtDate) {
-	EvtDate = evtDate;
+public void setEventDate(java.sql.Date eventDate) {
+	EventDate = eventDate;
 }
 public String getHost() {
 	return Host;
@@ -43,42 +43,42 @@ public String getHost() {
 public void setHost(String host) {
 	Host = host;
 }
-public String getEvtPhone() {
-	return EvtPhone;
+public String getEventPhone() {
+	return EventPhone;
 }
-public void setEvtPhone(String evtPhone) {
-	EvtPhone = evtPhone;
+public void setEventPhone(String eventPhone) {
+	EventPhone = eventPhone;
 }
-public String getEvtPlace() {
-	return EvtPlace;
+public String getEventPlace() {
+	return EventPlace;
 }
-public void setEvtPlace(String evtPlace) {
-	EvtPlace = evtPlace;
+public void setEventPlace(String eventPlace) {
+	EventPlace = eventPlace;
 }
-public String getEvtImg() {
-	return EvtImg;
+public String getEventImg() {
+	return EventImg;
 }
-public void setEvtImg(String evtImg) {
-	EvtImg = evtImg;
-}
-public java.sql.Date getEvtDeadline() {
-	return EvtDeadline;
-}
-public void setEvtDeadline(java.sql.Date evtDeadline) {
-	EvtDeadline = evtDeadline;
-}
-public String getEvtCont() {
-	return EvtCont;
-}
-public void setEvtCont(String evtCont) {
-	EvtCont = evtCont;
-}
-public int getEvtMax() {
-	return EvtMax;
-}
-public void setEvtMax(int evtMax) {
-	EvtMax = evtMax;
+public void setEventImg(String eventImg) {
+	EventImg = eventImg;
 }
 
+public String getEventContent() {
+	return EventContent;
+}
+public void setEventContent(String eventContent) {
+	EventContent = eventContent;
+}
+public java.sql.Date getDeadline() {
+	return Deadline;
+}
+public void setDeadline(java.sql.Date deadline) {
+	Deadline = deadline;
+}
+public int getMax() {
+	return Max;
+}
+public void setMax(int max) {
+	Max = max;
+}
 
 }
