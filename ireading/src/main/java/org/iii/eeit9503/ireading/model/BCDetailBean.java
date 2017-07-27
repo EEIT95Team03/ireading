@@ -1,16 +1,19 @@
 package org.iii.eeit9503.ireading.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "[ireadDB].[dbo].[BCDetail]")
-public class BCDetailBean {
+@Table(name = "BCDetail")
+public class BCDetailBean implements Serializable{
 	@Id
 	private String ISBN; //PK, FK
+	@Id
 	private String BCID; //PK, FK
-	private short BookRank; 	
+	private int BookRank; 	
 	
 	public String getISBN() {
 		return ISBN;
@@ -24,10 +27,10 @@ public class BCDetailBean {
 	public void setBCID(String bCID) {
 		BCID = bCID;
 	}
-	public short getBookRank() {
+	public int getBookRank() {
 		return BookRank;
 	}
-	public void setBookRank(short bookRank) {
+	public void setBookRank(int bookRank) {
 		BookRank = bookRank;
 	}	
 	

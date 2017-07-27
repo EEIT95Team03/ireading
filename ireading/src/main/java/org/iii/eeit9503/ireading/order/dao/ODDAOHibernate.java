@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.iii.eeit9503.ireading.order.bean.ODBean;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.springframework.beans.factory.annotation.Autowired;
