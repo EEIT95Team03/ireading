@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.iii.eeit9503.ireading.order.bean.ODBean;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -48,7 +49,7 @@ public class SpringJavaConfiguration {
         prop.put("hibernate.show_sql", "true");
         builder.addProperties(prop);
 
-        builder.addAnnotatedClasses(OrderBean.class);//maping class       
+        builder.addAnnotatedClasses(OrderBean.class,ODBean.class);//maping class       
         
         return builder.buildSessionFactory();       
     }
