@@ -31,22 +31,22 @@ public class testProductServlet extends HttpServlet {
 
 		// 以下為Product測試程式
 		// insert (done 2017.07.26)
-//		 ProductBean bean = new ProductBean();
-//		 bean.setProductID("B000000099");
-//		 bean.setStatusID("S0001");
-//		 bean.setSellListID("170806001");
-//		
-//		 bean.setProductPrice(100);
-//		 bean.setDigital(null);
-//		 bean.setDetail("有簽名海報");
-//		
-//		 bean.setStaus("七成新");
-//		 bean.setArrival(new Date(new java.util.Date().getTime()));
-//		 bean.setExpiration(new Date(new java.util.Date().getTime() + (long)1000*60*60*24*365) );
-//		
-//		 ProductDAO dao=new ProductDAO();
-//		 int insert = dao.insert(bean);
-//		 System.out.println("--"+insert+"--");
+		 ProductBean bean = new ProductBean();
+		 bean.setProductID("B000000099");
+		 bean.setStatusID("S0001");
+		 bean.setSellListID("170806001");
+		
+		 bean.setProductPrice(100);
+		 bean.setDigital(null);
+		 bean.setDetail("有簽名海報");
+		
+		 bean.setStaus("七成新");
+		 bean.setArrival(new Date(new java.util.Date().getTime()));
+		 bean.setExpiration(new Date(new java.util.Date().getTime() + (long)1000*60*60*24*365) );
+		
+		 ProductDAO dao=new ProductDAO();
+		 int insert = dao.insert(bean);
+		 System.out.println("--"+insert+"--");
 
 		// update
 		// OrderBean bean=new OrderBean();

@@ -16,12 +16,12 @@ public class MemberDAOHibernate implements MmeberDAO{
 		MemberDAOHibernate dao= new MemberDAOHibernate();
 		
 		MemberBean bean = new MemberBean();
-//		bean.setMemberID("M170000021");
-//		bean.setMName("Anita");
-//		bean.setAccount("aloha@gmail.com");
-//		bean.setPwd("0000");
-//		bean.setGender(1);
-//		dao.insert(bean);
+		bean.setMemberID("M170000021");
+		bean.setMName("Anita");
+		bean.setAccount("aloha@gmail.com");
+		bean.setPwd("0000");
+		bean.setGender(1);
+		dao.insert(bean);
 //		
 //		
 //		bean.setMemberID("M170000018");
