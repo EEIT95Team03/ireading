@@ -1,18 +1,17 @@
-package org.iii.eeit9503.ireading.order.dao;
+package org.iii.eeit9503.ireading.dao;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.iii.eeit9503.ireading.order.bean.OrderBean;
-import org.iii.eeit9503.ireading.order.bean.PayBean;
+import org.hibernate.Query;
+import org.iii.eeit9503.ireading.model.EventBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PayCAOHibernate implements PayDAO {
-
+public class EventDAOHibernate implements EventDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -21,15 +20,16 @@ public class PayCAOHibernate implements PayDAO {
 	}
 
 	@Override
-	public int insert(PayBean paybean) {
+	public int insert(EventBean eventbean) {
+
 		try {
 
 			Session session = this.getSession();
 
-			PayBean bean = session.get(PayBean.class, paybean.getPayID());
+			EventBean bean = session.get(EventBean.class, eventbean.getEventID());
 
 			if (bean == null) {
-				session.saveOrUpdate(paybean);
+				session.saveOrUpdate(eventbean);
 
 				return 1;
 			}
@@ -37,15 +37,15 @@ public class PayCAOHibernate implements PayDAO {
 		} catch (Exception e) {
 			return 0;
 		}
-
 	}
 
 	@Override
-	public int update(PayBean paybean) {
+	public int update(EventBean eventbean) {
+
 		try {
 			Session session = this.getSession();
 
-			session.saveOrUpdate(paybean);
+			session.saveOrUpdate(eventbean);
 
 			return 1;
 		} catch (Exception e) {
@@ -55,46 +55,49 @@ public class PayCAOHibernate implements PayDAO {
 	}
 
 	@Override
-	public int delete(String payID) {
+	public int delete(String EventID) {
 		try {
 			Session session = this.getSession();
 
-			Query query = session.createQuery("delete from PayBean where PayID=?");
-			query.setParameter(0, payID);
+			Query query = session.createQuery("delete from EvnetBean where EventID=?");
+			query.setParameter(0, EventID);
 			int delete = query.executeUpdate();
 
 			return delete;
 		} catch (Exception e) {
+			// TODO: handle exception
+
 			return 0;
 		}
 	}
 
 	@Override
-	public PayBean findByID(String payID) {
+	public EventBean findByID(String EventID) {
 		try {
 			Session session = this.getSession();
 
-			PayBean bean = session.get(PayBean.class, payID);
+			EventBean bean = session.get(EventBean.class, EventID);
 
 			return bean;
 		} catch (Exception e) {
 
 			return null;
 		}
+
 	}
 
 	@Override
-	public List<PayBean> getAll() {
+	public List<EventBean> getAll() {
 		try {
 			Session session = this.getSession();
 
-			Query query = session.createQuery("from PayBean");
-			List<PayBean> list = query.list();
+			Query query = session.createQuery("from EventBean");
+			List<EventBean> list = query.list();
 
 			return list;
 		} catch (Exception e) {
 			return null;
-		} 
+		}
 	}
 
 }

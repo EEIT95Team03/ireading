@@ -1,10 +1,19 @@
 package org.iii.eeit9503.ireading.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class Output implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Output")
+public class OutputBean implements Serializable {
+	@Id
 	private String MemberID;
-	private java.sql.Date ApplyTime;
+	@Id
+	private Timestamp ApplyTime;
 	private String BankAccount;
 	private int Amount;
 	private int TotalTransfer;
@@ -15,10 +24,11 @@ public class Output implements Serializable {
 	public void setMemberID(String memberID) {
 		MemberID = memberID;
 	}
-	public java.sql.Date getApplyTime() {
+	
+	public Timestamp getApplyTime() {
 		return ApplyTime;
 	}
-	public void setApplyTime(java.sql.Date applyTime) {
+	public void setApplyTime(Timestamp applyTime) {
 		ApplyTime = applyTime;
 	}
 	public String getBankAccount() {

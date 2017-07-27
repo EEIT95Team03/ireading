@@ -145,7 +145,7 @@ public class OrderServlet extends HttpServlet{
 //			System.out.println(bean2.getPayID()+":"+bean2.getPayType());
 //		}
 		
-		
+//------------------------------------------------------------		
 		//OrderStatus
 		//insert
 //		OrderStatusBean bean=new OrderStatusBean();
@@ -166,15 +166,15 @@ public class OrderServlet extends HttpServlet{
 //		System.out.println(update);
 		
 		//findByID
-		OrderStatusBean bean=orderStatusService.findByID("OS001");
-		System.out.println(bean.getStatusID()+":"+bean.getStatusName());
-		
-		
-		//getAll
-		List<OrderStatusBean> list=orderStatusService.getAll();
-		for(OrderStatusBean bean2:list){
-			System.out.println(bean2.getStatusID()+":"+bean2.getStatusName());
-		}
+//		OrderStatusBean bean=orderStatusService.findByID("OS001");
+//		System.out.println(bean.getStatusID()+":"+bean.getStatusName());
+//		
+//		
+//		//getAll
+//		List<OrderStatusBean> list=orderStatusService.getAll();
+//		for(OrderStatusBean bean2:list){
+//			System.out.println(bean2.getStatusID()+":"+bean2.getStatusName());
+//		}
 		
 		
 		

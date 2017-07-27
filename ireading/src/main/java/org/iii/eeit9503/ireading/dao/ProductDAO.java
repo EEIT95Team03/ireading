@@ -1,7 +1,6 @@
 package org.iii.eeit9503.ireading.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,9 +11,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.iii.eeit9503.ireading.dao.IProductDAO;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.model.ProductBean;
 
