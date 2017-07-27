@@ -6,15 +6,17 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.password">P@ssw0rd</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;database=ireadDB</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1434;database=ireadDB</property>
         <property name="hibernate.connection.username">sa</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
         <property name="hibernate.current_session_context_class">thread</property> 
         <property name="hibernate.show_sql">true</property>
 
         <mapping class="org.iii.eeit9503.ireading.model.OrderBean"/>
         <mapping class="org.iii.eeit9503.ireading.model.EventBean"/>
+        <mapping class="org.iii.eeit9503.ireading.model.MemberBean"/>
 
     </session-factory>
 </hibernate-configuration>
