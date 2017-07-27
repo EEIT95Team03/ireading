@@ -18,6 +18,7 @@ private String EventImg;
 private java.sql.Date Deadline;
 private String EventContent;
 private int Max;
+
 public String getEventID() {
 	return EventID;
 }

@@ -1,6 +1,5 @@
 package org.iii.eeit9503.ireading.controller;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,11 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.iii.eeit9503.ireading.dao.BCDetailDAO;
-import org.iii.eeit9503.ireading.dao.BookCaseDAO;
 import org.iii.eeit9503.ireading.dao.OrderDAO;
-import org.iii.eeit9503.ireading.model.BCDetailBean;
-import org.iii.eeit9503.ireading.model.BookCaseBean;
 import org.iii.eeit9503.ireading.model.OrderBean;
 
 @WebServlet(
@@ -155,8 +150,7 @@ public class testServlet extends HttpServlet{
 	        for(OrderBean bean:list){
 	        	System.out.println(bean.getOrderID()+":"+bean.getMemberID()+":"+bean.getOaddr());
 	        }
-	        
-	        
+      
 	    }
 
 	    @Override

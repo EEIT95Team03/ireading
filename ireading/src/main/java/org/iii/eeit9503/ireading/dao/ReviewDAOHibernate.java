@@ -5,8 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.model.ReviewBean;
 
