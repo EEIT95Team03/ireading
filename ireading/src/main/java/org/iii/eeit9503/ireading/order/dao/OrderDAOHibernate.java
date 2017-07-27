@@ -1,22 +1,10 @@
 package org.iii.eeit9503.ireading.order.dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.persistence.criteria.Order;
-import javax.sql.DataSource;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

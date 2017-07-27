@@ -1,24 +1,12 @@
 package org.iii.eeit9503.ireading.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.io.Serializable;
-
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.iii.eeit9503.ireading.dao.OrderDAO;
-import org.iii.eeit9503.ireading.dao.ProductDAO;
-import org.iii.eeit9503.ireading.misc.HibernateUtil;
-import org.iii.eeit9503.ireading.model.OrderBean;
-import org.iii.eeit9503.ireading.model.ProductBean;
 
 @WebServlet(urlPatterns = { "/testProduct.controller" })
 
