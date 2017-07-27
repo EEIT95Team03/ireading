@@ -2,6 +2,7 @@ package org.iii.eeit9503.ireading.order.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -13,9 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.iii.eeit9503.ireading.order.bean.ODBean;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
+import org.iii.eeit9503.ireading.order.bean.OrderStatusBean;
+import org.iii.eeit9503.ireading.order.bean.PayBean;
 import org.iii.eeit9503.ireading.order.dao.OrderDAOHibernate;
 import org.iii.eeit9503.ireading.order.model.ODService;
 import org.iii.eeit9503.ireading.order.model.OrderService;
+import org.iii.eeit9503.ireading.order.model.OrderStatusService;
+import org.iii.eeit9503.ireading.order.model.PayService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -26,6 +31,8 @@ public class OrderServlet extends HttpServlet{
 	
 	private OrderService orderService;
 	private ODService odService;
+	private PayService payService;
+	private OrderStatusService orderStatusService;
 	
 	@Override
 	public void init() throws ServletException {
@@ -34,6 +41,8 @@ public class OrderServlet extends HttpServlet{
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 		orderService = (OrderService) context.getBean("orderService");
 		odService = (ODService) context.getBean("ODService");
+		payService=(PayService)context.getBean("payService");
+		orderStatusService=(OrderStatusService)context.getBean("orderStatusService");
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,7 +78,7 @@ public class OrderServlet extends HttpServlet{
 		
 //----------------------------------------------------
 		//OrderDetail
-		
+		//System.out.println(new Timestamp(new java.util.Date().getTime()));
 //		ODBean bean=new ODBean();
 		
 		//delete1
@@ -105,6 +114,69 @@ public class OrderServlet extends HttpServlet{
 //		for(ODBean bean2:list){
 //			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
 //		}
+		
+		//pay
+		//insert
+//		PayBean bean=new PayBean();
+//		bean.setPayID("p0003");
+//		bean.setPayType("貨到付款");
+//		int update=payService.insert(bean);
+//		System.out.println(update);
+		
+		//update
+//		PayBean bean=new PayBean();
+//		bean.setPayID("p0003");
+//		bean.setPayType("貨到付款2");
+//		int update=payService.update(bean);
+//		System.out.println(update);
+	
+		//delete
+//		int update=payService.delete("p0003");
+//		System.out.println(update);
+		
+		//findByID
+//		PayBean bean=payService.findByID("p0002");
+//		System.out.println(bean.getPayID()+":"+bean.getPayType());
+		
+		
+		//getAll
+//		List<PayBean> list=payService.getAll();
+//		for(PayBean bean2:list){
+//			System.out.println(bean2.getPayID()+":"+bean2.getPayType());
+//		}
+		
+		
+		//OrderStatus
+		//insert
+//		OrderStatusBean bean=new OrderStatusBean();
+//		bean.setStatusID("OS007");
+//		bean.setStatusName("測試中");		
+//		int update=orderStatusService.insert(bean);
+//		System.out.println(update);
+		
+		//update
+//		OrderStatusBean bean=new OrderStatusBean();
+//		bean.setStatusID("OS007");
+//		bean.setStatusName("測試中2");		
+//		int update=orderStatusService.update(bean);
+//		System.out.println(update);
+		
+		//delete
+//		int update=orderStatusService.delete("OS007");
+//		System.out.println(update);
+		
+		//findByID
+		OrderStatusBean bean=orderStatusService.findByID("OS001");
+		System.out.println(bean.getStatusID()+":"+bean.getStatusName());
+		
+		
+		//getAll
+		List<OrderStatusBean> list=orderStatusService.getAll();
+		for(OrderStatusBean bean2:list){
+			System.out.println(bean2.getStatusID()+":"+bean2.getStatusName());
+		}
+		
+		
 		
 		
 		

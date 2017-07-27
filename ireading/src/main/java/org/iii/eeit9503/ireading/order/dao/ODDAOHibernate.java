@@ -113,6 +113,7 @@ public class ODDAOHibernate implements ODDAO {
 		System.out.println(odbean.getOrderID());
 		query.setParameter("ProductID", odbean.getProductID());
 		System.out.println(odbean.getProductID());
+		
 		List<Object[]> list=query.list();
 		if(list.size()!=0){return 1;}
 		else{
