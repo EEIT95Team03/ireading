@@ -32,7 +32,7 @@ public class EventDAO {
 
 	
 	public int update(EventBean eventbean){
-		// TODO Auto-generated method stub
+		
 	try{
 		HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -42,12 +42,12 @@ public class EventDAO {
 		HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 		return 1;
 	}catch (Exception e) {
-		// TODO: handle exception
+		
 		HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 		return 0;
 	}	
     finally{
-        // TODO: handle finally clause
+        
         HibernateUtil.closeSessionFactory();
     }   
 	}
@@ -65,12 +65,12 @@ public class EventDAO {
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 			return delete;	 
 		}catch (Exception e) {
-			// TODO: handle exception
+			
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 			return 0;
 		}	
 	    finally{
-	        // TODO: handle finally clause
+	        
 	        HibernateUtil.closeSessionFactory();
 	    }   
 	}
@@ -86,37 +86,54 @@ public class EventDAO {
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 			return bean;	 
 		}catch (Exception e) {
-			// TODO: handle exception
+			
 			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 			return null;
 		}	
 	    finally{
-	        // TODO: handle finally clause
+	        
 	        HibernateUtil.closeSessionFactory();
 	    } 
 		
 	}
 	
 	public List<EventBean> getAll(){
+		Session session = null;
 		try{
-			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
-	        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            
+			
+	        session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
 	        Query query=session.createQuery("from EventBean");
 	        List<EventBean> list =query.list();
 	        	               
-			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+			session.getTransaction().commit();
 			return list;	 
 		}catch (Exception e) {
-			// TODO: handle exception
-			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
+			
+			session.getTransaction().rollback();
 			return null;
 		}	
 	    finally{
-	        // TODO: handle finally clause
-	        HibernateUtil.closeSessionFactory();
+	        
 	    } 
 		
 	}
 	
+	public static void main(String[] args) {
+		EventDAO dao = new EventDAO();
+		List<EventBean> list = dao.getAll();
+
+		for (EventBean bean : list) {
+			System.out.println(bean.getEventID() + ":" 
+		     + bean.getEventName()+ ":" 
+			 + bean.getEventDate()+ ":"
+			 + bean.getHost()+ ":"
+			 + bean.getEventPhone() +":"
+			 + bean.getEventPlace() +":"
+			 + bean.getEventImg()+ ":"
+			 + bean.getDeadline() +":"
+			 + bean.getEventContent()+":"
+			 + bean.getMax());
+		}
+    }
 }

@@ -23,10 +23,10 @@
 <%@ page import="javax.naming.*" %>
 <%
 Context ctx = new InitialContext();
-DataSource dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/ireadDB");
+DataSource dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/JavaDB");
 Connection conn = dataSource.getConnection();
 Statement stmt = conn.createStatement();
-ResultSet rset = stmt.executeQuery("use ireadDB select * from Member");
+ResultSet rset = stmt.executeQuery("use ireadDB select * from Event");
 while(rset.next()) {
     String col1 = rset.getString(1);
     String col2 = rset.getString(2);
