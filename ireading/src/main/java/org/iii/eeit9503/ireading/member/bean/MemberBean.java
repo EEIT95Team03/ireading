@@ -1,4 +1,4 @@
-package org.iii.eeit9503.ireading.model;
+package org.iii.eeit9503.ireading.member.bean;
 
 import java.io.Serializable;
 

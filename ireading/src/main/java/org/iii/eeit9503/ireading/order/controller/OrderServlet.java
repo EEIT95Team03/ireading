@@ -1,6 +1,7 @@
 package org.iii.eeit9503.ireading.order.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.iii.eeit9503.ireading.dao.MemberService;
-import org.iii.eeit9503.ireading.dao.OutputService;
+import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
 import org.iii.eeit9503.ireading.order.model.OrderDetailService;
 import org.iii.eeit9503.ireading.order.model.OrderService;
@@ -24,8 +24,6 @@ import org.springframework.web.context.WebApplicationContext;
        )
 public class OrderServlet extends HttpServlet{
 	
-	private MemberService memberSrvice;
-	private OutputService outputService;
 	private OrderService orderService;
 	private OrderDetailService orderDetailService;
 	private PayService payService;
@@ -36,9 +34,6 @@ public class OrderServlet extends HttpServlet{
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-		memberSrvice = (MemberService)context.getBean("memberService");
-		outputService = (OutputService)context.getBean("outputService");
-
 		orderService = (OrderService) context.getBean("orderService");
 		orderDetailService = (OrderDetailService) context.getBean("orderDetailService");
 		payService=(PayService)context.getBean("payService");
@@ -65,10 +60,10 @@ public class OrderServlet extends HttpServlet{
 //		int update=orderDAO.insert(bean);
 //		System.out.println("--"+update+"--");
 //		
-//		List<OrderBean> list=orderService.getAll();
-//		for(OrderBean obean:list){
-//			System.out.println(obean.getOrderID()+":"+obean.getReciepient()+":"+obean.getOaddr());
-//		}
+		List<OrderBean> list=orderService.getAll();
+		for(OrderBean obean:list){
+			System.out.println(obean.getOrderID()+":"+obean.getReciepient()+":"+obean.getOaddr());
+		}
 		
 //		OrderBean bean2=new OrderBean();
 //		bean2.setOrderID("O170701001");
@@ -121,10 +116,10 @@ public class OrderServlet extends HttpServlet{
 
 		
 		
-		List<ODBean> list=odService.getAll();
-		for(ODBean bean2:list){
-			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
-		}
+//		List<ODBean> list=odService.getAll();
+//		for(ODBean bean2:list){
+//			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
+//		}
 
 
 		//getAll
