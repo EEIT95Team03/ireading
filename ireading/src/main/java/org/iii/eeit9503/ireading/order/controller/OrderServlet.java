@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
+import org.hibernate.cfg.PkDrivenByDefaultMapsIdSecondPass;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.bean.OrderStatusBean;
 import org.iii.eeit9503.ireading.order.bean.PayBean;
@@ -120,6 +121,12 @@ public class OrderServlet extends HttpServlet{
 //		}
 		
 		
+
+		List<OrderDetailBean> list=orderDetailService.getAll();
+		for(OrderDetailBean bean2:list){
+			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
+		}
+
 		//getAll
 //		List<OrderDetailBean> list=orderDetailService.getAll();
 //		for(OrderDetailBean bean2:list){
