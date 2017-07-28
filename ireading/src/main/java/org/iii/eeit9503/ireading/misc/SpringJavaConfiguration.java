@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.iii.eeit9503.ireading.book.bean.BooksBean;
 import org.iii.eeit9503.ireading.book.bean.CategoryBean;
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
+import org.iii.eeit9503.ireading.member.bean.OutputBean;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
 import org.iii.eeit9503.ireading.order.bean.OrderStatusBean;
@@ -48,7 +49,8 @@ public class SpringJavaConfiguration {
         builder.addProperties(prop);
 
         builder.addAnnotatedClasses(OrderBean.class,OrderDetailBean.class,PayBean.class,OrderStatusBean.class,
-        		BooksBean.class,CategoryBean.class,ProductBean.class,MemberBean.class
+        		BooksBean.class,CategoryBean.class,ProductBean.class,
+        		MemberBean.class,OutputBean.class
         		);//maping class       
 
         return builder.buildSessionFactory();       

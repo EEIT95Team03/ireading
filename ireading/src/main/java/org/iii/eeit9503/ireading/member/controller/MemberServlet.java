@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
+import org.iii.eeit9503.ireading.member.bean.OutputBean;
 import org.iii.eeit9503.ireading.member.model.MemberService;
+import org.iii.eeit9503.ireading.member.model.OutputService;
 import org.iii.eeit9503.ireading.order.model.OrderDetailService;
 import org.iii.eeit9503.ireading.order.model.OrderService;
 import org.iii.eeit9503.ireading.order.model.OrderStatusService;
@@ -23,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
 	private MemberService memberService;
-
+	private OutputService outputService;
 	
 	@Override
 	public void init() throws ServletException {
@@ -31,7 +33,7 @@ public class MemberServlet extends HttpServlet {
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 		memberService = (MemberService) context.getBean("memberService");
-
+		outputService = (OutputService) context.getBean("outputService");
 	}
 
 	
@@ -45,6 +47,14 @@ public class MemberServlet extends HttpServlet {
 //			System.out.println(bean.getMemberID()+":"+bean.getMName());
 //		}
 		
+//----------------------------------------------------------
+		
+		//Output
+		//getAll
+//		List<OutputBean> list=outputService.getAll();
+//		for(OutputBean bean:list){
+//			System.out.println(bean.getMemberID()+":"+bean.getAmount());
+//		}
 		
 
 	}
