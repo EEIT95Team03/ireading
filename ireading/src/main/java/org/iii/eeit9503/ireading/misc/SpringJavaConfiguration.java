@@ -7,6 +7,9 @@ import org.hibernate.SessionFactory;
 
 import org.iii.eeit9503.ireading.book.bean.BooksBean;
 import org.iii.eeit9503.ireading.book.bean.CategoryBean;
+import org.iii.eeit9503.ireading.book.bean.ReviewBean;
+import org.iii.eeit9503.ireading.bookcase.bean.BCDetailBean;
+import org.iii.eeit9503.ireading.bookcase.bean.BookCaseBean;
 import org.iii.eeit9503.ireading.event.bean.EventBean;
 import org.iii.eeit9503.ireading.event.bean.JoinListBean;
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
@@ -55,6 +58,7 @@ public class SpringJavaConfiguration {
         builder.addAnnotatedClasses(OrderBean.class,OrderDetailBean.class,PayBean.class,OrderStatusBean.class,
         		ProductBean.class,ProductStatusBean.class,SellListBean.class,
         		BooksBean.class,CategoryBean.class,
+        		ReviewBean.class,BookCaseBean.class,BCDetailBean.class,
         		MemberBean.class,OutputBean.class,
         		EventBean.class,JoinListBean.class
         		);//maping class       
