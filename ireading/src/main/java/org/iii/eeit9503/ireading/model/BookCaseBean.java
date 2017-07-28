@@ -1,18 +1,20 @@
 package org.iii.eeit9503.ireading.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="[ireadDB].[dbo].[BookCase]")
-public class BookCaseBean {	
-	@Id
+@Table(name ="BookCase")
+public class BookCaseBean implements Serializable {	
 	private String MemberID;
+	@Id
 	private String BCID; //PK
-	private String BCName;
-	private boolean CaseRank;
-	private boolean Display;
+	private String BCName;	
+	private int CaseRank;
+	private int Display;
 
 	public String getMemberID() {
 		return MemberID;
@@ -32,17 +34,18 @@ public class BookCaseBean {
 	public void setBCName(String bCName) {
 		BCName = bCName;
 	}
-	public boolean getCaseRank() {
+	public int getCaseRank() {
 		return CaseRank;
 	}
-	public void setCaseRank(boolean caseRank) {
+	public void setCaseRank(int caseRank) {
 		CaseRank = caseRank;
 	}
-	public boolean getDisplay() {
+	public int getDisplay() {
 		return Display;
 	}
-	public void setDisplay(boolean display) {
+	public void setDisplay(int display) {
 		Display = display;
 	}
+
 	
 }
