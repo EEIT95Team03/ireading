@@ -3,13 +3,22 @@ package org.iii.eeit9503.ireading.dao;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.model.MemberBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class MemberDAOHibernate implements MmeberDAO{
-	
+@Repository
+public class MemberDAOHibernate implements MemberDAO{
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+		
 	private static final String GET_ALL_STMT = "from MemberBean order by MemberID";
-	private Session session;
 	
 	//測試方法
 	public static void main(String[] args){
@@ -44,8 +53,8 @@ public class MemberDAOHibernate implements MmeberDAO{
 
 	@Override
 	public void insert(MemberBean bean) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -57,8 +66,8 @@ public class MemberDAOHibernate implements MmeberDAO{
 
 	@Override
 	public void update(MemberBean bean) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -70,8 +79,8 @@ public class MemberDAOHibernate implements MmeberDAO{
 
 	@Override
 	public void delete(String MemberID) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			MemberBean bean = (MemberBean)session.get(MemberBean.class, MemberID);
 			session.delete(bean);
@@ -84,6 +93,7 @@ public class MemberDAOHibernate implements MmeberDAO{
 
 	@Override
 	public MemberBean findByID(String MemberID) {
+		Session session = this.getSession();
 		try {
 			MemberBean bean = session.get(MemberBean.class, MemberID);
 			return bean;
@@ -95,9 +105,9 @@ public class MemberDAOHibernate implements MmeberDAO{
 
 	@Override
 	public List<MemberBean> getAll() {
+		Session session = this.getSession();
 		List<MemberBean> list = null;
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
 			list= query.list();
@@ -110,9 +120,4 @@ public class MemberDAOHibernate implements MmeberDAO{
 		}
 
 	}
-	
-	
-	
-	
-
 }

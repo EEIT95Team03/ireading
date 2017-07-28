@@ -1,18 +1,16 @@
-package org.iii.eeit9503.ireading.model;
+package org.iii.eeit9503.ireading.product.bean;
 
 import java.sql.Date;
-import java.io.Serializable;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
-@Table(name = "[ireadDB].[dbo].[Product]")
-public class ProductBean implements Serializable{
+@Table(name = "Product")
+public class ProductBean {
 	@Id
 	private String ProductID;
 	private String StatusID;

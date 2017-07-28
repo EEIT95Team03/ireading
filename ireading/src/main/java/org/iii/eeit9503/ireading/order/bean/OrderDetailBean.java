@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "OrderDetail")
-public class ODBean implements Serializable{
+public class OrderDetailBean implements Serializable{
 @Id
 private String OrderID;
 @Id	

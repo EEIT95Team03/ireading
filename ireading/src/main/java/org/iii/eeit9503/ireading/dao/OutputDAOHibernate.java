@@ -7,19 +7,28 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.model.OutputBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OutputDAOHibernate implements OutputDAO {
+	@Autowired
+	private SessionFactory sessionFactory;
 
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+	
 	private static final String GET_ALL_STMT = "from OutputBean order by MemberID";
-	private Session session;
 
 	@Override
 	public void insert(OutputBean bean) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -30,8 +39,8 @@ public class OutputDAOHibernate implements OutputDAO {
 
 	@Override
 	public void update(OutputBean bean) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -42,8 +51,8 @@ public class OutputDAOHibernate implements OutputDAO {
 
 	@Override
 	public void delete(String MemberID, String ApplyTime) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Timestamp date =  new Timestamp(df.parse(ApplyTime).getTime());
@@ -60,8 +69,8 @@ public class OutputDAOHibernate implements OutputDAO {
 
 	@Override
 	public OutputBean findByID(String MemberID, String ApplyTime) {
+		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			OutputBean bean = new OutputBean();
 			Criteria query = session.createCriteria(OutputBean.class);
 			query.add(Restrictions.eq("MemberID", MemberID));
@@ -76,9 +85,9 @@ public class OutputDAOHibernate implements OutputDAO {
 
 	@Override
 	public List<OutputBean> getAll() {
+		Session session = this.getSession();
 		List<OutputBean> list = null;
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
 			list = query.list();

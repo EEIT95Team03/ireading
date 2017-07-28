@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Query;
 import org.iii.eeit9503.ireading.model.EventBean;
-
+import org.iii.eeit9503.ireading.model.JoinListBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -49,7 +49,7 @@ public class EventDAOHibernate implements EventDAO {
 
 			return 1;
 		} catch (Exception e) {
-			// TODO: handle exception
+		
 			return 0;
 		}
 	}
@@ -65,8 +65,7 @@ public class EventDAOHibernate implements EventDAO {
 
 			return delete;
 		} catch (Exception e) {
-			// TODO: handle exception
-
+			
 			return 0;
 		}
 	}
@@ -99,5 +98,17 @@ public class EventDAOHibernate implements EventDAO {
 			return null;
 		}
 	}
+	
+	public int check(EventBean eventbean) {
+		Session session = this.getSession();
+		
+		Query query = session.createQuery("from EventBean where EventID=:EventID and MemberID=:MemberID");
+		query.setParameter("EventID", eventbean.getEventID());
+		System.out.println(eventbean.getEventID());
+		List<Object[]> list=query.list();
+		if(list.size()!=0){return 1;}
+		else{
+		return 0;}
 
+}
 }
