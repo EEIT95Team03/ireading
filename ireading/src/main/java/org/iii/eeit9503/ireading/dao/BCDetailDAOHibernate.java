@@ -2,10 +2,13 @@ package org.iii.eeit9503.ireading.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.model.BCDetailBean;
+
 
 public class BCDetailDAOHibernate implements BCDetailDAO {
 	
@@ -18,22 +21,22 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 		BCDetailBean bean = new BCDetailBean(); 
 		
 //insert
-		bean.setBCID("BC00000001");
-		bean.setISBN("9789869458023");
-		bean.setBookRank(1);
-		dao.insert(bean);		
+//		bean.setISBN("9789869458023");
+//		bean.setBCID("BC00000004");		
+//		bean.setBookRank(1);
+//		dao.insert(bean);		
 	
 //update
-//		bean.setBCID("BC00000003");
 //		bean.setISBN("9789869458023");
+//		bean.setBCID("BC00000004");
 //		bean.setBookRank(0);
 //		dao.update(bean);	
 		
 //delete
-//		bean.setBCID("BC00000001");
 //		bean.setISBN("9789869458023");
+//		bean.setBCID("BC00000004");
 //		bean.setBookRank(1);
-//		dao.delete("BC00000001");		
+//		dao.delete("9789869458023", "BC00000004");		
 //		
 		List<BCDetailBean>list = dao.getAll();
 		for(BCDetailBean o:list){
@@ -45,7 +48,7 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 
 	@Override
 	public void insert(BCDetailBean bean) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
@@ -59,10 +62,11 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 
 	@Override
 	public void update(BCDetailBean bean) {
-		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.beginTransaction().commit();
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {		
+			session.beginTransaction();
 			session.saveOrUpdate(bean);
+			session.getTransaction().commit();
 		} catch (RuntimeException e) {
 			session.getTransaction().rollback();
 			throw e;
@@ -70,25 +74,32 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 	}
 
 	@Override
-	public void delete(String ISBN) {
+	public void delete(String ISBN, String BCID) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
-			BCDetailBean bean = (BCDetailBean)session.get(BCDetailBean.class,ISBN);
+			session.beginTransaction();			
+			BCDetailBean bean = new BCDetailBean();
+			bean.setISBN(ISBN);
+			bean.setBCID(BCID);
 			session.delete(bean);
 			session.getTransaction().commit();
 		} catch (RuntimeException e) {
-			session.getTransaction().commit();
+			session.getTransaction().rollback();
 			throw e;
 		}
 		
 	}
 
 	@Override
-	public BCDetailBean findByID(String ISBN) {
+	public BCDetailBean findByID(String ISBN, String BCID) {
 		try {
-			BCDetailBean bean = session.get(BCDetailBean.class, ISBN);
-			return bean;
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			BCDetailBean bean = new BCDetailBean();
+			Criteria query = session.createCriteria(BCDetailBean.class);
+			query.add(Restrictions.eq("ISBN",ISBN));
+			query.add(Restrictions.eq("BCID",BCID));
+			bean = (BCDetailBean)query.uniqueResult();
+			return bean;			
 		} catch (RuntimeException e) {			
 			e.printStackTrace();
 			return null;
@@ -98,7 +109,7 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 	@Override
 	public List<BCDetailBean> getAll() {
 		List<BCDetailBean>list = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		
 		try {
 			session.beginTransaction();

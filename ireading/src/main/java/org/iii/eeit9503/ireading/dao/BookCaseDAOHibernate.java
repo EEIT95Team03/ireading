@@ -26,7 +26,7 @@ public class BookCaseDAOHibernate implements BookCaseDAO{
 		
 //update		
 //		bean.setBCID("BC00000010");
-//		bean.setMemberID("M170000003");
+//		bean.setMemberID("M170000004");
 //		bean.setBCName("書櫃名稱WWWWWWWW");		
 //		dao.update(bean);
 		
