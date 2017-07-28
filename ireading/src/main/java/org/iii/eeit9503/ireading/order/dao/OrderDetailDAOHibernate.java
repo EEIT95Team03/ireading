@@ -5,12 +5,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Query;
-import org.iii.eeit9503.ireading.order.bean.ODBean;
+import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ODDAOHibernate implements ODDAO {
+public class OrderDetailDAOHibernate implements OrderDetailDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -19,12 +19,12 @@ public class ODDAOHibernate implements ODDAO {
 	}
 
 	@Override
-	public int insert(ODBean odbean) {
+	public int insert(OrderDetailBean orderDetailbean) {
 		try {
 
 			Session session = this.getSession();
 		
-			session.save(odbean);
+			session.save(orderDetailbean);
 				return 1;			
 		} catch (Exception e) {
 			return 0;
@@ -32,12 +32,12 @@ public class ODDAOHibernate implements ODDAO {
 	}
 
 	@Override
-	public int update(ODBean odbean) {
+	public int update(OrderDetailBean orderDetailbean) {
 		try {
 
 			Session session = this.getSession();
 		
-			session.saveOrUpdate(odbean);
+			session.saveOrUpdate(orderDetailbean);
 			return 1;			
 		} catch (Exception e) {
 			return 0;
@@ -48,7 +48,7 @@ public class ODDAOHibernate implements ODDAO {
 	public int delete(String OrderID, String ProductID) {
 		try {
 		Session session = this.getSession();		
-		Query query=session.createQuery("delete from ODBean where OrderID=:OrderID and ProductID=:ProductID");
+		Query query=session.createQuery("delete from OrderDetailBean where OrderID=:OrderID and ProductID=:ProductID");
 		query.setParameter("OrderID", OrderID);
 		query.setParameter("ProductID", ProductID);
 		int delete=query.executeUpdate();
@@ -61,12 +61,12 @@ public class ODDAOHibernate implements ODDAO {
 	}
 
 	@Override
-	public List<ODBean> findByOrderID(String OrderID) {
+	public List<OrderDetailBean> findByOrderID(String OrderID) {
 		try {
 		Session session = this.getSession();	
-		Query query=session.createQuery("from ODBean where OrderID=:OrderID");
+		Query query=session.createQuery("from OrderDetailBean where OrderID=:OrderID");
 		query.setParameter("OrderID", OrderID);
-		List<ODBean> bean=query.list();		
+		List<OrderDetailBean> bean=query.list();		
 		
 		return bean;
 		} 
@@ -76,12 +76,12 @@ public class ODDAOHibernate implements ODDAO {
 	}
 
 	@Override
-	public List<ODBean> findByProductID(String ProductID) {
+	public List<OrderDetailBean> findByProductID(String ProductID) {
 		try {
 			Session session = this.getSession();	
-			Query query=session.createQuery("from ODBean where ProductID=:ProductID");
+			Query query=session.createQuery("from OrderDetailBean where ProductID=:ProductID");
 			query.setParameter("ProductID", ProductID);
-			List<ODBean> bean=query.list();		
+			List<OrderDetailBean> bean=query.list();		
 			
 			return bean;
 			} 
@@ -91,12 +91,12 @@ public class ODDAOHibernate implements ODDAO {
 	}
 
 	@Override
-	public List<ODBean> getAll() {
+	public List<OrderDetailBean> getAll() {
 		try {
 			Session session = this.getSession();
 
-			Query query = session.createQuery("from ODBean");
-			List<ODBean> list = query.list();
+			Query query = session.createQuery("from OrderDetailBean");
+			List<OrderDetailBean> list = query.list();
 
 			return list;
 		} catch (Exception e) {
@@ -104,14 +104,14 @@ public class ODDAOHibernate implements ODDAO {
 		} 
 	}
 	
-	public int check(ODBean odbean) {
+	public int check(OrderDetailBean orderDetailbean) {
 		Session session = this.getSession();
 		
-		Query query = session.createQuery("from ODBean where OrderID=:OrderID and ProductID=:ProductID");
-		query.setParameter("OrderID", odbean.getOrderID());
-		System.out.println(odbean.getOrderID());
-		query.setParameter("ProductID", odbean.getProductID());
-		System.out.println(odbean.getProductID());
+		Query query = session.createQuery("from OrderDetailBean where OrderID=:OrderID and ProductID=:ProductID");
+		query.setParameter("OrderID", orderDetailbean.getOrderID());
+		System.out.println(orderDetailbean.getOrderID());
+		query.setParameter("ProductID", orderDetailbean.getProductID());
+		System.out.println(orderDetailbean.getProductID());
 		
 		List<Object[]> list=query.list();
 		if(list.size()!=0){return 1;}
