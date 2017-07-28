@@ -1,7 +1,6 @@
 package org.iii.eeit9503.ireading.dao;
 
 import java.util.List;
-
 import org.iii.eeit9503.ireading.model.EventBean;
 
 public interface EventDAO{
