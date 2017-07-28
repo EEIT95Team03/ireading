@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.iii.eeit9503.ireading.dao.MemberService;
+import org.iii.eeit9503.ireading.dao.OutputService;
 import org.iii.eeit9503.ireading.model.MemberBean;
 import org.iii.eeit9503.ireading.model.OutputBean;
 import org.iii.eeit9503.ireading.order.bean.ODBean;

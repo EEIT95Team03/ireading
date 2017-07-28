@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.iii.eeit9503.ireading.model.MemberBean;
 
-public interface MmeberDAO {
+public interface MemberDAO {
 	public void insert(MemberBean bean);
 	public void update(MemberBean bean);
 	public void delete(String MemberID);

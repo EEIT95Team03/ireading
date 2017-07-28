@@ -1,8 +1,6 @@
 package org.iii.eeit9503.ireading.order.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.iii.eeit9503.ireading.order.bean.ODBean;
-import org.iii.eeit9503.ireading.order.bean.OrderBean;
-import org.iii.eeit9503.ireading.order.dao.OrderDAOHibernate;
+import org.iii.eeit9503.ireading.dao.MemberService;
+import org.iii.eeit9503.ireading.dao.OutputService;
 import org.iii.eeit9503.ireading.order.model.ODService;
 import org.iii.eeit9503.ireading.order.model.OrderService;
 import org.springframework.context.ApplicationContext;
@@ -24,20 +21,26 @@ import org.springframework.web.context.WebApplicationContext;
        )
 public class OrderServlet extends HttpServlet{
 	
-	private OrderService orderService;
-	private ODService odService;
+//	private OrderService orderService;
+//	private ODService odService;
+	private MemberService memberSrvice;
+	private OutputService outputService;
+	
 	
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-		orderService = (OrderService) context.getBean("orderService");
-		odService = (ODService) context.getBean("ODService");
+//		orderService = (OrderService) context.getBean("orderService");
+//		odService = (ODService) context.getBean("ODService");
+		memberSrvice = (MemberService)context.getBean("memberService");
+		outputService = (OutputService)context.getBean("outputService");
 	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		//super.doGet(req, resp);
 //		OrderBean bean=new OrderBean();
 //		bean.setOrderID("O170726006");
@@ -104,10 +107,7 @@ public class OrderServlet extends HttpServlet{
 //		List<ODBean> list=odService.getAll();
 //		for(ODBean bean2:list){
 //			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
-//		}
-		
-		
-		
+//		}	
 	}
 
 	@Override
