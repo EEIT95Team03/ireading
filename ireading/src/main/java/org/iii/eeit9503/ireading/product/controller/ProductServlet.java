@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
 import org.iii.eeit9503.ireading.product.bean.ProductStatusBean;
 import org.iii.eeit9503.ireading.product.bean.SellListBean;
+import org.iii.eeit9503.ireading.product.bean.SellListStatusBean;
 import org.iii.eeit9503.ireading.product.model.ProductService;
 import org.iii.eeit9503.ireading.product.model.ProductStatusService;
 import org.iii.eeit9503.ireading.product.model.SellListService;
+import org.iii.eeit9503.ireading.product.model.SellListStatusService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -26,6 +28,7 @@ public class ProductServlet extends HttpServlet {
 	private ProductService productService;
 	private ProductStatusService productStatusService;
 	private SellListService sellListService;
+	private SellListStatusService sellListStatusService;
 	
 	@Override
 	public void init() throws ServletException {
@@ -35,6 +38,7 @@ public class ProductServlet extends HttpServlet {
 		productService = (ProductService)context.getBean("productService");	
 		productStatusService = (ProductStatusService)context.getBean("productStatusService");
 		sellListService = (SellListService)context.getBean("sellListService");	
+		sellListStatusService = (SellListStatusService)context.getBean("sellListStatusService");
 	}	
 	
 	@Override
@@ -163,6 +167,38 @@ public class ProductServlet extends HttpServlet {
 //		for(SellListBean list:bean)
 //		{System.out.println(list.getSellListID()+":"+list.getMemberID());			
 //		}	
+		
+		
+//----------------------------------------------------------------
+		//sellListStatus
+		//insert
+//		SellListStatusBean bean=new SellListStatusBean();
+//		bean.setStatusID("L0006");
+//		bean.setStatusName("未知");
+//		int update=sellListStatusService.insert(bean);
+//		System.out.println(update);
+		
+		//update
+//		SellListStatusBean bean=new SellListStatusBean();
+//		bean.setStatusID("L0006");
+//		bean.setStatusName("未知2");
+//		int update=sellListStatusService.update(bean);
+//		System.out.println(update);
+
+		
+		//delete
+//		int update=sellListStatusService.delete("L0006");
+//		System.out.println(update);
+		
+		//findById
+//		SellListStatusBean bean=sellListStatusService.findByPrimaryKey("L0001");
+//		System.out.println(bean.getStatusID()+":"+bean.getStatusName());
+
+		//getAll
+//		List<SellListStatusBean> list=sellListStatusService.getAll();
+//	for(SellListStatusBean bean:list){System.out.println(bean.getStatusID()+":"+bean.getStatusName());}
+	
+	
 	}
 
 	@Override

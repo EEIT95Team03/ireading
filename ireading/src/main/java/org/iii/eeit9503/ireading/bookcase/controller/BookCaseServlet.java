@@ -14,10 +14,6 @@ import org.iii.eeit9503.ireading.bookcase.bean.BCDetailBean;
 import org.iii.eeit9503.ireading.bookcase.bean.BookCaseBean;
 import org.iii.eeit9503.ireading.bookcase.model.BCDetailService;
 import org.iii.eeit9503.ireading.bookcase.model.BookCaseService;
-import org.iii.eeit9503.ireading.order.model.OrderDetailService;
-import org.iii.eeit9503.ireading.order.model.OrderService;
-import org.iii.eeit9503.ireading.order.model.OrderStatusService;
-import org.iii.eeit9503.ireading.order.model.PayService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
