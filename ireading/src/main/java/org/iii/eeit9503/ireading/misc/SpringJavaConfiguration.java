@@ -1,23 +1,15 @@
 package org.iii.eeit9503.ireading.misc;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.DataSource;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.iii.eeit9503.ireading.book.bean.BooksBean;
+import org.iii.eeit9503.ireading.book.bean.CategoryBean;
 import org.iii.eeit9503.ireading.order.bean.ODBean;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
@@ -49,7 +41,7 @@ public class SpringJavaConfiguration {
         prop.put("hibernate.show_sql", "true");
         builder.addProperties(prop);
 
-        builder.addAnnotatedClasses(OrderBean.class,ODBean.class);//maping class       
+        builder.addAnnotatedClasses(OrderBean.class,ODBean.class,BooksBean.class,CategoryBean.class);//maping class       
         
         return builder.buildSessionFactory();       
     }

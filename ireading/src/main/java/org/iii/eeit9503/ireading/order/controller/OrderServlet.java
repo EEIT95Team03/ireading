@@ -101,10 +101,10 @@ public class OrderServlet extends HttpServlet{
 //		}
 		
 		
-//		List<ODBean> list=odService.getAll();
-//		for(ODBean bean2:list){
-//			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
-//		}
+		List<ODBean> list=odService.getAll();
+		for(ODBean bean2:list){
+			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
+		}
 		
 		
 		
