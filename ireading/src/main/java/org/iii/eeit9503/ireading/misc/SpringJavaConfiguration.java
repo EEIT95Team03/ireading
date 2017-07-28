@@ -16,6 +16,8 @@ import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
 import org.iii.eeit9503.ireading.order.bean.OrderStatusBean;
 import org.iii.eeit9503.ireading.order.bean.PayBean;
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
+import org.iii.eeit9503.ireading.product.bean.ProductStatusBean;
+import org.iii.eeit9503.ireading.product.bean.SellListBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -51,7 +53,7 @@ public class SpringJavaConfiguration {
         builder.addProperties(prop);
 
         builder.addAnnotatedClasses(OrderBean.class,OrderDetailBean.class,PayBean.class,OrderStatusBean.class,
-        		ProductBean.class,
+        		ProductBean.class,ProductStatusBean.class,SellListBean.class,
         		BooksBean.class,CategoryBean.class,
         		MemberBean.class,OutputBean.class,
         		EventBean.class,JoinListBean.class

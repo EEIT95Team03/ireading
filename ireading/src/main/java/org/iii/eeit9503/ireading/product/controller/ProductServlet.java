@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
+import org.iii.eeit9503.ireading.product.bean.ProductStatusBean;
+import org.iii.eeit9503.ireading.product.bean.SellListBean;
 import org.iii.eeit9503.ireading.product.model.ProductService;
+import org.iii.eeit9503.ireading.product.model.ProductStatusService;
+import org.iii.eeit9503.ireading.product.model.SellListService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -20,13 +24,17 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class ProductServlet extends HttpServlet {
 	private ProductService productService;
+	private ProductStatusService productStatusService;
+	private SellListService sellListService;
 	
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-		productService = (ProductService)context.getBean("productService");		
+		productService = (ProductService)context.getBean("productService");	
+		productStatusService = (ProductStatusService)context.getBean("productStatusService");
+		sellListService = (SellListService)context.getBean("sellListService");	
 	}	
 	
 	@Override
@@ -69,9 +77,9 @@ public class ProductServlet extends HttpServlet {
 //		 System.out.println(delete);
 
 		// findByPrimaryKey (done)
-		 ProductBean bean =  productService.findByPrimaryKey("B000000002");
-		 System.out.println(bean.getProductID()+":"+bean.getStatusID()+":"+bean.getSellListID()+":"+
-		     bean.getProductPrice()+":"+bean.getDigital()+":"+bean.getDetail()+":"+bean.getStaus()+":"+bean.getArrival()+":"+bean.getExpiration());
+//		 ProductBean bean =  productService.findByPrimaryKey("B000000002");
+//		 System.out.println(bean.getProductID()+":"+bean.getStatusID()+":"+bean.getSellListID()+":"+
+//		     bean.getProductPrice()+":"+bean.getDigital()+":"+bean.getDetail()+":"+bean.getStaus()+":"+bean.getArrival()+":"+bean.getExpiration());
 
 		// selectAll Hibernate P.90 (done 2017.07.26)
 		//Spring
@@ -87,6 +95,74 @@ public class ProductServlet extends HttpServlet {
 //			    + aArray.getArrival() +":"
 //			    + aArray.getExpiration());
 //				}
+		
+//-------------------------------------------------
+		//productStatus
+		//insert
+//			ProductStatusBean bean=new ProductStatusBean();
+//			bean.setStatusID("S0007");
+//			bean.setStatusName("處理中");	
+//			int update=productStatusService.insert(bean);
+//			System.out.println(update);
+		
+		//update
+//			ProductStatusBean bean=new ProductStatusBean();
+//			bean.setStatusID("S0007");
+//			bean.setStatusName("處理中2");	
+//			int update=productStatusService.update(bean);
+//			System.out.println(update);
+		
+		//delete
+//		int update=productStatusService.delete("S0007");
+//		System.out.println(update);
+		
+		//findByID
+//		ProductStatusBean bean=productStatusService.findByPrimaryKey("S0001");
+//		System.out.println(bean.getStatusID()+":"+bean.getStatusName());
+		
+		//getAll
+//		List<ProductStatusBean> list=productStatusService.getAll();
+//		for(ProductStatusBean bean:list){
+//			System.out.println(bean.getStatusID()+":"+bean.getStatusName());			
+//		}
+		
+//----------------------------------------------
+		//SellList
+		
+		//insert
+//		SellListBean bean = new SellListBean();
+//		bean.setSellListID("170901110");
+//		bean.setMemberID("M170000003");
+//		bean.setStatusID("L0001");
+//		bean.setApplyDate(new Date(new java.util.Date().getTime()));
+//		int insert = sellListService.insert(bean);
+//		System.out.println("--"+ insert +"--");	
+		
+		//update
+//		SellListBean bean = new SellListBean();
+//		bean.setSellListID("170901110");
+//		bean.setMemberID("M170000003");
+//		bean.setStatusID("L0002");
+//		bean.setApplyDate(new Date(new java.util.Date().getTime()));
+//		int insert = sellListService.update(bean);
+//		System.out.println("--"+ insert +"--");	
+		
+		//delete
+//		int delete =sellListService.delete("170901110");
+//		System.out.println(delete);
+		
+		// findByPrimaryKey
+//		SellListBean bean =sellListService.findByPrimaryKey("170729001");
+//		System.out.println(bean.getSellListID() + ":"
+//				+ bean.getMemberID() + ":"
+//				+ bean.getStatusID() + ":"
+//				+ bean.getApplyDate());
+		
+		//getAll
+//		List<SellListBean> bean=sellListService.getAll();
+//		for(SellListBean list:bean)
+//		{System.out.println(list.getSellListID()+":"+list.getMemberID());			
+//		}	
 	}
 
 	@Override
