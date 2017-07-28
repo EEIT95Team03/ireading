@@ -3,7 +3,6 @@ package org.iii.eeit9503.ireading.order.model;
 import java.util.List;
 
 import org.iii.eeit9503.ireading.order.bean.ODBean;
-import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.dao.ODDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
