@@ -69,9 +69,9 @@ public class ProductServlet extends HttpServlet {
 //		 System.out.println(delete);
 
 		// findByPrimaryKey (done)
-//		 ProductBean bean =  productService.findByPrimaryKey("B000000002");
-//		 System.out.println(bean.getProductID()+":"+bean.getStatusID()+":"+bean.getSellListID()+":"+
-//		     bean.getProductPrice()+":"+bean.getDigital()+":"+bean.getDetail()+":"+bean.getStaus()+":"+bean.getArrival()+":"+bean.getExpiration());
+		 ProductBean bean =  productService.findByPrimaryKey("B000000002");
+		 System.out.println(bean.getProductID()+":"+bean.getStatusID()+":"+bean.getSellListID()+":"+
+		     bean.getProductPrice()+":"+bean.getDigital()+":"+bean.getDetail()+":"+bean.getStaus()+":"+bean.getArrival()+":"+bean.getExpiration());
 
 		// selectAll Hibernate P.90 (done 2017.07.26)
 		//Spring
