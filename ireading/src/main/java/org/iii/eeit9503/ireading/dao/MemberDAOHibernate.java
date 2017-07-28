@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDAOHibernate implements MmeberDAO{
+public class MemberDAOHibernate implements MemberDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -55,7 +55,6 @@ public class MemberDAOHibernate implements MmeberDAO{
 	public void insert(MemberBean bean) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -69,7 +68,6 @@ public class MemberDAOHibernate implements MmeberDAO{
 	public void update(MemberBean bean) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -83,7 +81,6 @@ public class MemberDAOHibernate implements MmeberDAO{
 	public void delete(String MemberID) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			MemberBean bean = (MemberBean)session.get(MemberBean.class, MemberID);
 			session.delete(bean);
@@ -111,7 +108,6 @@ public class MemberDAOHibernate implements MmeberDAO{
 		Session session = this.getSession();
 		List<MemberBean> list = null;
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
 			list= query.list();

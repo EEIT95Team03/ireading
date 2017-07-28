@@ -4,7 +4,6 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
-
 import org.iii.eeit9503.ireading.model.EventBean;
 import org.iii.eeit9503.ireading.model.JoinListBean;
 import org.iii.eeit9503.ireading.book.bean.BooksBean;

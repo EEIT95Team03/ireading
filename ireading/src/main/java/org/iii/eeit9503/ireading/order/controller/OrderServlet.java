@@ -1,9 +1,6 @@
 package org.iii.eeit9503.ireading.order.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,12 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.iii.eeit9503.ireading.dao.MemberService;
+import org.iii.eeit9503.ireading.dao.OutputService;
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
-import org.hibernate.cfg.PkDrivenByDefaultMapsIdSecondPass;
-import org.iii.eeit9503.ireading.order.bean.OrderBean;
-import org.iii.eeit9503.ireading.order.bean.OrderStatusBean;
-import org.iii.eeit9503.ireading.order.bean.PayBean;
-import org.iii.eeit9503.ireading.order.dao.OrderDAOHibernate;
 import org.iii.eeit9503.ireading.order.model.OrderDetailService;
 import org.iii.eeit9503.ireading.order.model.OrderService;
 import org.iii.eeit9503.ireading.order.model.OrderStatusService;
@@ -30,6 +24,8 @@ import org.springframework.web.context.WebApplicationContext;
        )
 public class OrderServlet extends HttpServlet{
 	
+	private MemberService memberSrvice;
+	private OutputService outputService;
 	private OrderService orderService;
 	private OrderDetailService orderDetailService;
 	private PayService payService;
@@ -40,14 +36,18 @@ public class OrderServlet extends HttpServlet{
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+		memberSrvice = (MemberService)context.getBean("memberService");
+		outputService = (OutputService)context.getBean("outputService");
+
 		orderService = (OrderService) context.getBean("orderService");
 		orderDetailService = (OrderDetailService) context.getBean("orderDetailService");
 		payService=(PayService)context.getBean("payService");
 		orderStatusService=(OrderStatusService)context.getBean("orderStatusService");
 	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		//super.doGet(req, resp);
 		
 		//OrderBean
@@ -82,7 +82,6 @@ public class OrderServlet extends HttpServlet{
 //----------------------------------------------------
 		//OrderDetail
 		
-		OrderDetailBean bean=new OrderDetailBean();
 		
 		//insert
 //		bean.setOrderID("O170720001");
@@ -119,13 +118,6 @@ public class OrderServlet extends HttpServlet{
 //		for(OrderDetailBean bean2:list){
 //			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
 //		}
-		
-		
-
-		List<OrderDetailBean> list=orderDetailService.getAll();
-		for(OrderDetailBean bean2:list){
-			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
-		}
 
 		//getAll
 //		List<OrderDetailBean> list=orderDetailService.getAll();
@@ -195,10 +187,6 @@ public class OrderServlet extends HttpServlet{
 //		for(OrderStatusBean bean2:list){
 //			System.out.println(bean2.getStatusID()+":"+bean2.getStatusName());
 //		}
-		
-		
-		
-		
 		
 	}
 

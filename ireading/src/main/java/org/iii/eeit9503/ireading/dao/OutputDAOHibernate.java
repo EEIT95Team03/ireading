@@ -12,7 +12,9 @@ import org.hibernate.criterion.Restrictions;
 import org.iii.eeit9503.ireading.misc.HibernateUtil;
 import org.iii.eeit9503.ireading.model.OutputBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OutputDAOHibernate implements OutputDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -27,7 +29,6 @@ public class OutputDAOHibernate implements OutputDAO {
 	public void insert(OutputBean bean) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -40,7 +41,6 @@ public class OutputDAOHibernate implements OutputDAO {
 	public void update(OutputBean bean) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.saveOrUpdate(bean);
 			session.getTransaction().commit();
@@ -53,7 +53,6 @@ public class OutputDAOHibernate implements OutputDAO {
 	public void delete(String MemberID, String ApplyTime) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Timestamp date =  new Timestamp(df.parse(ApplyTime).getTime());
@@ -72,7 +71,6 @@ public class OutputDAOHibernate implements OutputDAO {
 	public OutputBean findByID(String MemberID, String ApplyTime) {
 		Session session = this.getSession();
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			OutputBean bean = new OutputBean();
 			Criteria query = session.createCriteria(OutputBean.class);
 			query.add(Restrictions.eq("MemberID", MemberID));
@@ -90,7 +88,6 @@ public class OutputDAOHibernate implements OutputDAO {
 		Session session = this.getSession();
 		List<OutputBean> list = null;
 		try {
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
 			list = query.list();
