@@ -21,8 +21,8 @@ public class MemberDAOHibernate implements MemberDAO{
 
 	@Override
 	public int insert(MemberBean bean) {
-		Session session = this.getSession();
 		try {
+			Session session = this.getSession();
 			session.saveOrUpdate(bean);
 			
 			return 1;
@@ -46,8 +46,8 @@ public class MemberDAOHibernate implements MemberDAO{
 
 	@Override
 	public int delete(String MemberID) {
-		Session session = this.getSession();
 		try {
+			Session session = this.getSession();
 			
 			MemberBean bean = (MemberBean)session.get(MemberBean.class, MemberID);
 			session.delete(bean);
@@ -61,8 +61,8 @@ public class MemberDAOHibernate implements MemberDAO{
 
 	@Override
 	public MemberBean findByID(String MemberID) {
-		Session session = this.getSession();
 		try {
+			Session session = this.getSession();
 			MemberBean bean = session.get(MemberBean.class, MemberID);
 			return bean;
 		} catch (Exception e) {
@@ -73,11 +73,10 @@ public class MemberDAOHibernate implements MemberDAO{
 
 	@Override
 	public List<MemberBean> getAll() {
-		Session session = this.getSession();
-		List<MemberBean> list = null;
-		try {
+		try {		
+			Session session = this.getSession();
 			Query query = session.createQuery(GET_ALL_STMT);
-			list= query.list();
+			List<MemberBean> list= query.list();
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();

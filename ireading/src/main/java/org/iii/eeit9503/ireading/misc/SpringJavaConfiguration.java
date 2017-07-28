@@ -14,6 +14,7 @@ import org.iii.eeit9503.ireading.event.bean.EventBean;
 import org.iii.eeit9503.ireading.event.bean.JoinListBean;
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
 import org.iii.eeit9503.ireading.member.bean.OutputBean;
+import org.iii.eeit9503.ireading.member.bean.PaymentBean;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
 import org.iii.eeit9503.ireading.order.bean.OrderStatusBean;
@@ -60,7 +61,7 @@ public class SpringJavaConfiguration {
         		ProductBean.class,ProductStatusBean.class,SellListBean.class,SellListStatusBean.class,
         		ReviewBean.class,BookCaseBean.class,BCDetailBean.class,
         		BooksBean.class,CategoryBean.class,
-        		MemberBean.class,OutputBean.class,
+        		MemberBean.class,OutputBean.class,PaymentBean.class,
         		EventBean.class,JoinListBean.class
         		);//maping class       
 
