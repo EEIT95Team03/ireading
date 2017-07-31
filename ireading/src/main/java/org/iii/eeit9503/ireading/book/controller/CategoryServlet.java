@@ -15,7 +15,7 @@ import org.iii.eeit9503.ireading.book.model.CategoryService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
-@WebServlet(urlPatterns = { "/Category.controller" })
+@WebServlet(urlPatterns = { "/category.servlet" })
 public class CategoryServlet extends HttpServlet {
 
 	private CategoryService categoryService;

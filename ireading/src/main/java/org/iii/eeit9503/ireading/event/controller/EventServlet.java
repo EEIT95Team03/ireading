@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
 @WebServlet(
-		urlPatterns = { "/event.controller" }
+		urlPatterns = { "/event.servlet" }
 		)
 public class EventServlet extends HttpServlet {
 

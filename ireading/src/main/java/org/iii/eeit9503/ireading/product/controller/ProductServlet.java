@@ -22,7 +22,7 @@ import org.iii.eeit9503.ireading.product.model.SellListStatusService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
-@WebServlet(urlPatterns = { "/product.controller" })
+@WebServlet(urlPatterns = { "/product.servlet" })
 
 public class ProductServlet extends HttpServlet {
 	private ProductService productService;

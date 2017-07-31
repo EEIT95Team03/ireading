@@ -18,7 +18,7 @@ import org.iii.eeit9503.ireading.book.model.ReviewService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
-@WebServlet(urlPatterns = { "/review.controller" })
+@WebServlet(urlPatterns = { "/review.servlet" })
 public class ReviewServlet extends HttpServlet {
 
 	private ReviewService reviewService;

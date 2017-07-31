@@ -15,7 +15,7 @@ import org.iii.eeit9503.ireading.book.model.BooksService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
-@WebServlet(urlPatterns = { "/books.controller" })
+@WebServlet(urlPatterns = { "/books.servlet" })
 public class BooksServlet extends HttpServlet {
 
 	private BooksService booksService;

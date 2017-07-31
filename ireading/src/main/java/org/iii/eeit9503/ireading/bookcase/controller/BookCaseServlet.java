@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
 
-@WebServlet("/BookCaseServlet")
+@WebServlet("/bookcase.servlet")
 public class BookCaseServlet extends HttpServlet {
 	private BookCaseService bookCaseService;
 	private BCDetailService bCDetailService;

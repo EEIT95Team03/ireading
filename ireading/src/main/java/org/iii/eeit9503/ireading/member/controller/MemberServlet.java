@@ -25,7 +25,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
 
-@WebServlet("/MemberServlet")
+@WebServlet("/member.servlet")
 public class MemberServlet extends HttpServlet {
 	private MemberService memberService;
 	private OutputService outputService;
