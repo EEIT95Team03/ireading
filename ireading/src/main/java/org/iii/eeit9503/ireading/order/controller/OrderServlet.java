@@ -20,7 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
 @WebServlet(
-        urlPatterns={"/order.controller"}
+        urlPatterns={"/order.servlet"}
        )
 public class OrderServlet extends HttpServlet{
 	

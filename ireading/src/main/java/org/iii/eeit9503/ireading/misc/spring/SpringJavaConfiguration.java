@@ -1,6 +1,9 @@
-package org.iii.eeit9503.ireading.misc;
+package org.iii.eeit9503.ireading.misc.spring;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -35,14 +38,24 @@ public class SpringJavaConfiguration {
 	@Bean
     public DataSource dataSource(){
     
-    DriverManagerDataSource dmds=new DriverManagerDataSource();
-
-    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=ireadDB");
-    dmds.setUsername("sa");
-    dmds.setPassword("P@ssw0rd");
-
-    return dmds;           
+//    DriverManagerDataSource dmds=new DriverManagerDataSource();
+//
+//    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=ireadDB");
+//    dmds.setUsername("sa");
+//    dmds.setPassword("P@ssw0rd");
+//    return dmds;    
+		
+		DataSource dataSource=null;
+		try {
+			Context ctx=new InitialContext();
+			dataSource=(DataSource) ctx.lookup("java:/comp/env/jdbc/ireadDB");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dataSource;
     }
 	
 	@Bean
