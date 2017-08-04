@@ -1,5 +1,6 @@
 package org.iii.eeit9503.ireading.member.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
@@ -13,11 +14,11 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	public int insert(MemberBean bean){
+	public MemberBean insert(MemberBean bean){
 		return memberDAO.insert(bean);
 	}
 	
-	public int update(MemberBean bean){
+	public MemberBean update(MemberBean bean){
 		return memberDAO.update(bean);
 	}
 	
@@ -25,12 +26,22 @@ public class MemberService {
 		return memberDAO.delete(MemberID);
 	}
 	
-	public MemberBean findByID(String MemberID){
-		return memberDAO.findByID(MemberID);
+	public List<MemberBean> select(MemberBean bean){
+		List<MemberBean> list = null;
+		if(bean!=null && bean.getMemberID().trim().length()!=0) {
+			MemberBean temp = memberDAO.select(bean.getMemberID());
+			if(temp!=null) {
+				list = new ArrayList<MemberBean>();
+				list.add(temp);
+			}
+		} else {
+			list = memberDAO.select(); 
+		}
+		return list;
 	}
 	
-	public List<MemberBean> getAll(){
-		return memberDAO.getAll();
+	public String getLastID(){
+		return memberDAO.getLastID();
 	}
 
 }

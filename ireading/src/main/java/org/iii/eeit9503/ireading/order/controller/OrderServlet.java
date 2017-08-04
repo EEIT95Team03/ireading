@@ -16,6 +16,8 @@ import org.iii.eeit9503.ireading.order.model.OrderDetailService;
 import org.iii.eeit9503.ireading.order.model.OrderService;
 import org.iii.eeit9503.ireading.order.model.OrderStatusService;
 import org.iii.eeit9503.ireading.order.model.PayService;
+import org.iii.eeit9503.ireading.transfer.DateTansfer;
+import org.iii.eeit9503.ireading.transfer.IDGgenerator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -43,6 +45,7 @@ public class OrderServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		System.out.println("Servlet");
 		//super.doGet(req, resp);
 		
 		//OrderBean
@@ -60,11 +63,11 @@ public class OrderServlet extends HttpServlet{
 //		int update=orderDAO.insert(bean);
 //		System.out.println("--"+update+"--");
 //		
-		List<OrderBean> list=orderService.getAll();
-		for(OrderBean obean:list){
-			System.out.println(obean.getOrderID()+":"+obean.getReciepient()+":"+obean.getOaddr());
-		}
-		
+//		List<OrderBean> list=orderService.getAll();
+//		for(OrderBean obean:list){
+//			System.out.println(obean.getOrderID()+":"+obean.getReciepient()+":"+obean.getOaddr());
+//		}
+//		
 //		OrderBean bean2=new OrderBean();
 //		bean2.setOrderID("O170701001");
 //		List<OrderBean> list2=orderDAO.select(bean2);
@@ -104,7 +107,7 @@ public class OrderServlet extends HttpServlet{
 		//findByOrderID
 //		List<OrderDetailBean> list=orderDetailService.findByOrderID("O170720001");
 //		for(OrderDetailBean bean2:list){
-//			System.out.println(bean2.getOrderID()+":"+bean2.getProductID());
+//			System.out.println(bean2.getOrderID()+":"+bean2.getProductBean().getBooksBean().getTitle());
 //		}
 
 		

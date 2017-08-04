@@ -19,7 +19,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected String[] getServletMappings() {
 		// TODO Auto-generated method stub
-		return new String[]{"*.controller"};
+		return new String[]{"/"};
 	}
 
 }

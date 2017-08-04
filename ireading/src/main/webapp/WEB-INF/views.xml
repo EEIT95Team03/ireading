@@ -15,5 +15,50 @@
 		<property name="contextRelative" value="true"></property>
 	</bean>
 	
+	<bean id="order.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/orders/Orders.jsp"></property>
+	</bean>
+	
+		<bean id="order.success"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/orders/1"></property>
+	</bean>
+			<bean id="order.faild"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/orders/0"></property>
+	</bean>
+	
+	<bean id="order.info"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/orders/OrderInfo.jsp"></property>
+	</bean>
+	
+	
+		<bean id="member.Add"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/member/member_add.jsp"></property>
+	</bean>
+	
+	<bean id="member.Update"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/member/member_update.jsp"></property>
+	</bean>
+	
+	<bean id="member.ShowAll"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/member/member_show.jsp"></property>
+	</bean>
+
+
+	<bean id="Event.insert"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/event/Event.jsp"></property>
+	</bean>
+
+	<bean id="Event.update"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/event/EventAll.jsp"></property>
+	</bean>
 	
 </beans>

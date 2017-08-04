@@ -34,5 +34,9 @@ public class OrderService {
 		return orderDAO.getAll();
 	}
 	
+	public String getLastID(){
+		return orderDAO.getLastID();
+	}
+	
 
 }

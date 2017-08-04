@@ -1,10 +1,12 @@
 package org.iii.eeit9503.ireading.member.bean;
 
 import java.io.Serializable;
+import java.util.Base64;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="Member")
@@ -89,11 +91,20 @@ public class MemberBean implements Serializable{
 	public void setIncome(int income) {
 		Income = income;
 	}
+	
 	public byte[] getPhoto() {
 		return Photo;
 	}
 	public void setPhoto(byte[] photo) {
 		Photo = photo;
 	}
+	
+	public String getByteArrayString()
+	{
+		System.out.println(this.Photo);
+		System.out.println(Base64.getEncoder().encodeToString("hello".getBytes()));
+	   return "";
+	}
+
 		
 }

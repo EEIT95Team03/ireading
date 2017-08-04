@@ -7,9 +7,11 @@ import org.iii.eeit9503.ireading.member.bean.MemberBean;
 
 
 public interface MemberDAO {
-	public int insert(MemberBean bean);
-	public int update(MemberBean bean);
+	public MemberBean insert(MemberBean bean);
+	public MemberBean update(MemberBean bean);
 	public int delete(String MemberID);
-	public MemberBean findByID(String  MemberID);
-	public List<MemberBean> getAll();
+	public MemberBean select(String  MemberID);
+	public List<MemberBean> select();
+	public String getLastID();
+	
 }

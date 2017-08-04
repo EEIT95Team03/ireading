@@ -4,15 +4,21 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.iii.eeit9503.ireading.product.bean.ProductBean;
 
 @Entity
 @Table(name = "OrderDetail")
 public class OrderDetailBean implements Serializable{
 @Id
 private String OrderID;
-@Id	
-private String ProductID;
+@Id
+@ManyToOne
+@JoinColumn(name="ProductID")
+private ProductBean productBean;
 
 public String getOrderID() {
 	return OrderID;
@@ -20,11 +26,12 @@ public String getOrderID() {
 public void setOrderID(String orderID) {
 	OrderID = orderID;
 }
-public String getProductID() {
-	return ProductID;
+public ProductBean getProductBean() {
+	return productBean;
 }
-public void setProductID(String productID) {
-	ProductID = productID;
+public void setProductBean(ProductBean productBean) {
+	this.productBean = productBean;
 }
+
 
 }

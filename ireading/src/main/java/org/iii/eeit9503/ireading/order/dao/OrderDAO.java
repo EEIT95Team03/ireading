@@ -11,6 +11,6 @@ public int update(OrderBean orderbean);
 public int delete(String OrderID);
 public OrderBean findByID(String OrderID);
 public List<OrderBean> getAll();
-
+public String getLastID();
 	
 }

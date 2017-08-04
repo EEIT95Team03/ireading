@@ -37,9 +37,11 @@ public class OrderDetailService {
 	public List<OrderDetailBean> findByProductID(String ProductID) {
 		return orderDetailDAO.findByProductID(ProductID);	}
 	
+	public List<OrderDetailBean> findByID(String OrderID,String ProductID) {
+		return orderDetailDAO.findByID(OrderID,ProductID);	}
 	
 	public int delete(OrderDetailBean orderDetailbean){
-		return orderDetailDAO.delete(orderDetailbean.getOrderID(), orderDetailbean.getProductID());	
+		return orderDetailDAO.delete(orderDetailbean.getOrderID(), orderDetailbean.getProductBean().getProductID());	
 	}
 	
 	public List<OrderDetailBean> getAll(){

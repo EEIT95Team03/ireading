@@ -43,11 +43,11 @@ public class OrderDAOHibernate implements OrderDAO{
 		try {
 			Session session = this.getSession();
 
-			session.saveOrUpdate(orderbean);
+			session.update(orderbean);
 
 			return 1;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();// TODO: handle exception
 			return 0;
 		}
 	}
@@ -96,6 +96,22 @@ public class OrderDAOHibernate implements OrderDAO{
 		} catch (Exception e) {
 			return null;
 		} 
+	}
+	@Override
+	public String getLastID(){
+		try {
+			Session session = this.getSession();
+			Query query = session.createSQLQuery("select Top 1 OrderID from Orders order by OrderID desc");
+			List<Object> list = query.list();
+			String ID=null;
+			for(Object Array:list){
+				ID=(String) Array;}
+			return ID;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} 
+		
 	}
 
 }

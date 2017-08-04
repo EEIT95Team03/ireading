@@ -89,6 +89,22 @@ public class OrderDetailDAOHibernate implements OrderDetailDAO {
 				return null;
 			}
 	}
+	
+	@Override
+	public List<OrderDetailBean> findByID(String OrderID, String ProductID) {
+		try {
+			Session session = this.getSession();	
+			Query query=session.createQuery("from OrderDetailBean where OrderID=:OrderID and ProductID=:ProductID");
+			query.setParameter("OrderID", OrderID);
+			query.setParameter("ProductID", ProductID);
+			List<OrderDetailBean> bean=query.list();		
+			
+			return bean;
+			} 
+			catch (Exception e) {
+				return null;
+			}
+	}
 
 	@Override
 	public List<OrderDetailBean> getAll() {
@@ -110,8 +126,8 @@ public class OrderDetailDAOHibernate implements OrderDetailDAO {
 		Query query = session.createQuery("from OrderDetailBean where OrderID=:OrderID and ProductID=:ProductID");
 		query.setParameter("OrderID", orderDetailbean.getOrderID());
 		System.out.println(orderDetailbean.getOrderID());
-		query.setParameter("ProductID", orderDetailbean.getProductID());
-		System.out.println(orderDetailbean.getProductID());
+		query.setParameter("ProductID", orderDetailbean.getProductBean().getProductID());
+		System.out.println(orderDetailbean.getProductBean().getProductID());
 		
 		List<Object[]> list=query.list();
 		if(list.size()!=0){return 1;}
@@ -119,4 +135,6 @@ public class OrderDetailDAOHibernate implements OrderDetailDAO {
 		return 0;}
 		
 	}
+
+	
 }

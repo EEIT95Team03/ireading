@@ -5,7 +5,11 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.iii.eeit9503.ireading.book.bean.BooksBean;
 
 
 @Entity
@@ -18,9 +22,12 @@ public class ProductBean {
 	private int ProductPrice;
     private byte[] Digital;
     private String Detail;
-	private String Staus;
+	private String Status;
 	private Date Arrival;
 	private Date Expiration;
+	@ManyToOne
+	@JoinColumn(name="ISBN")
+	private BooksBean booksBean;
 	
 	public String getProductID() {
 		return ProductID;
@@ -58,11 +65,12 @@ public class ProductBean {
 	public void setDetail(String detail) {
 		Detail = detail;
 	}
-	public String getStaus() {
-		return Staus;
+	
+	public String getStatus() {
+		return Status;
 	}
-	public void setStaus(String staus) {
-		Staus = staus;
+	public void setStatus(String status) {
+		Status = status;
 	}
 	public Date getArrival() {
 		return Arrival;
@@ -75,6 +83,14 @@ public class ProductBean {
 	}
 	public void setExpiration(Date expiration) {
 		Expiration = expiration;
+	}
+	
+	
+	public BooksBean getBooksBean() {
+		return booksBean;
+	}
+	public void setBooksBean(BooksBean booksBean) {
+		this.booksBean = booksBean;
 	}
 	
 	public boolean equals(Object obj) {
