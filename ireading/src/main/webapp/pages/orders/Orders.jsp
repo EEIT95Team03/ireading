@@ -6,20 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>訂單清單</title>
-
-<!-- 最新編譯和最佳化的 CSS --> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> 
-<!-- 選擇性佈景主題 --> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> 
-
-<%-- <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" /> --%>
-<%-- <link href="<c:url value="/css/bootstrap-theme.min.css"/>" --%>
-<!-- 	rel="stylesheet" /> -->
+<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" />
+<link href="<c:url value="/css/bootstrap-theme.min.css"/>" rel="stylesheet" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- 最新編譯和最佳化的 JavaScript --> 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js">
-</script>
-<%-- <script src="<c:url value="/js/bootstrap.min.js"/>"></script> --%>
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
 	<div class="container">
@@ -43,7 +34,7 @@
 							<td>${order.memberID}</td>
 							<td>${order.orderStatusBean.statusName}</td>
 							<td class="text-center"> 
-							<c:url value="/order.controller/${order.orderID}" var="link"/>
+							<c:url value="/manager/order.controller/${order.orderID}" var="link"/>
 								<a class='btn btn-info btn-xs editbtn' href="${link}"> <span
 									class="glyphicon glyphicon-edit"></span>Edit</a>
 									<button class="btn btn-danger btn-xs deletebtn">
@@ -119,7 +110,7 @@
         $('#new_btn').click(function(event){
         	event.preventDefault();
         	var data=$('#newform').serialize();
-        	$.post("order.controller/insert",data,function(data){
+        	$.post("/ireading/manager/order.controller/insert",data,function(data){
         		if(data[0].change=="0"){
         			alert("新增訂單失敗");
         			$('#new_memberid + .msg').text(data[0].memberid);
@@ -134,7 +125,7 @@
 		$('#orderlist').on('click', '.deletebtn', function() {
 			var id = $(this).parents("tr").children('.oid').text();
 			if (confirm("確定要刪除這筆訂單?")) {
-				$.post("order.controller/delete", {OrderID : id}, 
+				$.post("/ireading/manager/order.controller/delete", {OrderID : id}, 
 				   function(data) {
 				if(data[0].change==1){
 					location.reload();

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(path={"/test.controller"})
+@RequestMapping(path={"test.controller"})
 public class TestController {
 	@Autowired
 	private OrderService orderService;

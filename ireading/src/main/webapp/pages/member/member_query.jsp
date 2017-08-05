@@ -402,7 +402,7 @@ function clearForm() {
 	<div class="container auth">
 		<div id="big-form" class="well auth-box">
 			<div class="form-group">
-				<form action="<c:url value="/member.controller"/>" method="POST" enctype= "multipart/form-data">
+				<form action="<c:url value="/manager/member.controller"/>" method="POST" enctype= "multipart/form-data">
 				<fieldset>
 				<legend>會員資料</legend>
 				

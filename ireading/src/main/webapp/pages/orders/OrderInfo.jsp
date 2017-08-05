@@ -212,7 +212,7 @@
 			var oid = $('#orderid').attr('value');
 			console.log(oid);
 			if (confirm("確定要刪除這個商品?")) {
-				$.post("/ireading/orderdetail.controller/delete", {
+				$.post("/ireading/manager/orderdetail.controller/delete", {
 					OrderID : oid,
 					ProductID : pid
 				}, function(data) {
@@ -230,7 +230,7 @@
 		$('.savebtn').click(function(event){
 			event.preventDefault();
 			var data=$('#editform').serialize();
-			$.post("/ireading/order.controller/update",data,function(data){
+			$.post("/ireading/manager/order.controller/update",data,function(data){
 				console.log(data);
 				if(data[0].error=="1"){}
 				else{

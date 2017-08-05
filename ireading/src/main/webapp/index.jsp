@@ -13,8 +13,8 @@
 <h1>歡迎進入專題的無底深淵</h1>
 <hr>
 <h1>Servlet測試</h1>
-<a href="<c:url value='/test.controller'/>">controller測試</a>
-<a href="<c:url value='/order.controller'/>">order測試</a>
+<a href="<c:url value='/user/test.controller'/>">controller測試</a>
+<a href="<c:url value='/manager/order.controller'/>">order測試</a>
 <a href="<c:url value='/order.servlet'/>">servlet測試</a>
 /order.servlet
 <h2>Servlet測試成功 Console會顯示訊息</h2>

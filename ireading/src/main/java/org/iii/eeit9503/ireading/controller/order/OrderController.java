@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@RequestMapping(path={"/order.controller"})
+@RequestMapping(path={"order.controller"})
 @SessionAttributes(value = { "order", "OrderDetails" })
 public class OrderController {
 	@Autowired
