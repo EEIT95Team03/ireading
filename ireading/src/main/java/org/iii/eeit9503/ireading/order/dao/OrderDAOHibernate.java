@@ -114,4 +114,19 @@ public class OrderDAOHibernate implements OrderDAO{
 		
 	}
 
+	@Override
+	public List<OrderBean> getAllbyMemberID(String MemberID) {
+		try {
+			Session session = this.getSession();
+
+			Query query = session.createQuery("from OrderBean where MemberID=:MemberID");
+			query.setParameter("MemberID",MemberID);
+			List<OrderBean> list = query.list();
+
+			return list;
+		} catch (Exception e) {
+			return null;
+		} 
+	}
+
 }

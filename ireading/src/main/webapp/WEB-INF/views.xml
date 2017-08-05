@@ -63,6 +63,14 @@
 		<property name="url" value="/pages/event/EventAll.jsp"></property>
 	</bean>
 	
+		<bean id="user.myOrder"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/myOrder.jsp"></property>
+	</bean>
 	
+		<bean id="user.myOrderDetail"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/myOrderDetail.jsp"></property>
+	</bean>
 	
 </beans>

@@ -46,7 +46,8 @@
                     <button type="button" class="btn btn-warning" style="font-family:微軟正黑體;font-weight:500;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;個人資料</button>  
                 </div>  
                 <li>
-                    <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的訂單</a>
+                
+                    <a href="<c:url value="/user/myorder/getOrders"/>"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的訂單</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的帳戶</a>

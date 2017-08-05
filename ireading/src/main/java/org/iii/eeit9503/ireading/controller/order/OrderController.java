@@ -117,6 +117,7 @@ public class OrderController {
 	@ResponseBody
 	public String insert(String memberid,String status,String pay,String reciepient,String oaddr,String omemo){
 		JSONObject error=new JSONObject();
+		
 		OrderBean bean = new OrderBean();
 		//驗證資料
 		bean.setOrderID(idGgenerator.getOrderID());

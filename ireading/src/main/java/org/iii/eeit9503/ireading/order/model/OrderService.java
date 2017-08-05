@@ -38,5 +38,9 @@ public class OrderService {
 		return orderDAO.getLastID();
 	}
 	
+	public List<OrderBean> getAllbyMemberID(String MemberID) {
+		return orderDAO.getAllbyMemberID(MemberID);
+	}
+	
 
 }

@@ -15,7 +15,6 @@
 <body>
 	<div class="container">
 		<div class="row col-md-8 col-md-offset-2 custyle">
-		<button class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#neworder"><b>+</b>新增訂單</button>
 			<table class="table table-striped custab" id="orderlist">
 				<thead>
 					<tr>
@@ -34,8 +33,7 @@
 							<td>${order.memberID}</td>
 							<td>${order.orderStatusBean.statusName}</td>
 							<td class="text-center"> 
-							<c:url value="/manager/order.controller/${order.orderID}" var="link"/>
-								<a class='btn btn-info btn-xs editbtn' href="${link}"> <span
+								<a class='btn btn-info btn-xs editbtn'> <span
 									class="glyphicon glyphicon-edit"></span>Edit</a>
 									<button class="btn btn-danger btn-xs deletebtn">
 										<span class="glyphicon glyphicon-remove"></span>Del
@@ -109,7 +107,7 @@
 	$(function() {
         $('#new_btn').click(function(event){
         	event.preventDefault();
-        	var data=$('#newform').serialize();
+        	var data=$('#newform').serialize();//memberid=123&orderid=1451454
         	$.post("/ireading/manager/order.controller/insert",data,function(data){
         		if(data[0].change=="0"){
         			alert("新增訂單失敗");

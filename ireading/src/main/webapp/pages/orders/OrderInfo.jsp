@@ -232,7 +232,10 @@
 			var data=$('#editform').serialize();
 			$.post("/ireading/manager/order.controller/update",data,function(data){
 				console.log(data);
-				if(data[0].error=="1"){}
+				if(data[0].error=="1"){
+					
+					
+				}
 				else{
 				if(data[0].change=="1"){
 					console.log("成功");
