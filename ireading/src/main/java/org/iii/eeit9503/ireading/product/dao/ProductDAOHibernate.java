@@ -66,13 +66,13 @@ public class ProductDAOHibernate implements ProductDAO{
 	public ProductBean findByPrimaryKey(String ProductID) {
 		try {
 			Session session = this.getSession();
-			
+			System.out.println(ProductID);
 			ProductBean bean =session.get(ProductBean.class,ProductID);
 		
 			
 			return bean;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();// TODO: handle exception
 			return null;
 		} 
 	}
@@ -84,6 +84,23 @@ public class ProductDAOHibernate implements ProductDAO{
 			Session session = this.getSession();
 			
 			Query query = session.createQuery("FROM ProductBean");
+			list = query.list();
+			
+			return list;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<ProductBean> findByISBN(String ISBN) {
+		List<ProductBean> list = null;
+		try {
+			Session session = this.getSession();
+			
+			Query query = session.createQuery("FROM ProductBean where ISBN=:ISBN and StatusID=:StatusID");
+			query.setParameter("ISBN",ISBN);
+			query.setParameter("StatusID","S0004");
 			list = query.list();
 			
 			return list;

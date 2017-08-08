@@ -16,6 +16,8 @@
 <a href="<c:url value='/user/test.controller'/>">controller測試</a>
 <a href="<c:url value='/manager/order.controller'/>">order測試</a>
 <a href="<c:url value='/order.servlet'/>">servlet測試</a>
+<a href="<c:url value='/browse/books/9789869236478'/>">前台 Book頁面</a>
+<a href="<c:url value='/user/myorder/getOrders'/>">User MyOrder頁面</a>
 /order.servlet
 <h2>Servlet測試成功 Console會顯示訊息</h2>
 

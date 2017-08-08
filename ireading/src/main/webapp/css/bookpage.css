@@ -1,0 +1,108 @@
+﻿  #bookinfo {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .abstract {
+        	
+            padding-top: 50px;
+            padding-bottom: 50px;
+            
+        }
+
+            .abstract h3 {
+            	background-color: white;
+                line-height: 50px;
+                border-radius:15px;
+                padding: 20px;
+            }
+
+        
+       /*tab*/
+        
+        #myTab li {
+            width: 160px;
+        }
+        
+        #myTabContent{
+        	background-color: #cecece;
+        	border-bottom-left-radius: 15px;
+        	border-bottom-right-radius: 15px;
+        	margin-top: 1px;
+        	
+        }
+        
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+        	background-color: rgba(51, 122, 183, 0.78);
+        	color:#fff;
+        }
+
+/*Table*/
+        #ProducTable {
+            width: 100%;
+            
+        }
+
+        #ProducTable th:hover{
+        	background-color: rgb(173, 215, 205);
+        }
+
+            #ProducTable thead tr th {
+                background-color: #80beb0;
+                font-size: 35px;
+                line-height: 80px;
+                color: white;
+            }
+
+            #ProducTable tbody tr {
+                font-size: 25px;
+                line-height: 70px;
+            }
+
+
+                #ProducTable tbody tr:nth-child(odd) {
+                    background-color: rgb(243, 243, 243);
+                }
+
+                #ProducTable tbody tr:nth-child(even) {
+                    background-color: rgb(186, 226, 217);
+                }
+        /*影片*/
+        .videobox {
+        top:15%;
+        bottom:15%;
+        }
+        .videobox button.close {
+            opacity: 1;
+            color: #f5f5f5;
+        }
+
+        .videobox .vertical-alignment-helper {
+            /*display: table;*/
+            height: 100%;
+            width: 100%;
+        }
+
+        .videobox .vertical-align-center {
+            /* To center vertically */
+           /* display: table-cell;*/
+            vertical-align: middle;
+        }
+
+        .videobox .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width: inherit;
+            height: inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+            background-color: #000;
+        }
+        
+        /*Review*/
+       #noReview{
+       	margin-top:40px;
+       	margin-bottom:40px;
+       	background-color: white;
+       	padding: 20px;
+       	border-radius: 15px;
+       }

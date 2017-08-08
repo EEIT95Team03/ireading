@@ -62,7 +62,29 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/event/EventAll.jsp"></property>
 	</bean>
+
+<!-- browse page -->
+<bean id="browse.book"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/bookpage.jsp"></property>
+	</bean>
 	
+	<bean id="cart.step1"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/CartStep1.jsp"></property>
+	</bean>
+	
+		<bean id="cart.step2"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/CartStep2.jsp"></property>
+	</bean>
+	
+		<bean id="cart.step3"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/CartStep3.jsp"></property>
+	</bean>
+
+<!-- user page	 -->
 		<bean id="user.myOrder"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/user/myOrder.jsp"></property>
@@ -72,5 +94,9 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/user/myOrderDetail.jsp"></property>
 	</bean>
+	
+	
+	
+	
 	
 </beans>

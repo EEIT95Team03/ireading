@@ -1,0 +1,56 @@
+﻿ .main {
+        margin-top:50px;
+        margin-bottom:50px;
+        }
+        #step {
+        margin-bottom:40px;
+        }
+
+        /*STEP1*/
+        .rightbox {
+        margin-bottom:20px;
+        }
+        .rightbox .boxtitle {
+        background-color:rgba(135, 184, 252, 0.63);
+        border-top-left-radius:15px;
+          border-top-right-radius:15px; 
+          padding:15px;      
+        }
+        .rightbox .content {
+            margin-top:-5px;
+            padding:15px; 
+              border-bottom-left-radius:15px;
+          border-bottom-right-radius:15px;   
+           background-color:rgba(224, 224, 224, 0.63);  
+             
+        }
+            .rightbox .content table{
+                width:100%;
+            }
+
+                .rightbox .content table .note {
+                border-bottom:3px solid rgba(128, 128, 128, 0.15);
+                padding-bottom:20px;
+                }
+
+/*STEP2*/
+                .Orderform {
+        margin-top:50px;
+        margin-bottom:70px;
+        }
+        .labelbox{
+        border-bottom:10px solid #90c31f;
+        }
+            .labelbox .label{
+            background-color:#90c31f;
+            border-top-left-radius:15px;
+            border-top-right-radius:15px;
+
+            }
+
+        .formtext {
+        font-size:25px;
+        font-weight:500;
+        line-height:35px;
+
+        }

@@ -9,5 +9,6 @@ public interface ProductDAO {
 	public int update(ProductBean ProdcutBean);
 	public int delete(String ProductID);
 	public ProductBean findByPrimaryKey(String ProductID);
+	public List<ProductBean> findByISBN(String ISBN);
 	public List<ProductBean> getAll();
 }

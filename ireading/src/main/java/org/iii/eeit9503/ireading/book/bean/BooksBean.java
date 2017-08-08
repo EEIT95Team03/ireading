@@ -1,7 +1,10 @@
 package org.iii.eeit9503.ireading.book.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -9,6 +12,9 @@ import javax.persistence.Table;
 public class BooksBean {
 	@Id
 	private String ISBN;
+//	@ManyToOne
+//	@JoinColumn(name="CategoryID")
+//	private CategoryBean categoryBean;
 	private String CategoryID;
 	private String Title;
 	private byte[] Cover;
@@ -17,23 +23,35 @@ public class BooksBean {
 	private int Language;
 	private java.sql.Date Pub_Date; 
 	private int Ori_Price;
-	private String Abstract;
+	@Column(name="Abstract")
+	private String Abstracts;
 	private int Click;
 	private Double RateAvg;
+	
+//	public CategoryBean getCategoryBean() {
+//	return categoryBean;
+//}
+//  public void setCategoryBean(CategoryBean categoryBean) {
+//	this.categoryBean = categoryBean;
+//}
+
+
+	
 	public String getISBN() {
 		return ISBN;
 	}
 	public void setISBN(String iSBN) {
 		ISBN = iSBN;
 	}
+
+    public String getTitle() {
+		return Title;
+	}
 	public String getCategoryID() {
 		return CategoryID;
 	}
 	public void setCategoryID(String categoryID) {
 		CategoryID = categoryID;
-	}
-	public String getTitle() {
-		return Title;
 	}
 	public void setTitle(String title) {
 		Title = title;
@@ -73,12 +91,13 @@ public class BooksBean {
 	}
 	public void setOri_Price(int ori_Price) {
 		Ori_Price = ori_Price;
+	}	
+	
+	public String getAbstracts() {
+		return Abstracts;
 	}
-	public String getAbstract() {
-		return Abstract;
-	}
-	public void setAbstract(String abstract1) {
-		Abstract = abstract1;
+	public void setAbstracts(String abstracts) {
+		Abstracts = abstracts;
 	}
 	public int getClick() {
 		return Click;

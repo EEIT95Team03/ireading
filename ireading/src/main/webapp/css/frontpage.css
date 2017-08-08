@@ -126,8 +126,6 @@
         background-color: #d9d9d9;
         border-bottom: 15px solid #C5FFF2;
         color: rgb(128,190,176);
-        border-top-left-radius:15px;
-        border-top-right-radius:15px;
     }
         #menubtn{
             line-height:10px;
@@ -155,3 +153,25 @@
         #lasttext {
         padding-top:50px;
         }
+        
+/*         購物車按鈕 */
+         .btn-circle.btn-xl {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  font-size: 30px;
+  border-radius: 40px;
+}
+        #cart {
+        position: fixed;
+  bottom: 150px;
+  right:10px;  
+  z-index: 999;
+  display: block;
+        }
+            #cart i {
+            font-size: 50px;
+            }
+                        #cart span {
+            margin-top:-10px;
+            }

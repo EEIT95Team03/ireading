@@ -15,7 +15,7 @@ public class ReviewBean implements Serializable{
 	@Id
 	private String ISBN; //PK, FK
 	private int Rate;
-	private String Content;
+	private String Cont;
 	private Timestamp PostTime;
 	
 	public String getMemberID() {
@@ -36,11 +36,12 @@ public class ReviewBean implements Serializable{
 	public void setRate(int rate) {
 		Rate = rate;
 	}
-	public String getContent() {
-		return Content;
+	
+	public String getCont() {
+		return Cont;
 	}
-	public void setContent(String content) {
-		Content = content;
+	public void setCont(String cont) {
+		Cont = cont;
 	}
 	public Timestamp getPostTime() {
 		return PostTime;

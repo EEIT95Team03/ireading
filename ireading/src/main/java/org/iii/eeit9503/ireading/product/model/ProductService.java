@@ -28,6 +28,10 @@ public class ProductService {
 		return productDAO.findByPrimaryKey(ProductID);
 	}
 	
+	public List<ProductBean> findByISBN(String ISBN){
+		return productDAO.findByISBN(ISBN);
+	}
+	
 	public List<ProductBean> getAll(){
 		return productDAO.getAll();
 	}
