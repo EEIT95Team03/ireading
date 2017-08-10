@@ -84,7 +84,16 @@ public class MemberDAOHibernate implements MemberDAO {
 		Session session = this.getSession();
 		Query query = session.createSQLQuery("select  top 1 substring(m.MemberID,4,7) from Member as m order by substring(m.MemberID, 4, 7) desc");
 		lastID = (String)query.uniqueResult();
-		System.out.println("DAO\t" + lastID);
+//		System.out.println("DAO\t" + lastID);
 		return lastID;
+	}
+
+	@Override
+	public MemberBean selectByAccount(String account) {
+		Criteria criteria = this.getSession().createCriteria(MemberBean.class);
+		criteria.add(Restrictions.eq("Account", account));
+		MemberBean bean = (MemberBean)criteria.uniqueResult();
+//		MemberBean bean = this.getSession().get(MemberBean.class, MemberID);
+		return bean;
 	}
 }

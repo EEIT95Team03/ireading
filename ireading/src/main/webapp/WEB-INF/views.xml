@@ -83,6 +83,19 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/browse/CartStep3.jsp"></property>
 	</bean>
+	
+	   <bean id="cart.step4card"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/CartStep4.jsp"></property>
+	</bean>
+	         
+	         
+	          <bean id="cart.step5"
+	          class="org.springframework.web.servlet.view.RedirectView">
+		<property name="url" value="/pages/browse/CartStep5.jsp"></property>
+		<property name="contextRelative" value="true"></property>
+	</bean>   
+	
 
 <!-- user page	 -->
 		<bean id="user.myOrder"

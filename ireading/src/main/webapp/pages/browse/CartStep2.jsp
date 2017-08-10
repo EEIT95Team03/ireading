@@ -25,8 +25,8 @@
             <form action="<c:url value="/browse/cart/check"/>" method="post">
                  <div class="form-group col-xs-12">
                      <h2 class="labelbox"><span class="label">付款方式</span></h2>
-                      <input type="radio"  name="pay" value="P0001" required/><span class="formtext">信用卡</span><br />
-                     <input type="radio"   name="pay" value="P0002" required/><span class="formtext">ATM轉帳</span>
+                      <input type="radio"  name="pay" value="P0001" <c:if test="${Order.payBean.payID eq 'P0001'}">checked</c:if> required/><span class="formtext">信用卡</span><br />
+                     <input type="radio"   name="pay" value="P0002" <c:if test="${Order.payBean.payID eq 'P0002'}">checked</c:if> required/><span class="formtext">ATM轉帳</span>
                         </div>
                 <div class="form-group col-xs-12">
                      <h2 class="labelbox"><span class="label">寄送資訊</span></h2>

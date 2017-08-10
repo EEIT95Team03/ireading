@@ -58,7 +58,7 @@
 							<div><label class="glyphicon glyphicon-credit-card"> 付款方式: </label> ${Order.payBean.payType} &nbsp;
 							<c:choose>
 									<c:when test="${Order.paid eq '0'}"><span class="glyphicon glyphicon-remove text-danger">未付款</span></c:when>
-									<c:when test="${Order.paid eq '0'}"><span class="glyphicon glyphicon-ok text-success">已付款</span></c:when>
+									<c:when test="${Order.paid eq '1'}"><span class="glyphicon glyphicon-ok text-success">已付款</span></c:when>
 						    </c:choose>
 							</div>
 							

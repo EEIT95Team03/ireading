@@ -15,9 +15,12 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.XmlViewResolver;
 
 @Configuration
@@ -33,12 +36,34 @@ public class SpringMVCJavaConfig extends WebMvcConfigurerAdapter implements  Web
 	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		// TODO Auto-generated method stub
-       Resource resource=new ServletContextResource(application, "/WEB-INF/views.xml");
-       XmlViewResolver viewResolver=new XmlViewResolver();
-       viewResolver.setLocation(resource);
-       registry.viewResolver(viewResolver);
+	  Resource resource=new ServletContextResource(application, "/WEB-INF/views.xml");
+       XmlViewResolver XMLviewResolver=new XmlViewResolver();
+       XMLviewResolver.setLocation(resource);
+       registry.viewResolver(XMLviewResolver);
+       
 	}
+	
+//	@Bean
+//	public ViewResolver jspViewResolver(){
+//		InternalResourceViewResolver  InternalviewResolver=new InternalResourceViewResolver();
+//      InternalviewResolver.setViewClass(JstlView.class);
+//      InternalviewResolver.setOrder(10);
+//     
+//		return InternalviewResolver;
+//		
+//	}
+//	
+//	@Bean
+//	public ViewResolver xmlViewResolver(){
+//		Resource resource=new ServletContextResource(application, "/WEB-INF/views.xml");
+//		XmlViewResolver XMLviewResolver=new XmlViewResolver();
+//      XMLviewResolver.setLocation(resource);
+//      XMLviewResolver.setOrder(1);
+//     
+//		return XMLviewResolver;
+//		
+//	}
+	
 	
 	@Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {

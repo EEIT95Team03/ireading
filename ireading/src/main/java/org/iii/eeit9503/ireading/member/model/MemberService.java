@@ -40,6 +40,15 @@ public class MemberService {
 		return list;
 	}
 	
+	public MemberBean select(String MemberID){
+		return memberDAO.select(MemberID);
+	}
+	
+	public MemberBean selectByAccount(String account){
+		return memberDAO.selectByAccount(account);			
+	}
+	
+	
 	public String getLastID(){
 		return memberDAO.getLastID();
 	}

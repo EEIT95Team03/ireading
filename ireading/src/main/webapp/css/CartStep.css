@@ -54,3 +54,28 @@
         line-height:35px;
 
         }
+        
+/*         Step4 */
+        .cardlogo {
+        width:80px;
+        }
+        
+        
+       /* Step5*/
+       
+       .buymsg {
+        color:#80beb0;
+        font-weight:800;
+        }
+        #bankinfo {
+            width:100%;
+        background-color:rgb(235, 235, 235);
+        }
+        #bankinfo tr td{
+        padding:5px;
+        font-size:20px;
+        font-weight:700;
+        }
+         #bankinfo .value{
+color:#d25c14;
+        }

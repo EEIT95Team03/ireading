@@ -12,7 +12,7 @@ public class PaymentBean {
 	@Id
 	private String ProductID;
 	private String MemberID;
-	private int Amount;
+	private double Amount;
 	private Timestamp Paytime;
 	
 	
@@ -28,10 +28,10 @@ public class PaymentBean {
 	public void setMemberID(String memberID) {
 		MemberID = memberID;
 	}
-	public int getAmount() {
+	public double getAmount() {
 		return Amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		Amount = amount;
 	}
 	public Timestamp getPaytime() {

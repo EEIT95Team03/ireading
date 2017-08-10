@@ -12,6 +12,7 @@ public interface MemberDAO {
 	public int delete(String MemberID);
 	public MemberBean select(String  MemberID);
 	public List<MemberBean> select();
+	public MemberBean selectByAccount(String account);
 	public String getLastID();
 	
 }

@@ -20,13 +20,13 @@
 	  <div class="container main">
     <div class="row">
         <div id="step" class="box vpadding text-center"><img class="pic_timeline02 img-responsive" src="//jci.book.com.tw/css/books/m_cart2015/images/time_line_step1_zh-tw.png"></div>
-        <div class="col-sm-12 col-md-7 col-md-offset-1">
+        <div class="col-sm-12 col-md-8">
             <table class="table table-hover" id="CartTable">
                 <thead>
                     <tr>
-                        <th>享。買這些</th>
-                        <th class="text-center">細節描述</th>
-                        <th class="text-center">售價</th>
+                        <th><h4>享。買這些</h4></th>
+                        <th class="text-center"><h4>細節描述</h4></th>
+                        <th class="text-center"><h4>售價</h4></th>
                         <th> </th>
                     </tr>
                 </thead>

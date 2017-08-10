@@ -31,6 +31,22 @@ public class DateTansfer {
 		}				
 	}
 	
+	public static String getExDate(){	
+		try {	
+			Calendar cal=Calendar.getInstance(Locale.TAIWAN);
+			cal.setTime(new java.util.Date());
+			int y=cal.get(cal.YEAR);
+			int m=cal.get(cal.MONTH)+1;
+			int d=cal.get(cal.DATE)+3;
+			String date=y+"-"+m+"-"+d+" 23:59";
+			return date;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}				
+	}
+	
 	public static java.sql.Date getDate(String date){	
 		try {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -46,6 +62,17 @@ public class DateTansfer {
 		try {                  
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			return	new java.sql.Timestamp(sdf.parse(year+"-"+month+"-"+day+" "+hr+":"+min+":"+sec).getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
+	public static java.sql.Timestamp getTime(int year,int month,int day,int hr,int min){	
+		try {                  
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return	new java.sql.Timestamp(sdf.parse(year+"-"+month+"-"+day+" "+hr+":"+min).getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

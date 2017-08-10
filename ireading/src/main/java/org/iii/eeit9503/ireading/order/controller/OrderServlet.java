@@ -47,7 +47,6 @@ public class OrderServlet extends HttpServlet{
 		
 		System.out.println("Servlet");
 		//super.doGet(req, resp);
-		
 		//OrderBean
 //		OrderBean bean=new OrderBean();
 //		bean.setOrderID("O170726006");
