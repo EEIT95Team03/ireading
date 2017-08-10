@@ -50,10 +50,11 @@ public class PaymentDAOHibernate implements PaymentDAO{
 		try {
 			Session session = this.getSession();
 			
-			PaymentBean bean = (PaymentBean)session.get(PaymentBean.class, ProductID);
-			session.delete(bean);
+			Query query=session.createQuery("from PaymentBean where ProductID=:ProductID");
+			query.setParameter("ProductID", ProductID);
+			int update=query.executeUpdate();
 
-			return 1;
+			return update;
 			} catch (Exception e) {
 				e.printStackTrace();
 				return 0;
@@ -64,7 +65,8 @@ public class PaymentDAOHibernate implements PaymentDAO{
 	public PaymentBean findByProductID(String ProductID) {
 		try {
 			Session session = this.getSession();
-			PaymentBean bean = session.get(PaymentBean.class, ProductID);
+			
+			PaymentBean bean = session.get(PaymentBean.class,ProductID);
 			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -10,94 +10,90 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BCDetailDAOHibernate implements BCDetailDAO {
+public class BCDetailDAOHibernate implements BCDetailDAO {	
+
+	public static final String SelectBook ="from BCDetailBean where BCID=:BCID";
+	public static final String SelectBC ="from BCDetailBean where BCID=:BCID and ISBN=:ISBN";
+	public static final String getSelectBCID="select * from BCDetail order by BCID ASC";
+	
 	@Autowired
-	private SessionFactory sessionFactory;
-
-	public Session getSession() {
-		return sessionFactory.getCurrentSession();
+	private SessionFactory sessoionFactory = null;
+	@Autowired
+	public Session getSession(){
+		return sessoionFactory.getCurrentSession();
 	}
-
-	public static final String GET_ALL_STMT = "from BCDetailBean order by BCID";
-
+	
 	@Override
-	public int insert(BCDetailBean bean) {
-		// session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			Session session = this.getSession();
-
-			session.saveOrUpdate(bean);
-			return 1;
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			return 0;
-		}
-
+	public BCDetailBean select(String ISBN, String BCID) {
+		return this.getSession().get(BCDetailBean.class, BCID);
 	}
 
 	@Override
-	public int update(BCDetailBean bean) {
-		// session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			Session session = this.getSession();
-
-			session.saveOrUpdate(bean);
-
-			return 1;
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			return 0;
-		}
-
+	public List<BCDetailBean> select() {
+		Query query = this.getSession().createSQLQuery(getSelectBCID);
+		List<BCDetailBean>list = query.list();
+		return list;
 	}
 
 	@Override
-	public int delete(String ISBN, String BCID) {
-		// session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			Session session = this.getSession();
-
-			 Query query=session.createQuery("delete from BCDetailBean where ISBN=:ISBN and BCID=:BCID");
-	            query.setParameter("ISBN", ISBN);
-				query.setParameter("BCID", BCID);
-				int update=query.executeUpdate();
-				
-			return update;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return 0;
-			}
-		}
-
-
-	@Override
-	public List<BCDetailBean> findByBCID(String BCID){
-		try {
-			Session session = this.getSession();
-			Query query = session.createQuery("from BCDetailBean where BCID=:BCID");
-			query.setParameter("BCID", BCID);
-            
-			List<BCDetailBean> list=query.list();
-			return list;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public BCDetailBean insert(BCDetailBean bCDetailBean) {
+		if(bCDetailBean!=null){
+			Query query=this.getSession().createQuery(SelectBC);
+			query.setParameter("BCID", bCDetailBean.getBCID());
+			query.setParameter("BCID", bCDetailBean.getBooksBean().getISBN());			
+			if(query.list()==null){
+				this.getSession().save(bCDetailBean);
+				return bCDetailBean;
+			}		}
+		return null;
 	}
 
-	@Override
-	public List<BCDetailBean> getAll() {
-		try {
-			Session session = this.getSession();
-			
-			Query query = session.createQuery(GET_ALL_STMT);
-			List<BCDetailBean> list  = query.list();
-			
-			return list;
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	@Override
+//	public BCDetailBean update(String ISBN, String BCID, int BookRank) {
+//		BCDetailBean result = (BCDetailBean)this.getSession().get(ISBN, BCID);
+//		if(result!=null){
+//			result.setISBN(ISBN);
+//			result.setBCID(BCID);
+//			result.setBookRank(BookRank);
+//		}
+//		return result;
+//	}
 
+//	@Override
+//	public int delete(String ISBN) {
+//		BCDetailBean bean = (BCDetailBean)this.getSession().get(ISBN, BCID);
+//		if(bean!=null){
+//			this.getSession().delete(bean);
+//			return true;
+//		}
+//		return false;
+//	}
+	
+	@Override
+	public int delete(String ISBN ,String BCID) {
+		try {
+			   Session session = this.getSession();
+			   Query query = session.createQuery("delete from BCDetailBean where ISBN=? and BCID=?");
+			   System.out.println(ISBN);
+			   query.setParameter(0, ISBN);
+			   query.setParameter(1, BCID);
+			   int delete = query.executeUpdate();
+			   System.out.println("success");
+			   return delete;
+			  } catch (Exception e) {
+				  System.out.println("failed");
+			   return 0;
+			  }
+			 }
+
+	@Override
+	public List<BCDetailBean> findbyBCID(String BCID) {
+		Query query=this.getSession().createQuery(SelectBook);
+		query.setParameter("BCID", BCID);
+		List<BCDetailBean> list=query.list();
+		
+		return list;
+	}
+	
+	
 }

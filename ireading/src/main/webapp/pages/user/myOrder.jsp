@@ -7,15 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>會員中心</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> 
-   
-    
+   <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">  
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <!--jQuery UI-->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+  <script src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
+
     <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
 </head>
@@ -65,36 +63,6 @@
 <c:import url="/pages/templates/user/userfooter.jsp"></c:import>
 
 </body>
-  <script>
-
-         $(document).ready(function () {
-             var trigger = $('.hamburger'),
-                 overlay = $('.overlay'),
-                isClosed = false;
-
-             trigger.click(function () {
-                 hamburger_cross();
-             });
-
-             function hamburger_cross() {
-
-                 if (isClosed == true) {
-                     overlay.hide();
-                     trigger.removeClass('is-open');
-                     trigger.addClass('is-closed');
-                     isClosed = false;
-                 } else {
-                     overlay.show();
-                     trigger.removeClass('is-closed');
-                     trigger.addClass('is-open');
-                     isClosed = true;
-                 }
-             }
-
-             $('[data-toggle="offcanvas"]').click(function () {
-                 $('#wrapper').toggleClass('toggled');
-             });
-         });
-  </script>
+ <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
 
 </html>

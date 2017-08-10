@@ -95,10 +95,10 @@ public class MemberServlet extends HttpServlet {
 //		}
 		
 		//getAll
-		List<PaymentBean> list=paymentService.getAll();
-		for(PaymentBean bean:list){
-		System.out.println(bean.getProductID()+":"+bean.getAmount()+":"+bean.getPaytime());
-		}
+//		List<PaymentBean> list=paymentService.getAll();
+//		for(PaymentBean bean:list){
+//		System.out.println(bean.getProductID()+":"+bean.getAmount()+":"+bean.getPaytime());
+//		}
 		
 	}
 

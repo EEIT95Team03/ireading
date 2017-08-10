@@ -4,22 +4,29 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.iii.eeit9503.ireading.book.bean.BooksBean;
 
 @Entity
 @Table(name = "BCDetail")
 public class BCDetailBean implements Serializable{
 	@Id
-	private String ISBN; //PK, FK
+	@ManyToOne
+	@JoinColumn(name="ISBN")
+	private BooksBean booksBean; //PK, FK
 	@Id
 	private String BCID; //PK, FK
 	private int BookRank; 	
 	
-	public String getISBN() {
-		return ISBN;
+
+	public BooksBean getBooksBean() {
+		return booksBean;
 	}
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setBooksBean(BooksBean booksBean) {
+		this.booksBean = booksBean;
 	}
 	public String getBCID() {
 		return BCID;
@@ -32,7 +39,9 @@ public class BCDetailBean implements Serializable{
 	}
 	public void setBookRank(int bookRank) {
 		BookRank = bookRank;
-	}	
+	}
+	
+	
 	
 	
 
