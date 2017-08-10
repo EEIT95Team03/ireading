@@ -13,6 +13,19 @@ margin-right:50px;
 margin-bottom:100px;
 }
 
+/*售出書籍清單*/
+ .head-title {
+        font-size:30px;
+        font-weight:800;
+        line-height:50px;
+        font-family:微軟正黑體;
+        }
+
+        #selloutTable th:hover{
+        background-color:rgba(152, 215, 247,0.5);
+        }
+        
+
 
 body,
 html { height: 100%;}

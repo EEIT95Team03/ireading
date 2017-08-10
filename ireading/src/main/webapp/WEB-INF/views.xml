@@ -63,6 +63,24 @@
 		<property name="url" value="/pages/event/EventAll.jsp"></property>
 	</bean>
 
+<!-- bookcase -->
+	<bean id="bookcase.insert"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/bookcase/bookcase.jsp"></property>
+	</bean>
+	
+	<bean id="bookcaselist.select"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/bookcase/bookcaselist.jsp"></property>
+	</bean>
+	
+		<bean id="bookcaselistM.select"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/bookcase/bookcaselistM.jsp"></property>
+	</bean>
+	
+
+
 <!-- browse page -->
 <bean id="browse.book"
 		class="org.springframework.web.servlet.view.InternalResourceView">
@@ -108,6 +126,10 @@
 		<property name="url" value="/pages/user/myOrderDetail.jsp"></property>
 	</bean>
 	
+		<bean id="user.mySelloutList"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/mySelloutList.jsp"></property>
+	</bean>
 	
 	
 	

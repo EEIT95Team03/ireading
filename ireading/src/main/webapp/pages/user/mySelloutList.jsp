@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>會員中心</title>
+
+  <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">  
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+  <script src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
+
+    <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+</head>
+<body>
+ <c:import url="/pages/templates/user/usermenu.jsp"></c:import>
+
+  <div class="col-lg-10 col-lg-offset-1">
+                 <!--    內容寫這 -->
+                 
+                                 <h1><span class="glyphicon glyphicon-home"></span> 我的書店</h1>
+                         <div><a class="btn btn-lg btn-primary">上架中二手書</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-lg btn-success" disabled>已出售商品</a> </div/>                  
+                       <br>
+
+
+                         
+           <nav class="navbar navbar-default query" role="query">
+
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                 <h1 class="label head-title">已出售商品清單</h1>                   
+                </div>
+              
+                    <div class="navbar-form navbar-left col-xs-12 col-sm-4">
+                       
+                         <select name="query" class="form-control">
+                            <option value="3month">近3個月</option>
+                            <option value="6month">近6個月</option>
+                            <option value="1year">近1年</option>
+                            <option value="all">全部</option>
+                        </select>
+                        <button class="btn btn-default">查询</button>
+                   
+                    </div>
+
+                <div class="navbar-right col-xs-12 col-sm-4"><h4 class="text-right">共 <strong style="color:red">${OrderCount}</strong> 筆</h4></div>                  
+                </div>
+        </nav>   
+                                             
+            <div class="col-sm-12">
+            <table class="table table-hover" id="selloutTable">
+                <thead>
+                    <tr>
+                        <th>商品資訊</th>
+                        <th class="text-center">細節描述</th>
+                        <th class="text-center">售價<span class="glyphicon glyphicon-sort"></span></th>
+                         <th class="text-center">實收金額<span class="glyphicon glyphicon-sort"></span></th>
+                        <th class="text-center">入帳時間<span class="glyphicon glyphicon-sort"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="Payment" items="${PaymentList}">
+                <tr>
+                        <td class="col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">${Payment.productBean.booksBean.title}</a></h4>
+                                <h5 class="media-heading"> 編號 <a href="#">${Payment.productBean.productID}</a></h5>
+                                <span>使用狀態: </span><span class="text-success"><strong>${Payment.productBean.status}</strong></span>
+                            </div>
+                        </div></td>
+                        <td class="col-md-2 text-center"><strong>${Payment.productBean.detail}</strong></td>
+                        <td class="col-md-2 text-center"><strong>${Payment.productBean.productPrice}</strong></td>
+                        <td class="col-md-2 text-center"><strong>${Payment.amount}</strong></td>
+                        <td class="col-md-2 text-center"><strong><fmt:formatDate value="${Payment.paytime}" pattern="yyyy/MM/dd HH:mm"/></strong></td>
+                    </tr>
+                
+                
+                </c:forEach>                  
+                   
+                </tbody>
+            </table>
+        </div>
+                    </div>
+                                  
+                 </div>
+
+
+
+<c:import url="/pages/templates/user/userfooter.jsp"></c:import>
+
+</body>
+<script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
+  <script>         
+           $(function () {
+             $("#selloutTable").tablesorter();
+
+           
+         })
+  </script>
+
+</html>

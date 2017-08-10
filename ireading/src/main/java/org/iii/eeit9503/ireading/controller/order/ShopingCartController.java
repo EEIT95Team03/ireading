@@ -199,7 +199,7 @@ public class ShopingCartController {
 		    				productService.update(pbean);
 		    				
 		    				PaymentBean paymentBean=new PaymentBean();
-		    				paymentBean.setProductID(pbean.getProductID());
+		    				paymentBean.setProductBean(pbean);
 		    				
 		    				MemberBean mbean=memberService.select(sellListService.findByPrimaryKey(pbean.getSellListID()).getMemberID());
 		    				paymentBean.setMemberID(mbean.getMemberID());
