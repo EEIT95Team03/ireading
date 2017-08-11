@@ -41,12 +41,12 @@
                     <div class="navbar-form navbar-left col-xs-12 col-sm-4">
                        
                          <select name="query" class="form-control">
-                            <option value="3month">近3個月</option>
-                            <option value="6month">近6個月</option>
-                            <option value="1year">近1年</option>
+                            <option value="3">近3個月</option>
+                            <option value="6">近6個月</option>
+                            <option value="12">近1年</option>
                             <option value="all">全部</option>
                         </select>
-                        <button class="btn btn-default">查询</button>
+                        <button class="btn btn-default query-btn">查询</button>
                    
                     </div>
 
@@ -68,7 +68,7 @@
                 <tbody>
                 <c:forEach var="Payment" items="${PaymentList}">
                 <tr>
-                        <td class="col-md-6">
+                        <td class="col-md-5">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
@@ -78,7 +78,7 @@
                             </div>
                         </div></td>
                         <td class="col-md-2 text-center"><strong>${Payment.productBean.detail}</strong></td>
-                        <td class="col-md-2 text-center"><strong>${Payment.productBean.productPrice}</strong></td>
+                        <td class="col-md-1 text-center"><strong>${Payment.productBean.productPrice}</strong></td>
                         <td class="col-md-2 text-center"><strong>${Payment.amount}</strong></td>
                         <td class="col-md-2 text-center"><strong><fmt:formatDate value="${Payment.paytime}" pattern="yyyy/MM/dd HH:mm"/></strong></td>
                     </tr>
@@ -91,9 +91,6 @@
         </div>
                     </div>
                                   
-                 </div>
-
-
 
 <c:import url="/pages/templates/user/userfooter.jsp"></c:import>
 
@@ -103,6 +100,40 @@
            $(function () {
              $("#selloutTable").tablesorter();
 
+             
+             $(".query-btn").click(function(event){
+            	 var action=$("select[name='query']").val();
+            	 console.log(action);
+            	 if(action=="3"){location.reload();}
+            	 $.post("/ireading/user/sellout/query",{Action:action},function(data){
+            		 console.log(data);
+            		 var tbody=$('#selloutTable tbody').empty();
+            		 $.each(data,function(i,payment){
+            			console.log(payment);
+            			 var img=$('<img class="media-object" style="width: 72px; height: 72px;">').attr("src","http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png");
+            			var imga=$('<a class="thumbnail pull-left"></a>').attr("href","#").append(img);
+            			
+            			var title=$('<a></a>').text(payment.productBean.booksBean.Title).attr("href","#");
+            			var h4=$('<h4 class="media-heading"></h4>').append(title);            			
+            			var pid=$('<a></a>').text(payment.productBean.ProductID).attr("href","#");
+            			var h5=$('<h5 class="media-heading"></h5>').text(" 編號").append(pid);
+            			var s1=$('<span>使用狀態: </span>');
+            			var s2=$('<span class="text-success"></span>').append($('<strong></strong>').text(payment.productBean.Status));
+            			
+            			var mbody=$('<div class="media-body"></div>').append([h4,h5,s1,s2]);
+            			
+            			var td1=$('<td class="col-md-5"></div>').append($('<div class="media"></div>').append([imga,mbody]));          			
+            			var td2=$('<td class="col-md-2 text-center"></td>').append($('<strong></strong>').text(payment.productBean.Detail));
+            			var td3=$('<td class="col-md-1 text-center"></td>').append($('<strong></strong>').text(payment.productBean.ProductPrice));
+            			var td4=$('<td class="col-md-2 text-center"></td>').append($('<strong></strong>').text(payment.Amount));
+            			var td5=$('<td class="col-md-2 text-center"></td>').append($('<strong></strong>').text(payment.Paytime));
+            			
+            			var tr=$('<tr></tr>').append([td1,td2,td3,td4,td5]);
+            			tbody.append(tr);
+            		 });
+            	 });
+            	 
+             });
            
          })
   </script>

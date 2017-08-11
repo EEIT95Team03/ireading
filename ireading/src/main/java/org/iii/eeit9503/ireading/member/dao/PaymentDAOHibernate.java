@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
 import org.iii.eeit9503.ireading.member.bean.PaymentBean;
+import org.iii.eeit9503.ireading.transfer.DateTansfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -78,7 +79,7 @@ public class PaymentDAOHibernate implements PaymentDAO{
 	public List<PaymentBean> findByMemberID(String MemberID) {
 		try {
 			Session session = this.getSession();
-			Query query= session.createQuery("from PaymentBean where MemberID=:MemberID");
+			Query query= session.createQuery("from PaymentBean where MemberID=:MemberID order by Paytime DESC");
 			query.setParameter("MemberID",MemberID);
 			List<PaymentBean> list=query.list();
 			return list;
@@ -88,6 +89,23 @@ public class PaymentDAOHibernate implements PaymentDAO{
 		}
 	}
 
+	@Override
+	public List<PaymentBean> findByMemberIDandMonth(String MemberID, String month) {
+		try {
+			Session session = this.getSession();
+			Query query= session.createQuery("From PaymentBean WHERE MemberID =:MemberID and Paytime >= :Date order by Paytime DESC");
+			query.setParameter("MemberID",MemberID);
+			query.setParameter("Date",DateTansfer.getQueryTime(month));
+			List<PaymentBean> list=query.list();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	
 	@Override
 	public List<PaymentBean> getAll() {
 		try {		
@@ -100,5 +118,7 @@ public class PaymentDAOHibernate implements PaymentDAO{
 			return null;
 		}
 	}
+
+
 
 }

@@ -30,6 +30,11 @@ public class PaymentService {
 		return paymentDAO.findByMemberID(MemberID);
 	}
 	
+	public List<PaymentBean> findByMemberIDandMonth(String MemberID, String month) {
+		
+		return paymentDAO.findByMemberIDandMonth(MemberID, month);
+	}
+	
 	public List<PaymentBean> getAll(){
 		return paymentDAO.getAll();
 	}

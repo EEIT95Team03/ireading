@@ -20,7 +20,7 @@
 <body>
  <c:import url="/pages/templates/user/usermenu.jsp"></c:import>
 
-                    <div  class="col-lg-8 col-lg-offset-2">
+                    <div  class="col-lg-8 col-lg-offset-2" style="padding-bottom: 50px;">
                  <!--    內容寫這 -->
                     
                         <h1>網頁寫在這</h1>                      

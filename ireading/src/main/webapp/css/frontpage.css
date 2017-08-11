@@ -132,10 +132,8 @@
         
         }
 
-
         #footer {
         background-color: rgb(217, 217, 217);
-        overflow:auto;
         }
             #footer .footertext a {
                font-size: 24px;

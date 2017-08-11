@@ -100,4 +100,23 @@ public class DateTansfer {
 	String Date=String.valueOf(y).substring(2)+String.valueOf((m+1)/10)+String.valueOf((m+1)%10)+String.valueOf(d/10)+String.valueOf(d%10);
 		return Date;		
 	}
+	
+	
+	public static  java.util.Date getQueryTime(String month){
+		Calendar cal=Calendar.getInstance(Locale.TAIWAN);
+		cal.setTime(new java.util.Date());
+		int y=cal.get(cal.YEAR);
+		int m=cal.get(cal.MONTH)+1-Integer.parseInt(month);
+		int d=cal.get(cal.DATE);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String date=y+"-"+String.valueOf((m)/10)+String.valueOf((m)%10)+"-"+String.valueOf(d/10)+String.valueOf(d%10);
+		try {
+			return sdf.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}				
+		
+	}
 }

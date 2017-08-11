@@ -11,5 +11,6 @@ public interface PaymentDAO {
 	public int delete(String ProductID);
 	public PaymentBean findByProductID(String  ProductID);
 	public List<PaymentBean> findByMemberID(String  MemberID);
+	public List<PaymentBean> findByMemberIDandMonth(String  MemberID,String month);
 	public List<PaymentBean> getAll();
 }
