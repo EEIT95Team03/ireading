@@ -25,7 +25,7 @@
                  <!--    內容寫這 -->
                  
                                  <h1><span class="glyphicon glyphicon-home"></span> 我的書店</h1>
-                         <div><a class="btn btn-lg btn-primary">上架中二手書</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-lg btn-success" disabled>已出售商品</a> </div/>                  
+                         <div><a class="btn btn-lg btn-primary" href="<c:url value='/user/product/sellBook'/>">上架中二手書</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-lg btn-success" disabled>已出售商品</a> </div/>                  
                        <br>
 
 
@@ -105,7 +105,7 @@
             	 var action=$("select[name='query']").val();
             	 console.log(action);
             	 if(action=="3"){location.reload();}
-            	 $.post("/ireading/user/sellout/query",{Action:action},function(data){
+            	 $.post("/ireading/user/product/sellout/query",{Action:action},function(data){
             		 console.log(data);
             		 var tbody=$('#selloutTable tbody').empty();
             		 $.each(data,function(i,payment){

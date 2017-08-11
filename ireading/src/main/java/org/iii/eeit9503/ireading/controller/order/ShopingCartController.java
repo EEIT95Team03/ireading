@@ -191,7 +191,6 @@ public class ShopingCartController {
 		    			for(CartItem item :cart.getItems()){
 		    				OrderDetailBean odbean=new OrderDetailBean();
 		    				ProductBean pbean=item.getProductBean();
-		    				
 		    				odbean.setOrderID(obean.getOrderID());
 		    				odbean.setProductBean(pbean);	    			
 		    				int insert=orderDetailService.insert(odbean);

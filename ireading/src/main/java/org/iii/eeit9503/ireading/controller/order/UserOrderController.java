@@ -1,7 +1,11 @@
 package org.iii.eeit9503.ireading.controller.order;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.iii.eeit9503.ireading.misc.CookieUtils;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
 import org.iii.eeit9503.ireading.order.model.OrderDetailService;
@@ -22,9 +26,16 @@ public class UserOrderController {
 	private OrderDetailService orderdetailService;
 	
 	@RequestMapping(value="getOrders",method={RequestMethod.GET})
-	public String getOrders(Model model){
-		//此處先寫死
-		List<OrderBean> list=OrderService.getAllbyMemberID("M170000016");
+	public String getOrders(HttpServletRequest request,Model model){
+		String MemberID=null;
+		try {
+			MemberID =CookieUtils.findCookie(request, "login_id");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return request.getHeader("referer").substring(30);
+		}
+		List<OrderBean> list=OrderService.getAllbyMemberID(MemberID);
 		model.addAttribute("OrderCount",list.size());		
 		model.addAttribute("Orders",list);		
 		return "user.myOrder";				

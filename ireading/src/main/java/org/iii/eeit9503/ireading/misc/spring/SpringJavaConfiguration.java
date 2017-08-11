@@ -29,6 +29,8 @@ import org.iii.eeit9503.ireading.product.bean.SellListStatusBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 
@@ -82,4 +84,28 @@ public class SpringJavaConfiguration {
     }
 
 
+	/**
+	 * 1 JdbcTemplate
+	 *
+	 * @return JdbcTemplate
+	 */
+	@Bean
+	public JdbcTemplate jdbcTemplate() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		jdbcTemplate.setDataSource(dataSource());
+		return jdbcTemplate;
+	}
+
+	/**
+	 * 2
+	 * 
+	 * @return namedParameterJdbcTemplate
+	 */
+	@Bean
+	public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource());
+		return namedParameterJdbcTemplate;
+	}
+
+	
 }

@@ -7,11 +7,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
 public class ProductDAOHibernate implements ProductDAO{
+	
+	JdbcTemplate template;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -49,17 +52,14 @@ public class ProductDAOHibernate implements ProductDAO{
 	}
 
 	@Override
-	public int delete(String ProductID) {
-		try {
-		Session session = this.getSession();
-        Query query = session.createQuery("delete from ProductBean where ProductID=:ProductID");
-		query.setParameter("ProductID", ProductID);
-		int delete = query.executeUpdate();
-		
-		return delete;
-		} catch (Exception e) {
-		return 0;
-		} 
+	public boolean delete(String ProductID) {
+		// TODO Auto-generated method stub
+		ProductBean bean = (ProductBean) this.getSession().get(ProductBean.class, ProductID);
+		if (bean != null) {
+			this.getSession().delete(bean);
+			return true;
+		}
+		return false;
 	}
     
 	@Override
@@ -109,4 +109,57 @@ public class ProductDAOHibernate implements ProductDAO{
 		}
 	}
 
+	@Override
+	public String getLastID() {
+		try {
+			Session session = this.getSession();
+
+			Query query = session.createSQLQuery("select Top 1 ProductID from Product order by ProductID DESC");
+			String ID=null;
+			List<Object> list= query.list();
+			for(Object obj:list){
+				ID=(String) obj;				
+			}
+
+			return ID;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public ProductBean select(String ProductID) {
+		return this.getSession().get(ProductBean.class, ProductID);
+	}
+
+	
+	
+	//JDBCTemple
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+	}
+
+	public int save(ProductBean productBean) {
+		String sql = "insert into Product(ProductID, StatusID, SellListID, ProductPrice, Digital, Detail, Status, Arrival, Expiration, ISBN) "
+				+ " values('" + productBean.getProductID() + "'," + productBean.getStatusID() + ",'"
+				+ productBean.getSellListID() + "'," + productBean.getStatusID() + "," + productBean.getProductPrice()
+				+ "," + productBean.getDigital() + "," + productBean.getDetail() + "," + productBean.getStatus() + ","
+				+ productBean.getArrival() + "," + productBean.getExpiration() + ","
+				+ productBean.getBooksBean().getISBN() + ")";
+
+		return template.update(sql);
+	}
+
+	
+	
+	
+	public int update2(ProductBean productBean) {
+		String sql = "update Product set ProductID='" + productBean.getProductID() + "', StatusID="
+				+ productBean.getStatusID() + "SellListID='" + productBean.getSellListID() + "ProductPrice='" + productBean.getProductPrice() 
+				+ "' where ProductID="
+				+ productBean.getProductID() + "";
+		return template.update(sql);
+
+	}	
+	
 }

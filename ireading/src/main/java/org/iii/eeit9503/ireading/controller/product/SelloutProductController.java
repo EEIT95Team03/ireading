@@ -1,9 +1,13 @@
 package org.iii.eeit9503.ireading.controller.product;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.iii.eeit9503.ireading.member.bean.PaymentBean;
 import org.iii.eeit9503.ireading.member.model.PaymentService;
+import org.iii.eeit9503.ireading.misc.CookieUtils;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.model.OrderService;
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
@@ -19,7 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @Controller
-@RequestMapping("sellout")
+@RequestMapping("product/sellout")
 public class SelloutProductController {
 	@Autowired
 	private PaymentService paymentService;
@@ -27,9 +31,18 @@ public class SelloutProductController {
 	private ProductService productService;
 	
 	@RequestMapping(method={RequestMethod.GET})
-	public String list(String MemberID,Model model){
+	public String list(HttpServletRequest request,Model model){
+		String MemberID=null;
+		try {
+			MemberID =CookieUtils.findCookie(request, "login_id");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return request.getHeader("referer").substring(30);
+		}
 		
-		List<PaymentBean> list=paymentService.findByMemberIDandMonth("M170000013","3");
+		
+		List<PaymentBean> list=paymentService.findByMemberIDandMonth(MemberID,"3");
 		model.addAttribute("PaymentList", list);				
 		
 		return "user.mySelloutList";
@@ -37,11 +50,19 @@ public class SelloutProductController {
 	
 	@RequestMapping(value="query",method={RequestMethod.POST},produces={"application/json;charset=utf-8"})
 	@ResponseBody
-	public String query(String MemberID,String Action){
+	public String query(HttpServletRequest request,String Action){
 		List<PaymentBean> list=null;
+		String MemberID=null;
+		try {
+			MemberID =CookieUtils.findCookie(request, "login_id");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return request.getHeader("referer").substring(30);
+		}
 		if(Action.equals("all")){
-			list=paymentService.findByMemberID("M170000013");
-		}else{list=paymentService.findByMemberIDandMonth("M170000013", Action);}       
+			list=paymentService.findByMemberID(MemberID);
+		}else{list=paymentService.findByMemberIDandMonth(MemberID, Action);}       
 		for(PaymentBean bean:list){
         	System.out.println(bean.getPaytime());       	
         }				

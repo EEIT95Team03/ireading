@@ -1,5 +1,6 @@
 package org.iii.eeit9503.ireading.product.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
@@ -20,7 +21,7 @@ public class ProductService {
 		return productDAO.update(ProdcutBean);
 	}
 	
-	public int delete(String ProductID){
+	public boolean delete(String ProductID){
 		return productDAO.delete(ProductID);
 	}
 	
@@ -35,5 +36,22 @@ public class ProductService {
 	public List<ProductBean> getAll(){
 		return productDAO.getAll();
 	}
-
+	
+	public List<ProductBean> getAll(ProductBean bean){
+		List<ProductBean> result =null;
+		if(bean!=null&& bean.getProductID()!=""){
+			ProductBean temp = productDAO.select(bean.getProductID());
+			if(temp!=null){
+				result =new ArrayList<ProductBean>();
+				result.add(temp);
+			}
+		}else{
+			result = productDAO.getAll();
+		}
+		return result;
+	}
+	
+	public String getLastID(){
+		return productDAO.getLastID();
+	}
 }

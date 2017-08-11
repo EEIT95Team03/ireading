@@ -2,6 +2,7 @@ package org.iii.eeit9503.ireading.transfer;
 
 import org.iii.eeit9503.ireading.member.dao.MemberDAO;
 import org.iii.eeit9503.ireading.order.dao.OrderDAO;
+import org.iii.eeit9503.ireading.product.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ public class IDGgenerator {
 	//請自己實作DAO getLastID的方法
 @Autowired
 private MemberDAO memberDAO;
+@Autowired
+private ProductDAO productDAO;
 	
 	public String getOrderID() {
 		String ID=orderDAO.getLastID();
@@ -43,6 +46,15 @@ private MemberDAO memberDAO;
 		
 		
 		return memberID;
+	}
+	
+	public String getProductID(){
+		String currentID = productDAO.getLastID();
+		int temp = Integer.parseInt(currentID.substring(1));
+		System.out.println(temp);
+		String temp2 ="00000000" +(temp +1);
+		String productID ="B" + temp2.substring(temp2.length()-9);	
+		return productID;
 	}
 	
 

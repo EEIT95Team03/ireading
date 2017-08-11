@@ -19,7 +19,10 @@
 <a href="<c:url value='/browse/books/9789869236478'/>">前台 Book頁面</a><br>
 
 <a href="<c:url value='/user/myorder/getOrders'/>">User MyOrder頁面</a><br>
-<a href="<c:url value='/user/sellout'/>">User SelloutProduct頁面</a><br>
+<a href="<c:url value='/user/product/sellout'/>">User SelloutProduct頁面</a><br>
+<a href="<c:url value='/user/product/sellBook'/>">User SellBook頁面</a><br>
+
+
 <h2>Servlet測試成功 Console會顯示訊息</h2>
 
 <hr>

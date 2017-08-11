@@ -56,7 +56,7 @@
                     <a href="#"><span class="glyphicon glyphicon-tags"></span>&nbsp;二手書上架申請</a>
                 </li>
                 <li>
-                    <a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;我的書店</a>
+                    <a href="<c:url value="/user/product/sellBook"/>"><span class="glyphicon glyphicon-home"></span>&nbsp;我的書店</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-book"></span>&nbsp;我的書櫃</a>
