@@ -43,7 +43,7 @@
         </nav>   
                                              
             <div class="col-sm-12">
-            <table class="table table-hover" id="selloutTable">
+            <table class="table table-hover" id="productlist">
                 <thead>
                     <tr>
                         <th>商品資訊</th>
@@ -62,23 +62,23 @@
                             <a class="thumbnail pull-left" href="#"><img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${product.Title}</a></h4>
-                                <h5 class="media-heading"> 編號 <a href="#">${product.productID}</a></h5>
-                                <span>使用狀態: </span><span class="text-success"><strong>${product.status}</strong>${product.Ori_Price}</span>
+                                <h5 class="media-heading"> 編號 <a href="#" class="pid">${product.productID}</a></h5>
+                                <span>使用狀態: </span><span class="text-success"><strong>${product.Status}</strong></span>
                             </div>
                         </div></td>
-                        <td class="col-md-2 text-center"><strong>${product.detail}</strong></td>
+                        <td class="col-md-2 text-center"><strong class="detail">${product.detail}</strong></td>
                          <td class="col-md-1 text-center"><strong><fmt:parseNumber integerOnly="true" value="${product.Ori_Price}" /></strong></td>
-                        <td class="col-md-1 text-center"><strong><fmt:parseNumber integerOnly="true" value="${product.productPrice}" /></strong></td>
-                      <td class="col-md-1 text-center"><strong><fmt:parseNumber integerOnly="true" value="${product.productPrice*0.7}" /></strong></td>
+                        <td class="col-md-1 text-center"><strong class="price"><fmt:parseNumber  value="${product.productPrice}" /></strong></td>
+                      <td class="col-md-2 text-center"><strong><fmt:parseNumber  value="${product.Price}" /></strong></td>
                         <td class="col-md-1 text-center">
                         <a class='btn btn-info btn-xs editbtn'> 
-						    <span class="glyphiconglyphicon-edit"></span>享。修改</a>
+						    <span class="glyphicon glyphicon-pencil"></span>享。修改</a>
 							<a class='btn btn-success btn-xs savebtn hidden'> 
-						    <span class="glyphiconglyphicon-edit"></span>享。儲存</a>
+						    <span class="glyphicon glyphicon-floppy-save"></span>享。儲存</a>
 							<a class='btn btn-danger btn-xs cancelbtn hidden'> 
-						    <span class="glyphiconglyphicon-edit"></span>享。取消</a>
+						    <span class="glyphicon glyphicon-remove"></span>享。取消</a>
 								<button class="btn btn-danger btn-xs deletebtn">
-									<span class="glyphicon glyphicon-remove"></span>享。刪除</button>
+									<span class="glyphicon glyphicon-trash"></span>享。刪除</button>
 									</td>
                     </tr>
                 
@@ -99,39 +99,6 @@
            $(function () {
              $("#selloutTable").tablesorter();
 
-     		$('#new_btn').click(function(event) {
-    			event.preventDefault();
-    			var data = $('#newform').serialize();
-    			
-    			$.post("/ireading/user/product/sellBook/insert", data, function(data) {
-    				console.info(data);
-    				
-    				if("Success" == data){
-    					alert("新增資料成功！");
-    					location.reload();
-    				}
-    				else{
-    					alert("新增資料失敗！");
-    					$('#new_btn + .msg').text(data[0].ISBN);
-    				}
-    			});
-    		});
-    	
-    	//delete 
-    	$('#productlist').on('click', '.deletebtn', function() {
-    		var id = $(this).parents("tr").children('.pid').text();
-    		if (confirm("確定要刪除這筆商品嗎？這位大大")) {
-    			$.post("/ireading/user/product/sellBook/delete", {
-    				ProductID : id
-    			}, function(data) {
-    				if (data[0].change == 1) {
-    					location.reload();
-    				} else {
-    					alert("商品編號 " + data[0].id + " 刪除失敗");
-    					location.reload();
-    				}
-    			});}
-    		});
     	
         //editbtn
     	$("#productlist").on("click",".editbtn",function(event){
@@ -156,6 +123,7 @@
             var price=tr.find("input[name='price']").val();
             var detail=tr.find("input[name='detail']").val();
             
+            if(parseInt(price)>=30){
             $.post("/ireading/user/product/sellBook/update",
             		{Product:pid, Price:price,Detail:detail},function(data){
             			if(data[0].change=="1"){
@@ -166,9 +134,11 @@
         					location.reload();
         				}
             		});
+            
             $(".editbtn").toggleClass( "hidden" );
     		$(".deletebtn").toggleClass( "hidden" );
-    		tr.find(".editbtn").toggleClass( "hidden" );
+    		tr.find(".editbtn").toggleClass( "hidden" );}
+            else{alert("二手書售價不可低於30元");}
     	});
     	
     	$("#productlist").on("click",".cancelbtn",function(event){

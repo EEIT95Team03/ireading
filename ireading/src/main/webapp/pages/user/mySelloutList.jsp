@@ -116,7 +116,7 @@
             			var title=$('<a></a>').text(payment.productBean.booksBean.Title).attr("href","#");
             			var h4=$('<h4 class="media-heading"></h4>').append(title);            			
             			var pid=$('<a></a>').text(payment.productBean.ProductID).attr("href","#");
-            			var h5=$('<h5 class="media-heading"></h5>').text(" 編號").append(pid);
+            			var h5=$('<h5 class="media-heading"></h5>').text(" 編號 ").append(pid);
             			var s1=$('<span>使用狀態: </span>');
             			var s2=$('<span class="text-success"></span>').append($('<strong></strong>').text(payment.productBean.Status));
             			

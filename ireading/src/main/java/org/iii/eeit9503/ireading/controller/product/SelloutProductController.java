@@ -66,7 +66,7 @@ public class SelloutProductController {
 		for(PaymentBean bean:list){
         	System.out.println(bean.getPaytime());       	
         }				
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd HH:mm").create();
 		return gson.toJson(list);
 	}
 	

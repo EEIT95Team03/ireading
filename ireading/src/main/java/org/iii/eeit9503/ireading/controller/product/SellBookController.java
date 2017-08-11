@@ -1,11 +1,15 @@
 package org.iii.eeit9503.ireading.controller.product;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.MapUtils;
 import org.iii.eeit9503.ireading.book.bean.BooksBean;
 import org.iii.eeit9503.ireading.book.model.BooksService;
+import org.iii.eeit9503.ireading.misc.CookieUtils;
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
 import org.iii.eeit9503.ireading.product.model.ProductService;
 import org.iii.eeit9503.ireading.transfer.IDGgenerator;
@@ -41,18 +45,27 @@ public class SellBookController {
 
 	// select
 	@RequestMapping(method = RequestMethod.GET)
-	public String select(ProductBean productBean, Model model) {
+	public String select(HttpServletRequest request,ProductBean productBean, Model model) {
 
-		StringBuffer sqlText = new StringBuffer();
-		// select b.ISBN, Title, Ori_Price, Detail, ProductPrice
-		// from Product p LEFT OUTER JOIN Books b
-		// on (p.ISBN = b.ISBN)
-		sqlText.append("SELECT ").append("p.ProductID, ").append("b.ISBN, ").append("b.Title, ").append("b.Ori_Price, ")
-				.append("p.Detail, ").append("p.ProductPrice ").append("FROM ").append("Product p ")
-				.append("LEFT OUTER JOIN ").append("Books b ").append("ON ").append("(p.ISBN = b.ISBN)");
-
-		List<Map<String, Object>> dataLs = jdbcTemplate.queryForList(sqlText.toString());
+		String MemberID=null;
+		try {
+			MemberID =CookieUtils.findCookie(request, "login_id");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return request.getHeader("referer").substring(30);
+		}		
 		
+		StringBuffer sqlText = new StringBuffer();
+		
+		sqlText.append("SELECT ").append("p.ProductID, ").append("b.ISBN, ").append("p.Status, ").append("p.StatusID, ").append("b.Title, ").append("b.Ori_Price, ")
+				.append("p.Detail, ").append("p.ProductPrice, ").append("Round(ProductPrice*0.7,2)Price,").append("sl.MemberID ").append("FROM ").append("Product p ")
+				.append("LEFT OUTER JOIN ").append("Books b ").append("ON ").append("(p.ISBN = b.ISBN)")
+				.append("LEFT OUTER JOIN ").append("SellList sl ").append("ON ").append("(p.SellListID = sl.SellListID) ")
+				.append("where MemberID='"+MemberID+"' ").append("and p.StatusID='S0004' ");
+       
+		
+		List<Map<String, Object>> dataLs = jdbcTemplate.queryForList(sqlText.toString());
 		
 		
 		System.out.println(dataLs);
