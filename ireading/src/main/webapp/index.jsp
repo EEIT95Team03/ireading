@@ -16,12 +16,15 @@
 <a href="<c:url value='/user/test.controller'/>">controller測試</a><br>
 <a href="<c:url value='/manager/order.controller'/>">order測試</a><br>
 <a href="<c:url value='/order.servlet'/>">servlet測試</a><br>
-<a href="<c:url value='/browse/books/9789869236478'/>">前台 Book頁面</a><br>
 
+登入畫面<br>
+<a href="<c:url value='/pages/templates/frontpage.jsp'/>">登入畫面</a><br>
+<br>
+使用者畫面<br>
 <a href="<c:url value='/user/myorder/getOrders'/>">User MyOrder頁面</a><br>
 <a href="<c:url value='/user/product/sellout'/>">User SelloutProduct頁面</a><br>
 <a href="<c:url value='/user/product/sellBook'/>">User SellBook頁面</a><br>
-
+<a href="<c:url value='/user/bookcase'/>">User BookCase頁面</a><br>
 
 <h2>Servlet測試成功 Console會顯示訊息</h2>
 
