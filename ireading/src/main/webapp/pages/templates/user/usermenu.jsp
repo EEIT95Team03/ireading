@@ -59,7 +59,7 @@
                     <a href="<c:url value="/user/product/sellBook"/>"><span class="glyphicon glyphicon-home"></span>&nbsp;我的書店</a>
                 </li>
                 <li>
-                    <a href="#"><span class="glyphicon glyphicon-book"></span>&nbsp;我的書櫃</a>
+                    <a href="<c:url value='/user/bookcase'/>"><span class="glyphicon glyphicon-book"></span>&nbsp;我的書櫃</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-calendar"></span>&nbsp;我的活動</a>
