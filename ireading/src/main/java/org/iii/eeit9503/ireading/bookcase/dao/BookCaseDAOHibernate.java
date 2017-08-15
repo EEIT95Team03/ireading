@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public class BookCaseDAOHibernate implements BookCaseDAO {
 	
 	public static final String get_BookCaselist = "from BookCaseBean";	
-	public static final String get_BookCaselistM = "from BookCaseBean where MemberID=:MemberID";	
+	public static final String get_BookCaselistM = "from BookCaseBean where MemberID=:MemberID order by CaseRank,BCName";	
 	public static final String get_lastID ="select top 1  BCID from BookCase order by BCID DESC";
 	@Autowired
 	private SessionFactory sessionFactory = null;

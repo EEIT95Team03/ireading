@@ -98,9 +98,9 @@ public class SellBookController {
 			int ori_Price = MapUtils.getInteger(dataMap, "ori_Price");
 			newbookbean.setTitle(title);
 			newbookbean.setOri_Price(ori_Price);
-			int insert = booksService.insert(newbookbean);
+			BooksBean bbean = booksService.insert(newbookbean);
 
-			if (insert == 1) {
+			if (bbean != null) {
 				bean.setBooksBean(newbookbean);
 			} else {
 				System.out.println("失敗");

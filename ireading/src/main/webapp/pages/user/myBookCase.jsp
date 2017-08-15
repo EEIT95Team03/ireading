@@ -130,11 +130,11 @@
 
 						<div class="form-group col-xs-12">
 							<label for="BCName">書櫃名稱</label> <input type="text"
-								class="form-control" id="new_BCName" name="BCName" value="">
+								class="form-control" id="new_BCName" name="BCName" value="" required/>
 						</div>
 
 						<div class="form-group col-xs-12">
-							<label for="caseRank">置頂</label> <select name="caserank">
+							<label for="caseRank">優先排序</label> <select name="caserank">
 								<option value="0">是</option>
 								<option value="1">否</option>
 							</select>
@@ -186,11 +186,11 @@
 
 						<div class="form-group col-xs-12">
 							<label for="BCName">書櫃名稱</label> <input type="text"
-								class="form-control" id="update_BCName" name="BCName" value="">
+								class="form-control" id="update_BCName" name="BCName" value="" required/>
 						</div>
 
 						<div class="form-group col-xs-12">
-							<label for="caseRank">置頂</label> <select name="update_caserank">
+							<label for="caseRank">優先排序</label> <select name="update_caserank">
 								<option class="true" value="0">是</option>
 								<option class="false" value="1">否</option>
 							</select>
@@ -226,7 +226,9 @@ $(function() {
 	
 	//新增書櫃
 	$('#new_btn').click(
-			function(event) {event.preventDefault();
+			function(event) {
+				if($('#new_BCName').val()!=""){
+				event.preventDefault();
 			var data = $('#newform').serialize();
 			$.post("/ireading/user/bookcase/insert", data,
 			function(data) {console.info(data)
@@ -237,6 +239,11 @@ $(function() {
 				lert("新增書籍資料失敗");
 			}
 		    });
+			}
+			
+			else{
+				alert("請輸入書櫃名稱");
+			}
 	});
 	
 	
@@ -280,6 +287,7 @@ $(function() {
 
 
 	$('#up_btn').click(function(event) {
+		if($('#update_BCName').val()!=""){
 		event.preventDefault();
 		var data = $('#updateform').serialize();
 		$.post("/ireading/user/bookcase/update", data,function(data) {
@@ -295,7 +303,9 @@ $(function() {
 						alert("修改書櫃資料失敗");}
 						// 	        			$('#new_BCID + .msg').text(data[0].BCID);
 					}
-				});
+				});}else{
+					alert("請輸入書櫃名稱");
+				}
 	});
 	
 	
@@ -353,6 +363,7 @@ $(function() {
 	div.append(bookbox.append([remove,imga,titlea,isbn]));
 	booklist.append(div);
 	});
+	booklist.append($('<div class="col-xs-4 col-md-3 col-lg-2" style="padding-top: 110px;padding-bottom:100px"><div class="text-center"><button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span><br />加入書籍</button></div></div>'));
 });		
 });
 			

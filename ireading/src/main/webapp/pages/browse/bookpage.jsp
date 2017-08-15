@@ -24,8 +24,10 @@
                         <div class="col-md-12" id="bookinfo">
                             <div class="col-md-5">
                                 <center>
-							<img style="width: 100%;" id="item-display" src="http://im2.book.com.tw/image/getImage?i=http://www.books.com.tw/img/001/075/84/0010758461.jpg&v=595f0e4c&w=600&h=600"></img>
-						</center>
+							<img style="width:300px" id="item-display" src="data:image/png;base64, ${book.byteArrayString}"></img>
+<!-- 								<img style="width: 100%;" -->
+<%-- 										src="https://media.taaze.tw/showLargeImage.html?sc=${Img}"/> --%>
+								</center>
                             </div>
                             <div class="col-md-7">
                                 <h1>${book.title}</h1>

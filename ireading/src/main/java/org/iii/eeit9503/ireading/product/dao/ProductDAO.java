@@ -1,6 +1,7 @@
 package org.iii.eeit9503.ireading.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
 
@@ -13,4 +14,5 @@ public interface ProductDAO {
 	public List<ProductBean> getAll();
 	public String getLastID();
 	public ProductBean select(String ProductID);
+	public List<Map<String, Object>> getTop10Product();
 }

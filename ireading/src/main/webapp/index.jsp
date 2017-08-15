@@ -17,9 +17,12 @@
 <a href="<c:url value='/manager/order.controller'/>">order測試</a><br>
 <a href="<c:url value='/order.servlet'/>">servlet測試</a><br>
 
+
 登入畫面<br>
 <a href="<c:url value='/pages/templates/frontpage.jsp'/>">登入畫面</a><br>
 <br>
+<a href="<c:url value='/browse/books/9789570530629'/>">書籍畫面</a><br>
+
 使用者畫面<br>
 <a href="<c:url value='/user/myorder/getOrders'/>">User MyOrder頁面</a><br>
 <a href="<c:url value='/user/product/sellout'/>">User SelloutProduct頁面</a><br>

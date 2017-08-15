@@ -141,6 +141,33 @@
 		<property name="url" value="/pages/user/myBookCase.jsp"></property>
 	</bean>
 	
+
+ <!-- 功能：維護書籍資料 -->
+	<bean id="Books.Index"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/book/BookIndex.jsp"></property>
+	</bean>
 	
+	<bean id="Books.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/book/BookList.jsp"></property>
+	</bean>
+	
+	<bean id="Books.update"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/book/BookUpdate.jsp"></property>
+	</bean>
+	
+                          <!-- 功能：搜尋二手書 -->
+    <bean id="SearchBooks.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/SearchBooksList.jsp"></property>
+	</bean>
+	
+	<bean id="SearchBooks.singleBook"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/browse/bookpage.jsp"></property>
+	</bean>
+		
 	
 </beans>

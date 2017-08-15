@@ -1,6 +1,7 @@
 package org.iii.eeit9503.ireading.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductDAOHibernate implements ProductDAO{
-	
-	JdbcTemplate template;
+	@Autowired
+	private JdbcTemplate template;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -160,6 +161,24 @@ public class ProductDAOHibernate implements ProductDAO{
 				+ productBean.getProductID() + "";
 		return template.update(sql);
 
-	}	
+	}
+
+	
+	public List<Map<String, Object>> getTop10Product(){
+		
+	       StringBuffer sqlText = new StringBuffer();
+			
+			sqlText.append("SELECT Top 10  p.ISBN ,b.Title,count(*)Count)")
+					.append(" FROM Product p join Books b on p.ISBN=b.ISBN")
+					.append("where StatusID='S0004'")
+					.append("group by p.ISBN ,b.Title")
+					.append("order by Count DESC");
+		  
+	       
+			
+			List<Map<String, Object>> list = template.queryForList(sqlText.toString());
+			return list;
+			
+		}
 	
 }

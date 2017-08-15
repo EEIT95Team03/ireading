@@ -1,37 +1,64 @@
 package org.iii.eeit9503.ireading.book.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.iii.eeit9503.ireading.book.bean.BooksBean;
-import org.iii.eeit9503.ireading.book.dao.BooksDAO;
+import org.iii.eeit9503.ireading.book.dao.BooksDAOHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BooksService {
 	@Autowired
-	private BooksDAO booksDAO;
+	private BooksDAOHibernate booksDAO;
 	
-	public int insert(BooksBean booksBean){
-		 
-		return booksDAO.insert(booksBean);
+	public List<BooksBean> select(BooksBean bean){
+		List<BooksBean> list = null;
+		System.out.println(bean.getISBN());
+		
+		
+		if (bean != null && bean.getISBN().trim().length() != 0) {
+			BooksBean temp = booksDAO.select(bean.getISBN());
+			if (temp != null) {
+				list = new ArrayList<BooksBean>();
+				list.add(temp);
+			}
+		} else {
+			list = booksDAO.select();
+		}
+		return list;
 	}
 	
-	public int update(BooksBean booksBean){
+	public BooksBean findByID(String ISBN){
+		  return booksDAO.findByID(ISBN);
+		 }
+	
+	public BooksBean insert(BooksBean booksBean) {
+		try {
+			booksDAO.insert(booksBean);
+			System.out.println("service:" + booksBean.getISBN() + "\t" + booksBean.getTitle());
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+			return booksBean;
+		}
+
+		return booksBean;
+	}
+	
+	public BooksBean update(BooksBean booksBean){
+
 		return booksDAO.update(booksBean);
 	}
 	
 	public int delete(String ISBN){
-		return booksDAO.delete(ISBN);
+		int result = 0;
+		if(ISBN!=null) {
+			result = booksDAO.delete(ISBN);
+		}
+		return result;
 	}
 	
-	public BooksBean findByID(String ISBN){
-		return booksDAO.findByID(ISBN);
-	}
-	
-	public List<BooksBean> getAll(){
-		return booksDAO.getAll();
-	}
-	
-
 }
