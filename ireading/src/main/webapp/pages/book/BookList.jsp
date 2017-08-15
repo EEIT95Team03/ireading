@@ -88,7 +88,7 @@ tr:hover td {
 				<tbody>
 					<c:forEach var="books" items="${dataLs}">
 						<c:url value="/manager/books.controller" var="link">
-							<c:param name="cover" value="${booksISBN }"/>
+							<c:param name="cover" value="${books.ISBN }"/>
 							<c:param name="cover" value="${books.categoryID }"/>
 							<c:param name="cover" value="${books.title }"/>
 							<c:param name="cover" value="${books.byteArrayString }"/>

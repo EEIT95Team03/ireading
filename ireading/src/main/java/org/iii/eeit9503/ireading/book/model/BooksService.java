@@ -61,4 +61,19 @@ public class BooksService {
 		return result;
 	}
 	
+	public Object getCover(String ISBN){
+		return booksDAO.getCover(ISBN);
+		
+	}
+	
+	public Object getClick(String ISBN){
+		return booksDAO.getClick(ISBN);
+		
+	}
+	
+	public Object getRateAvg(String ISBN){
+		return booksDAO.getRateAvg(ISBN);
+		
+	}
+	
 }

@@ -107,4 +107,55 @@ public class BooksDAOHibernate implements BooksDAO {
 			  }
 			 }
 
+	@Override
+	public Object getCover(String ISBN) {
+		try {
+			   Session session = this.getSession();
+
+			   Query query = session.createSQLQuery("select Cover from Books where ISBN=:ISBN");
+			   query.setParameter("ISBN", ISBN);
+			   List<Object> list= query.list();
+               
+			   return list.get(0);
+			  } catch (Exception e) {
+			   // TODO: handle exception
+
+			   return null;
+			  }
+	}
+
+	@Override
+	public Object getClick(String ISBN) {
+		try {
+			   Session session = this.getSession();
+
+			   Query query = session.createSQLQuery("select Click from Books where ISBN=:ISBN");
+			   query.setParameter("ISBN", ISBN);
+			   List<Object> list= query.list();
+            
+			   return list.get(0);
+			  } catch (Exception e) {
+			   // TODO: handle exception
+
+			   return null;
+			  }
+	}
+
+	@Override
+	public Object getRateAvg(String ISBN) {
+		try {
+			   Session session = this.getSession();
+
+			   Query query = session.createSQLQuery("select RateAvg from Books where ISBN=:ISBN");
+			   query.setParameter("ISBN", ISBN);
+			   List<Object> list= query.list();
+            
+			   return list.get(0);
+			  } catch (Exception e) {
+			   // TODO: handle exception
+
+			   return null;
+			  }
+	}
+
 } // class BooksDAOHibernate

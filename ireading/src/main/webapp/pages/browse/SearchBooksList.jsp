@@ -34,10 +34,9 @@ fieldset {
 		  
 			<div class="row col-md-12 col-md-offset-0 ">
 				<div class="row col-md-3 col-md-offset-0">
-<!-- 					<img style="width: 80%;" -->
-<%-- 					src="data:image/jpg;base64, ${searchbooks.byteArrayString}" /> --%>
-					<img style="width: 120%;"
-						src="https://media.taaze.tw/showLargeImage.html?sc=${searchbooks.Img}" />
+					<img style="width:150px" class="img-responsiv" src="data:image/png;base64, ${searchbooks.Cover.byteArrayString}" />
+<!-- 					<img style="width: 120%;" -->
+<%-- 						src="https://media.taaze.tw/showLargeImage.html?sc=${searchbooks.Img}" /> --%>
 				</div>
 				<div class="row col-md-6 col-md-offset-2 ">
 					<div><h4>

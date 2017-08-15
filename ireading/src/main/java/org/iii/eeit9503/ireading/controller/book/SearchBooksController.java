@@ -56,6 +56,13 @@ public class SearchBooksController {
 			String books = "Select * FROM Books";
 
 			List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
+			int index=0;
+			for(Map<String,Object> map:booksdataList)
+			{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
+			
+			booksdataList.get(index).put("Cover",bbean);
+			index++;
+			}
 //			System.out.println("dataList:" + dataList);
 			model.addAttribute("booksdataList", booksdataList);
 			

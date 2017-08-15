@@ -24,7 +24,7 @@
                         <div class="col-md-12" id="bookinfo">
                             <div class="col-md-5">
                                 <center>
-							<img style="width:300px" id="item-display" src="data:image/png;base64, ${book.byteArrayString}"></img>
+							<img style="width:300px" class="img-responsiv" id="item-display" src="data:image/png;base64, ${book.byteArrayString}"></img>
 <!-- 								<img style="width: 100%;" -->
 <%-- 										src="https://media.taaze.tw/showLargeImage.html?sc=${Img}"/> --%>
 								</center>

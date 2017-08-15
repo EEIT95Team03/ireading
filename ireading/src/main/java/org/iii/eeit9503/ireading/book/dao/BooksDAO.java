@@ -17,5 +17,10 @@ public interface BooksDAO {
 	public  BooksBean update(BooksBean bean);
 
 	public  int delete(String ISBN);
-
+	
+	public Object getCover(String ISBN);
+    
+	public Object getClick(String ISBN);
+	
+	public Object getRateAvg(String ISBN);
 } 

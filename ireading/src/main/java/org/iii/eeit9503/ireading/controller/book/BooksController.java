@@ -115,7 +115,7 @@ public class BooksController {
 	public String method(BooksBean bean, BindingResult bindingResult, Model model,@RequestParam(name="prodaction") String prodaction
 			,@RequestParam(value = "cover", required = false) CommonsMultipartFile file) throws IOException {
 
-		System.out.println("bean:"+bean);
+		//System.out.println("bean:"+bean);
 		
 //		System.out.println("insert start");
 //接收資料
@@ -142,12 +142,19 @@ public class BooksController {
 		
 		//Update
 		else if(prodaction!=null && prodaction.equals("Update")) {
-			System.out.println(file);
-			System.out.println(!file.isEmpty());
+ 
+			
+			
 			if (!file.isEmpty()) {
 				bean.setCover(fileUploader.toFileBean(file).getFileBinary());
 //				System.out.println(bean.getByteArrayString());
+			}else{
+				Object cover=booksService.getCover(bean.getISBN());
+				bean.setCover((byte[])cover);				
 			}
+			
+			bean.setClick((int)booksService.getClick(bean.getISBN()));
+			bean.setRateAvg((double)booksService.getRateAvg(bean.getISBN()));
 			
 			BooksBean result = booksService.update(bean);
 			if(result==null) {
