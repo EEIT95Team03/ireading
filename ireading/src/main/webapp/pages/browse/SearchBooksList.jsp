@@ -34,7 +34,7 @@ fieldset {
 		  
 			<div class="row col-md-12 col-md-offset-0 ">
 				<div class="row col-md-3 col-md-offset-0">
-					<img style="width:150px" class="img-responsiv" src="data:image/png;base64, ${searchbooks.Cover.byteArrayString}" />
+					<a href="<c:url value="/browse/searchBooks.controller/${searchbooks.ISBN}"/>"><img style="width:150px" class="img-responsiv" src="data:image/png;base64, ${searchbooks.Cover.byteArrayString}" /></a>
 <!-- 					<img style="width: 120%;" -->
 <%-- 						src="https://media.taaze.tw/showLargeImage.html?sc=${searchbooks.Img}" /> --%>
 				</div>
