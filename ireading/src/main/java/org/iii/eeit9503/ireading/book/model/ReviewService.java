@@ -1,5 +1,7 @@
 package org.iii.eeit9503.ireading.book.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.iii.eeit9503.ireading.book.bean.ReviewBean;
@@ -13,35 +15,45 @@ public class ReviewService {
 	@Autowired
 	private ReviewDAO reviewDAO;
 	
-	public int insert(ReviewBean bean){
-		return reviewDAO.insert(bean);
-	}
-	
-	public int update(ReviewBean bean){
-		return reviewDAO.update(bean);
-	}
-	
-	
-	public int delete(String MemberID, String ISBN){
-		return reviewDAO.delete(MemberID, ISBN);
-	}
-	
-	public List<ReviewBean> findByMemberID(String MemberID){
-		return reviewDAO.findByMemberID(MemberID);
-	}
-	
-	public List<ReviewBean> findByISBN(String ISBN){
-		return reviewDAO.findByISBN(ISBN);
-	}
-	
-	public ReviewBean findByMemberIDandISBN(String MemberID, String ISBN){
-		return reviewDAO.findByMemberIDandISBN(MemberID, ISBN);
-	}
-	
-	public List<ReviewBean> getAll(){
+	public List<ReviewBean>getAll(){
 		return reviewDAO.getAll();
 	}
 	
+public List<ReviewBean> findByMemberID(String MemberID){	
+	return reviewDAO.findByMemberID(MemberID);
+	
+}
+	
+	public List<ReviewBean> findByISBN(String ISBN){
+		
+		return reviewDAO.findByISBN(ISBN);
+	}
+	
+	public int insert(ReviewBean reviewBean){
+		return reviewDAO.insert(reviewBean);
+	}
+	
+	public int update(ReviewBean reviewBean){
+		return reviewDAO.update(reviewBean);	
+		}
+	
+	public int delete(String ISBN,String MemberID){
+		return reviewDAO.delete(ISBN, MemberID);
+		
+	}
+	
+	public ReviewBean findByMemberIDandISBN(String ISBN,String MemberID){
+		return reviewDAO.findByMemberIDandISBN(ISBN, MemberID);
+	}	
+	
+
+	public String getDateTime() {
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date = new Date();
+		String strDate = sdFormat.format(date);
+		//System.out.println(strDate);
+		return strDate;
+	}
 	
 	
 }

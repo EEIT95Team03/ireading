@@ -47,6 +47,7 @@
    
 
 	<!--以下為登入彈跳視窗 -->
+	<div class="logindiv">
 	<div class="modal fade" id="LoginBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -149,5 +150,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

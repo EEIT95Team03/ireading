@@ -1,5 +1,6 @@
 package org.iii.eeit9503.ireading.book.model;
 
+import java.lang.annotation.Retention;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,4 +77,11 @@ public class BooksService {
 		
 	}
 	
+	
+	public Object getSellBookByISBN(String ISBN) {
+		
+		return booksDAO.getSellBookByISBN(ISBN);
+	}
+
+    
 }

@@ -23,4 +23,6 @@ public interface BooksDAO {
 	public Object getClick(String ISBN);
 	
 	public Object getRateAvg(String ISBN);
+	
+	public Object getSellBookByISBN(String ISBN);
 } 

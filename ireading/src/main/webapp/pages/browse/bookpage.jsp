@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,8 +11,10 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
  <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.js"/>"></script> 
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.cookie.js"/>"></script>
  <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/bookpage.css'/>">
+   <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 </head>
 <body>
 <c:import url="/pages/templates/front/frontmenu.jsp"></c:import>
@@ -34,7 +37,8 @@
                                 <h3>
                                     <label>作者: </label>${book.author}</h3>
                                 <h3>
-                                    <label>出版日期:</label> ${book.pub_Date}</h3>
+                                    <label>出版日期:</label> <fmt:formatDate pattern = "yyyy-MM-dd" 
+         value = "${book.pub_Date}" /></h3>
                                 <h3>
                                     <label>出版社:</label> ${book.publisher}</h3>
                                 <h3>
@@ -48,10 +52,6 @@
                             </div>
                         </div>
 
-
-
-
-
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
 
                             <li class="active text-center"><a href="#service-one" data-toggle="tab"><h3><span class="glyphicon glyphicon-bookmark"></span>摘要</h3></a></li>
                             <li class="text-center"><a href="#service-two" data-toggle="tab"><h3><span class="glyphicon glyphicon-comment"></span>享。書評</h3></a></li>
-                            <li class="text-center"><a href="#service-three" data-toggle="tab"><h3><span class="glyphicon glyphicon-shopping-cart"></span>享。買書</h3></a></li>
+                            <li class="text-center"><a href="#service-three" data-toggle="tab"><h3><span class="glyphicon glyphicon-shopping-cart"></span>享。買書<span class="badge">${count}</span></h3></a></li>
 
                         </ul>
 
@@ -74,25 +74,113 @@
 
                             </div>
                             
+                            
                             <div class="tab-pane fade" id="service-two">
-
+                             
                                 <section class="container">
-                                <c:choose>
-                                <c:when test="${empty reviews}">
-                                <div id="noReview">
-                           <h2 class="glyphicon glyphicon-exclamation-sign"> 目前沒有任何書評喔! </h2>
-                           <button class="btn btn-lg btn-success glyphicon glyphicon-pencil">撰寫書評</button></div>
-                                </c:when>
-                                <c:otherwise>
-                                <div id="reviewList">
-                                <c:forEach var="review" items="${reviews}">
-                                <div class="review">
-                                <p>${review.cont}</p>
+                                
+<!--                                 未登入 -->
+<c:choose>
+<c:when test="${MemberID eq null}">
+                                <div  class="ReviewInfo col-xs-12 col-md-10 col-md-8">
+                           <h2 class="glyphicon glyphicon-exclamation-sign"> 登入後即可撰寫書評! </h2>
+                           <button class="btn btn-lg btn-success glyphicon glyphicon-pencil" data-toggle="modal" data-target="#LoginBlock">登入</button>
                                 </div>
-                                </c:forEach>                           
-                           </div>
-                                </c:otherwise>
-                                </c:choose>                               	                            	
+ </c:when>
+
+
+ <c:otherwise>
+<c:choose>
+     <c:when test="${review eq '0'}">
+              <c:if test="${empty reviews}">
+                                <div class="ReviewInfo col-xs-12 col-md-10 col-md-8">
+                           <h2 class="glyphicon glyphicon-exclamation-sign"> 目前沒有任何書評喔! </h2>
+                           <button class="btn btn-lg btn-success glyphicon glyphicon-pencil addReview">撰寫書評</button>
+                            <div id='wCont' style="display: none">				
+				<form id="wwCont">
+					<div class='2'>
+						<input type='text' id='n_ISBN' name='ISBN' value="${ISBN}" class="hidden"/>
+					</div>
+					<div class='3' style='display:inline-block;'><lable>評論</lable>
+						<textarea style='width: 50em; height: 8em;' type="text"
+							  placeholder="請輸入五百字以內的評論"class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
+					</div>
+					<div class='4' style='width:5em;'><label>評分</label>
+						<input min='1' max='5' type="number" class="form-control" id="n_rate" name="rate" value="">
+					</div>
+				
+					<button class="btn btn-sm btn-primary btn_enter" type="submit">確定</button>
+					<button class="btn_del btn btn-sm btn-danger" type="submit">取消</button>
+				</form>
+			</div>			
+		</div>                         
+             </c:if>            
+            
+
+             <c:if test="${not empty reviews}">                                
+                                <div class="ReviewInfo col-xs-12 col-md-10 col-md-8">                            
+                           <h2 class="glyphicon glyphicon-exclamation-sign"> 您目前撰寫這本書的書評喔! </h2>
+                           <button class="btn btn-lg btn-success glyphicon glyphicon-pencil addReview">撰寫書評</button>
+                           <div id='wCont' style="display: none">				
+				<form id="wwCont">
+					<div class='2'>
+						<input type='text' id='n_ISBN' name='ISBN' value="${ISBN}" class="hidden"/>
+					</div>
+					<div class='3' style='display:inline-block;'><lable>評論</lable>
+						<textarea style='width: 50em; height: 8em;' type="text"
+							  placeholder="請輸入五百字以內的評論"class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
+					</div>
+					<div class='4' style='width:5em;'><label>評分</label>
+						<input min='1' max='5' type="number" class="form-control" id="n_rate" name="rate" value="">
+					</div>
+				
+					<button class="btn btn-sm btn-primary btn_enter" type="submit">確定</button>
+					<button class="btn_del btn btn-sm btn-danger" type="submit">取消</button>
+				</form>
+			</div>			
+		</div>                   
+                                
+           </c:if>         
+     </c:when>
+
+</c:choose>
+
+ </c:otherwise>
+</c:choose>                                 
+                                  
+                                   <div id="reviewList">
+   <c:forEach var='review' items="${reviews}">
+			<div class='bookCont'>
+			<div class="col-xs-12 col-md-10 col-md-8">
+				<div class='aCont' style='margin-bottom:10px;vertical-align:middle;'>
+<!--●●●連結書籍資料 -->
+					
+					<div class='aCCont'>
+						<div class='memberID' style="display: none;">${review.memberID}</div>
+						<div class='ISBN' style='display: none;'>${review.ISBN}</div>
+						<div>
+						<div class="col-xs-6">${review.memberID}</div>
+						<div  class="col-xs-6 text-right"><fmt:formatDate pattern = "yyyy-MM-dd" 
+         value = "${review.postTime}" /></div></div>
+                        <c:choose>
+						<c:when test="${review.memberID eq MemberID}">
+						<div class="rate" value="${review.rate}"><span class="label label-warning">我給</span>&nbsp;<c:forEach begin="1" end="${review.rate}">
+						<img src='<c:url value="/images/star.png"/>' width='20px' /></c:forEach></div>					
+						</c:when>
+						<c:otherwise>
+						<div class="rate" value="${review.rate}"><span class="label label-info">他給</span>&nbsp;<c:forEach begin="1" end="${review.rate}">
+						<img src='<c:url value="/images/star.png"/>' width='20px' /></c:forEach></div>
+						</c:otherwise>
+						</c:choose>
+						<div class='cont col-xs-12' >${review.cont}</div>
+						<c:if test="${review.memberID eq MemberID}">
+						<div class="text-right"><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil">修改</span></button></div></c:if>
+					</div>
+				</div>
+				</div>
+			</div>
+		</c:forEach>                         
+                           </div>                        	                            	
                                 </section>
 
                             </div>
@@ -167,6 +255,7 @@
     
 <c:import url="/pages/templates/front/frontfooter.jsp"></c:import>
 </body>
+<script src="<c:url value="/js/login.js"/>"></script>
   <script> 
         $(function(){
   $("#ProducTable").tablesorter(); 
@@ -177,6 +266,7 @@
 	   
 	 });
   
+  //商品影片
            
            $('.videobox').on('hidden.bs.modal', function () {
            console.log($(this).html());
@@ -184,7 +274,33 @@
              $(this).find("iframe").attr("src","").attr("src",src);  
            });
            
+ 
+  
+//書評
+				$('.addReview').click(function(event) {					
+					$('#wCont').slideToggle();
+				});
+				
+				
+				$('.btn_enter').click(
+						function(event){
+						event.preventDefault();
+						var data = $('#wwCont').serialize();
+						$.post("/ireading/manager/review.controller/insert", data,
+						function(data){
+							console.info(data);
+							if("1" == data){
+								alert("新增評論成功");
+								location.reload();
+							} else {
+								alert("新增評論失敗");
+								}
+							})
+						});
+	
+  
            
+//            購物車
            
            $("#ProducTable").on("click",".addcart",function(event){
         	   var url=$(this).attr("value");
@@ -196,6 +312,16 @@
         		   else{alert("商品已在購物車");}});
         	   
            }); 
+           
+           $("#cart").click(function(event){
+        	  if($.cookie('login_id')==undefined){
+        		  $('#LoginBlock').modal();
+        	  }
+        	  else{
+        		  window.location.href = "/ireading/browse/cart/show";
+        	  }
+        	   
+           });
            
         })
     </script>

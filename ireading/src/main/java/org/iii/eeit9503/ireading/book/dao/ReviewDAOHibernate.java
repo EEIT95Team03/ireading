@@ -22,110 +22,110 @@ public class ReviewDAOHibernate implements ReviewDAO {
 		return sessioFactory.getCurrentSession();
 	}	
 //	private Session session;
-	
-	private static final String GET_ALL_STMT="from ReviewBean order by MemberID";
-	
-	
-	
-	@Override
-	public int insert(ReviewBean bean) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Session session = this.getSession();
-		try {
-			
-			session.saveOrUpdate(bean);
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}			
-	}
-	
-	@Override
-	public int update(ReviewBean bean) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Session session = this.getSession();
-		try {
-			session.saveOrUpdate(bean);
-			return 1;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return 0;
-			}	
-	}
-	
-	@Override
-	public int delete(String MemberID, String ISBN) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Session session = this.getSession();
-		try {
-			ReviewBean bean = new ReviewBean();
-			bean.setISBN(ISBN);
-			bean.setMemberID(MemberID);	
-			session.delete(bean);
-			return 1;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return 0;
-			}			
-	}
-	public List<ReviewBean> findByMemberID(String MemberID){
-		try {
-		Session session = this.getSession();
-		Query query = session.createQuery("from ReviewBean where MemberID=:MemberID");
-		query.setParameter("MemberID",MemberID);
-		List<ReviewBean> list=query.list();
 
-		return list;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
-	}
-		
-	}
-	public  List<ReviewBean> findByISBN(String ISBN){
-		try {ReviewBean bean1=new ReviewBean();
+	@Override
+	public List<ReviewBean> getAll() {
 		Session session = this.getSession();
-		Query query = session.createQuery("from ReviewBean where ISBN=:ISBN");
-		query.setParameter("ISBN",ISBN);
-		List<ReviewBean> list=query.list();
-
-		return list;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
-	}	
 		
+		Query query = session.createQuery("from ReviewBean");
+		List<ReviewBean> list = query.list();
+		return list;
 	}
+
 	@Override
-	public ReviewBean findByMemberIDandISBN(String MemberID, String ISBN) {
-		try {ReviewBean bean1=new ReviewBean();
-			Session session = this.getSession();
-			Query query = session.createQuery("from ReviewBean where MemberID=:MemberID and ISBN=:ISBN");
-			query.setParameter("MemberID",MemberID);
-			query.setParameter("ISBN",ISBN);
-			List<ReviewBean> list=query.list();
-			for(ReviewBean bean2:list)
-			{
-				bean1=bean2;
-			}
-			return bean1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}	
-	}
-	
-	@Override
-	public List<ReviewBean> getAll() {	
+	public List<ReviewBean> findByMemberID(String MemberID) {
+		// TODO Auto-generated method stub
 		try{
 			Session session = this.getSession();
-			Query query = session.createQuery(GET_ALL_STMT);
-			List<ReviewBean>list = query.list();
-			return list;	
-		}catch (RuntimeException e){
+			
+			Query query=session.createQuery("from ReviewBean where MemberID=:MemberID");
+			query.setParameter("MemberID", MemberID);
+			
+			
+			return query.list();						
+		}catch(Exception e){
 			e.printStackTrace();
 			return null;
 		}		
 	}
+
+	@Override
+	public List<ReviewBean> findByISBN(String ISBN) {
+		// TODO Auto-generated method stub
+		try{
+			Session session = this.getSession();
+			
+			Query query=session.createQuery("from ReviewBean where ISBN=:ISBN");
+			query.setParameter("ISBN", ISBN);
+					
+			return query.list();						
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;}
+	}
+
+	
+	@Override
+	public int insert(ReviewBean reviewBean) {
+		try{
+			Session session = this.getSession();
+			
+			session.save(reviewBean);
+			
+			return 1;								
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;}
+	}
+
+	@Override
+	public int update(ReviewBean reviewBean) {
+		try{
+			Session session = this.getSession();
+			
+			session.update(reviewBean);
+			
+			return 1;								
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;}
+	}
+
+	@Override
+	public int delete(String ISBN, String MemberID) {
+		try{
+			Session session = this.getSession();
+			
+			Query query=session.createQuery("delete from ReviewBean where ISBN=:ISBN and  MemberID=:MemberID");
+			query.setParameter("ISBN", ISBN);
+			query.setParameter("MemberID", MemberID);
+			
+			
+			return query.executeUpdate();								
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;}
+	}
+
+	@Override
+	public ReviewBean findByMemberIDandISBN(String ISBN, String MemberID) {
+		try{
+			Session session = this.getSession();
+			
+			Query query=session.createQuery("from ReviewBean where ISBN=:ISBN and  MemberID=:MemberID");
+			query.setParameter("ISBN", ISBN);
+			query.setParameter("MemberID", MemberID);
+			List<ReviewBean> list=query.list();	
+			for(ReviewBean bean:list){
+				
+				return bean;
+			}		
+			return null;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;}
+	}
+	
+	
+
 }

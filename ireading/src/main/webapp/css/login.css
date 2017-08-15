@@ -112,40 +112,40 @@
 
 }
 
-.fade{
+.logindiv .fade{
 	padding-top:250px;
 }
 
-.modal-dialog {
+.logindiv .modal-dialog {
 	width: 600px;
 }
 
-.modal-footer {
+.logindiv .modal-footer {
 	height: 90px;
 	margin: 0;
 }
 
-.modal-footer .btn {
+.logindiv .modal-footer .btn {
 	font-weight: bold;
 }
 
-.modal-footer .progress {
+.logindiv .modal-footer .progress {
 	display: none;
 	height: 32px;
 	margin: 0;
 }
 
-.input-group-addon {
+.logindiv .input-group-addon {
 	color: #fff;
 	background: #3276B1;
 }
 
-.input-group-addon.glyphicon {
+.logindiv .input-group-addon.glyphicon {
 	font-size: 20px;
 	background-color: #80beb0;
 }
 
-.form-control.btn {
+.logindiv .form-control.btn {
 	font-weight: 300;
 	color: white;
 	height: 50px;
@@ -153,16 +153,16 @@
 	background-color: #80beb0;
 }
 
-.modal-title{
+.logindiv .modal-title{
 	font-weight:500;
 	color:#808080;
 }
 
-.progress-bar{
+.logindiv .progress-bar{
 	background-color:#808080;
 }
 
-.input-group input{
+.logindiv .input-group input{
 font-size: 20px;
 margin-bottom:20px;
 }
@@ -189,21 +189,21 @@ margin-bottom:20px;
 	background-color: rgba(217, 217, 217, 0.2);
 }
 
-.dropdown-menu{
+#memberlink .dropdown-menu{
 text-align:center;
 width:220px;
 background-color: rgb(217,217,217);
 }
 
-.dropdown-item{
+#memberlink .dropdown-item{
 background-color: rgb(217,217,217);
 }
 
-.dropdown-item:hover{
+#memberlink .dropdown-item:hover{
 background-color: white;
 }
 
-.dropdown-item a{
+#memberlink .dropdown-item a{
 color:#80beb0;
 text-decoration: none;
 border: none;

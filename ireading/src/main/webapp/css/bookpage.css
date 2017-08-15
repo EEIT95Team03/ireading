@@ -21,8 +21,12 @@
        /*tab*/
         
         #myTab li {
-            width: 160px;
+            width: 190px;
         }
+         #myTab li .badge{
+             background-color: #80beb0;
+             margin:5px;
+         }
         
         #myTabContent{
         	background-color: #cecece;
@@ -36,6 +40,18 @@
         	background-color: rgba(51, 122, 183, 0.78);
         	color:#fff;
         }
+
+/*review*/
+.aCont
+{font-size: 25px;
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    overflow: auto;
+     padding-bottom: 50px;
+    }
+
 
 /*Table*/
         #ProducTable {
@@ -99,7 +115,7 @@
         }
         
         /*Review*/
-       #noReview{
+       .ReviewInfo{
        	margin-top:40px;
        	margin-bottom:40px;
        	background-color: white;

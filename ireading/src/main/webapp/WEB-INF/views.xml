@@ -53,14 +53,14 @@
 	</bean>
 
 <!-- Event -->
-	<bean id="Event.insert"
+	<bean id="event.select"
 		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/pages/event/Event.jsp"></property>
+		<property name="url" value="/pages/event/EventEdit.jsp"></property>
 	</bean>
 
-	<bean id="Event.update"
+	<bean id="event.update"
 		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/pages/event/EventAll.jsp"></property>
+		<property name="url" value="/pages/event/Event.jsp"></property>
 	</bean>
 
 <!-- bookcase -->
@@ -169,5 +169,14 @@
 		<property name="url" value="/pages/browse/bookpage.jsp"></property>
 	</bean>
 		
+	<!-- Review	 -->
+	<bean id="review.list"
+		  class="org.springframework.web.servlet.view.InternalResourceView">
+	<property name="url" value="/pages/bookcase/Review.jsp"></property>
+	</bean>	
 	
+	<bean id="reviewM.list"
+		  class="org.springframework.web.servlet.view.InternalResourceView">
+	<property name="url" value="/pages/bookcase/ReviewM.jsp"></property>
+	</bean>	
 </beans>

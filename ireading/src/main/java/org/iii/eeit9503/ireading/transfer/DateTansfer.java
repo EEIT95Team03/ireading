@@ -91,6 +91,18 @@ public class DateTansfer {
 		}	
 	}
 	
+	public static java.sql.Timestamp getTimeMin(String time){	
+		try {
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			return	new java.sql.Timestamp(sdf.parse(time).getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
+	
 	public static String getIDstring(){
 	Calendar cal=Calendar.getInstance(Locale.TAIWAN);
 	cal.setTime(new java.util.Date());

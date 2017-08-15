@@ -2,6 +2,7 @@ package org.iii.eeit9503.ireading.book.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -9,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.iii.eeit9503.ireading.book.bean.BooksBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ public class BooksDAOHibernate implements BooksDAO {
 	private SessionFactory sessionFactory;
 	@Autowired
 	private CategoryDAO categoryDAO;
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 
 	public Session getSession() {
@@ -151,6 +155,28 @@ public class BooksDAOHibernate implements BooksDAO {
 			   List<Object> list= query.list();
             
 			   return list.get(0);
+			  } catch (Exception e) {
+			   // TODO: handle exception
+
+			   return null;
+			  }
+	}
+
+	@Override
+	public Object getSellBookByISBN(String ISBN) {
+		try {
+			   
+			StringBuffer sqlText = new StringBuffer();
+			
+			sqlText.append("SELECT count(*)count ")
+			.append("FROM Product ")
+			.append("where StatusID='S0004'")
+			.append(" and ISBN='"+ISBN+"'")
+	        .append(" group by ISBN");
+	       
+			
+			List<Map<String, Object>> count = jdbcTemplate.queryForList(sqlText.toString());
+			  return count.get(0).get("count");
 			  } catch (Exception e) {
 			   // TODO: handle exception
 
