@@ -49,7 +49,13 @@ public class SearchBooksController {
 		String books = "Select * FROM Books Where Title LIKE '%" + searchName + "%' or Author LIKE '%" + searchName + "%'";
 
 		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
-//		System.out.println("dataList:" + dataList);
+		int index=0;
+		for(Map<String,Object> map:booksdataList)
+		{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
+		
+		booksdataList.get(index).put("Cover",bbean);
+		index++;
+		}
 		model.addAttribute("booksdataList", booksdataList);
 		}
 		else{

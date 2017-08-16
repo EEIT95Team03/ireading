@@ -118,7 +118,7 @@
             
 
              <c:if test="${not empty reviews}">                                
-                                <div class="ReviewInfo col-xs-12 col-md-10 col-md-8">                            
+                                <div class="ReviewInfo col-xs-10 col-md-10 col-md-8">                            
                            <h2 class="glyphicon glyphicon-exclamation-sign"> 您目前撰寫這本書的書評喔! </h2>
                            <button class="btn btn-lg btn-success glyphicon glyphicon-pencil addReview">撰寫書評</button>
                            <div id='wCont' style="display: none">				
@@ -151,7 +151,7 @@
                                    <div id="reviewList">
    <c:forEach var='review' items="${reviews}">
 			<div class='bookCont'>
-			<div class="col-xs-12 col-md-10 col-md-8">
+			<div class="col-xs-10 col-md-10 col-md-8">
 				<div class='aCont' style='margin-bottom:10px;vertical-align:middle;'>
 <!--●●●連結書籍資料 -->
 					

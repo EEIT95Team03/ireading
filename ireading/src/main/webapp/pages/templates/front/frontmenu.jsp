@@ -31,9 +31,9 @@
   								   	   aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-triangle-bottom"></a>
 
   								      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    								     <div class="dropdown-item"><a href="#">會員中心</a></div>
+    								     <div class="dropdown-item"><a href="#" style="display: block;margin: 0px">會員中心</a></div>
     								     <div class="dropdown-divider"></div>
-    					 			     <div class="dropdown-item"><a href="javascript:void(0)" onclick="loggout();">登出</a></div>
+    					 			     <div class="dropdown-item"><a href="javascript:void(0)" style="display: block;margin:0px" onclick="loggout();">登出</a></div>
   								      </div>
 								   </div>           
                 </ul>
@@ -47,7 +47,7 @@
    
 
 	<!--以下為登入彈跳視窗 -->
-	<div class="logindiv">
+	<div id="logindiv">
 	<div class="modal fade" id="LoginBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -55,7 +55,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 						<h3 class="modal-title" id="LoginTitle">享受。閱讀</h3>
-				</div>
+					</div>
 				<!-- 切換Tag -->
 				<div class="panel-heading">
 					<div class="row">
@@ -86,7 +86,7 @@
 										<label class="input-group-addon glyphicon glyphicon-lock"></label>
 									</div>
 								</div>
-								<div id="loginmessgae" style="font-size: 16px; color: red" class="form-group"></div>
+								<div id="loginmessgae" class="alert alert-danger hidden" role="alert"></div>
 
 <!-- 								<div class="form-group text-center"> -->
 <!-- 								<input type="checkbox" tabindex="3" class="" name="remember" id="remember"> <label for="remember"> Remember	Me</label> -->
@@ -96,7 +96,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-6 col-sm-offset-3">
-										<button type="submit" id="loginbutton" class="form-control btn btn-login" name="loginaction" value="Login">享。登入</button>
+										<button type="submit" id="loginbutton" class="form-control btn btn-login" name="loginaction" value="Login">登入</button>
 									</div>
 								</div>
 							</div>
@@ -104,7 +104,7 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="text-center">
-											<a href="#" tabindex="5" class="forgot-password">享。找密碼?</a>
+											<a id="forgetlink" href="#" tabindex="5" class="forgot-password">享。找密碼?</a>
 										</div>
 									</div>
 								</div>
@@ -119,6 +119,7 @@
 									<label class="input-group-addon glyphicon glyphicon-envelope"></label>
 								</div>
 							</div>
+							<div id="reg_account" class="alert alert-danger hidden" role="alert"></div>
 							
 							<div class="form-group">
 								<div class="input-group">
@@ -126,6 +127,7 @@
 									<label class="input-group-addon glyphicon glyphicon-lock"></label>
 								</div>
 							</div>
+							<div id="reg_pwd" class="alert alert-danger hidden" role="alert"></div>
 								
 							<div class="form-group">
 								<div class="input-group">
@@ -133,12 +135,12 @@
 									<label class="input-group-addon glyphicon glyphicon-lock"></label>
 								</div>
 							</div>
-								
+							<div id="reg_confirmpwd" class="alert alert-danger hidden" role="alert"></div>
 							
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-6 col-sm-offset-3">
-										<button type="submit" id="regbutton" class="form-control btn btn-login" name="loginaction" value="Register">享。註冊</button>
+										<button id="regbutton" class="form-control btn btn-login" name="memaction" value="Insert">快速註冊</button>
 									</div>
 								</div>
 							</div>
@@ -150,6 +152,81 @@
 			</div>
 		</div>
 	</div>
-</div>
+	
+	<!--新會員確認畫面 -->
+	<div class="modal fade" id="ConfirmBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="panel-login">
+					<div class="panel-body">
+						<div>
+							<h3 class="modal-title">歡迎加入享。閱</h3>
+							<div>
+								<button id="welcomeReg" class="btn" style="background-color:#80beb0 ; color: white">確定。</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 重設密碼發送至郵件 -->
+	<div class="modal fade" id="resetBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="panel-login">
+					<div class="panel-body">
+						<form id='resetform'>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+							<h3 class="modal-title" style="margin-bottom: 10px">享。找密碼</h3>
+							<h5 class="modal-title" style="color: red;margin-bottom: 20px">請輸入您註冊時所使用的電子郵件，我們將發送給您一組系統重設的密碼：</h5>
+							<div>
+								<div class="form-group" style="margin-bottom: 30px">
+									<div class="input-group">
+										<input type="text" name="recipient" class="form-control" value="" placeholder="請輸入電子郵件">
+										<label class="input-group-addon glyphicon glyphicon-envelope"></label>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3">
+											<button type="submit" id="resetPwdButton" class="form-control btn btn-login">發送</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--密碼發送確認畫面 -->
+	<div class="modal fade" id="MailSentBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="panel-login">
+					<div class="panel-body">
+						<div>
+							<h3 class="modal-title" style="margin-bottom: 20px">密碼已重設！</h3>
+							<h5 class="modal-title" style="margin-bottom: 20px">請至您的電子郵件信箱領取新密碼，並用新密碼登入</h5>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6 col-sm-offset-3">
+										<button id="welcomeReg" data-dismiss="modal" aria-hidden="true" class="btn" style="background-color:#80beb0 ; color: white">好的，收到。</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

@@ -1,26 +1,28 @@
 package org.iii.eeit9503.ireading.misc.springMVC;
 
+import java.util.Properties;
+
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.iii.eeit9503.ireading.member.dao.PasswordResetImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.XmlViewResolver;
 
 @Configuration
@@ -86,6 +88,42 @@ public class SpringMVCJavaConfig extends WebMvcConfigurerAdapter implements  Web
          
         appServlet.setMultipartConfig(multipartConfigElement);
     }
+	
+	//mail
+	
+	@Bean(name = "mailSender")
+	public JavaMailSenderImpl mailSender(){
+		JavaMailSenderImpl mailSeneder = new JavaMailSenderImpl();
+		mailSeneder.setDefaultEncoding("UTF-8");
+		mailSeneder.setHost("smtp.gmail.com");
+		mailSeneder.setPort(587);
+		
+		Properties props = new Properties();
+		
+		props.setProperty("mail.transport.protocol", "smtp");
+		props.setProperty("mail.smtp.auth", "true");
+		props.setProperty("mail.smtp.starttls.enable", "true");
+		
+		mailSeneder.setJavaMailProperties(props);
+		mailSeneder.setUsername("ireadingeeit95");
+		mailSeneder.setPassword("ireading123");
+		return mailSeneder;
+	}
+	
+	@Bean
+	public SimpleMailMessage Message(){
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("ireadingeeit95@gmail.com");
+		message.setSubject("享。閱：重設密碼通知信");
+		return message;
+	}
+	
+	public PasswordResetImpl passwordReset(){
+		PasswordResetImpl pwdReset = new PasswordResetImpl();
+		pwdReset.setMailSender(mailSender());
+		pwdReset.setTemplateMessage(Message());
+		return pwdReset;
+	}
 	
 
 }

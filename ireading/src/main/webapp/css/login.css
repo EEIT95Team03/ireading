@@ -108,44 +108,41 @@
 	margin-left: 10px;
 }
 
-#login a:hover {
 
-}
-
-.logindiv .fade{
+#logindiv .fade{
 	padding-top:250px;
 }
 
-.logindiv .modal-dialog {
+#logindiv .modal-dialog {
 	width: 600px;
 }
 
-.logindiv .modal-footer {
+#logindiv .modal-footer {
 	height: 90px;
 	margin: 0;
 }
 
-.logindiv .modal-footer .btn {
+#logindiv .modal-footer .btn {
 	font-weight: bold;
 }
 
-.logindiv .modal-footer .progress {
+#logindiv .modal-footer .progress {
 	display: none;
 	height: 32px;
 	margin: 0;
 }
 
-.logindiv .input-group-addon {
+#logindiv .input-group-addon {
 	color: #fff;
 	background: #3276B1;
 }
 
-.logindiv .input-group-addon.glyphicon {
+#logindiv .input-group-addon.glyphicon {
 	font-size: 20px;
 	background-color: #80beb0;
 }
 
-.logindiv .form-control.btn {
+#logindiv .form-control.btn {
 	font-weight: 300;
 	color: white;
 	height: 50px;
@@ -153,21 +150,21 @@
 	background-color: #80beb0;
 }
 
-.logindiv .modal-title{
+#logindiv .modal-title{
 	font-weight:500;
 	color:#808080;
 }
 
-.logindiv .progress-bar{
+#logindiv .progress-bar{
 	background-color:#808080;
 }
 
-.logindiv .input-group input{
+#logindiv .input-group input{
 font-size: 20px;
-margin-bottom:20px;
 }
 
 #loginlink{
+	width:220px;
 	border-radius:15px;
 	color: rgb(255, 255, 255);
 	border: 3px solid rgba(255, 255, 255, 0.9);
@@ -180,6 +177,7 @@ margin-bottom:20px;
 }
 
 #dropdownMenuLink{
+	width:220px;
 	border-radius:15px;
 	border: 3px solid rgba(255, 255, 255, 0.9);
 	background-color: rgba(255, 255, 255, 0.3);
@@ -196,6 +194,7 @@ background-color: rgb(217,217,217);
 }
 
 #memberlink .dropdown-item{
+width:220px;
 background-color: rgb(217,217,217);
 }
 
@@ -204,7 +203,82 @@ background-color: white;
 }
 
 #memberlink .dropdown-item a{
+width:220px;
 color:#80beb0;
 text-decoration: none;
 border: none;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable {
+  padding-right: 35px;
+}
+.alert-dismissable .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+  color: #356635;
+}
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #3a87ad;
+}
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+.alert-info .alert-link {
+  color: #2d6987;
+}
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+  color: #c09853;
+}
+.alert-warning hr {
+  border-top-color: #f8e5be;
+}
+.alert-warning .alert-link {
+  color: #a47e3c;
+}
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.alert-danger hr {
+  border-top-color: #e6c1c7;
+}
+.alert-danger .alert-link {
+  color: #953b39;
 }
