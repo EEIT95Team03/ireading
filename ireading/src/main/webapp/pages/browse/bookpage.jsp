@@ -59,9 +59,9 @@
                     <div class="col-md-12 product-info">
                         <ul id="myTab" class="nav nav-tabs nav_tabs">
 
-                            <li class="active text-center"><a href="#service-one" data-toggle="tab"><h3><span class="glyphicon glyphicon-bookmark"></span>摘要</h3></a></li>
-                            <li class="text-center"><a href="#service-two" data-toggle="tab"><h3><span class="glyphicon glyphicon-comment"></span>享。書評</h3></a></li>
-                            <li class="text-center"><a href="#service-three" data-toggle="tab"><h3><span class="glyphicon glyphicon-shopping-cart"></span>享。買書<span class="badge">${count}</span></h3></a></li>
+                            <li id="tab1" class="active text-center"><a href="#service-one" data-toggle="tab"><h3><span class="glyphicon glyphicon-bookmark"></span>摘要</h3></a></li>
+                            <li id="tab2" class="text-center"><a href="#service-two" data-toggle="tab"><h3><span class="glyphicon glyphicon-comment"></span>享。書評</h3></a></li>
+                            <li id="tab3" class="text-center"><a href="#service-three" data-toggle="tab"><h3><span class="glyphicon glyphicon-shopping-cart"></span>享。買書<span class="badge">${count}</span></h3></a></li>
 
                         </ul>
 
@@ -251,20 +251,28 @@
             </div>
         </div>
         </div>
+        <div id="action" class="hidden">${param.action}</div>
     </section>
     
 <c:import url="/pages/templates/front/frontfooter.jsp"></c:import>
 </body>
 <script src="<c:url value="/js/login.js"/>"></script>
+<script src="<c:url value="/js/cart.js"/>"></script>
   <script> 
         $(function(){
-  $("#ProducTable").tablesorter(); 
+  $("#ProducTable").tablesorter();
   
-  $.post("/ireading/browse/cart/count",{},function(data){
-	   
-	   $('#cart span').text(data[0].count);
-	   
-	 });
+  if($('#action').text()=='buy'){
+	  $('#tab1').toggleClass("active");
+	  $('#tab3').toggleClass("active");
+	  $('#service-one').toggleClass("active");
+	  $('#service-three').toggleClass("active");
+	  $('#service-one').toggleClass("in");
+	  $('#service-three').toggleClass("in");
+  }
+  
+  
+ 
   
   //商品影片
            
@@ -297,31 +305,6 @@
 								}
 							})
 						});
-	
-  
-           
-//            購物車
-           
-           $("#ProducTable").on("click",".addcart",function(event){
-        	   var url=$(this).attr("value");
-        	   
-        	   $.post(url,{},function(data){
-        		   console.log(data[0].count);
-        		   $('#cart span').text(data[0].count);
-        		   if(data[0].change=="1"){alert("成功新增至購物車");}
-        		   else{alert("商品已在購物車");}});
-        	   
-           }); 
-           
-           $("#cart").click(function(event){
-        	  if($.cookie('login_id')==undefined){
-        		  $('#LoginBlock').modal();
-        	  }
-        	  else{
-        		  window.location.href = "/ireading/browse/cart/show";
-        	  }
-        	   
-           });
            
         })
     </script>

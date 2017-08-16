@@ -35,7 +35,7 @@
                     <tr>
                         <td class="col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object img-responsive" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"><img style="width:80px" class="img-responsiv" id="item-display" src="data:image/png;base64, ${item.productBean.booksBean.byteArrayString}"></img> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="<c:url value="/browse/books/${item.productBean.booksBean.ISBN}"/>">${item.productBean.booksBean.title}</a></h4>
                                 <h5 class="media-heading"> 編號 <a>${item.productBean.productID}</a></h5>

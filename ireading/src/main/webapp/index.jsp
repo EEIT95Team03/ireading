@@ -5,53 +5,245 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ireading</title>
+<title>享閱-ireading</title>
+
+<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+ <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
+ <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
+<style type="text/css">
+
+/* 首頁 */
+.video-part
+{
+	width: 100%;
+	position: relative;
+	overflow: inherit;
+	margin-top:-21px;
+}
+.video-part video
+{
+	margin-top: -15%;
+	width: 100%;
+
+
+}
+.video-part-content
+{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	padding-top: 8%;
+	background:rgba(146, 146, 146, 0.47) ;
+
+}
+
+.video-part-content .carousel-caption
+{
+	position: relative !important;
+	left: 0%;
+	right: 0%;
+}
+.video-part-content .carousel-indicators
+{
+	top: 316px;
+}
+.video-part-content .carousel-caption h1
+{
+font-size: 50px;
+}
+.video-part-content .carousel-caption p
+{
+font-size: 20px;
+}
+.affix
+{
+	width: 100%;
+	transition: ease 0.5s;
+	background: #fff !important;
+  border-bottom: 2px solid #5775bd !important;
+}
+.btn-info
+{
+	background: #5674bc;
+	border: 1px solid #5674bc;
+	border-radius: 0px;
+		transition: ease 0.5s;
+}
+.btn-info
+{
+	color: #5674bc;
+	transition: ease 0.5s;
+}
+.full-width
+{
+	width: 100%;
+	float: left;
+}
+.video-part-content .btn-info:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  transition: ease 0.5s;
+  background: transparent;
+}
+
+.btn-info {
+    background: rgb(128, 190, 176) none repeat scroll 0 0;
+    border: 1px solid rgb(128, 190, 176);
+    border-radius: 0;
+    color: #fff;
+    transition: all 0.5s ease 0s;
+        border-radius: 10px;
+}
+        .searchblock {
+        }
+#searchbox{
+	font-size:50px;
+	height: 70px;
+        background-color: rgba(228, 228, 228, 0.5);
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+	
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  animation-delay:1s;
+  animation-duration:2s;
+}
+
+
+/*block2*/
+
+        .homeblock2 {
+          background: url("/ireading/images/homepic2.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top:-20px;
+  height:800px;
+  vertical-align:middle;
+        }
+
+     .homeblock2 .row { padding-top: 150px;
+       color: white;
+    font-weight: 800;
+        }
+</style>
+
 </head>
-
 <body>
+<c:import url="/pages/templates/front/frontmenu.jsp"></c:import>
+<!-- 內容寫在這個區塊內 -->
+ <section >
+<div class="video-part">
+<div class="embed-responsive embed-responsive-16by9"> <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/SKVcQnyEIT8?version=3&loop=1&&playlist=SKVcQnyEIT8&autoplay=1&controls=0&showinfo=0"></iframe>
+</div>
 
-<h1>歡迎進入專題的無底深淵</h1>
-<hr>
-<h1>Servlet測試</h1>
-<a href="<c:url value='/user/test.controller'/>">controller測試</a><br>
-<a href="<c:url value='/manager/order.controller'/>">order測試</a><br>
-<a href="<c:url value='/order.servlet'/>">servlet測試</a><br>
+<div class="container">
+<div class="video-part-content">
+          
+      <div class="col-xs-12 animated fadeInUp searchblock">
+       
+      	<div  class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
+              <h1 style="color:white">享受閱讀，與書香共舞</h1>
+              <form  action="<c:url value="/browse/searchBooks.controller/searchBooksList"/>">
+     <h1> <input type="text" class="form-control" id="searchbox"  name="search" placeholder="請輸入書名或作者"/></h1>
+      <button type="submit" class="btn btn-info btn-lg"><h1><span class="glyphicon glyphicon-search"></span> 找書趣</h1></button>
+      </form>
+      </div>
+           </div>
+     
+      </div>	
 
 
-登入畫面<br>
-<a href="<c:url value='/pages/templates/frontpage.jsp'/>">登入畫面</a><br>
-<br>
-<a href="<c:url value='/browse/books/9789570530629'/>">書籍畫面</a><br>
 
-使用者畫面<br>
-<a href="<c:url value='/user/myorder/getOrders'/>">User MyOrder頁面</a><br>
-<a href="<c:url value='/user/product/sellout'/>">User SelloutProduct頁面</a><br>
-<a href="<c:url value='/user/product/sellBook'/>">User SellBook頁面</a><br>
-<a href="<c:url value='/user/bookcase'/>">User BookCase頁面</a><br>
+</div>
+ </div>
 
-<h2>Servlet測試成功 Console會顯示訊息</h2>
+<div class="homeblock2" >
+      <div class="row text-center  col-xs-12 col-md-8 col-md-offset-2">
+      <h1>加入享閱你可以</h1>
+      <h3>以最划算的價格買到想看得二手書</h3>
+      <h3>看完的書，拿來這裡換現金</h3>
+      <h3>擁有個人書櫃，建立個人書單</h3>
+      <h3>撰寫與瀏覽書評，和大家一同交流你的想法</h3>
+      <h3>參加會員獨享活動</h3>
+       <a  class="btn btn-info btn-lg" data-toggle="modal" data-target="#LoginBlock"><h1>快加入享閱</h1></a>
+      </div>
+  </div>
 
-<hr>
-<h1>已下為JNDI連線測試(使用DB為java)，可以顯示資料代表資料庫連線正常</h1>
-<%@ page import="javax.sql.DataSource" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.naming.*" %>
-<%
-//Context ctx = new InitialContext();
-//DataSource dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/JavaDB");
-//Connection conn = dataSource.getConnection();
-// Statement stmt = conn.createStatement();
-// ResultSet rset = stmt.executeQuery("use ireadDB select * from Event");
-// while(rset.next()) {
-//     String col1 = rset.getString(1);
-//     String col2 = rset.getString(2);
-//     out.println("<h3>"+col1+":"+col2+"</h3>");
-// }
-// rset.close();
-// stmt.close();
-// conn.close();
-
-%>
-
+</section>
+<c:import url="/pages/templates/front/frontfooter(noCart).jsp"></c:import>
 </body>
+<script src="<c:url value="/js/login.js"/>"></script>
+
+
 </html>

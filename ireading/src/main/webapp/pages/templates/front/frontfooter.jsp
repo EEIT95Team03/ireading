@@ -37,5 +37,6 @@
     </div>  
      <a  type="button" class="btn btn-primary btn-circle btn-xl" id="cart" value="<c:url value="/browse/cart/show"/>"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">0</span></a>
 </div>
+
 </body>
 </html>

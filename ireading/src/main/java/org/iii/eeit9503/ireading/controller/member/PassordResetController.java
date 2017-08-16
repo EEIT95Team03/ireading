@@ -41,7 +41,16 @@ public class PassordResetController {
 	public String process(@RequestParam(name="recipient") String address,
 			@RequestHeader(value = "referer", required = false) final String referer
 			, HttpServletRequest request){
-				
+
+        JSONArray array = new JSONArray();
+		JSONObject obj = new JSONObject();
+
+		if(memberService.selectByAccount(address)==null){
+			obj.put("noaccount", "noaccount");
+			array.put(obj);
+			return array.toString();
+		}
+		
 		String subject = "享。閱-密碼重設通知信";
 		String message=null;
 		try {
@@ -62,8 +71,7 @@ public class PassordResetController {
         email.setSubject(subject);
         email.setText(message);
          
-        JSONArray array = new JSONArray();
-		JSONObject obj = new JSONObject();
+
         
         try {
         	obj.put("mailResult", "success");
@@ -100,7 +108,7 @@ public class PassordResetController {
 			try {
 				CookieUtils.addCookie(response, "login_id", bean.getMemberID());
 				CookieUtils.addCookie(response, "login_account",account);
-				if(bean.getMName()!=null && bean.getMName().trim().length()>0){
+				if(bean.getMName()!=null || bean.getMName().trim().length()>0){
 					CookieUtils.addCookie(response, "login_name", bean.getMName());
 				}
 			} catch (UnsupportedEncodingException e) {

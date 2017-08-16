@@ -13,13 +13,13 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header col-sm-12 col-md-4">        
-                <a class="navbar-brand " href="#"><img src="<c:url value="/images/LOGO.png"/>" /></a>
+                <a class="navbar-brand " href="<c:url value="/"/>"><img src="<c:url value="/images/LOGO.png"/>" /></a>
                 <button id="menubtn" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                  </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="list">
-                    <li class="active"><a href="#">享。找書<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="<c:url value="/browse/searchBooks.controller/searchBooksList?search="/>">享。找書<span class="sr-only">(current)</span></a></li>
                     <li><a href="#">享。賣書</a></li>
                     <li><a href="#">享。活動</a></li>
                 </ul>
@@ -48,6 +48,7 @@
 
 	<!--以下為登入彈跳視窗 -->
 	<div id="logindiv">
+	
 	<div class="modal fade" id="LoginBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -148,6 +149,7 @@
 						</form>
 					</div>
 				</div>
+				
 				</div>
 			</div>
 		</div>
@@ -190,6 +192,8 @@
 									</div>
 								</div>
 								
+								<div id="accountcheck" class="alert alert-danger hidden" role="alert"></div>
+								
 								<div class="form-group">
 									<div class="row">
 										<div class="col-sm-6 col-sm-offset-3">
@@ -228,5 +232,6 @@
 		</div>
 	</div>
 	</div>
+	
 </body>
 </html>

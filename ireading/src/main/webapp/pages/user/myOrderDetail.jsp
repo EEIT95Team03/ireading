@@ -43,7 +43,8 @@
 									<tr>
 									<td class="text-center">${vs.index+1}</td>
 									<td class="text-center" class="id">${OD.productBean.productID}</td>
-									<td class="text-center" class="photo">${OD.productBean.booksBean.cover}</td>
+									<td class="text-center" class="photo">
+									<img style="width:50px" class="img-responsiv" id="item-display" src="data:image/png;base64, ${OD.productBean.booksBean.byteArrayString}"></img></td>
 									<td class="text-center" class="title">${OD.productBean.booksBean.title}</td>
 									<td class="text-center" class="status">${OD.productBean.status}</td>
 									<td class="text-center" class="price">${OD.productBean.productPrice}</td>		

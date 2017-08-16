@@ -6,33 +6,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>享閱</title>
-<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" />
-<link href="<c:url value="/css/card.css"/>" rel="stylesheet" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/card.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value='/css/card.css'/>">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/card.js"/>"></script> 
+
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/CartStep.css'/>">
-<link rel="stylesheet" href="<c:url value='/css/card.css'/>">
 
 </head>
 <body>
 	<c:import url="/pages/templates/front/frontmenu.jsp"></c:import>
 	 
-	   <div class="container main">
+ <div class="container main">
     <div class="row">
       <div class="main clearfix">
-				<div class="demo-container col-xs-12 col-sm-6 col-sm-offset-3">
+				<div class="demo-container col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                      <div id="step" class="box vpadding text-center"><img class="pic_timeline02 img-responsive" src="//jci.book.com.tw/css/books/m_cart2015/images/time_line_step3_zh-tw.png"></div>
                     <h2 class="labelbox"><span class="label">信用卡付款</span></h2>
                     <h3 class="text-center">金額:<span>${Cart.sumtotal}</span></h3>
 			        <div class="card-wrapper"></div>
-
 			        <div class="form-container active">
 
-			            <form class="text-center" action="<c:url value="/browse/cart/card"/>" method="post">
+			            <form id="cardform" class="text-center" action="<c:url value="/browse/cart/card"/>" method="post">
                              <div class="row">
                             <div class="col-xs-12">
                             <label>卡別</label>
@@ -92,7 +90,7 @@
 	<c:import url="/pages/templates/front/frontfooter(noCart).jsp"></c:import>
 </body>
   <script>
-        $('form').card({
+        $('#cardform').card({
             // a selector or jQuery object for the container
             // where you want the card to appear
             container: '.card-wrapper', // *required*
@@ -111,5 +109,6 @@
             fullName: '' // optional - default 'Full Name'
             }
         });
+        
     </script>
 </html>

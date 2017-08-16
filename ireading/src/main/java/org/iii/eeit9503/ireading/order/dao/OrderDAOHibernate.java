@@ -106,6 +106,7 @@ public class OrderDAOHibernate implements OrderDAO{
 			String ID=null;
 			for(Object Array:list){
 				ID=(String) Array;}
+			System.out.println(ID);
 			return ID;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,6 +115,7 @@ public class OrderDAOHibernate implements OrderDAO{
 		
 	}
 
+	
 	@Override
 	public List<OrderBean> getAllbyMemberID(String MemberID) {
 		try {

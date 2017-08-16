@@ -44,34 +44,52 @@ public class SearchBooksController {
 		//陣列轉字串                                                             //search = 對應輸入框的name="search"
 		String searchName = MapUtils.getString(param, "search");
 //		System.out.println("searchName:" + searchName);
-		
+		String books =null;
 		if(searchName.trim().length()!=0){
-		String books = "Select * FROM Books Where Title LIKE '%" + searchName + "%' or Author LIKE '%" + searchName + "%'";
+			String[] str=searchName.split(" ");
+			if(str.length>1){
+				 books = "Select * FROM Books Where ";
+			for(int i=0;i<str.length;i++){
+				if(i==0){books=books+" (Title LIKE '%" + str[i] + "%' or Author LIKE '%" + str[i] + "%') ";}
+				else{books=books+" and (Title LIKE '%" + str[i] + "%' or Author LIKE '%" + str[i] + "%') ";}	
+			}
+			
+			}
+			else{
+				 books = "Select * FROM Books Where Title LIKE '%" + searchName + "%' or Author LIKE '%" + searchName + "%'";	
+			}
 
 		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
 		int index=0;
 		for(Map<String,Object> map:booksdataList)
 		{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
-		
 		booksdataList.get(index).put("Cover",bbean);
+		
+		Object count=booksService.getSellBookByISBN((String)map.get("ISBN"));		
+		booksdataList.get(index).put("Count",count);
+		
 		index++;
 		}
 		model.addAttribute("booksdataList", booksdataList);
+		model.addAttribute("selectCount", index);
 		}
 		else{
-			String books = "Select * FROM Books";
+			books = "Select * FROM Books";
 
 			List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
 			int index=0;
 			for(Map<String,Object> map:booksdataList)
 			{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
-			
 			booksdataList.get(index).put("Cover",bbean);
+			
+			Object count=booksService.getSellBookByISBN((String)map.get("ISBN"));		
+			booksdataList.get(index).put("Count",count);
+			
 			index++;
 			}
 //			System.out.println("dataList:" + dataList);
 			model.addAttribute("booksdataList", booksdataList);
-			
+			model.addAttribute("selectCount", index);
 //			List<BooksBean> list = booksService.select(bean);
 //			model.addAttribute("dataLs", list);
 		}
@@ -140,9 +158,18 @@ public class SearchBooksController {
 				
 		
 		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(sqltext.toString());
-//		System.out.println("dataList:" + dataList);
-		model.addAttribute("booksdataList", booksdataList);
+		int index=0;
+		for(Map<String,Object> map:booksdataList)
+		{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
+		booksdataList.get(index).put("Cover",bbean);
 		
+		Object count=booksService.getSellBookByISBN((String)map.get("ISBN"));		
+		booksdataList.get(index).put("Count",count);
+		
+		index++;
+		}
+		model.addAttribute("booksdataList", booksdataList);
+		model.addAttribute("selectCount", index);
 		System.out.println("booksdataList:"+booksdataList);
 		
 		return "SearchBooks.list";
