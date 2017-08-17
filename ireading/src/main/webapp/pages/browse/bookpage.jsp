@@ -160,8 +160,7 @@
 						<div class='ISBN' style='display: none;'>${review.ISBN}</div>
 						<div>
 						<div class="col-xs-6">${review.memberID}</div>
-						<div  class="col-xs-6 text-right"><fmt:formatDate pattern = "yyyy-MM-dd" 
-         value = "${review.postTime}" /></div></div>
+						<div  class="col-xs-6 text-right"><fmt:formatDate pattern = "yyyy-MM-dd" value = "${review.postTime}" /></div></div>
                         <c:choose>
 						<c:when test="${review.memberID eq MemberID}">
 						<div class="rate" value="${review.rate}"><span class="label label-warning">我給</span>&nbsp;<c:forEach begin="1" end="${review.rate}">
@@ -172,14 +171,56 @@
 						<img src='<c:url value="/images/star.png"/>' width='20px' /></c:forEach></div>
 						</c:otherwise>
 						</c:choose>
-						<div class='cont col-xs-12' >${review.cont}</div>
+						<div class='cont col-xs-12'>${review.cont}</div>
 						<c:if test="${review.memberID eq MemberID}">
 						<div class="text-right"><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil">修改</span></button></div></c:if>
 					</div>
 				</div>
 				</div>
 			</div>
-		</c:forEach>                         
+		</c:forEach>    
+		
+		<div class="modal fade" id="updateReview" tabindex="-1" role="dialog"
+			aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">X <span class="sr-only">Close</span>
+							</span>
+						</button>
+						<h3 class="modal-title">修改書籍評論</h3>
+					</div>
+
+					<div class="modal-body" style="overflow: auto;">
+						<form id="neBookCont">
+							<div class="form-gorup col-xs-12">
+								<label for="Cont">評論 <textarea
+										style='width: 30em; height: 8em;' type="text"
+										class="form-control" id="n_Cont" name="Cont" value=""></textarea>
+								</label>
+							</div>
+							<div class="form-gorup col-xs-12">
+								<label for="rate">評分 <input type="number"
+									class="form-control" id="n_rate" name="rate" value=""></input>
+								</label>
+							</div>
+							<input class='ISBN' name="ISBN" style='display: none;' />
+							<div class="form-group col-xs-12" style="float: right;">
+								<button class="btn btn-danger" id="btn_ContS">確定</button>
+								<button class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer"></div>
+					<!-- modal-footer	 		 -->
+				</div>
+				<!-- 	 	modal-content -->
+			</div>
+			<!-- 	 modal-dialog modal-md -->
+		</div>
+		<!-- dialog -->
+		                     
                            </div>                        	                            	
                                 </section>
 

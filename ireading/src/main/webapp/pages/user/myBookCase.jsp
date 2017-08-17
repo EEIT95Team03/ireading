@@ -84,8 +84,10 @@
 			
 			<div id="booklist${index.count}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 			  <div class="panel-body dropbox">
-                  <div class="booklist"></div>
-                  
+                  <div class="booklist">
+                  <div class="col-xs-4 col-md-3 col-lg-2" style="padding-top: 110px;padding-bottom:100px"><div class="text-center"><button class="btn btn-lg btn-primary addbook" data-toggle="modal" data-target="#newBCD"><span class="glyphicon glyphicon-plus"></span><br />加入書籍</button></div></div>
+                  </div>
+                 
                    </div>
 			</div><!--/.media-collapse-3 -->
 			
@@ -215,6 +217,52 @@
 		</div>
 	</div>
 <!--                     end -->
+
+
+<!-- DIALOG 書籍對話框 -->
+		<div class="modal fade" id="newBCD" tabindex="-1" role="dialog"
+			aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">X <span class="sr-only">Close</span>
+							</span>
+						</button>
+						<h3 class="modal-title">新增書籍</h3>
+					</div>
+					<div class="modal-body" style="overflow: auto">
+					<div class="bcid hidden"></div>
+						<form id="neBookform">							
+							<div class="form-gorup col-xs-12" '>
+							<div class="col-xs-6"><input placeholder="請輸入書名及作者資訊"
+									style="width: 25em;height:4em;" type="text"
+									class="form-control" id="searchbook" name="search" value="" /></div>
+							<div class="col-xs-6"><button type="submit" class="searchB btn btn-info btn-sm"
+									name="action" value="basic">
+									<h4>
+										<div style="height:1.5em;"class="glyphicon glyphicon-search"></div> 找書趣
+									</h4>									
+								</button></div>
+								
+										
+							</div>						
+													
+							
+							<div class='result'></div>
+						
+						</form>
+					</div>
+					<div class="modal-footer"></div>
+					<!-- modal-footer	 		 -->
+				</div>
+				<!-- 	 	modal-content -->
+			</div>
+			<!-- 	 modal-dialog modal-md -->
+		</div>
+		<!-- dialog -->
+
+
                     </div>                        
 
 <c:import url="/pages/templates/user/userfooter.jsp"></c:import>
@@ -361,11 +409,48 @@ $(function() {
 	var titlea=$('<div class="title-row row text-center"></div>').append($('<a class="booktitle"></a>').attr("href","#").text(bc.booksBean.title.substring(0,15)));
 	var isbn=$('<div class="isbn hidden"></div>').text(bc.booksBean.ISBN);
 	div.append(bookbox.append([remove,imga,titlea,isbn]));
-	booklist.append(div);
+	booklist.prepend(div);
 	});
-	booklist.append($('<div class="col-xs-4 col-md-3 col-lg-2" style="padding-top: 110px;padding-bottom:100px"><div class="text-center"><button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span><br />加入書籍</button></div></div>'));
+
 });		
 });
+
+//新增書籍塞值(BCID)
+
+$('.addbook').click(function(event){
+	var BCID=$(this).parents(".bookcase").find('div[value="BCID"]').text();
+	console.log(BCID);
+	$('#newBCD .bcid').text(BCID);
+});
+
+
+
+//新增書籍查詢
+	$('.searchB').click(function(e) {
+		e.preventDefault();
+		$('#newBCD .result').empty();
+		var BCID=$('#newBCD .bcid').text();
+		var query=$('#searchbook').val();
+		$.get("/ireading/user/bookcase.controller/searchBooksList",{search:query,BCID:BCID},function(data){
+			console.log(data);
+			var result = $('.result');
+			$.each(data,function(i,book){
+				console.log(book.Title);
+				console.log(book.Author);
+				var Cover="data:image/png;base64,"+book.Cover;
+				
+				var div = $('<div  class="col-xs-4 col-md-3 col-lg-2 bookblock"></div>')
+				var bookbox=$('<div class="bookbox"></div>');				
+				var imga=$(' <div class="row cover-row"></div>').append($('<a class="center-block"></a>').append($('<img style="width:100px;height:150px;" class="img-responsive bookcover center-block">').attr("src",Cover)));
+				var titlea=$('<div class="title-row row text-center"></div>').append($('<a class="booktitle"></a>').attr("href","#").text(book.Title.substring(0,15)));
+				var add=$('<div class="text-center"><a class="btn btn-success btn-xs addbookbtn"><span class="glyphicon glyphicon-plus"></span>加入書櫃</a></div>');
+				var isbn=$('<div class="isbn hidden"></div>').text(book.ISBN);
+				bookbox.append([imga,titlea,add,isbn]);
+				result.append(div.append(bookbox));				
+								
+			});
+		});
+	});
 			
 })
 

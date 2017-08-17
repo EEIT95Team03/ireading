@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
+import org.iii.eeit9503.ireading.book.bean.BooksBean;
+import org.iii.eeit9503.ireading.book.model.BooksService;
 import org.iii.eeit9503.ireading.bookcase.bean.BCDetailBean;
 import org.iii.eeit9503.ireading.bookcase.bean.BookCaseBean;
 import org.iii.eeit9503.ireading.bookcase.model.BCDetailService;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/bookcase.controller")
@@ -39,6 +43,10 @@ public class BookCaseController {
 	private BookCaseService bookCaseService;
 	@Autowired
 	private BCDetailService bcDetailService;
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private BooksService booksService;
 
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String method(BookCaseBean bean, BindingResult bindingResult, Model model,
@@ -292,4 +300,65 @@ public class BookCaseController {
 		return array.toString();			
 	}
 
+	
+	
+	@RequestMapping(value="/searchBooksList",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String searchBooksList(BooksBean bean,Model model , @RequestParam Map<String,Object> param){
+//		System.out.println("param:" + param);
+		String sgson=null;
+		//陣列轉字串                                                             //search = 對應輸入框的name="search"
+		String searchName = MapUtils.getString(param, "search");
+//		System.out.println("searchName:" + searchName);
+		String books =null;
+		if(searchName.trim().length()!=0){
+			String[] str=searchName.split(" ");
+			if(str.length>1){
+				 books = "Select * FROM Books Where ";
+			for(int i=0;i<str.length;i++){
+				if(i==0){books=books+" (Title LIKE '%" + str[i] + "%' or Author LIKE '%" + str[i] + "%') ";}
+				else{books=books+" and (Title LIKE '%" + str[i] + "%' or Author LIKE '%" + str[i] + "%') ";}	
+			}
+			
+			}
+			else{
+				 books = "Select * FROM Books Where Title LIKE '%" + searchName + "%' or Author LIKE '%" + searchName + "%'";	
+			}
+
+		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
+		int index=0;
+		for(Map<String,Object> map:booksdataList)
+		{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
+		booksdataList.get(index).put("Cover",bbean.getByteArrayString());		
+		index++;
+		}
+        Gson gson=new Gson();
+        sgson=gson.toJson(booksdataList);
+        System.out.println(gson.toJson(sgson));
+		model.addAttribute("booksdataList", booksdataList);
+		model.addAttribute("selectCount", index);
+		}
+		else{
+			books = "Select * FROM Books";
+
+			List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
+			int index=0;
+			for(Map<String,Object> map:booksdataList)
+			{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
+			booksdataList.get(index).put("Cover",bbean.getByteArrayString());		
+			index++;
+			}
+//			System.out.println("dataList:" + dataList);
+	        Gson gson=new Gson();
+	        sgson=gson.toJson(booksdataList);
+	        System.out.println(gson.toJson(sgson));
+			model.addAttribute("booksdataList", booksdataList);
+			model.addAttribute("selectCount", index);
+//			List<BooksBean> list = booksService.select(bean);
+//			model.addAttribute("dataLs", list);
+		}
+
+		return sgson;
+		
+	}
 }

@@ -1,14 +1,18 @@
 package org.iii.eeit9503.ireading.controller.book;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.MapUtils;
 import org.iii.eeit9503.ireading.book.bean.BooksBean;
 import org.iii.eeit9503.ireading.book.bean.ReviewBean;
 import org.iii.eeit9503.ireading.book.model.BooksService;
 import org.iii.eeit9503.ireading.book.model.ReviewService;
+import org.iii.eeit9503.ireading.misc.CookieUtils;
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
 import org.iii.eeit9503.ireading.product.model.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +103,21 @@ public class SearchBooksController {
 	}
 	
 	@RequestMapping(value="/{ISBN}",method={RequestMethod.GET})
-	public String getBook(@PathVariable("ISBN") String ISBN,Model model){
+	public String getBook(@PathVariable("ISBN") String ISBN,Model model,HttpServletRequest request){
+		String MemberID=null;
+		try {
+			MemberID =CookieUtils.findCookie(request, "login_id");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return request.getHeader("referer").substring(30);
+		}
+		model.addAttribute("MemberID", MemberID);
+		
+		ReviewBean review=reviewService.findByMemberIDandISBN(ISBN, MemberID);
+		
+		if(review==null){model.addAttribute("review", "0");}
+		else{model.addAttribute("review", "1");}
 		
 		BooksBean bean = new BooksBean();
 		bean.setISBN(ISBN);
