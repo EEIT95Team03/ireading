@@ -18,20 +18,17 @@ private ProductDAO productDAO;
 	
 	public String getOrderID() {
 		String ID=orderDAO.getLastID();
-		String Date=ID.substring(1,7);
-		String SID = "O";
-		if(!DateTansfer.getIDstring().equals(Date)){SID = SID+DateTansfer.getIDstring()+"001";}
+		String Date=null;
+		if(ID==null){ID="O101010001";}
+		else{
+		Date=ID.substring(1,7);}
+		String SID = "";
+		if(!DateTansfer.getIDstring().equals(Date)){SID = "O"+DateTansfer.getIDstring()+"001";}
 		else{ID =ID.substring(7);
 		int y = Integer.parseInt(ID) + 1;
-		if (y < 10) {
-			SID = SID+DateTansfer.getIDstring()+"00" + y;
-		}
-		if (y>= 10 && y< 100) {
-			SID = SID+ DateTansfer.getIDstring()+"0" + y;
-		}
-		if (y >= 100) {
-			SID = SID+DateTansfer.getIDstring()+ y;
-		}	
+		String num="000"+ String.valueOf(y);
+		SID="O"+DateTansfer.getIDstring()+num.substring(num.length()-3);
+		
 		}
 		return SID;
 	}

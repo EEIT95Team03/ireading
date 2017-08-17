@@ -89,7 +89,7 @@
                     <td class="text-right"><span style="font-size:30px">${Cart.sumtotal}</span><span> 元</span></td>
                 </tr>
                 <tr>
-                    <td class="text-center"><a type="button" class="btn btn-default btn-lg" href="${prepage}">
+                    <td class="text-center"><a type="button" class="btn btn-default btn-lg" href="<c:url value="/browse/searchBooks.controller/searchBooksList?search="/>">
                             <span class="glyphicon glyphicon-shopping-cart"></span> 享。再逛逛
                         </a></td>
                     <td class="text-center"> <a type="button" class="btn btn-success btn-lg" href="<c:url value="/browse/cart/buyinfo"/>" <c:if test="${Cart.sumnumb eq 0}">disabled</c:if>>

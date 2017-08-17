@@ -20,7 +20,6 @@
 </head>
 <body>
  <c:import url="/pages/templates/user/usermenu.jsp"></c:import>
-
                     <div class="col-lg-10 col-lg-offset-1">
                  <!--    內容寫這 -->
                     

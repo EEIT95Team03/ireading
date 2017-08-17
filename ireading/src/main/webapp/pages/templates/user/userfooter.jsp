@@ -12,7 +12,6 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>
 
 
  <div id="footer">

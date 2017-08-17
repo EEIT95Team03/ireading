@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value='/css/card.css'/>">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/js/card.js"/>"></script> 
+ <script type="text/javascript" src="<c:url value="/js/card.js"/>"></script> 
 
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/login.css'/>">

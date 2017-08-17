@@ -137,8 +137,18 @@ public class ShopingCartController {
 	    		return "cart.step4card";}
 	    	
 	    	if(obean.getPayBean().getPayID().equals("P0002")){
+	    		
+	    		String MemberID=null;
+	    		try {
+	    			MemberID =CookieUtils.findCookie(request, "login_id");
+	    		} catch (UnsupportedEncodingException e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    			return request.getHeader("referer").substring(30);
+	    		}
+	    		
 	    		obean.setOrderID(idGgenerator.getOrderID());
-	    		obean.setMemberID("M170000016");
+	    		obean.setMemberID(MemberID);
 	    		obean.setOrderStatusBean(orderStatusService.findByID("OS002"));
 	    		obean.setOdate(DateTansfer.Now());
 	    		obean.setOtotal(cart.getSumtotal());
@@ -180,8 +190,18 @@ public class ShopingCartController {
 	    	 
 	    	 System.out.println(number);
 	    	 if(validate(number,cardtype)){
+	    		 
+	    		 String MemberID=null;
+		    		try {
+		    			MemberID =CookieUtils.findCookie(request, "login_id");
+		    		} catch (UnsupportedEncodingException e) {
+		    			// TODO Auto-generated catch block
+		    			e.printStackTrace();
+		    			return request.getHeader("referer").substring(30);
+		    		}
+	    		 
 	    		 obean.setOrderID(idGgenerator.getOrderID());
-		    		obean.setMemberID("M170000016");
+		    		obean.setMemberID(MemberID);
 		    		obean.setOrderStatusBean(orderStatusService.findByID("OS001"));
 		    		obean.setOdate(DateTansfer.Now());
 		    		obean.setOtotal(cart.getSumtotal());

@@ -31,7 +31,7 @@
   								   	   aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-triangle-bottom"></a>
 
   								      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    								     <div class="dropdown-item"><a href="#" style="display: block;margin: 0px">會員中心</a></div>
+    								     <div class="dropdown-item"><a href="<c:url value="/pages/user/userhome.jsp"/>" style="display: block;margin: 0px">會員中心</a></div>
     								     <div class="dropdown-divider"></div>
     					 			     <div class="dropdown-item"><a href="javascript:void(0)" style="display: block;margin:0px" onclick="loggout();">登出</a></div>
   								      </div>

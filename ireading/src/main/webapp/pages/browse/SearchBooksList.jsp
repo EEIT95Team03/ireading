@@ -80,7 +80,7 @@ border-radius: 10px;}
     <div class="well-searchbox text-center" >
               <h1 class="text-center" style="font-size:50px;">享。閱，找本書吧</h1>  
         <div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 				<div class="panel panel-login" style="background-color:rgba(234, 234, 234, 0.67);    border-radius: 15px;">
 					<div class="panel-heading">
 						<div class="row">
@@ -112,24 +112,39 @@ border-radius: 10px;}
                             <input type="text" class="form-control" id="Title" name="Title" placeholder="請輸入書名" value="${param.Title}"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">分類：</label>
-                        <div class="col-xs-8">
+                  
+                    <div class="col-xs-6 form-group">  
+                    <label class="col-xs-6 control-label">分類：</label>
+                        <div class="col-xs-6">
                             <select class="form-control"  id="CategoryID" name="CategoryID">
                                 <option></option>
-						        <option value="000">總類</option>
-						        <option value="100">哲學類</option>
-						        <option value="200">宗教類</option>
-						        <option value="300">科學類</option>
-						        <option value="400">應用科學類</option>
-						        <option value="500">社會科學類</option>
-						        <option value="600">中國史地</option>
-						        <option value="700">世界史地</option>
-						        <option value="800">語言文學類</option>
-						        <option value="900">藝術類</option>
+						        <option value="000" <c:if test="${param.CategoryID eq '000'}">selected</c:if>>總類</option>
+						        <option value="100" <c:if test="${param.CategoryID eq '100'}">selected</c:if>>哲學類</option>
+						        <option value="200" <c:if test="${param.CategoryID eq '200'}">selected</c:if>>宗教類</option>
+						        <option value="300" <c:if test="${param.CategoryID eq '300'}">selected</c:if>>科學類</option>
+						        <option value="400" <c:if test="${param.CategoryID eq '400'}">selected</c:if>>應用科學類</option>
+						        <option value="500" <c:if test="${param.CategoryID eq '500'}">selected</c:if>>社會科學類</option>
+						        <option value="600" <c:if test="${param.CategoryID eq '600'}">selected</c:if>>中國史地</option>
+						        <option value="700" <c:if test="${param.CategoryID eq '700'}">selected</c:if>>世界史地</option>
+						        <option value="800" <c:if test="${param.CategoryID eq '800'}">selected</c:if>>語言文學類</option>
+						        <option value="900" <c:if test="${param.CategoryID eq '900'}">selected</c:if>>藝術類</option>
                             </select>
                         </div>
-                    </div>
+                       </div>
+                        
+                     <div class="col-xs-6 form-group">
+                      <label class="col-xs-5 control-label">出版年：</label>
+                        <div class="col-xs-5">
+                          <select class="form-control" id="Year" name="Year">
+                          <option></option>
+						        <c:forEach begin="0" end="39" step="1" varStatus="year">
+						         <option value="${2017-year.index}" <c:if test="${param.Year eq 2017-year.index}">selected</c:if>>${2017-year.index}</option>
+						        </c:forEach>
+						        </select>
+                        </div>
+                     </div>
+                      
+                  
                      <div class="form-group">
                         <label class="col-xs-3 control-label">ISBN：</label>
                         <div class="col-xs-8">
@@ -184,10 +199,10 @@ border-radius: 10px;}
 				</div>
 				<div class="col-xs-8" style="margin-top:25px;margin-bottom:25px; ">
 					<div><h4><strong>
-						<a href="<c:url value="/browse/searchBooks.controller/${searchbooks.ISBN}"/>">書名：${searchbooks.title}</a>
+						<a href="<c:url value="/browse/searchBooks.controller/${searchbooks.ISBN}"/>">${searchbooks.title}</a>
 					</strong></h4></div>
-					<div><h4>作者：${searchbooks.author}</h4></div>
-					<div><h4>出版社：${searchbooks.publisher}</h4></div>
+					<div><h4>作者： <a href="<c:url value="/browse/searchBooks.controller/advanceSearch?Title=&CategoryID=&Year=&ISBN=&Author=${searchbooks.author}&Publisher=&action=adv"/>">${searchbooks.author}</a></h4></div>
+					<div><h4>出版社：<a href="<c:url value="/browse/searchBooks.controller/advanceSearch?Title=&CategoryID=&Year=&ISBN=&Author=&Publisher=${searchbooks.publisher}&action=adv"/>">${searchbooks.publisher}</a></h4></div>
 					<div><h4>出版日期：${searchbooks.pub_Date}</h4></div>
 					<div><a class="btn btn-success" href="<c:url value="/browse/searchBooks.controller/${searchbooks.ISBN}?action=buy"/>">有  <span class="badge"><c:if test="${empty searchbooks.Count}">0</c:if>${searchbooks.Count}</span> 人享賣這本書</a></div>
 				</div>
@@ -203,6 +218,7 @@ border-radius: 10px;}
 	<c:import url="/pages/templates/front/frontfooter.jsp"></c:import>
 </body>
 <script type="text/javascript" src="/ireading/js/login.js"></script>
+<script src="<c:url value="/js/jquery.cookie.js"/>"></script>
 <script src="<c:url value="/js/cart.js"/>"></script>
 <script>
 $(function() {

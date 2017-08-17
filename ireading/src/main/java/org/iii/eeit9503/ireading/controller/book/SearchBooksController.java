@@ -136,10 +136,14 @@ public class SearchBooksController {
 		String CategoryID = MapUtils.getString(param, "CategoryID");
 		String Author = MapUtils.getString(param, "Author");
 		String Publisher = MapUtils.getString(param, "Publisher");
+		String Year = MapUtils.getString(param, "Year");
+		if(Year==null){
+			Year="";
+		}
 		
 		String sqltext = null;
 		
-		if(ISBN.trim().length()==0 && Title.trim().length()==0 && CategoryID.trim().length()==0 && Author.trim().length()==0 && Publisher.trim().length()==0){
+		if(ISBN.trim().length()==0 && Title.trim().length()==0 && CategoryID.trim().length()==0 && Author.trim().length()==0 && Publisher.trim().length()==0 && Year.trim().length()==0){
 			sqltext = "select * from books ";
 			
 		}else{
@@ -148,7 +152,11 @@ public class SearchBooksController {
 					+ "AND (CategoryID like '%"+CategoryID+"%' OR CategoryID is null)"
 					+ "AND (Author like '%"+Author+"%' OR Author is null)"
 					+ "AND (Publisher like '%"+Publisher+"%' OR Publisher is null)"
-					+ "AND (ISBN like '%"+ISBN+"%' OR ISBN is null)";
+					+ "AND (ISBN like '%"+ISBN+"%' OR ISBN is null) ";
+			System.out.println(Year);
+			if(Year.trim().length()!=0){
+				sqltext=sqltext+" AND YEAR(Pub_Date) ="+Year+" ";
+			}
 		}
 		
 		
