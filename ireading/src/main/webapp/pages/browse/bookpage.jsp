@@ -8,7 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>享閱</title>
 <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script> 
  <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.js"/>"></script> 
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.cookie.js"/>"></script>

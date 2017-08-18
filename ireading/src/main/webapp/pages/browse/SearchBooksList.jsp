@@ -7,8 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>享閱</title>
 <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script> 
 <script type="text/javascript"
 	src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
@@ -24,11 +27,11 @@ padding:10px;
 padding: 10px;
 margin: 0;
 }
-.booklist .book:nth-child(odd){
-background-color: rgba(230, 230, 230, 0.55);
+#booktable tbody tr:nth-child(odd){
+background-color: rgba(82, 130, 119, 0.18);
 }
-.booklist .book:nth-child(even){
-background-color: rgba(82, 130, 119, 0.22);
+#booktable tbody tr:nth-child(even){
+background-color: rgba(230, 230, 230, 0.55);
 }
 
 .bookcover{
@@ -183,14 +186,24 @@ border-radius: 10px;}
 	<div class="col-xs-6"><h1><span class="glyphicon glyphicon-search"></span> 查詢結果</h1></div>
 	<div class="col-xs-6 text-right"><h2>找到  <span style="color:red">${selectCount}</span> 筆<h2></div>
 	</div>
+
 	
-	<c:if test="${empty booksdataList}">
-	<div class="nodata col-xs-12"><h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign"></span>查無資料，再找找看</h1></div>
-	
-	</c:if>
-		<c:forEach var="searchbooks" items="${booksdataList}">
-		  
-			<div class="book col-xs-12">
+	<c:choose>
+	<c:when test="${empty booksdataList}">
+	<div class="nodata col-xs-12"><h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign"></span>查無資料，再找找看</h1></div>	
+	</c:when>
+	<c:otherwise>
+		<table id="booktable" class="display" cellspacing="0" width="100%">
+	<thead>
+	<tr>
+	<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="searchbooks" items="${booksdataList}">
+	<tr>
+	<td>
+	<div class="book col-xs-12">
 			<div class="bookInfo col-xs-12 col-md-8 col-md-offset-2">
 				<div class="col-xs-4">
 					<a href="<c:url value="/browse/searchBooks.controller/${searchbooks.ISBN}"/>">
@@ -209,8 +222,13 @@ border-radius: 10px;}
 				
 				</div>
 			</div>
-			
-		</c:forEach>
+	</td>
+	</tr>
+	</c:forEach>	
+	</tbody>
+	</table>
+	</c:otherwise>
+	</c:choose>
 	</div>
 		</section>
 	
@@ -222,7 +240,12 @@ border-radius: 10px;}
 <script src="<c:url value="/js/cart.js"/>"></script>
 <script>
 $(function() {
-
+	  $('#booktable').DataTable({
+		  "searching":false
+		  
+	  });
+	
+	
     $('#search-link').click(function(e) {
 		$("#search-form").delay(100).fadeIn(100);
  		$("#advsearch-form").fadeOut(100);
