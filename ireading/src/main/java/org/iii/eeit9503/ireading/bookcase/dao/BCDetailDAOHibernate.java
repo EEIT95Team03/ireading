@@ -40,8 +40,8 @@ public class BCDetailDAOHibernate implements BCDetailDAO {
 		if(bCDetailBean!=null){
 			Query query=this.getSession().createQuery(SelectBC);
 			query.setParameter("BCID", bCDetailBean.getBCID());
-			query.setParameter("BCID", bCDetailBean.getBooksBean().getISBN());			
-			if(query.list()==null){
+			query.setParameter("ISBN", bCDetailBean.getBooksBean().getISBN());
+			if(query.list().size()==0){
 				this.getSession().save(bCDetailBean);
 				return bCDetailBean;
 			}		}

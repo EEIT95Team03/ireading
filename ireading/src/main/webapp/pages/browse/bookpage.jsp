@@ -101,7 +101,7 @@
 					<div class='2'>
 						<input type='text' id='n_ISBN' name='ISBN' value="${ISBN}" class="hidden"/>
 					</div>
-					<div class='3' style='display:inline-block;'><lable>評論</lable>
+					<div class='3' style='display:inline-block;'><lable>評論(1~5分)</lable>
 						<textarea style='width: 50em; height: 8em;' type="text"
 							  placeholder="請輸入五百字以內的評論"class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
 					</div>
@@ -130,7 +130,7 @@
 						<textarea style='width: 50em; height: 8em;' type="text"
 							  placeholder="請輸入五百字以內的評論"class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
 					</div>
-					<div class='4' style='width:5em;'><label>評分</label>
+					<div class='4' style='width:5em;'><label>評分(1~5分)</label>
 						<input min='1' max='5' type="number" class="form-control" id="n_rate" name="rate" value="">
 					</div>
 				
@@ -173,13 +173,16 @@
 						</c:choose>
 						<div class='cont col-xs-12'>${review.cont}</div>
 						<c:if test="${review.memberID eq MemberID}">
-						<div class="text-right"><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil">修改</span></button></div></c:if>
+						<div class="text-right"><button class="btn btn-primary updateReview" data-toggle="modal" data-target="#updateReview"><span class="glyphicon glyphicon-pencil">修改</span></button></div></c:if>
 					</div>
 				</div>
 				</div>
 			</div>
 		</c:forEach>    
 		
+		
+		<c:forEach var='review' items="${reviews}">
+		<c:if test="${review.memberID eq MemberID}">
 		<div class="modal fade" id="updateReview" tabindex="-1" role="dialog"
 			aria-labelledby="modalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-md">
@@ -193,21 +196,23 @@
 					</div>
 
 					<div class="modal-body" style="overflow: auto;">
-						<form id="neBookCont">
+						<form id="updateBookReview">
 							<div class="form-gorup col-xs-12">
 								<label for="Cont">評論 <textarea
 										style='width: 30em; height: 8em;' type="text"
-										class="form-control" id="n_Cont" name="Cont" value=""></textarea>
+										class="form-control" id="n_Cont" name="Cont" value="${review.cont}">${review.cont}</textarea>
 								</label>
 							</div>
 							<div class="form-gorup col-xs-12">
-								<label for="rate">評分 <input type="number"
-									class="form-control" id="n_rate" name="rate" value=""></input>
+								<label for="rate">評分 (1~5分)
+								<input type="number"
+									class="form-control" id="n_rate" name="rate" value="${review.rate}"></input>
 								</label>
 							</div>
-							<input class='ISBN' name="ISBN" style='display: none;' />
+							<input class='ISBN' name="ISBN" style="display: none;" value="${review.ISBN}" />
+							<input class='MemberID' name="MemberID" style="display: none;" value="${review.memberID}" />
 							<div class="form-group col-xs-12" style="float: right;">
-								<button class="btn btn-danger" id="btn_ContS">確定</button>
+								<button class="btn btn-primary updateReviewbtn">確定</button>
 								<button class="btn btn-default" data-dismiss="modal">取消</button>
 							</div>
 						</form>
@@ -220,7 +225,8 @@
 			<!-- 	 modal-dialog modal-md -->
 		</div>
 		<!-- dialog -->
-		                     
+		</c:if>
+	</c:forEach>	                     
                            </div>                        	                            	
                                 </section>
 
@@ -347,6 +353,28 @@
 							})
 						});
            
+              $('.updateReviewbtn').click(function(event){
+            	  var data =$('#updateBookReview').serialize();
+            	  $.post("/ireading/manager/review.controller/update", data,
+  						function(data){
+  							if(data[0].change){
+  								alert("新增評論成功");
+  								location.reload();
+  							} else {
+  								alert("新增評論失敗");
+  								location.reload();
+  								}
+  							})
+            	  
+            	  
+              });
+				
+				
+				
+				
         })
+        
+        
+        
     </script>
 </html>

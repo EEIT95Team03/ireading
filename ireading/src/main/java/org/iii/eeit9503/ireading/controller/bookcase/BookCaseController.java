@@ -226,6 +226,7 @@ public class BookCaseController {
 		JSONArray array=new JSONArray();
 		for(BCDetailBean bean :list){
 			JSONObject obj=new JSONObject(bean);
+			obj.put("Cover", bean.getBooksBean().getByteArrayString());
 			array.put(obj);}	
 		System.out.println(array.toString());
 		return array.toString();
@@ -309,6 +310,7 @@ public class BookCaseController {
 		String sgson=null;
 		//陣列轉字串                                                             //search = 對應輸入框的name="search"
 		String searchName = MapUtils.getString(param, "search");
+		String BCID = MapUtils.getString(param, "BCID");
 //		System.out.println("searchName:" + searchName);
 		String books =null;
 		if(searchName.trim().length()!=0){
@@ -316,15 +318,21 @@ public class BookCaseController {
 			if(str.length>1){
 				 books = "Select * FROM Books Where ";
 			for(int i=0;i<str.length;i++){
-				if(i==0){books=books+" (Title LIKE '%" + str[i] + "%' or Author LIKE '%" + str[i] + "%') ";}
-				else{books=books+" and (Title LIKE '%" + str[i] + "%' or Author LIKE '%" + str[i] + "%') ";}	
+				if(i==0){books=books+" (Title LIKE '%" + str[i] + "%') ";}
+				else{books=books+" and (Title LIKE '%" + str[i] + "%') ";}	
 			}
 			
 			}
 			else{
-				 books = "Select * FROM Books Where Title LIKE '%" + searchName + "%' or Author LIKE '%" + searchName + "%'";	
+				 books = "Select * FROM Books Where Title LIKE '%" + searchName + "%' ";	
 			}
 
+			List<BCDetailBean> bcdbean=bcDetailService.findbyBCID(BCID);
+			for(BCDetailBean BCD:bcdbean){
+				System.out.println(BCD.getBooksBean().getISBN());
+				 books= books+" and ISBN != '"+BCD.getBooksBean().getISBN()+"' ";
+			}
+			
 		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
 		int index=0;
 		for(Map<String,Object> map:booksdataList)
@@ -341,6 +349,18 @@ public class BookCaseController {
 		else{
 			books = "Select * FROM Books";
 
+			List<BCDetailBean> bcdbean=bcDetailService.findbyBCID(BCID);
+			int bookcount=0;
+			for(BCDetailBean BCD:bcdbean){
+				System.out.println(BCD.getBooksBean().getISBN());
+				if(bookcount==0){
+					 books= books+" where ISBN != '"+BCD.getBooksBean().getISBN()+"' ";
+				}
+				else{
+				 books= books+" and ISBN != '"+BCD.getBooksBean().getISBN()+"' ";}
+				bookcount++;
+			}
+			
 			List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(books.toString());
 			int index=0;
 			for(Map<String,Object> map:booksdataList)
@@ -361,4 +381,35 @@ public class BookCaseController {
 		return sgson;
 		
 	}
+	
+	
+	@RequestMapping(value="/addbook",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String addbook(@RequestParam Map<String,Object> param){
+		JSONArray array=new JSONArray();
+		JSONObject obj=new JSONObject();
+				
+		String ISBN = MapUtils.getString(param, "ISBN");
+		String BCID = MapUtils.getString(param, "BCID");
+		
+		BCDetailBean bcdbean=new BCDetailBean();
+		bcdbean.setBCID(BCID);
+        bcdbean.setBooksBean(booksService.findByID(ISBN));
+        bcdbean.setBookRank(0);
+        
+        BCDetailBean insert=bcDetailService.insert(bcdbean);
+        if(insert!=null){
+        	obj.put("change", "1");
+        	array.put(obj);
+        	return array.toString();
+        }
+        else{
+        	obj.put("change", "0");
+        	array.put(obj);
+        	return array.toString();
+        }
+		
+	}
+	
+	
 }

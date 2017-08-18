@@ -135,14 +135,14 @@
 								class="form-control" id="new_BCName" name="BCName" value="" required/>
 						</div>
 
-						<div class="form-group col-xs-12">
+						<div class="form-group col-xs-12 hidden">
 							<label for="caseRank">優先排序</label> <select name="caserank">
 								<option value="0">是</option>
 								<option value="1">否</option>
 							</select>
 						</div>
 
-						<div class="form-group col-xs-12">
+						<div class="form-group col-xs-12 hidden">
 							<label for="display">公開</label> <select name="display">
 								<option value="0">是</option>
 								<option value="1">否</option>
@@ -191,14 +191,14 @@
 								class="form-control" id="update_BCName" name="BCName" value="" required/>
 						</div>
 
-						<div class="form-group col-xs-12">
+						<div class="form-group col-xs-12 hidden">
 							<label for="caseRank">優先排序</label> <select name="update_caserank">
 								<option class="true" value="0">是</option>
 								<option class="false" value="1">否</option>
 							</select>
 						</div>
 
-						<div class="form-group col-xs-12">
+						<div class="form-group col-xs-12 hidden">
 							<label for="display">公開</label> <select name="update_display">
 								<option class="true" value="0">是</option>
 								<option class="false" value="1">否</option>
@@ -235,7 +235,7 @@
 					<div class="bcid hidden"></div>
 						<form id="neBookform">							
 							<div class="form-gorup col-xs-12" '>
-							<div class="col-xs-6"><input placeholder="請輸入書名及作者資訊"
+							<div class="col-xs-6"><input placeholder="請輸入書名"
 									style="width: 25em;height:4em;" type="text"
 									class="form-control" id="searchbook" name="search" value="" /></div>
 							<div class="col-xs-6"><button type="submit" class="searchB btn btn-info btn-sm"
@@ -399,13 +399,13 @@ $(function() {
 	var bcid = $(this).children('div[value="BCID"]').text();
 	var booklist = $(this).parents(".bookcase").find('.booklist');
 	console.log(bcid);
-	$.post("/ireading/user/bookcase/getBCD",{BCID : bcid},function(data) {
+	$.post("/ireading/user/bookcase.controller/getBCD",{BCID : bcid},function(data) {
 	console.log(data);
 	$.each(data,function(i,bc) {
 	var div = $('<div  class="col-xs-4 col-md-3 col-lg-2 bookblock"></div>')
 	var bookbox=$('<div class="bookbox"></div>');
 	var remove=$('<div class="text-right"><a class="btn btn-danger btn-xs deletebook"><span class="glyphicon glyphicon-remove"></span></a></div>');
-	var imga=$(' <div class="row cover-row"></div>').append($('<a class="center-block"></a>').attr("href","#").append($('<img class="img-responsive bookcover center-block">').attr("src","http://im2.book.com.tw/image/getImage?i=http://www.books.com.tw/img/001/075/52/0010755257.jpg&v=593fcccb&w=150&h=150")));
+	var imga=$(' <div class="row cover-row"></div>').append($('<a class="center-block"></a>').attr("href","#").append($('<img style="width:100px;height:150px;" class="img-responsive bookcover center-block">').attr("src","data:image/png;base64,"+bc.Cover)));
 	var titlea=$('<div class="title-row row text-center"></div>').append($('<a class="booktitle"></a>').attr("href","#").text(bc.booksBean.title.substring(0,15)));
 	var isbn=$('<div class="isbn hidden"></div>').text(bc.booksBean.ISBN);
 	div.append(bookbox.append([remove,imga,titlea,isbn]));
@@ -442,7 +442,7 @@ $('.addbook').click(function(event){
 				var div = $('<div  class="col-xs-4 col-md-3 col-lg-2 bookblock"></div>')
 				var bookbox=$('<div class="bookbox"></div>');				
 				var imga=$(' <div class="row cover-row"></div>').append($('<a class="center-block"></a>').append($('<img style="width:100px;height:150px;" class="img-responsive bookcover center-block">').attr("src",Cover)));
-				var titlea=$('<div class="title-row row text-center"></div>').append($('<a class="booktitle"></a>').attr("href","#").text(book.Title.substring(0,15)));
+				var titlea=$('<div class="title-row row text-center"></div>').append($('<a class="booktitle"></a>').text(book.Title.substring(0,15)));
 				var add=$('<div class="text-center"><a class="btn btn-success btn-xs addbookbtn"><span class="glyphicon glyphicon-plus"></span>加入書櫃</a></div>');
 				var isbn=$('<div class="isbn hidden"></div>').text(book.ISBN);
 				bookbox.append([imga,titlea,add,isbn]);
@@ -451,6 +451,23 @@ $('.addbook').click(function(event){
 			});
 		});
 	});
+	
+	
+	$('#newBCD').on('click','.addbookbtn',function(event){
+		isbn=$(this).parents('.bookbox').find('.isbn').text();
+		BCID=$('#newBCD').find('.bcid').text();
+		console.log(isbn+":"+BCID);
+		$.post("/ireading/user/bookcase.controller/addbook",{BCID:BCID,ISBN:isbn},function(data){
+			if(data[0].change=="1"){alert("加入書櫃成功");
+			location.reload();
+			}
+			else{alert("加入書櫃失敗");
+			location.reload();
+			}
+			
+		});
+		
+	})
 			
 })
 
