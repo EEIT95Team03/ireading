@@ -14,6 +14,7 @@
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/CartStep.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 </head>
 <body>
 	<c:import url="/pages/templates/front/frontmenu.jsp"></c:import>
@@ -45,4 +46,6 @@
            </div>
 	<c:import url="/pages/templates/front/frontfooter(noCart).jsp"></c:import>
 </body>
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
+
 </html>

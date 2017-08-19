@@ -10,10 +10,11 @@
 <link href="<c:url value="/css/card.css"/>" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/CartStep.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 
 </head>
 <body>
@@ -139,4 +140,5 @@
 </div>	 
 	<c:import url="/pages/templates/front/frontfooter(noCart).jsp"></c:import>
 </body>
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
 </html>

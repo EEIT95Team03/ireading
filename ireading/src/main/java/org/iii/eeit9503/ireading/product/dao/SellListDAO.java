@@ -9,4 +9,5 @@ public interface SellListDAO {
 	public int delete(String SellListID);
 	public SellListBean findByPrimaryKey(String SellListID);
 	public List<SellListBean> getAll();
+	public String getLastID();
 }

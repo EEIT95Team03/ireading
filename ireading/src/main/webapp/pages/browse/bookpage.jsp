@@ -38,12 +38,12 @@
                             <div class="col-md-7">
                                 <h1>${book.title}</h1>
                                 <h3>
-                                    <label>作者: </label>${book.author}</h3>
+                                    <label>作者: </label><a href="<c:url value="/browse/searchBooks.controller/advanceSearch?Title=&CategoryID=&Year=&ISBN=&Author=${book.author}&Publisher=&action=adv"/>">${book.author}</a></h3>
                                 <h3>
                                     <label>出版日期:</label> <fmt:formatDate pattern = "yyyy-MM-dd" 
          value = "${book.pub_Date}" /></h3>
                                 <h3>
-                                    <label>出版社:</label> ${book.publisher}</h3>
+                                    <label>出版社:</label><a href="<c:url value="/browse/searchBooks.controller/advanceSearch?Title=&CategoryID=&Year=&ISBN=&Author=&Publisher=${book.publisher}&action=adv"/>">${book.publisher}</a></h3>
                                 <h3>
                                     <label>語言:</label>
             <c:if test="${book.language eq 1}"> 外文</c:if>
@@ -209,7 +209,7 @@
 							<div class="form-gorup col-xs-12">
 								<label for="rate">評分 (1~5分)
 								<input type="number"
-									class="form-control" id="n_rate" name="rate" value="${review.rate}"></input>
+									class="form-control" id="n_rate" name="rate" min="1" max="5" value="${review.rate}"></input>
 								</label>
 							</div>
 							<input class='ISBN' name="ISBN" style="display: none;" value="${review.ISBN}" />

@@ -89,6 +89,7 @@
 	 
 	<c:import url="/pages/templates/front/frontfooter(noCart).jsp"></c:import>
 </body>
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
   <script>
         $('#cardform').card({
             // a selector or jQuery object for the container

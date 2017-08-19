@@ -153,6 +153,36 @@
 		<property name="url" value="/pages/user/myBookCase.jsp"></property>
 	</bean>
 	
+		<bean id="sold.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/SoldList.jsp"></property>
+	</bean>		
+	
+		<bean id="ApplyTosell.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/ApplyToSell.jsp"></property>
+	</bean>	
+	
+	<bean id="solddetail.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/SoldListDetail.jsp"></property>
+	</bean>
+
+<bean id="user.review"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/myReview.jsp"></property>
+	</bean>
+
+<!-- Manager功能 -->
+
+	<bean id="productlaunched.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/manager/ProductLaunchedList.jsp"></property>
+	</bean>
+	<bean id="solddetailmanager.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/manager/SoldListDetailManager.jsp"></property>
+	</bean>
 
  <!-- 功能：維護書籍資料 -->
 	<bean id="Books.Index"

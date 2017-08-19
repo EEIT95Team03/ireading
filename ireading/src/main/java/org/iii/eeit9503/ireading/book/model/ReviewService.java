@@ -3,6 +3,7 @@ package org.iii.eeit9503.ireading.book.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.iii.eeit9503.ireading.book.bean.ReviewBean;
 import org.iii.eeit9503.ireading.book.dao.ReviewDAO;
@@ -53,6 +54,11 @@ public List<ReviewBean> findByMemberID(String MemberID){
 		String strDate = sdFormat.format(date);
 		//System.out.println(strDate);
 		return strDate;
+	}
+	
+	public List<Map<String, Object>> getMemberReview(String MemberID) {
+		return reviewDAO.getMemberReview(MemberID);
+		
 	}
 	
 	

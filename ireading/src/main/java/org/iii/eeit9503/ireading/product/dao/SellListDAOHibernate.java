@@ -89,5 +89,23 @@ try {
 			return null;
 		}
 	}
+	
+	@Override
+	public String getLastID() {
+		try {
+			Session session = this.getSession();
+
+			Query query = session.createSQLQuery("select Top 1 SellListID from SellList order by SellListID DESC");
+			String ID=null;
+			List<Object> list= query.list();
+			for(Object obj:list){
+				ID=(String) obj;				
+			}
+
+			return ID;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 }

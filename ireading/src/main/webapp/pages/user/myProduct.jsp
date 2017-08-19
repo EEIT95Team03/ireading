@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+      <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 </head>
 <body>
  <c:import url="/pages/templates/user/usermenu.jsp"></c:import>
@@ -38,7 +39,7 @@
                  <h1 class="label head-title">上架中二手書</h1>                   
                 </div>
 
-                <div class="navbar-right col-xs-12 col-sm-4"><h4 class="text-right">共 <strong style="color:red">${OrderCount}</strong> 筆</h4></div>                  
+                <div class="navbar-right col-xs-12 col-sm-4"><h4 class="text-right"></h4></div>                  
                 </div>
         </nav>   
                                              
@@ -59,10 +60,10 @@
                 <tr>
                         <td class="col-md-5">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"><img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"><img class="media-object" src="data:image/png;base64,${product.Cover}" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">${product.Title}</a></h4>
-                                <h5 class="media-heading"> 編號 <a href="#" class="pid">${product.productID}</a></h5>
+                                <h4 class="media-heading"><a href="<c:url value="/browse/searchBooks.controller/${product.ISBN}"/>">${product.Title}</a></h4>
+                                <h5 class="media-heading"> 編號 <a href="<c:url value="/browse/searchBooks.controller/${product.ISBN}?action=buy"/>" class="pid">${product.productID}</a></h5>
                                 <span>使用狀態: </span><span class="text-success"><strong>${product.Status}</strong></span>
                             </div>
                         </div></td>
@@ -95,6 +96,7 @@
 
 </body>
 <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
   <script>         
            $(function () {
              $("#selloutTable").tablesorter();

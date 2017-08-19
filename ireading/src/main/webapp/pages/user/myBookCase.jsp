@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+     <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 <style>
        .media-body
         {background-color:#87acab;
@@ -269,6 +270,7 @@
 
 </body>
 <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
 <script>
 $(function() {
 	

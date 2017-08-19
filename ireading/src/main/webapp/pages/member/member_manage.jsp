@@ -8,6 +8,8 @@
 <title>會員中心</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
 <!--jQuery-->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -18,6 +20,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
 <style type="text/css">
@@ -355,6 +362,57 @@ body {
 .progress-bar {
 	background-color: #808080;
 }
+
+/* .dataTables_wrapper .dataTables_paginate .paginate_button { */
+/*     background-color: #80beb0; */
+/* } */
+/* .dataTables_wrapper .dataTables_paginate .paginate_button:hover { */
+/*     border: 0px; */
+/* } */
+.material-switch > input[type="checkbox"] {
+    display: none;   
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative; 
+    width: 40px;  
+}
+
+.material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
+}
 </style>
 <script type="text/javascript">
 	$(document)
@@ -411,8 +469,6 @@ body {
 										.addClass("btn-success").blur().delay(
 												1600).fadeIn(
 												function() {
-													// 																	title
-													// 																			.text("完成！");
 													button.attr("data-dismiss",
 															"modal");
 												});
@@ -497,8 +553,7 @@ body {
 				<h3 class="text-center" style="color: #ff8c9b">享。閱&nbsp;會員資料管理</h3>
 				<ul class="timeline">
 					<li>
-						<button class="timeline-image" data-toggle="modal"
-							data-target="#myInsert">新。</button>
+						<button class="timeline-image" data-toggle="modal" data-target="#myInsert">新。</button>
 						<div class="timeline-panel">
 							<div class="timeline-heading">
 								<h4>享。新增</h4>
@@ -508,8 +563,7 @@ body {
 						<div class="line"></div>
 					</li>
 					<li class="timeline-inverted">
-						<button class="timeline-image" data-toggle="modal"
-							data-target="#myQuery">詢。</button>
+						<button class="timeline-image" data-toggle="modal" data-target="#myQuery">詢。</button>
 						<div class="timeline-panel">
 							<div class="timeline-heading">
 								<h4>享。查詢</h4>
@@ -519,8 +573,7 @@ body {
 						<div class="line"></div>
 					</li>
 					<li>
-						<button class="timeline-image" data-toggle="modal"
-							data-target="#myUpdate">修。</button>
+						<button class="timeline-image" data-toggle="modal" data-target="#myUpdate">修。</button>
 						<div class="timeline-panel">
 							<div class="timeline-heading">
 								<h4>享。更新</h4>
@@ -534,103 +587,85 @@ body {
 	</div>
 
 	<!-- 以下區塊為新增彈跳區塊 -->
-	<div class="modal fade" id="myInsert" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myInsert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">X</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 					<h3 class="modal-title" id="NewModalTitle">新增享。閱人</h3>
 				</div>
 
 				<div class="modal-body">
 					<form id="insertform"
-						action="<c:url value='/manager/member.controller' />"
-						method="POST" enctype="multipart/form-data" role="form">
+<%-- 					  action="<c:url value='/user/member.controller/Insert'/>" --%>
+					   method="POST" enctype="multipart/form-data" role="form">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="account" class="form-control"
-									placeholder="請輸入電子郵件"> <label
-									class="input-group-addon glyphicon glyphicon-envelope"></label>
+								<input type="text" name="account" class="form-control" placeholder="請輸入電子郵件"> 
+								<label class="input-group-addon glyphicon glyphicon-envelope"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="password" name="pwd" class="form-control"
-									placeholder="請輸入密碼"> <label
-									class="input-group-addon glyphicon glyphicon-lock"></label>
+								<input type="password" name="pwd" class="form-control" placeholder="請輸入密碼"> 
+								<label class="input-group-addon glyphicon glyphicon-lock"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="MName" class="form-control"
-									placeholder="請輸入姓名"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="MName" class="form-control" placeholder="請輸入姓名"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="nickName" class="form-control"
-									placeholder="請輸入暱稱"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="nickName" class="form-control" placeholder="請輸入暱稱"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
 								<label class="input-group-addon glyphicon" for="male">男</label>
-								<input type="radio" id="male" class="form-control" name="gender"
-									value="0"> <label class="input-group-addon glyphicon"
-									for="feamle">女</label> <input type="radio" id="female"
-									class="form-control" name="gender" value="1">
+								<input type="radio" id="male" class="form-control" name="gender" value="0"> 
+								<label class="input-group-addon glyphicon" for="feamle">女</label> 
+								<input type="radio" id="female" class="form-control" name="gender" value="1">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="addr" class="form-control"
-									placeholder="請輸入通訊地址"> <label
-									class="input-group-addon glyphicon glyphicon-align-justify"></label>
+								<input type="text" name="addr" class="form-control" placeholder="請輸入通訊地址"> 
+								<label class="input-group-addon glyphicon glyphicon-align-justify"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="cell" class="form-control"
-									placeholder="請輸入手機"> <label
-									class="input-group-addon glyphicon glyphicon-phone"></label>
+								<input type="text" name="cell" class="form-control" placeholder="請輸入手機"> 
+								<label class="input-group-addon glyphicon glyphicon-phone"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="birthday" class="form-control"
-									placeholder="請輸入生日"> <label
-									class="input-group-addon glyphicon glyphicon-calendar"></label>
+								<input type="text" name="birthday" class="form-control" placeholder="請輸入生日"> 
+								<label class="input-group-addon glyphicon glyphicon-calendar"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="file" name="file" class="form-control"> <label
-									class="input-group-addon glyphicon glyphicon-picture"></label>
+								<input type="file" name="file" class="form-control"> 
+								<label class="input-group-addon glyphicon glyphicon-picture"></label>
 							</div>
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" id="newbutton" class="form-control btn"
-								name="memaction" value="Insert">確定。新增</button>
-							<!-- 							<div class="progress"> -->
-							<!-- 								<div class="progress-bar" role="progressbar" id="progress1" -->
-							<!-- 									aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" -->
-							<!-- 									style="width: 0%;"> -->
-							<!-- 									<span class="sr-only">progress</span> -->
-							<!-- 								</div> -->
-							<!-- 							</div> -->
+							<button id="newbutton" class="form-control btn" name="memaction" value="Insert">確定。新增</button>
 						</div>
 					</form>
 				</div>
@@ -641,15 +676,45 @@ body {
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
+	<script type="text/javascript">
+		
+		$('#newbutton').click(
+			function(event) {
+				event.preventDefault();
+				
+				var data = $('#insertform').serialize();
+				
+				$.post('/ireading/user/member.controller/Insert', data , function(data) {
+					console.log(data);
+				})
+			})
+	
+	</script>
+	
+	<!--新會員確認畫面 -->
+	<div class="modal fade" id="ConfirmBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="panel-login">
+					<div class="panel-body">
+						<div>
+							<h3 class="modal-title">歡迎加入享。閱</h3>
+							<div>
+								<button id="welcomeReg" class="btn" style="background-color:#80beb0 ; color: white">確定。</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- 以下區塊為查詢彈跳區塊 -->
-	<div class="modal fade" id="myQuery" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myQuery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">X</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 					<h4 class="modal-title" id="QueryModalTitle">享。詢人</h4>
 				</div>
 				<!-- /.modal-header -->
@@ -658,22 +723,13 @@ body {
 					<form role="form" id="queryform">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="memberID" class="form-control"
-									placeholder="請輸入會員編號"> <label
-									class="input-group-addon glyphicon glyphicon-search"></label>
+								<input type="text" name="memberID" class="form-control"	placeholder="請輸入會員編號"> 
+								<label class="input-group-addon glyphicon glyphicon-search"></label>
 							</div>
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" id="querybutton"
-								class="form-control btn btn-primary" name="memaction"
-								value="Show">詢人。Yes!</button>
-							<!-- 						<div class="progress"> -->
-							<!-- 							<div class="progress-bar" role="progressbar" id="progress2" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" -->
-							<!-- 							style="width: 0%;"> -->
-							<!-- 							<span class="sr-only">progress</span> -->
-							<!-- 						</div> -->
-							<!-- 					</div> -->
+							<button type="submit" id="querybutton" class="form-control btn btn-primary" name="memaction" value="Show">詢人。Yes!</button>
 						</div>
 						<!-- /.modal-footer -->
 					</form>
@@ -687,13 +743,11 @@ body {
 	<!-- /.modal -->
 
 	<!-- 以下區塊為修改彈跳區塊 -->
-	<div class="modal fade" id="myUpdate" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">X</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 					<h4 class="modal-title" id="UpdateModalTitle">享。修</h4>
 				</div>
 				<!-- /.modal-header -->
@@ -704,92 +758,77 @@ body {
 						enctype="multipart/form-data">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="memberID" class="form-control"
-									placeholder="請輸入會員編號"> <label
-									class="input-group-addon glyphicon glyphicon-search"></label>
+								<input type="text" name="memberID" class="form-control" placeholder="請輸入會員編號"> 
+								<label class="input-group-addon glyphicon glyphicon-search"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="account" class="form-control"
-									placeholder="請輸入電子郵件"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="account" class="form-control" placeholder="請輸入電子郵件"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="password" name="pwd" class="form-control"
-									placeholder="請輸入密碼"> <label
-									class="input-group-addon glyphicon glyphicon-lock"></label>
+								<input type="password" name="pwd" class="form-control" placeholder="請輸入密碼"> 
+								<label class="input-group-addon glyphicon glyphicon-lock"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="MName" class="form-control"
-									placeholder="請輸入姓名"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="MName" class="form-control" placeholder="請輸入姓名"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="nickName" class="form-control"
-									placeholder="請輸入暱稱"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="nickName" class="form-control" placeholder="請輸入暱稱"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
 								<input type="radio" class="form-control" name="gender" value="0">
-								<label class="input-group-addon glyphicon">男</label> <input
-									type="radio" class="form-control" name="gender" value="1">
+								<label class="input-group-addon glyphicon">男</label>
+								<input type="radio" class="form-control" name="gender" value="1">
 								<label class="input-group-addon glyphicon">女</label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="addr" class="form-control"
-									placeholder="請輸入通訊地址"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="addr" class="form-control" placeholder="請輸入通訊地址"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="cell" class="form-control"
-									placeholder="請輸入手機"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="cell" class="form-control" placeholder="請輸入手機"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="birthday" class="form-control"
-									placeholder="請輸入生日"> <label
-									class="input-group-addon glyphicon glyphicon-user"></label>
+								<input type="text" name="birthday" class="form-control" placeholder="請輸入生日"> 
+								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="file" name="file" class="form-control"> <label
-									class="input-group-addon glyphicon glyphicon-picture"></label>
+								<input type="file" name="file" class="form-control">
+								<label class="input-group-addon glyphicon glyphicon-picture"></label>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button id="updatebutton" class="form-control btn btn-primary"
-								name="memaction" value="Update">確定。修</button>
-							<!-- 						<div class="progress"> -->
-							<!-- 							<div class="progress-bar" role="progressbar" id="progress3" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" -->
-							<!-- 							style="width: 0%;"> -->
-							<!-- 							<span class="sr-only">progress</span> -->
-							<!-- 						</div> -->
-							<!-- 					</div> -->
+							<button id="updatebutton" class="form-control btn btn-primary"	name="memaction" value="Update">確定。修</button>
 						</div>
 						<!-- /.modal-footer -->
 					</form>
@@ -803,98 +842,40 @@ body {
 	<!-- /.modal -->
 
 	<!-- 顯示會員資料的跳視窗 -->
-	<div class="modal fade" id="myShow" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<div class="modal fade" id="myShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width:1650px">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">X</button>
+					<button id="xxx" type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 					<h4 class="modal-title" id="UpdateModalTitle">享。閱人s</h4>
 				</div>
 				<!-- /.modal-header -->
 
-				<div class="modal-body">
-					<form role="form" id="showform" method="POST"
-						enctype="multipart/form-data">
-						<table>
+				<div class="modal-body" style="max-height: 800px;overflow-y: auto">
+					<form role="form" id="showform" method="POST" enctype="multipart/form-data">
+						<table id="memTable">
 							<thead>
 								<tr>
-									<th>享。閱人編號</th>
-									<th>註冊帳號</th>
-									<th>享。閱人，名</th>
-									<th>暱稱</th>
-									<th>住在哪裡</th>
-									<th>享。電聯</th>
-									<th>壽星日</th>
-									<th>加入享。閱</th>
-									<th>性別</th>
-									<th>享。收入</th>
-									<th>享。真相</th>
-									<th>權限</th>
+									<th style="width:150px; padding:10px; text-align: center;">享。閱人編號</th>
+									<th style="width:250px; padding:10px">註冊帳號</th>
+									<th style="width:150px; padding:10px">享。閱人</th>
+									<th style="width:100px; padding:10px">暱稱</th>
+									<th style="width:450px; padding:10px">住在哪裡</th>
+									<th style="width:150px; padding:10px">享。電聯</th>
+									<th style="width:150px; padding:10px">壽星日</th>
+									<th style="width:150px; padding:10px">加入享。閱</th>
+									<th style="width:50px; padding:10px">性別</th>
+									<th style="width:100px; padding:10px">享。收入</th>
+									<th style="width:200px; padding:10px">享。真相</th>
+									<th style="width:50px; padding:10px">權限</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach var="bean" items="${select}">
-									<tr>
-										<td>${bean.memberID}</td>
-										<td>${bean.account}</td>
-										<td>${bean.pwd}</td>
-										<td>${bean.MName}</td>
-										<td>${bean.nickName}</td>
-										<td>${bean.addr}</td>
-										<td>${bean.cell}</td>
-										<td>${bean.birthday}</td>
-										<td>${bean.regDate}</td>
-										<td><c:choose>
-												<c:when test="${bean.gender==0}">
-													<c:out value="男" />
-												</c:when>
-												<c:when test="${bean.gender==1}">
-													<c:out value="女" />
-												</c:when>
-											</c:choose></td>
-										<td>${bean.income}</td>
-										<td><img
-											src="data:image/png;base64, ${bean.byteArrayString }" /></td>
-									</tr>
-								</c:forEach>
+							<tbody id = "showmem">	
 							</tbody>
 						</table>
 
-
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" name="memberID" class="form-control"
-									placeholder="請輸入會員編號"> <label
-									class="input-group-addon glyphicon glyphicon-search"></label>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<input type="radio" class="form-control" name="gender" value="0">
-								<label class="input-group-addon glyphicon">男</label> <input
-									type="radio" class="form-control" name="gender" value="1">
-								<label class="input-group-addon glyphicon">女</label>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<input type="file" name="file" class="form-control"> <label
-									class="input-group-addon glyphicon glyphicon-picture"></label>
-							</div>
-						</div>
 						<div class="modal-footer">
-							<button id="updatebutton" class="form-control btn btn-primary"
-								name="memaction" value="Update">確定。修</button>
-							<!-- 						<div class="progress"> -->
-							<!-- 							<div class="progress-bar" role="progressbar" id="progress3" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" -->
-							<!-- 							style="width: 0%;"> -->
-							<!-- 							<span class="sr-only">progress</span> -->
-							<!-- 						</div> -->
-							<!-- 					</div> -->
+							<button id="ShowClosebutton" class="form-control btn btn-primary" style="width: 200px" data-dismiss="modal" aria-hidden="true">關閉</button>
 						</div>
 						<!-- /.modal-footer -->
 					</form>
@@ -909,13 +890,68 @@ body {
 
 	<script type="text/javascript">
 		$(function() {
+			
+			$('#ShowClosebutton, #xxx').click(
+				function(event) {
+					event.preventDefault();
+					$('#showmem').text('');
+					$('#myShow').modal('toggle');
+					location.reload();
+				}		
+			)
+					
 			$('#querybutton').click(
 					function(event) {
 						event.preventDefault();
+						
 						var data = $('#queryform').serialize();
-						$.get('/ireading/user/member.controller/Show', data,
+						$.post('/ireading/user/member.controller/Show', data,
 								function(data) {
-
+									
+									var tb =  $('#showmem');
+									tb.text('');			
+									$.each(data, function(i, value) {
+										console.log(value);
+										var cell1 = $('<td></td>').text(value.MemberID).attr('padding','10px').attr('margin','10px').css('text-align','center');
+										var cell2 = $('<td></td>').text(value.Account).attr('padding','10px').attr('margin','10px');
+										var cell3 = $('<td></td>').text(value.MName).attr('padding','10px').attr('margin','10px');
+										var cell4 = $('<td></td>').text(value.NickName).attr('padding','10px').attr('margin','10px');
+										var cell5 = $('<td></td>').text(value.Addr).attr('padding','10px').attr('width','500px').attr('margin','10px');
+										var cell6 = $('<td></td>').text(value.Cell).attr('padding','10px').attr('margin','10px');
+										var cell7 = $('<td></td>').text(value.Birthday).attr('padding','10px').attr('margin','10px');
+										var cell8 = $('<td></td>').text(value.RegDate).attr('padding','10px').attr('margin','10px');
+										var sex;
+										if(value.Gender=="1"){
+											sex = "女";
+										}else if(value.Gender=="0"){
+											sex = "男";
+										}
+										var cell9 = $('<td></td>').text(sex).attr('padding','10px').attr('margin','10px');
+										var cell10 = $('<td></td>').text(value.Income).attr('padding','10px').attr('margin','10px');
+										var img = $('<img />').attr('src', "data:image/png;base64 ," + value.Photo).attr('width','60%');
+										var cell11 = $('<td></td>').append(img).attr('padding','10px').attr('margin','10px');
+										var imgAuth = null;
+										if(value.Auth=="1"){
+											imgAuth = $('<img />').attr('src', "/ireading/images/AuthSuccess.png").attr('width','60%');
+										}else if(value.Auth=="0"){
+											imgAuth = $('<img />').attr('src', "/ireading/images/AuthStop.png").attr('width','60%');
+										}
+										var cell12 = $('<td></td>').append(imgAuth).attr('padding','10px').attr('margin','10px');
+										var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4, cell5, cell6
+											, cell7, cell8, cell9, cell10, cell11, cell12]).attr('height','90px').css('margin','10px').css('border-bottom','solid 1px #D3D3D3');
+										if(i%2==0){
+											row.css('background-color','#d1ffe5')
+										}
+										tb.append(row);
+									})
+									
+									$('#memTable').DataTable({
+										"paging":true,
+										"searching":false
+						// 				"pagingType": "full_numbers"
+										})
+									$('#myQuery').modal('toggle');
+									$('#myShow').modal('toggle');
 								})
 
 					})

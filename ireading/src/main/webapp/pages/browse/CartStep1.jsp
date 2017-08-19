@@ -14,6 +14,7 @@
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/CartStep.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 </head>
 <body>
 	<c:import url="/pages/templates/front/frontmenu.jsp"></c:import>
@@ -35,10 +36,10 @@
                     <tr>
                         <td class="col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"><img style="width:80px" class="img-responsiv" id="item-display" src="data:image/png;base64, ${item.productBean.booksBean.byteArrayString}"></img> </a>
+                            <a class="thumbnail pull-left" href="<c:url value="/browse/books/${item.productBean.booksBean.ISBN}"/>"><img style="width:80px" class="img-responsiv" id="item-display" src="data:image/png;base64, ${item.productBean.booksBean.byteArrayString}"></img> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="<c:url value="/browse/books/${item.productBean.booksBean.ISBN}"/>">${item.productBean.booksBean.title}</a></h4>
-                                <h5 class="media-heading"> 編號 <a>${item.productBean.productID}</a></h5>
+                                <h5 class="media-heading"> 編號 <a href="<c:url value="/browse/books/${item.productBean.booksBean.ISBN}?action=buy"/>">${item.productBean.productID}</a></h5>
                                 <span>使用狀態: </span><span class="text-success"><strong>${item.productBean.status}</strong></span>
                             </div>
                         </div></td>
@@ -104,6 +105,7 @@
            </div>
 
 	<c:import url="/pages/templates/front/frontfooter(noCart).jsp"></c:import>
+	<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
 </body>
 <script>
 $(function(){

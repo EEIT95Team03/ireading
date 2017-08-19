@@ -27,7 +27,7 @@
                     <li id="login"><a id="loginlink"  class="show" href="" data-toggle="modal" data-target="#LoginBlock">享。登入</a>
                     			   <div id="memberlink" class="dropdown hidden">
   								   	  <a  class="btn btn-danger dropdown-toggle" 
-  								   	  href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown"
+  								   	  href="#" id="dropdownMenuLink" data-toggle="dropdown"
   								   	   aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-triangle-bottom"></a>
 
   								      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

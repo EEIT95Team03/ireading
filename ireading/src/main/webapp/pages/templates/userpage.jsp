@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+     <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 </head>
 <body>
  <c:import url="/pages/templates/user/usermenu.jsp"></c:import>
@@ -39,5 +40,5 @@
 
 </body>
 <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
-
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
 </html>

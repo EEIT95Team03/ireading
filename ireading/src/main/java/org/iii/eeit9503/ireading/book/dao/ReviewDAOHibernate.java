@@ -2,6 +2,7 @@ package org.iii.eeit9503.ireading.book.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -10,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.iii.eeit9503.ireading.book.bean.ReviewBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,6 +19,8 @@ public class ReviewDAOHibernate implements ReviewDAO {
 	
 	@Autowired
 	private SessionFactory sessioFactory;
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 	public Session getSession(){
 		return sessioFactory.getCurrentSession();
@@ -124,6 +128,15 @@ public class ReviewDAOHibernate implements ReviewDAO {
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;}
+	}
+
+	@Override
+	public List<Map<String, Object>> getMemberReview(String MemberID) {
+		String sql="Select * from Review where MemberID='"+MemberID+"' ";
+		
+		List<Map<String, Object>> dataLs = jdbcTemplate.queryForList(sql);
+		
+		return dataLs;
 	}
 	
 	

@@ -2,10 +2,12 @@ package org.iii.eeit9503.ireading.controller.member;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
 import org.iii.eeit9503.ireading.member.model.MemberService;
 import org.iii.eeit9503.ireading.misc.FileUploader;
@@ -29,7 +31,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 @Controller
 @RequestMapping(path = { "/member.controller" })
 public class MemberController {
-
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -45,7 +49,7 @@ public class MemberController {
 		binder.registerCustomEditor(double.class, new PrimitiveNumberEditor(Double.class, true));
 	}
 
-	@RequestMapping(method = { RequestMethod.POST })
+	@RequestMapping(method = { RequestMethod.POST})
 	public String Process(MemberBean bean, Model model, @RequestParam(name = "memaction") String memaction,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file,
 			@RequestHeader(value = "referer", required = false) final String referer) throws IOException {
@@ -66,29 +70,29 @@ public class MemberController {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			if(memaction.endsWith("Update")){
-				return "member.Update"; 
+			if (memaction.endsWith("Update")) {
+				return "member.Update";
 			}
 		}
 
 		// 呼叫Model
 		// 依據執行結果呼叫view
-		if ("Show".equals(memaction)) {
-			List<MemberBean> list = memberService.select(bean);
-			model.addAttribute("select", list);
-			model.addAttribute("refer", referer);
-			return "member.ShowAll";
-		}
 
-		else if ("Insert".equals(memaction)) {
+		if ("Insert".equals(memaction)) {
 			if (!file.isEmpty()) {
 				bean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
-//				System.out.println(bean.getByteArrayString());
 			}
 			bean.setMemberID(idGgenerator.getMemberID());
-			bean.setAuth(1);
-//			System.out.println(idGgenerator.getMemberID());
+			JSONArray arry = new JSONArray();
+			JSONObject obj = new JSONObject();
+			obj.put("MemberID", bean.getMemberID());
+			obj.put("Account", bean.getAccount());
+			if(bean.getMName()!=null){
+				obj.put("MName", bean.getMName());
+			}
 			
+			//預設為1
+			bean.setAuth(1);
 			MemberBean memberBean = memberService.insert(bean);
 			System.out.println("insert success");
 			if (memberBean == null) {
@@ -97,10 +101,15 @@ public class MemberController {
 				model.addAttribute("insert", memberBean);
 				model.addAttribute("refer", referer);
 			}
+			/*arry.put(obj);
+			return arry.toString();*/
 			return "member.Add";
 		}
 
 		else if ("Update".equals(memaction)) {
+			if (!file.isEmpty()) {
+				bean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
+			}
 			MemberBean memberBean = memberService.update(bean);
 			if (memberBean == null) {
 				errors.put("action", "Update fail");
@@ -129,56 +138,72 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/Show",method = { RequestMethod.GET }, produces = {"application/json; charset=UTF8"})
+	@RequestMapping(value="/Insert", method = { RequestMethod.POST} , produces = { "application/json; charset=UTF8"})
 	@ResponseBody
-	public String processShow(MemberBean memberBean, Model model
-//			, @RequestParam(name="memaction") String memacton
-			){
-		List<MemberBean> list = null;
-		JSONArray arry = new JSONArray();
-//		if("Show".equals(memacton)){
-			if(memberBean.getMemberID().trim().length()==0 || memberService.select(memberBean.getMemberID())!=null){
-				list = memberService.select(memberBean);
-				
-				for(int i=0;i<list.size();i++){
-					JSONObject obj = new JSONObject();
-					obj.put("id", list.get(i).getMemberID());
-					obj.put("acount", list.get(i).getAccount());
-					obj.put("name", list.get(i).getMName());
-					obj.put("nickname", list.get(i).getNickName());
-					obj.put("address", list.get(i).getAddr());
-					obj.put("cell", list.get(i).getCell());
-					obj.put("birthday", list.get(i).getBirthday());
-					obj.put("regdate", list.get(i).getRegDate());
-					obj.put("gender", list.get(i).getGender());
-					obj.put("income", list.get(i).getIncome());
-					obj.put("photo", list.get(i).getPhoto());
-					obj.put("auth", list.get(i).getAuth());
-					list.get(i);
-					arry.put(obj);
-				}
-				model.addAttribute("select", list);
-			}
+	public String processShow(MemberBean bean, Model model, @RequestParam(value = "file", required = false) CommonsMultipartFile file) {
+		
+		System.out.println(file);
+		
+		if (!file.isEmpty()) {
+			bean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
+		}
+		else{
 			
-//		}
-		System.out.println("arry:"+arry.toString());
+		}
+		bean.setMemberID(idGgenerator.getMemberID());
+		JSONArray arry = new JSONArray();
+		JSONObject obj = new JSONObject();
+		obj.put("MemberID", bean.getMemberID());
+		obj.put("Account", bean.getAccount());
+		if(bean.getMName()!=null){
+			obj.put("MName", bean.getMName());
+		}
+		
+		//預設為1
+		bean.setAuth(1);
+		MemberBean memberBean = memberService.insert(bean);
+		System.out.println("insert success");
+		if (memberBean == null) {
+			
+		} else {
+		}
+		arry.put(obj);
 		return arry.toString();
 	}
 
-	// public FileBean toFileBean(CommonsMultipartFile multipartFile) {
-	// FileBean fileBean = new FileBean();
-	// String[] temp = multipartFile.getOriginalFilename().split("\\.");
-	// String fileName = temp[0];
-	// String fileExtension = temp[1];
-	// long fileLength = multipartFile.getSize();
-	// byte[] fileBytes = multipartFile.getBytes();
-	//
-	// fileBean.setFileName(fileName);
-	// fileBean.setFileBinary(fileBytes);
-	// fileBean.setFileLengtn(fileLength);
-	// fileBean.setFileExtension(fileExtension);
-	//
-	// return fileBean;
-	// }
+	@RequestMapping(value = "/Show", method = { RequestMethod.POST }, produces = { "application/json; charset=UTF8" })
+	@ResponseBody
+	public String processShow(MemberBean memberBean, Model model) {
+		List<MemberBean> list = null;
+		JSONArray arry = new JSONArray();
 
+		if (memberBean.getMemberID().trim().length() == 0 || memberService.select(memberBean.getMemberID()) != null) {
+			list = memberService.select(memberBean);
+
+			for (int i = 0; i < list.size(); i++) {
+				JSONObject obj = new JSONObject();
+				obj.put("MemberID", list.get(i).getMemberID());
+				obj.put("Account", list.get(i).getAccount());
+				obj.put("MName", list.get(i).getMName());
+				obj.put("NickName", list.get(i).getNickName());
+				obj.put("Addr", list.get(i).getAddr());
+				obj.put("Cell", list.get(i).getCell());
+				obj.put("Birthday", list.get(i).getBirthday());
+				obj.put("RegDate", list.get(i).getRegDate());
+				obj.put("Gender", list.get(i).getGender());
+				obj.put("Income", list.get(i).getIncome());
+				obj.put("Photo", list.get(i).getByteArrayString());
+				System.out.println(list.get(i).getByteArrayString());
+				obj.put("Auth", list.get(i).getAuth());
+				list.get(i);
+				arry.put(obj);
+			}
+
+		}
+
+		System.out.println("arry:" + arry.toString());
+		return arry.toString();
+	}
+
+	
 }

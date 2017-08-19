@@ -1,6 +1,7 @@
 package org.iii.eeit9503.ireading.product.bean;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ public class SellListBean {
  private String SellListID;
  private String MemberID;
  private String StatusID;
- private Date ApplyDate;
+ private Timestamp ApplyDate;
  
 public String getSellListID() {
 	return SellListID;
@@ -34,10 +35,13 @@ public String getStatusID() {
 public void setStatusID(String statusID) {
 	StatusID = statusID;
 }
-public Date getApplyDate() {
+public Timestamp getApplyDate() {
 	return ApplyDate;
 }
-public void setApplyDate(Date applyDate) {
+public void setApplyDate(Timestamp applyDate) {
 	ApplyDate = applyDate;
 }
+
+
+
 }

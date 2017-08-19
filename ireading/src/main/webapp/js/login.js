@@ -274,6 +274,7 @@ function loggout() {
 	$('#memberlink').removeClass("hidden").addClass("hidden");
 	$('#loginlink').removeClass().addClass("show");
 	deleteCookie();
+	window.location.replace("/ireading/");
 }
 
 //清除表格

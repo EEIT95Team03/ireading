@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+        <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 </head>
 <body>
  <c:import url="/pages/templates/user/usermenu.jsp"></c:import>
@@ -50,7 +51,7 @@
                    
                     </div>
 
-                <div class="navbar-right col-xs-12 col-sm-4"><h4 class="text-right">共 <strong style="color:red">${OrderCount}</strong> 筆</h4></div>                  
+                <div class="navbar-right col-xs-12 col-sm-4"><h4 class="text-right"></h4></div>                  
                 </div>
         </nav>   
                                              
@@ -96,6 +97,7 @@
 
 </body>
 <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
   <script>         
            $(function () {
              $("#selloutTable").tablesorter();
