@@ -36,12 +36,14 @@
                        <br>
                
 	<div class="row">
-		<div class="col-md-10 custyle">
+		<div class="col-md-12 custyle">
 			<table class="table table-striped custab" id="productlist">
 				<thead>
 					<tr>
 						<th>ISBN</th>
 						<th>原價</th>
+						<th>平均二手價</th>
+						<th>最低二手價</th>
 						<th>商品細節描述</th>
 						<th>商品狀態</th>
 						<th>二手價</th>
@@ -54,12 +56,18 @@
 				<tbody>
 					<form id="insert_form">
 						<tr>
-						    <td><input id="input_isbn" name ="ISBN" type="textbox" />
+						    <td><input id="input_isbn" name ="ISBN" type="textbox" /><br>
 						    	<span style="color: red" id="msg1"></span><span style="color: red" id="isbnverify"></span>
 						    </td><span class="label label-warning">書名</span>&nbsp;<span id="input_title" name ="title" style="width:70px">請輸入ISBN，對應的書名將會顯示在此</span>
 						    	<span style="color: red" id="msg2"></span>	
 							<td><span id="input_oprice" name ="ori_price" style="width:70px"></span>
 								<span style="color: red" id="msg3"></span>
+							</td>
+							<td><span id="avg_price" style="width:70px;color:green;font-weight: 800;"></span>
+	
+							</td>
+							<td><span id="low_price" style="width:70px;color:red"></span>
+			
 							</td>
 							<td><input name ="detail" type="textbox"/>
 								<span style="color: red" id="msg4"></span>
@@ -80,7 +88,7 @@
 <!-- 							    <input name ="status" type="textbox"/> -->
 <!-- 								<span style="color: red" id="msg4"></span> -->
 							</td>
-							<td><input style="width:70px" name ="price" type="number" min="30"/>
+							<td><input style="width:70px" name ="price" type="number" min="30"/><br>
 								<span style="color: red" id="msg5"></span>
 							</td>
 							<td><button class="updatebtn btn btn-primary btn-xs pull-right"
@@ -96,7 +104,7 @@
 		</div>
 	</div>
 <div class="row">
-		<div class="col-md-10 custyle">
+		<div class="col-md-12 custyle">
 			<table class="table table-striped custab" id="productlistdisplay">
 				<thead>
 					<tr>
@@ -114,10 +122,12 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="row col-md-12 col-md-offset-7 custyle">
+		<div class="row col-md-12 custyle">
 	<form>
+	<div class="text-right">
 		<button id="save_btn" class="btn btn-primary hidden">享。儲存</button>
 		<button id="cancelbtn" class="btn btn-default cancelbtn hidden" data-dismiss="modal">享。取消</button>
+		</div>
 	</form>
 	</div>
 	</div>
@@ -175,6 +185,8 @@
 				all_Inputs.val("");
 				var num_Inputs = $("input[type=number]");
 				num_Inputs.val("");
+				$('#avg_price').text("");
+				$('#low_price').text("");
 				$('#status')[0].selectedIndex = 0;
 				
 				$("#save_btn").toggleClass("hidden",false);
@@ -266,18 +278,21 @@
 		 				console.log(data[0]);
 		 				$('#input_title').text(data[0].title);
 		 				$('#input_oprice').text(data[0].ori_Price);
-		 				
+		 				$('#avg_price').text(data[0].Avg);
+		 				$('#low_price').text(data[0].low);
 		 				return;
 		 			}
 		 			else{//alert("查無ISBN");
 		 			$("#isbnverify").text("查無ISBN");
 		 			$('span[name="title"]').text("");
 					$('span[name="ori_price"]').text("");
+					$('#avg_price').text("");
+	 				$('#low_price').text("");
 					
 					$('#msg1').text("");
 					$('span[name="title"]').text("");
 					$('span[name="ori_price"]').attr("value", "");
-					
+					$('#input_title').text("請輸入ISBN，對應的書名將會顯示在此");
 					return;
 		 			}
 		 		});
@@ -287,14 +302,19 @@
 		 	$('.msg1').text("");
 		 	$('span[name="title"]').text("");
 			$('span[name="ori_price"]').text("");
+			$('#avg_price').text("");
+				$('#low_price').text("");
 			
 			$('span[name="title"]').text("");
 			$('span[name="ori_price"]').attr("value", "");
-			
+			$('#input_title').text("請輸入ISBN，對應的書名將會顯示在此");
 		 	return;
 		 	}}
 		 	$('span[name="title"]').text("");
 			$('span[name="ori_price"]').text("");
+			$('#input_title').text("請輸入ISBN，對應的書名將會顯示在此");
+			$('#avg_price').text("");
+				$('#low_price').text("");
 			return;
 			
 		});
@@ -304,6 +324,8 @@
 			$('#msg1').text("");
 			$('#msg5').text("");
 			$("#isbnverify").text("");
+			$('#avg_price').text("");
+				$('#low_price').text("");
 		});
 
 		

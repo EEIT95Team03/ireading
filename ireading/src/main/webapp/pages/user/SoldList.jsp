@@ -30,7 +30,7 @@
 		</h1>
 		<div>
 			<a class="btn btn-lg btn-primary"
-				href="<c:url value="/pages/user/ApplyToSell.jsp"/>">上架二手書</a>&nbsp;&nbsp;&nbsp;
+				href="<c:url value="/pages/user/ApplyToSell.jsp"/>">申請賣書</a>&nbsp;&nbsp;&nbsp;
 			<a class="btn btn-lg btn-success" disabled>查詢賣書清單</a>
 		</div/>
 		<br>

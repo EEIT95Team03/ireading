@@ -25,10 +25,9 @@
 
 	<div class="col-lg-12" style="padding-bottom: 50px;">
 		<!--    內容寫這 -->
-
 		<div class="ui page grid" style="padding:0">
 			<div class="wide column">
-				<h1 class="ui header aligned center">HTML to PDF</h1>
+				<h1 class="ui header aligned center">編號<span id="ID">123456789</span></h1>
 				<div class="ui divider hidden"></div>
 				<div class="ui segment">
 					<div class="ui button aligned center teal" id="create_pdf">Create PDF</div>

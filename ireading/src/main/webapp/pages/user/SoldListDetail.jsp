@@ -34,13 +34,14 @@
 		</h1>
 		<div>
 			<a class="btn btn-lg btn-primary"
-				href="<c:url value="/pages/user/ApplyToSell.jsp"/>">上架二手書</a>&nbsp;&nbsp;&nbsp;
+				href="<c:url value="/pages/user/ApplyToSell.jsp"/>">申請賣書</a>&nbsp;&nbsp;&nbsp;
 			<a class="btn btn-lg btn-success" disabled>查詢賣書清單</a>
 		</div/>
 		<br>
-			<h4>商品清單編號： ${SellListID}</h4>
-			<span><input class="btn btn-info" type="button" onclick="history.back()"
+		<span><input class="btn btn-info" type="button" onclick="history.back()"
 				value="回到上一頁"></input></span>
+			<h4><strong>商品清單編號： ${SellListID}</strong></h4>
+			
 		</div>
 
 		<div class="container">
@@ -61,7 +62,8 @@
 
 								<td>${product.ProductID}</td>
 								<td>${product.Title}</td>
-								<td>${product.ProductPrice}</td>
+								<td><fmt:parseNumber integerOnly = "true" 
+         type = "number" value = "${product.ProductPrice}" /></td>								 
 								<td>${product.status}</td>
 								<td>${product.Detail}</td>
 

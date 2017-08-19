@@ -41,7 +41,7 @@
 								<tbody>
 									<c:forEach var="order" items="${Orders}">
 										<tr>
-											<td class="text-center" class="OrderID">${order.orderID}</td>
+											<td class="text-center" class="OrderID"><a href="<c:url value="/user/myorder/getOD/${order.orderID}"/>">${order.orderID}</a></td>
 											<td class="text-center" class="odate"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${order.odate}"/></td>
 											<td class="text-center" class="pay">${order.payBean.payType}</td>
 											<td class="text-center" class="total">${order.ototal}</td>

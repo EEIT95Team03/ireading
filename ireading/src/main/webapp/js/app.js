@@ -4,6 +4,7 @@ var
 	cache_width = form.width(),
 	a4  =[ 595.28,  841.89];  // for a4 size paper width and height
 
+var ID=$("#ID").text();
 $('#create_pdf').on('click',function(){
 	$('body').scrollTop(0);
 	createPDF();
@@ -18,7 +19,7 @@ function createPDF(){
           format:'a4'
         });     
         doc.addImage(img, 'JPEG', 20, 20);
-        doc.save('techumber-html-to-pdf.pdf');
+        doc.save(ID+'.pdf');
         form.width(cache_width);
 	});
 }

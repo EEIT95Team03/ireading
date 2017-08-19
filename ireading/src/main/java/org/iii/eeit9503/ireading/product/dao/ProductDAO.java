@@ -15,4 +15,5 @@ public interface ProductDAO {
 	public String getLastID();
 	public ProductBean select(String ProductID);
 	public List<Map<String, Object>> getTop10Product();
+	public List<Map<String, Object>> getPrice(String ISBN);
 }

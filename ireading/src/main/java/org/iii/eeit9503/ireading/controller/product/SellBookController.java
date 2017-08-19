@@ -169,14 +169,38 @@ public class SellBookController {
 		@ResponseBody
 		public String findISBN(@RequestParam Map<String, Object> dataMap) {
 
+			JSONArray array=new JSONArray();
+			
+			
 			String ISBN = MapUtils.getString(dataMap, "ISBN");
 			
 			BooksBean bbean = booksService.findByID(ISBN);
 			
-			if(bbean!=null){
-			JSONArray array=new JSONArray();
-			JSONObject obj=new JSONObject(bbean);
-			array.put(obj);
+			if(bbean!=null){			
+				JSONObject obj=new JSONObject(bbean);
+				array.put(obj);
+					
+				double lowprice=0.0;
+			double Avg=0.0;
+			
+			List<Map<String,Object>> list=productService.getPrice(ISBN);
+			if(!list.isEmpty()){
+				lowprice=Double.parseDouble(String.valueOf(list.get(0).get("ProductPrice")));
+				obj.put("low", lowprice);
+				for(Map<String,Object> map:list){
+					Avg=Avg+Double.parseDouble(String.valueOf(map.get("ProductPrice")));
+				}
+				Avg=Avg/list.size();
+				
+				obj.put("Avg", Avg);
+			}
+			else{
+				obj.put("low", "無");
+				obj.put("Avg","無");
+			}
+			
+			
+			
 			return array.toString();
 			}
 			else{

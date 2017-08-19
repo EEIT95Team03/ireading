@@ -2,6 +2,7 @@ package org.iii.eeit9503.ireading.product.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.iii.eeit9503.ireading.product.bean.ProductBean;
 import org.iii.eeit9503.ireading.product.dao.ProductDAO;
@@ -53,5 +54,10 @@ public class ProductService {
 	
 	public String getLastID(){
 		return productDAO.getLastID();
+	}
+	
+	public List<Map<String, Object>> getPrice(String ISBN) {
+		return productDAO.getPrice(ISBN);
+		
 	}
 }

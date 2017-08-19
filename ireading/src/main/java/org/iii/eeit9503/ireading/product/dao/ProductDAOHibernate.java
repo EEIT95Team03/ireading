@@ -180,5 +180,14 @@ public class ProductDAOHibernate implements ProductDAO{
 			return list;
 			
 		}
+
+	@Override
+	public List<Map<String, Object>> getPrice(String ISBN) {
+		
+		String sql="Select ProductPrice from  Product where ISBN='"+ISBN+"' and StatusID='S0004' order by ProductPrice";
+		
+		List<Map<String, Object>> list = template.queryForList(sql);
+		return list;
+	}
 	
 }
