@@ -15,9 +15,7 @@ public class BooksService {
 	private BooksDAOHibernate booksDAO;
 	
 	public List<BooksBean> select(BooksBean bean){
-		List<BooksBean> list = null;
-		System.out.println(bean.getISBN());
-		
+		List<BooksBean> list = null;		
 		
 		if (bean != null && bean.getISBN().trim().length() != 0) {
 			BooksBean temp = booksDAO.select(bean.getISBN());

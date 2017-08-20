@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.iii.eeit9503.ireading.controller.login.UserPageInterceptor;
 import org.iii.eeit9503.ireading.member.dao.PasswordResetImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,12 +16,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.XmlViewResolver;
@@ -124,6 +128,19 @@ public class SpringMVCJavaConfig extends WebMvcConfigurerAdapter implements  Web
 		pwdReset.setTemplateMessage(Message());
 		return pwdReset;
 	}
+
 	
+//	@Bean
+//	public UserPageInterceptor UserPageInterceptor() {
+//	    return new UserPageInterceptor();
+//	}
+//	
+//	 @Override
+//	    public void addInterceptors(final InterceptorRegistry registry) {
+//		 AntPathMatcher pm=new AntPathMatcher();
+//pm.setPathSeparator("/user/**");
+//	        registry.addInterceptor(UserPageInterceptor()).pathMatcher(pm);
+//	    }
+//	
 
 }

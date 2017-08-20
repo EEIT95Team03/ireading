@@ -235,9 +235,16 @@
             <ul class="nav sidebar-nav">
                 <!--<li class="sidebar-brand">-->
                 <div class="container-fluid" style="text-align:center;background-color: #98d7f7;padding:5%;border-bottom-left-radius:50px;border-bottom-right-radius:50px;margin-bottom:20px;">
-                <h1 id="username" style="color:white;font-family:微軟正黑體;font-weight:700;">米小奇</h1>
+                <h1 id="username" style="color:white;font-family:微軟正黑體;font-weight:700;"><span>${Name}</span></h1>
                 <div id="userPic" style="margin:25px">
-                <img src="http://pic.gomaji.com/uploads/stores/072/72/50241/1.jpg" alt="username" class="img-circle img-responsive" style="background-color:white;margin:auto;border:8px solid #efefef; box-shadow:2px 2px 5px gray; width:220px;height:220px">
+                <c:choose>
+                <c:when test="${empty Photo}">
+                 <img src="http://pic.gomaji.com/uploads/stores/072/72/50241/1.jpg" alt="username" class="img-circle img-responsive" style="background-color:white;margin:auto;border:8px solid #efefef; box-shadow:2px 2px 5px gray; width:220px;height:220px">
+                </c:when>
+                <c:otherwise>
+                 <img src="data:image/png;base64,${Photo}" alt="username" class="img-circle img-responsive" style="background-color:white;margin:auto;border:8px solid #efefef; box-shadow:2px 2px 5px gray; width:220px;height:220px">
+                </c:otherwise>
+                </c:choose>
                 </div>
                     <button type="button" class="btn btn-warning" style="font-family:微軟正黑體;font-weight:500;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;個人資料</button>  
                 </div>  
@@ -246,7 +253,7 @@
                     <a href="<c:url value="/user/myorder/getOrders"/>"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的訂單</a>
                 </li>
                 <li>
-                    <a href="#"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的帳戶</a>
+                    <a href="<c:url value="/user/account"/>"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的帳戶</a>
                 </li>
                 <li>
                     <a href="<c:url value="/pages/user/ApplyToSell.jsp"/>"><span class="glyphicon glyphicon-tags"></span>&nbsp;申請賣書</a>

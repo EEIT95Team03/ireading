@@ -171,18 +171,13 @@ public class SearchBooksController {
 					+ "AND (Author like '%"+Author+"%' OR Author is null)"
 					+ "AND (Publisher like '%"+Publisher+"%' OR Publisher is null)"
 					+ "AND (ISBN like '%"+ISBN+"%' OR ISBN is null) ";
-			System.out.println(Year);
+
 			if(Year.trim().length()!=0){
 				sqltext=sqltext+" AND YEAR(Pub_Date) ="+Year+" ";
 			}
 		}
 		
-		
-		
-		
-				
-				
-		
+
 		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(sqltext.toString());
 		int index=0;
 		for(Map<String,Object> map:booksdataList)
@@ -196,7 +191,7 @@ public class SearchBooksController {
 		}
 		model.addAttribute("booksdataList", booksdataList);
 		model.addAttribute("selectCount", index);
-		System.out.println("booksdataList:"+booksdataList);
+		
 		
 		return "SearchBooks.list";
 		
