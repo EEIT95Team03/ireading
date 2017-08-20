@@ -42,7 +42,7 @@ public class userAccountController {
 		model.addAttribute("Account",Account);
 		model.addAttribute("OutputList",list);
 		
-		return "";
+		return "user.account";
 		}
 		
 		return "";
