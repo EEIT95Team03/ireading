@@ -47,6 +47,8 @@ table {
 	border-collapse: collapse;
 	position: relative;
 	left: 50px;
+	table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。  */ 
+	text-align: center;
 }
 
 th {
@@ -57,6 +59,7 @@ th {
 	border-top: 4px solid #aabcfe;
 	border-bottom: 1px solid #fff;
 	color: #039;
+	text-align: center;
 }
 
 td {
@@ -65,6 +68,11 @@ td {
 	border-bottom: 1px solid #fff;
 	color: #669;
 	border-top: 1px solid transparent;
+    word-break:keep-all;/* 不换行 */  
+    white-space:nowrap;/* 不换行 */ 
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */  
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/  
+    text-align: center;
 }
 
 tr:hover td {
@@ -123,8 +131,7 @@ tr:hover td {
 				<td class="eventPlace">${bean.eventPlace}</td>
 				<td class="eventImg">${bean.eventImg}</td>
 				<td class="deadline"><fmt:formatDate pattern = "yyyy-MM-dd HH:mm" 
-         value = "${bean.deadline}" />				
-				</td>
+         value = "${bean.deadline}" /></td>
 				<td class="eventContent">${bean.eventContent}</td>
 				<td class="max">${bean.max}</td>
 				<td><button class="updatebtn" data-toggle="modal" data-target="#updateEvent">修改</button></td>
@@ -189,7 +196,8 @@ tr:hover td {
 
 						<div class="form-group col-xs-12">
 							<label for="Deadline">截止日期</label> <input type="text"
-								class="form-control" id="new_Deadline" name="Deadline">
+								class="form-control" id="new_Deadline" name="Deadline"
+								value="">
 						</div>
 
 						<div class="form-group col-xs-12">

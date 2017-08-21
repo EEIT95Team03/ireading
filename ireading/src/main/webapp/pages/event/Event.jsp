@@ -96,9 +96,20 @@ tr:hover td {
 <body>
 
 	<h3>享。閱活動</h3>
-
+<!-- 後台 -->
 	<form action="<c:url value="/manager/event.controller/seeAllEvent"/>" method="get">
 		<input type="submit" name="action" value="管理活動"/>
+	</form>
+	
+	
+<!-- 	join -->
+	<form action="<c:url value="/browse/joinevent.controller/joinEventList"/>" method="get">
+		<input type="submit" name="joinlist" value="活動清單(參加活動)" />
+	</form>
+	
+	<!-- 	我的活動 -->
+	<form action="<c:url value="/browse/joinevent.controller/myEventList"/>" method="get">
+		<input type="submit" name="myEventList" value="我的活動管理" />
 	</form>
 
 </body>

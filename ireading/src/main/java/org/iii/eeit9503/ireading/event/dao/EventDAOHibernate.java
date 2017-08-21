@@ -128,5 +128,23 @@ public class EventDAOHibernate implements EventDAO {
 		}
 
 	}
+	
+	
+	public List<EventBean> EventWall(int index,int count){
+		try {
+			Session session = this.getSession();
+			Query query=session.createQuery("from EventBean order by Deadline DESC");
+			query.setFirstResult(index);			
+			query.setMaxResults(count);
+			
+			
+			return query.list();
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			return null;
+		}
+		
+	}
 
 }

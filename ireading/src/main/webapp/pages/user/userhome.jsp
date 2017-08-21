@@ -90,7 +90,7 @@ padding: 20px;
             <span class="texto_grande">我的書評</span></a>
       </div>
         <div class="col-xs-6 col-sm-4 col-md-3">
-        <a class="btn btn-block btn-lg btn-success menubtn" style="background-color: rgba(197, 112, 159, 0.67);
+        <a class="btn btn-block btn-lg btn-success menubtn" href="<c:url value="/user/joinevent.controller/myEventList"/>"  style="background-color: rgba(197, 112, 159, 0.67);
     border: none;
     padding: 20px;">
             <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-calendar"></span><br><br>

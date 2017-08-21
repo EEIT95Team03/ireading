@@ -1,5 +1,7 @@
 package org.iii.eeit9503.ireading.event.bean;
 
+import java.util.Base64;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,7 +16,7 @@ public class EventBean {
 	private String Host;
 	private String EventPhone;
 	private String EventPlace;
-	private byte[] EventImg;
+	private String EventImg;
 	private java.sql.Timestamp Deadline;
 	private String EventContent;
 	private int Max;
@@ -60,11 +62,11 @@ public class EventBean {
 	}
 
 
-	public byte[] getEventImg() {
+	public String getEventImg() {
 		return EventImg;
 	}
 
-	public void setEventImg(byte[] eventImg) {
+	public void setEventImg(String eventImg) {
 		EventImg = eventImg;
 	}
 
@@ -100,4 +102,12 @@ public class EventBean {
 		Deadline = deadline;
 	}
 
+//	public String getByteArrayString(){
+//		String out=null;
+//		if(this.EventImg!=null){
+//			out = Base64.getEncoder().encodeToString(this.EventImg);
+//			System.out.println(out);
+//		}
+//		return out;
+//	}
 }

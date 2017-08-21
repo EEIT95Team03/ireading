@@ -20,4 +20,5 @@ public abstract EventBean findByEventID(String EventID);
 
 public abstract String getLastID();
 
+public List<EventBean> EventWall(int index,int count);
 }

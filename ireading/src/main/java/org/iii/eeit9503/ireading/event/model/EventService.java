@@ -62,5 +62,10 @@ public class EventService {
 
 		return eventDAO.findByEventID(EventID);
 	}
+	
+	
+	public List<EventBean> EventWall(int index,int count){
+		return eventDAO.EventWall(index, count);		
+	}
 
 }

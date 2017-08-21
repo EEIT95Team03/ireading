@@ -21,7 +21,7 @@
                 <ul class="nav navbar-nav" id="list">
                     <li class="active"><a href="<c:url value="/browse/searchBooks.controller/searchBooksList?search="/>">享。找書<span class="sr-only">(current)</span></a></li>
                     <li><a href="#">享。賣書</a></li>
-                    <li><a href="#">享。活動</a></li>
+                     <li><a href="<c:url value="/browse/joinevent.controller/joinEventList"/>">享。活動</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li id="login"><a id="loginlink"  class="show" href="" data-toggle="modal" data-target="#LoginBlock">享。登入</a>

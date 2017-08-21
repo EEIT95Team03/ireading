@@ -1,4 +1,4 @@
-﻿package org.iii.eeit9503.ireading.controller;
+﻿package org.iii.eeit9503.ireading.controller.event;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
