@@ -20,7 +20,7 @@ public class ProductBean {
 	private String StatusID;
 	private String SellListID;
 	private int ProductPrice;
-    private byte[] Digital;
+    private String Digital;
     private String Detail;
 	private String Status;
 	private Date Arrival;
@@ -53,10 +53,11 @@ public class ProductBean {
 	public void setProductPrice(int productPrice) {
 		ProductPrice = productPrice;
 	}
-	public byte[] getDigital() {
+
+	public String getDigital() {
 		return Digital;
 	}
-	public void setDigital(byte[] digital) {
+	public void setDigital(String digital) {
 		Digital = digital;
 	}
 	public String getDetail() {

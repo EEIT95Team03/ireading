@@ -123,7 +123,7 @@ public class ProductLaunchedController {
 //		join ProductStatus ps
 //		on ps.StatusID = p.StatusID 
 		
-		String sqltext = "select p.ProductID, p.ProductPrice,p.StatusID, ps.StatusName, p.Detail, p.status, p.selllistID, b.Title " +
+		String sqltext = "select p.ProductID, p.ProductPrice,p.StatusID, ps.StatusName, p.Detail, p.status,p.Digital, p.selllistID, b.Title " +
 				         "from Product p join Books b on b.ISBN = p.ISBN " +
 				         "join ProductStatus ps on ps.StatusID = p.StatusID " +
 				         "where SellListID = '" + SellListID+"' ";
@@ -158,6 +158,7 @@ public class ProductLaunchedController {
 		int ProductPrice = MapUtils.getInteger(params, "ProductPrice");
 		String status = MapUtils.getString(params, "status");
 		String Detail = MapUtils.getString(params, "Detail");
+		String Digital = MapUtils.getString(params, "Digital");
 		System.out.println(StatusName);
 		System.out.println(ProductPrice);
 		System.out.println(status);
@@ -169,7 +170,7 @@ public class ProductLaunchedController {
 		pbean.setStatusID(StatusName);
 		pbean.setStatus(status);
 		pbean.setDetail(Detail);
-	
+		pbean.setDigital(Digital);
 //		ProductStatusBean psbean = new ProductStatusBean();
 //		psbean.setStatusName(StatusName);
 		

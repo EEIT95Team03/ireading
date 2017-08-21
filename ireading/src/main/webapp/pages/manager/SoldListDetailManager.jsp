@@ -127,7 +127,7 @@
 										value="${product.ProductPrice}" /></td>
 								<td class="status">${product.status}</td>
 								<td class="Detail">${product.Detail}</td>
-
+                                <td class="hidden Digital">${product.Digital}</td>
 								<td class='bookinfo'
 									style='display: inline-block; vertical-align: TOP; margin-left: 10pt;'>
 									<button class="btn btn-sm btn-primary btn_upt" type="submit"
@@ -205,6 +205,11 @@
 							</select>
 						</div>
 						<div class="form-gorup col-xs-12">
+							<label for="Digital">影片連結<input type="text"
+								class="form-control" id="Digital" name="Digital" value=""></input>
+							</label>
+						</div>
+						<div class="form-gorup col-xs-12">
 							<label for="rate">備註 <input type="text"
 								class="form-control" id="Detail" name="Detail" value=""></input>
 							</label>
@@ -246,6 +251,7 @@
 								var ProductPrice = tr.children(".ProductPrice")
 										.text();
 								var status = tr.children(".status").text();
+								var Digital = tr.children(".Digital").text();
 								var Detail = tr.children(".Detail").text();
 								//alert(ProductPrice);
 
@@ -264,7 +270,8 @@
 								})
 								form.find('#ProductPrice').attr("value",
 										ProductPrice);
-								
+								form.find('#Digital').attr("value",
+										Digital);
 								var option2=form.find('#status option');
 								$.each(option2,function(i,opt){
 									if($(opt).val()==status){

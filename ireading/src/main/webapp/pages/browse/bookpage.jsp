@@ -255,44 +255,41 @@
                                             <td class="text-center">${product.status}</td>
                                             <td class="text-center">${product.productPrice}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-lg btn-danger glyphicon glyphicon-film" data-toggle="modal" data-target="#video1"></button>
+                                                <button type="button" class="btn btn-lg btn-danger glyphicon glyphicon-film" data-toggle="modal" data-target="#video${product.productID}"></button>
                                             </td>
                                            
 
                             <td class="text-center">
                                 <a type="button" class="btn btn-success addcart" value="<c:url value="/browse/cart/add/${product.productID}"/>"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-shopping-cart"></span></a>
                             </td>
-                                    </c:forEach>
-
-                            </tbody>
-                                </table>
- <div class="modal fade videobox" id="video1" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+                            <div class="modal fade videobox" id="video${product.productID}" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
  	
                                                 <div class="modal-dialog modal-lg">                                                   
                                                         <div class="modal-content">
                                                             <div class="modal-body">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                                 <div class="embed-responsive embed-responsive-16by9">
-                                                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/BxuY9FET9Y4" frameborder="0" allowfullscreen></iframe>
+                                                                    <iframe width="560" height="315" src="${product.digital}" frameborder="0" allowfullscreen></iframe>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>      
                                             </div>
+                                    </c:forEach>
+
+                            </tbody>
+                                </table>
+ 
+                                       
+                                       
                                         </div>
     
-     <div class="modal fade videobox" id="video2" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">                                                   
-                                                        <div class="modal-content">
-                                                            <div class="modal-body">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                                <div class="embed-responsive embed-responsive-16by9">
-                                                                   <iframe src='https://www.youtube.com/embed/3AtDnEC4zak' frameborder='0' allowfullscreen></iframe>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>      
-                                            </div>
+    
+                                       
+                                       
+                                       
+                                       
+                                       
                                         </div>                                        
                         </div>
                     </div>
