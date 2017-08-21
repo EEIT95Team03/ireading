@@ -12,7 +12,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header col-sm-12 col-md-3">
+            <div class="navbar-header col-sm-12 col-md-3" style="z-index: 100">
                 <a class="navbar-brand " href="/ireading/"><img src="<c:url value="/images/LOGO.png"/>" /></a>
                  </div>
              <!-- Collect the nav links, forms, and other content for toggling -->

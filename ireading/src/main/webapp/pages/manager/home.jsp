@@ -77,7 +77,7 @@ padding: 20px;
             <span class="texto_grande">書評管理</span></a>
       </div>
         <div class="col-xs-6 col-sm-4">
-        <a class="btn btn-block btn-lg btn-success menubtn" style="background-color: rgba(197, 112, 159, 0.67);
+        <a class="btn btn-block btn-lg btn-success menubtn" href="<c:url value="/manager/event.controller/seeAllEvent"/>" style="background-color: rgba(197, 112, 159, 0.67);
     border: none;
     padding: 20px;">
             <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-calendar"></span><br><br>

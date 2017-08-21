@@ -62,7 +62,7 @@
                    <a href=""><span class="glyphicon glyphicon-comment"></span>&nbsp;書評管理</a>
                 </li>
                 <li>
-                   <a href=""><span class="glyphicon glyphicon-calendar"></span>&nbsp;活動管理</a>
+                   <a href="<c:url value="/manager/event.controller/seeAllEvent"/>"></span>&nbsp;活動管理</a>
                 </li>
             </ul>
         </nav>

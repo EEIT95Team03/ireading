@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -240,7 +241,7 @@ img {
 
 							<a href='#' id="${event.EventID}" class="updatebtn">
 								
-								<div class='image' style='background-image: url(${event.eventImg})'>
+								<div class='image' style='background-image: url(${event.eventImg})' value="${event.eventImg}">
 									
 									<div class='time'>
 										<div class='date'>${event.day}</div>
@@ -251,8 +252,8 @@ img {
 
 									<div class="hidden eventID" id="EventID">${event.EventID}</div>
 									<div class="hidden host" id="host">${event.Host}</div>
-									<div class="hidden eventDate" id="eventDate">${event.EventDate}</div>
-									<div class="hidden deadline" id="deadline">${event.Deadline}</div>
+									<div class="hidden eventDate" id="eventDate"><fmt:formatDate value="${event.EventDate}" pattern="yyyy-MM-dd HH:mm"/></div>
+									<div class="hidden deadline" id="deadline"><fmt:formatDate value="${event.Deadline}" pattern="yyyy-MM-dd HH:mm"/></div>
 									<div class="hidden eventPhone" id="eventPhone">${event.EventPhone}</div>
 									<div class="hidden eventPlace" id="eventPlace">${event.EventPlace}</div>
 									<div class="hidden max" id="max">${event.max}</div>
@@ -275,7 +276,7 @@ img {
 					<div class='post'>
 
 						<a href='#' id="${event.EventID}" class="updatebtn" >
-							<div class='image' style='background-image: url(${event.eventImg})'>
+							<div class='image' style='background-image: url(${event.eventImg})' value="${event.eventImg}">
 								
 								<div class='time'>
 									<div class='date'>${event.day}</div>
@@ -286,8 +287,8 @@ img {
 							
 									<div class="hidden eventID" id="EventID">${event.EventID}</div>
 									<div class="hidden host" id="host">${event.Host}</div>
-									<div class="hidden eventDate" id="eventDate">${event.EventDate}</div>
-									<div class="hidden deadline" id="deadline">${event.Deadline}</div>
+									<div class="hidden eventDate" id="eventDate"><fmt:formatDate value="${event.EventDate}" pattern="yyyy-MM-dd HH:mm"/></div>
+									<div class="hidden deadline" id="deadline"><fmt:formatDate value="${event.Deadline}" pattern="yyyy-MM-dd HH:mm"/></div>
 									<div class="hidden eventPhone" id="eventPhone">${event.EventPhone}</div>
 									<div class="hidden eventPlace" id="eventPlace">${event.EventPlace}</div>
 									<div class="hidden max" id="max">${event.max}</div>
@@ -314,7 +315,7 @@ img {
 
 					<div class='post'>
 						<a href='#' id="${event.EventID}" class="updatebtn" >
-							<div class='image' style='background-image: url(${event.eventImg})'>
+							<div class='image' style='background-image: url(${event.eventImg})' value="${event.eventImg}">
 								<div class='time'>
 									<div class='date'>${event.day}</div>
 									<div class='month'>${event.month}</div>
@@ -324,8 +325,8 @@ img {
 							
 									<div class="hidden eventID" id="EventID">${event.EventID}</div>
 									<div class="hidden host" id="host">${event.Host}</div>
-									<div class="hidden eventDate" id="eventDate">${event.EventDate}</div>
-									<div class="hidden deadline" id="deadline">${event.Deadline}</div>
+									<div class="hidden eventDate" id="eventDate"><fmt:formatDate value="${event.EventDate}" pattern="yyyy-MM-dd HH:mm"/></div>
+									<div class="hidden deadline" id="deadline"><fmt:formatDate value="${event.Deadline}" pattern="yyyy-MM-dd HH:mm"/></div>
 									<div class="hidden eventPhone" id="eventPhone">${event.EventPhone}</div>
 									<div class="hidden eventPlace" id="eventPlace">${event.EventPlace}</div>
 									<div class="hidden max" id="max">${event.max}</div>
@@ -350,7 +351,7 @@ img {
 
 					<div class='post'>
 						<a href='#' id="${event.EventID}" class="updatebtn" >
-							<div class='image' style='background-image: url(${event.eventImg})'>
+							<div class='image' style='background-image: url(${event.eventImg})' value="${event.eventImg}">
 								<div class='time'>
 									<div class='date'>${event.day}</div>
 									<div class='month'>${event.month}</div>
@@ -360,8 +361,8 @@ img {
 							
 									<div class="hidden eventID" id="EventID">${event.EventID}</div>
 									<div class="hidden host" id="host">${event.Host}</div>
-									<div class="hidden eventDate" id="eventDate">${event.EventDate}</div>
-									<div class="hidden deadline" id="deadline">${event.Deadline}</div>
+									<div class="hidden eventDate" id="eventDate"><fmt:formatDate value="${event.EventDate}" pattern="yyyy-MM-dd HH:mm"/></div>
+									<div class="hidden deadline" id="deadline"><fmt:formatDate value="${event.Deadline}" pattern="yyyy-MM-dd HH:mm"/></div>
 									<div class="hidden eventPhone" id="eventPhone">${event.EventPhone}</div>
 									<div class="hidden eventPlace" id="eventPlace">${event.EventPlace}</div>
 									<div class="hidden max" id="max">${event.max}</div>
@@ -388,7 +389,7 @@ img {
 	<!-- Modal-Dialog 報名活動 對話框 -->
 	<div class="modal fade" id="updateEvent" tabindex="-1" role="dialog"
 		aria-labelledby="modalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-md">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
@@ -400,64 +401,34 @@ img {
 				<div class="modal-body" style="overflow: auto;">
 
 					<!--content goes here -->
-					<form id="updateform">
-
-
-						<div class="form-group col-xs-12 col-md-6">
-							<label for="EventID">活動編號</label>
-							<input type="text" readonly="readonly"
-								 class="form-control" id="new_EventID"
+					<form id="updateform">			
+					<input type="text" readonly="readonly"
+								 class="form-control hidden" id="new_EventID"
 								name="EventID" value="">
-								<span id="EventID2"></span>
-						</div>
+					
 						<div class="form-group col-xs-12">
-							<label for="EventName">活動名稱</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_EventName" name="EventName">
+							<label for="EventName">活動名稱</label> <h3
+								 id="new_EventName"></h3>
+								 
 						</div>
+<div class="col-xs-6"><img id="Eventimg" class="img-responsive" src=""><br>
+<label for="EventContent">活動內容</label><h4 id="new_EventContent"></h4><br>
 
-						<div class="form-group col-xs-12">
-							<label for="EventDate">活動日期</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_EventDate" name="EventDate"
-								value="">
+</div>
+<div class="col-xs-6">
+<div class="form-group col-xs-12">
+							<label for="EventDate">活動日期</label><h4 id="new_EventDate"></h4><br>
+						    <label for="Deadline">截止日期</label><h3 style="color:red" id="new_Deadline"></h3><br>
+						    <label for="Max">上限人數</label><h3 style="color:red" id="new_Max"></h3><br>
+						    <label for="Host">活動單位</label><h4 id="new_Host"></h4><br>
+						<label for="EventPlace">活動地點</label>
+						<h4 id="new_EventPlace"></h4>
+<img id="new_EventPlace_img" class="img-responsive" src=""/><br>
 						</div>
-
-						<div class="form-group col-xs-12">
-							<label for="Host">活動單位</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_Host" name="Host">
+						
 						</div>
-
-						<div class="form-group col-xs-12">
-							<label for="EventPhone">連絡電話</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_EventPhone" name="EventPhone">
-						</div>
-
-						<div class="form-group col-xs-12">
-							<label for="EventPlace">活動地點</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_EventPlace" name="EventPlace">
-						</div>
-
-<!-- 						<div class="form-group col-xs-12"> -->
-<!-- 							<label for="EventImg">活動海報</label> <input type="file" -->
-<!-- 								id="new_EventImg" name="EventImg"> -->
-<!-- 						</div> -->
-
-						<div class="form-group col-xs-12">
-							<label for="Deadline">截止日期</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_Deadline" name="Deadline">
-						</div>
-
-						<div class="form-group col-xs-12">
-							<label for="EventContent">活動內容</label> <input type="text" readonly="readonly"
-								class="form-control" id="new_EventContent" name="EventContent" >
-						</div>
-
-						<div class="form-group col-xs-12">
-							<label for="Max">上限人數</label> <input type="number" readonly="readonly"
-								class="form-control" id="new_Max" name="Max">
-						</div>
-
-						<div class="form-group col-xs-12">
-							<button class="btn btn-primary" id="up_btn">享。參加</button>
+						<div class="form-group col-xs-12 text-center">
+							<button class="btn btn-primary btn-lg" id="up_btn">享。參加</button>
 							<!-- 							<button class="btn btn-default" data-dismiss="modal">取消</button> -->
 						</div>
 					</form>
@@ -843,29 +814,41 @@ img {
 				function(event) {
 					
 					if(getCookie("login_id")!=""){
-					var div = $(this).children('div');
-
-				$("#updateEvent").find("#new_EventID").attr("value",div.children('.eventID').text());
-				div.find('#EventID2').text(div.children('.eventID').text())	
+					var content = $(this).children('.content');
+					var image = $(this).children('.image');
+				$("#updateEvent").find("#new_EventID").attr("value",content.children('.eventID').text());
 					
-					$("#updateEvent").find("#new_EventName").attr("value",
-							div.children('.eventName').text());
-					$("#updateEvent").find("#new_EventDate").attr("value",
-							div.children('.eventDate').text());
-					$("#updateEvent").find("#new_Host").attr("value",
-							div.children('.host').text());
-					$("#updateEvent").find("#new_EventPhone").attr("value",
-							div.children('.eventPhone').text());
-					$("#updateEvent").find("#new_EventPlace").attr("value",
-							div.children('.eventPlace').text());
-// 					$("#updateEvent").find("#new_EventImg").attr("value",
-// 							div.children('.eventImg').text());
-					$("#updateEvent").find("#new_Deadline").attr("value",
-							div.children('.deadline').text());
-					$("#updateEvent").find("#new_EventContent").attr("value",
-							div.children('.eventContent').text());
-					$("#updateEvent").find("#new_Max").attr("value",
-							div.children('.max').text());
+					$("#updateEvent").find("#new_EventName").text(
+							content.children('.eventName').text());
+				$("#updateEvent").find("#Eventimg").attr("src",
+						image.attr("value"));
+				
+					$("#updateEvent").find("#new_EventDate").text(
+							content.children('.eventDate').text());
+					
+					$("#updateEvent").find("#new_Host").text(
+							content.children('.host').text());
+ 					$("#updateEvent").find("#new_Host").append(
+ 							$("<a class='btn btn-success'><span class='glyphicon glyphicon-earphone'></span></a>").attr("href","tel:"+content.children('.eventPhone').text()));
+ 						
+ 					$("#updateEvent").find("#new_Deadline").text(
+ 							content.children('.deadline').text());
+ 					
+ 					$("#updateEvent").find("#new_Max").text(
+ 							content.children('.max').text());
+ 							
+ 					$("#updateEvent").find("#new_EventContent").text(
+ 							content.children('.eventContent').text());
+ 					var place=content.children('.eventPlace').text();
+ 					console.log(place);
+ 					var url="https://maps.googleapis.com/maps/api/staticmap?center="+place;
+ 					url=url+"&zoom=17&scale=false&size=400x400&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C";
+ 					url=url+place;
+ 					
+ 					$("#updateEvent").find("#new_EventPlace").text(place);
+ 					$("#updateEvent").find("#new_EventPlace_img").attr("src",url);
+ 					
+ 				
 					$('#updateEvent').modal();
 					}else{
 						$('#LoginBlock').modal();

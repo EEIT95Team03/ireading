@@ -131,7 +131,7 @@ public class EventController {
 	
 	
 	@RequestMapping(value="/seeAllEvent",method=RequestMethod.GET)
-	public String select(Model model,@RequestParam(name = "action") String action) {
+	public String select(Model model) {
 		
      	List<EventBean> result = eventService.select(null);
      	model.addAttribute("select", result);

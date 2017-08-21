@@ -65,10 +65,7 @@
 	
 
 <!-- Event -->
-	<bean id="event.select"
-		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/pages/event/EventEdit.jsp"></property>
-	</bean>
+
 
 	<bean id="event.update"
 		class="org.springframework.web.servlet.view.InternalResourceView">
@@ -192,6 +189,11 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/user/MyEvent.jsp"></property>
 	</bean>
+	
+	<bean id="event.eventhistory"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/user/MyEventHistory.jsp"></property>
+	</bean>
 
 <!-- Manager功能 -->
 <bean id="manager.login"
@@ -221,6 +223,12 @@
 	<bean id="solddetailmanager.list"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/manager/SoldListDetailManager.jsp"></property>
+	</bean>
+	
+	
+		<bean id="event.select"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/manager/Event.jsp"></property>
 	</bean>
 
  <!-- 功能：維護書籍資料 -->

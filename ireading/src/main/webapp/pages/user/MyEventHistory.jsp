@@ -28,7 +28,7 @@
                  <!--    內容寫這 -->
                     
                         <h1><span class="glyphicon glyphicon-calendar"></span> 我的活動</h1> 
-                        <div><a class="btn btn-lg btn-success" disabled>已報名活動</a>&nbsp;<a class="btn btn-lg btn-info" href="<c:url value="/user/joinevent.controller/EventHistory"/>">已參加活動</a></div>                     
+                        <div><a class="btn btn-lg btn-success" href="<c:url value="/user/joinevent.controller/myEventList"/>">已報名活動</a>&nbsp;<a class="btn btn-lg btn-info" disabled>已參加活動</a></div>                     
                        <br>
                        
                         <table class="table table-striped custab" id="myEvent">
@@ -38,10 +38,7 @@
 										<th style="width: 350px" class="text-center">活動名稱</th>
 										<th style="width: 250px" class="text-center">活動日期</th>
 										<th style="width: 300px" class="text-center">主辦單位</th>
-										
 										<th style="width: 250px" class="text-center">活動地點</th>
-										<th style="width: 200px" class="text-center">報名截止日期</th>
-										<th style="width: 200px" class="text-center">動作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -53,38 +50,15 @@
 											<td class="text-center" class="EventDate">
 											<fmt:formatDate pattern = "yyyy-MM-dd HH:mm" value = "${myjoinlist.EventDate}" />
                                             </td>
-											<td class="text-center" class="Host">${myjoinlist.Host}<a href="tel:${myjoinlist.EventPhone}"><span class="glyphicon glyphicon-earphone"></span></a></td>
-											<td class="text-center" class="EventPlace"><a target="_blank" href="https://www.google.com.tw/maps/place/${myjoinlist.EventPlace}"><span class="glyphicon glyphicon-map-marker"></span>${myjoinlist.EventPlace}</a></td>
-											<td class="text-center" class="Deadline">
-											<fmt:formatDate pattern = "yyyy-MM-dd HH:mm" value = "${myjoinlist.Deadline}" />
-											</td>
-											<td class="text-center">
-<%-- 											<form action="<c:url value="/browse/joinevent.controller/delete"/>" method="post"> --%>
-												<button class="deletebtn btn btn-danger" data-toggle="modal" data-target="#deleteEvent" onclick="deleteJoin(mem${loop.index }, event${loop.index })">取消參加</button>
-<!-- 											</form> -->
-											</td>
+											<td class="text-center" class="Host">${myjoinlist.Host}</td>
+											<td class="text-center" class="EventPlace">${myjoinlist.EventPlace}</td>
 										</tr>
 										</c:forEach>
 								</tbody>
 							</table>
                     </div>
                     
-      <div class="modal fade" id="deleteConfirm" tabindex="-1" role="dialog"
-		aria-labelledby="modalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-md" style="padding-top: 200px">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">X</span><span class="sr-only">Close</span>
-					</button>
-					<h3 class="modal-title" id="lineModalLabel">刪除活動成功！</h3>
-				</div>
-				<div class="modal-body" style="overflow: auto;">
-					<button  id='deleteBtn' onclick="closeable()" class="btn" style='background-color: #80beb0; color: white' data-dismiss="modal">關閉</button>
-				</div>
-			</div>
-		</div>
-	</div>
+     
                     
 
 <c:import url="/pages/templates/user/userfooter.jsp"></c:import>
@@ -92,40 +66,6 @@
 </body>
  <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
   <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
- <!-- 刪除活動 -->
-	<script>
-	function closeable() {
-		$('#deleteConfirm').modal('toggle');
-		location.reload();
-	}
-	
-	
-	function deleteJoin(m, n) {
-		var MemberID = $(m).text();
-		var EventID = $(n).text();
-		if (confirm("確定要取消參加活動？")) {
-			console.log(MemberID);
-			console.log(EventID);			
-			$.ajax({
-				type:'post',		
-				url:'/ireading/user/joinevent.controller/delete',
-				data:{
-					'EventID': EventID,
-					'MemberID': MemberID
-				},		
-				success:function(json){
-					console.log(typeof json[0].change);
-					if(json[0].change==1){
-						$('#deleteConfirm').modal('toggle');
-					}
-					else{
-						alert('活動編號：' + json[0].EventID + "取消失敗");
-					}
-					return false;
-				}
-			})
-		}}
-				
-</script>
+ 
 
 </html>

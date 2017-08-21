@@ -241,14 +241,38 @@ public class JoinEventController {
 			return request.getHeader("referer").substring(30);
 		}
 		
-		String sqltxt ="SELECT * FROM Event e INNER JOIN JoinList j ON e.EventID = j.EventID where j.MemberID = '"+MemberID+"' ";
+		String sqltxt ="SELECT * FROM Event e INNER JOIN JoinList j ON e.EventID = j.EventID where j.MemberID = '"+MemberID+"' and EventDate >= '"+DateTansfer.Today()+"'";
 
 		List<Map<String,Object>> myjoinlist = jdbcTemplate.queryForList(sqltxt.toString());
 		
 		model.addAttribute("myjoinlist", myjoinlist);
-		System.out.println("myjoinlist:"+myjoinlist);
+		//System.out.println("myjoinlist:"+myjoinlist);
 		
 		return "event.myeventlist";
+				
+	}
+	
+	
+	@RequestMapping(value = "/EventHistory", method = RequestMethod.GET)
+	public String EventHistory(JoinListBean bean, Model model,HttpServletRequest request) {
+
+		String MemberID=null;
+		try {
+			MemberID =CookieUtils.findCookie(request, "login_id");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return request.getHeader("referer").substring(30);
+		}
+		
+		String sqltxt ="SELECT * FROM Event e INNER JOIN JoinList j ON e.EventID = j.EventID where j.MemberID = '"+MemberID+"' and EventDate < '"+DateTansfer.Today()+"'";
+
+		List<Map<String,Object>> myjoinlist = jdbcTemplate.queryForList(sqltxt.toString());
+		
+		model.addAttribute("myjoinlist", myjoinlist);
+		//System.out.println("myjoinlist:"+myjoinlist);
+		
+		return "event.eventhistory";
 				
 	}
 	

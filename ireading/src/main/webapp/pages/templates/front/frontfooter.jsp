@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="row">
-            <p><center><p id="lasttext" class="footertext">資策會EEIT95 第三組 享閱二手書交易平台</p></center></p>
+            <p><center><p id="lasttext" ><a href="<c:url value="/manager/login.manager/page"/>"><i class="glyphicon glyphicon-copyright-mark"></i></a>資策會EEIT95 第三組 享閱二手書交易平台</p></center></p>
         </div>
     </div>  
      <a  type="button" class="btn btn-primary btn-circle btn-xl" id="cart" value="<c:url value="/browse/cart/show"/>"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">0</span></a>
