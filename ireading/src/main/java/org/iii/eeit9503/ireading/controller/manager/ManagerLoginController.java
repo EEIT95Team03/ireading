@@ -31,7 +31,15 @@ public class ManagerLoginController {
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping(method = { RequestMethod.POST })
+	
+	@RequestMapping(value="/page",method = { RequestMethod.GET})
+	public String goToLogin(Model model){
+		
+		return "manager.login";
+	}
+	
+	
+	@RequestMapping(method = { RequestMethod.POST})
 	public String login(@RequestParam Map<String, Object> param,Model model){
 
 		String Account = MapUtils.getString(param, "Account");		

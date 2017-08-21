@@ -1,86 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- 最新編譯和最佳化的 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-<!-- 選擇性佈景主題 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<title>享閱管理者後台</title>
 
-<%-- <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" /> --%>
-<%-- <link href="<c:url value="/css/bootstrap-theme.min.css"/>" --%>
-<!-- 	rel="stylesheet" /> -->
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<!--jQuery-->
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- 最新編譯和最佳化的 JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<%-- <script src="<c:url value="/js/bootstrap.min.js"/>"></script> --%>
-<script type="text/javascript">
-	function clearForm() {
-		var inputs = document.getElementsByTagName("input");
-		for (var i = 0; i < inputs.length; i++) {
-			if (inputs[i].type == "text") {
-				inputs[i].value = "";
-			}
-		}
-	}
-</script>
-<div>
-	<form
-		action="<c:url value="/manager/productlaunched.controller/SellBookMainPage"/>"
-		method="get">
-		<input type="submit" value="Select">
-	</form>
-</div>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script> 
 
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.tablesorter.js"/>"></script>
+
+<link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/login.css'/>">
+<style>
+.search{
+padding:10px;
+margin-top: 30px;
+margin-bottom: 30px;
+}
+
+</style>
 </head>
 <body>
-	<!--  -->
-	<form
+	<c:import url="/pages/templates/manager/managermenu.jsp"></c:import>
+
+	<div class="col-lg-11" style="padding-bottom: 50px;">
+		<!--    內容寫這 -->
+
+		<h1><span class="glyphicon glyphicon-tags"></span>二手書上架管理</h1>
+		<div class="search col-xs-12">
+		<div class="col-xs-12">
+		<form
 		action="<c:url value="/user/productlaunched.controller/SearchList"/>"
-		method="get" style="display: inline-block;">
-		<div id="searcher" class="row col-md-8 col-md-offset-5"
-			style="display: inline-block;">
-			<input type="text" id="searchcontent" name="search"></input> <span>
-				<button class='btn btn-info btn-xs searchbtn'>搜尋</button>
-			</span>
+		method="get">
+		<div class="row col-xs-4 col-md-2 text-right">
+		    賣書清單編號:		
+		</div>		
+		<div id="searcher" class="row col-xs-5 ">
+			<input type="text" id="searchcontent" name="search" class="form-control"></input>
+			</div>
+			<div class="row col-xs-3 text-left">
+				<button class='btn btn-info btn-md searchbtn'>搜尋</button>			
 		</div>
 	</form>
-
+	</div>
+	
 	<!-- 狀態查詢 -->
+	<div class="col-xs-12">
 	<form id ="statuslist"
 		action="<c:url value="/user/productlaunched.controller/searchByStatus"/>"
-		method="get" style="display:inline-block;">		
+		method="get">	
+		<div class="row col-xs-4 col-md-2 text-right">
+		    賣書清單狀態:		
+		</div>
+	  <div id="searcher" class="row col-xs-5 ">
 	<!--select要有name才能取到值，是取到option的value喔！ -->
-		<select id="searchstatus" name="searchstatus">
+		<select id="searchstatus" name="searchstatus" class="form-control">
+			<option></option>
 			<option value="L0001">未處理</option>
 			<option value="L0002">處理中</option>
 			<option value="L0003">已處理</option>
 			<option value="L0004">數量不符，通知會員</option>
 			<option value="L0005">其他</option>
-		</select> <span style="display: inline-block;">
-			<button class='btn btn-info btn-xs searchbtn'>搜尋</button>
-		</span>
+		</select>
+		</div>
+		<div class="row col-xs-3 text-left">
+			<button class='btn btn-info btn-md searchbtn'>搜尋</button>
+		</div>
 	</form>
-
-
+</div>
+</div>
 	<!-- Select 後的結果畫面 -->
 	<div class="container">
-		<div class="row col-md-8 col-md-offset-2 custyle">
+		<div class="row col-xs-12 custyle">
 			<table class="table table-striped custab" id="productlist">
 				<thead>
 					<tr>
-						<th>商品清單編號</th>
-						<th>會員編號</th>
-						<th>清單處理狀態</th>
-						<th></th>
+						<th class="text-center">商品清單編號</th>
+						<th class="text-center">申請時間</th>
+						<th class="text-center">會員編號</th>
+						<th class="text-center">清單處理狀態</th>
+						<th class="text-center">action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,14 +98,13 @@
 					<c:forEach var="product" items="${dataList}">
 						<tr>
 							<c:url value="${product.SellListID}" var="linkP" />
-							<td name="SellListID"><a href="${linkP}">${product.SellListID}</a></td>	
-							<td>${product.MemberID}</td>
-							<td>${product.StatusName}</td>
-							<td></td>
-
+							<td class="text-center" name="SellListID"><a href="${linkP}">${product.SellListID}</a></td>	
+							<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${product.ApplyDate}"/></td>				
+							<td class="text-center">${product.MemberID}</td>
+							<td class="text-center">${product.StatusName}</td>
 							<td class="text-center"><c:url value="" var="link">
 									<c:param name="ProductID" value="${product.SellListID}"></c:param>
-								</c:url> <a href="${linkP}" class='btn btn-default btn-sm selectbtn'
+								</c:url> <a href="${linkP}" class='btn btn-primary btn-sm selectbtn'
 								value="javascript:excuteUpdate('${product.SellListID}')"> 
 								<span>享。審查清單內容</span>
 							</a></td>
@@ -146,19 +155,24 @@
 			</table>
 		</div>
 	</div>
-	<script>
-		// 	$("#searcher").on("click",".searchbtn",function(event){
-		// 		var result = $("#searchcontent").val();
-		// 		alert(result);
-		// 		$.post("/ireading/user/productlaunched.controller/SearchList", {
-		// 			SellListID : result
+	
+	
+	
+	</div>
 
-		// 		}, function(data) {
 
-		// 			location.reload();
-		// 		});
-		// 	});
-	</script>
+
+
+	<c:import url="/pages/templates/manager/managerfooter.jsp"></c:import>
 
 </body>
+<script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>
+<script>
+$(function(){
+	
+	  $('#productlist').DataTable({ "searching": false});
+	  
+	  })
+
+</script>
 </html>

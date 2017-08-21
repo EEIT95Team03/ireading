@@ -1,13 +1,13 @@
 package org.iii.eeit9503.ireading.controller.member;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
 import org.iii.eeit9503.ireading.member.model.MemberService;
 import org.iii.eeit9503.ireading.misc.FileUploader;
@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -83,6 +84,7 @@ public class MemberController {
 				bean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
 			}
 			bean.setMemberID(idGgenerator.getMemberID());
+			bean.setRegDate(new Date(System.currentTimeMillis()));
 			JSONArray arry = new JSONArray();
 			JSONObject obj = new JSONObject();
 			obj.put("MemberID", bean.getMemberID());
@@ -101,8 +103,6 @@ public class MemberController {
 				model.addAttribute("insert", memberBean);
 				model.addAttribute("refer", referer);
 			}
-			/*arry.put(obj);
-			return arry.toString();*/
 			return "member.Add";
 		}
 
@@ -140,9 +140,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/Insert", method = { RequestMethod.POST} , produces = { "application/json; charset=UTF8"})
 	@ResponseBody
-	public String processShow(MemberBean bean, Model model, @RequestParam(value = "file", required = false) CommonsMultipartFile file) {
-		
-		System.out.println(file);
+	public String processInsert(MemberBean bean, Model model, @RequestParam(value = "file", required = false) CommonsMultipartFile file) {
 		
 		if (!file.isEmpty()) {
 			bean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
@@ -161,12 +159,68 @@ public class MemberController {
 		
 		//預設為1
 		bean.setAuth(1);
+		//設定註冊日期
+		bean.setRegDate(new Date(System.currentTimeMillis()));
+		
 		MemberBean memberBean = memberService.insert(bean);
 		System.out.println("insert success");
 		if (memberBean == null) {
 			
 		} else {
 		}
+		arry.put(obj);
+		return arry.toString();
+	}
+	
+	@RequestMapping(value="/Update", method = { RequestMethod.POST} , produces = { "application/json; charset=UTF8"})
+	@ResponseBody
+	public String processUpdate(MemberBean bean, Model model, @RequestParam(value = "file", required = false) CommonsMultipartFile file) {
+		MemberBean tempbean = memberService.select(bean.getMemberID());
+		if(bean.getAccount()!=null){
+			tempbean.setAccount(bean.getAccount());
+		}
+		if(bean.getPwd()!=null){
+			tempbean.setPwd(bean.getPwd());
+		}
+		if(bean.getMName()!=null){
+			tempbean.setMName(bean.getMName());
+		}
+		if(bean.getNickName()!=null){
+			tempbean.setNickName(bean.getNickName());
+		}
+		if(bean.getGender()!=0 || bean.getGender()!=1){
+			tempbean.setGender(bean.getGender());
+		}
+		if(bean.getAddr()!=null){
+			tempbean.setAddr(bean.getAddr());
+		}
+		if(bean.getCell()!=null){
+			tempbean.setCell(bean.getCell());
+		}
+		if(bean.getBirthday()!=null){
+			tempbean.setBirthday(bean.getBirthday());
+		}
+		if (!file.isEmpty()) {
+			tempbean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
+		}
+		else{
+			bean.setPhoto(tempbean.getPhoto());
+		}
+		System.out.println(tempbean.getRegDate());
+		JSONArray arry = new JSONArray();
+		JSONObject obj = new JSONObject();
+		obj.put("MemberID", bean.getMemberID());
+		obj.put("Account", bean.getAccount());
+		if(bean.getMName()!=null){
+			obj.put("MName", bean.getMName());
+		}
+		
+		//預設為1
+		bean.setAuth(1);
+		
+		memberService.update(tempbean);
+		System.out.println("update success");
+		
 		arry.put(obj);
 		return arry.toString();
 	}
@@ -204,6 +258,40 @@ public class MemberController {
 		System.out.println("arry:" + arry.toString());
 		return arry.toString();
 	}
+	
+	@RequestMapping(value = "/ShowRepost", method = { RequestMethod.POST }, produces = { "application/json; charset=UTF8" })
+	@ResponseBody
+	public String processShowRepost(String memberID, Model model) {
+		MemberBean bean = null;
+		JSONArray arry = new JSONArray();
+		System.out.println(memberID);
+
+		if (memberID.trim().length() == 0 || memberService.select(memberID) != null) {
+			bean = memberService.select(memberID);
+
+			JSONObject obj = new JSONObject();
+			obj.put("MemberID", bean.getMemberID());
+			obj.put("Account", bean.getAccount());
+			obj.put("Pwd", bean.getPwd());
+			obj.put("MName", bean.getMName());
+			obj.put("NickName", bean.getNickName());
+			obj.put("Addr", bean.getAddr());
+			obj.put("Cell", bean.getCell());
+			obj.put("Birthday", bean.getBirthday());
+			obj.put("RegDate", bean.getRegDate());
+			obj.put("Gender", bean.getGender());
+			obj.put("Income", bean.getIncome());
+			obj.put("Photo", bean.getByteArrayString());
+			System.out.println(bean.getByteArrayString());
+			obj.put("Auth", bean.getAuth());
+			arry.put(obj);
+
+		}
+
+		System.out.println("arry:" + arry.toString());
+		return arry.toString();
+	}
 
 	
+
 }

@@ -24,9 +24,11 @@
 	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
 
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/login.css'/>">
 <style type="text/css">
 body {
 	background-color: lightblue;
@@ -544,7 +546,7 @@ body {
 </script>
 </head>
 <body>
-	<c:import url="/pages/templates/user/usermenu.jsp"></c:import>
+	<c:import url="/pages/templates/manager/managermenu.jsp"></c:import>
 
 	<div class="container"
 		style="height: 460px; background: url('http://images.clipartpanda.com/clouds-background-png-CloudImage.png'); background-repeat: no-repeat">
@@ -597,7 +599,7 @@ body {
 
 				<div class="modal-body">
 					<form id="insertform"
-<%-- 					  action="<c:url value='/user/member.controller/Insert'/>" --%>
+					  action="<c:url value='/user/member.controller/Insert'/>"
 					   method="POST" enctype="multipart/form-data" role="form">
 						<div class="form-group">
 							<div class="input-group">
@@ -629,9 +631,9 @@ body {
 
 						<div class="form-group">
 							<div class="input-group">
-								<label class="input-group-addon glyphicon" for="male">男</label>
+								<label class="input-group-addon glyphicon" for="male" style="font-family: 微軟正黑體">男</label>
 								<input type="radio" id="male" class="form-control" name="gender" value="0"> 
-								<label class="input-group-addon glyphicon" for="feamle">女</label> 
+								<label class="input-group-addon glyphicon" for="feamle" style="font-family: 微軟正黑體">女</label> 
 								<input type="radio" id="female" class="form-control" name="gender" value="1">
 							</div>
 						</div>
@@ -652,20 +654,20 @@ body {
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="birthday" class="form-control" placeholder="請輸入生日"> 
+								<input type="text" name="birthday" class="form-control" placeholder="請輸入生日"/> 
 								<label class="input-group-addon glyphicon glyphicon-calendar"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="file" name="file" class="form-control"> 
+								<input id='insertphoto' type="file" name="file" class="form-control"/> 
 								<label class="input-group-addon glyphicon glyphicon-picture"></label>
 							</div>
 						</div>
 
 						<div class="modal-footer">
-							<button id="newbutton" class="form-control btn" name="memaction" value="Insert">確定。新增</button>
+							<button type="submit" id="newbutton" class="form-control btn" name="memaction" value="Insert">確定。新增</button>
 						</div>
 					</form>
 				</div>
@@ -677,30 +679,39 @@ body {
 	</div>
 	<!-- /.modal -->
 	<script type="text/javascript">
+
+		//Ajax Insert表單的選項
 		
-		$('#newbutton').click(
-			function(event) {
-				event.preventDefault();
-				
-				var data = $('#insertform').serialize();
-				
-				$.post('/ireading/user/member.controller/Insert', data , function(data) {
-					console.log(data);
-				})
-			})
-	
+		var options = {
+			contentType: false,			
+			type:'post',			
+			dataType : 'json',
+			success : function(json) {
+				$('#insertform').resetForm();
+				$('#myInsert').modal('toggle');
+				$('#insertSuccess').modal('toggle');
+				console.log(json);
+				return false;
+			},
+			error : function() {
+				console.log('error happened');
+				return false;
+			}
+		}
+
+		$('#insertform').ajaxForm(options);
 	</script>
 	
 	<!--新會員確認畫面 -->
-	<div class="modal fade" id="ConfirmBlock" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<div class="modal fade" id="insertSuccess" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="padding-top:200px">
 			<div class="modal-content">
 				<div class="panel-login">
 					<div class="panel-body">
 						<div>
-							<h3 class="modal-title">歡迎加入享。閱</h3>
+							<h3 class="modal-title">成功新增享。閱人</h3>
 							<div>
-								<button id="welcomeReg" class="btn" style="background-color:#80beb0 ; color: white">確定。</button>
+								<button id="insertSuccessBtn" class="btn" style="background-color:#80beb0 ; color: white">確定。</button>
 							</div>
 						</div>
 					</div>
@@ -708,6 +719,13 @@ body {
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$('#insertSuccessBtn').click(
+			function(event) {
+				event.preventDefault();
+				$('#insertSuccess').modal('toggle');
+			})
+	</script>
 
 	<!-- 以下區塊為查詢彈跳區塊 -->
 	<div class="modal fade" id="myQuery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -754,70 +772,70 @@ body {
 
 				<div class="modal-body">
 					<form role="form" id="updateform"
-						action="<c:url value="/manager/member.controller"/>" method="POST"
-						enctype="multipart/form-data">
+						action="<c:url value='/user/member.controller/Update'/>"
+					   method="POST" enctype="multipart/form-data" role="form">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="memberID" class="form-control" placeholder="請輸入會員編號"> 
+								<input id='updMemberID' type="text" name="memberID" class="form-control" placeholder="請輸入會員編號"> 
 								<label class="input-group-addon glyphicon glyphicon-search"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="account" class="form-control" placeholder="請輸入電子郵件"> 
-								<label class="input-group-addon glyphicon glyphicon-user"></label>
+								<input id='updAccount' type="text" name="account" class="form-control" placeholder="請輸入電子郵件"> 
+								<label class="input-group-addon glyphicon glyphicon-envelope"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="password" name="pwd" class="form-control" placeholder="請輸入密碼"> 
+								<input id='updPwd' type="password" name="pwd" class="form-control" placeholder="請輸入密碼"> 
 								<label class="input-group-addon glyphicon glyphicon-lock"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="MName" class="form-control" placeholder="請輸入姓名"> 
+								<input id='updMName' type="text" name="MName" class="form-control" placeholder="請輸入姓名"> 
 								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="nickName" class="form-control" placeholder="請輸入暱稱"> 
+								<input id='updNickName' type="text" name="nickName" class="form-control" placeholder="請輸入暱稱"> 
 								<label class="input-group-addon glyphicon glyphicon-user"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="radio" class="form-control" name="gender" value="0">
-								<label class="input-group-addon glyphicon">男</label>
-								<input type="radio" class="form-control" name="gender" value="1">
-								<label class="input-group-addon glyphicon">女</label>
+								<label class="input-group-addon glyphicon" style="font-family: 微軟正黑體">男</label>
+								<input id='updmale' type="radio" class="form-control" name="gender" value="0">
+								<label class="input-group-addon glyphicon" style="font-family: 微軟正黑體">女</label>
+								<input id='updfemale' type="radio" class="form-control" name="gender" value="1">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="addr" class="form-control" placeholder="請輸入通訊地址"> 
-								<label class="input-group-addon glyphicon glyphicon-user"></label>
+								<input id='updAddr' type="text" name="addr" class="form-control" placeholder="請輸入通訊地址"> 
+								<label class="input-group-addon glyphicon glyphicon-align-justify"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="cell" class="form-control" placeholder="請輸入手機"> 
-								<label class="input-group-addon glyphicon glyphicon-user"></label>
+								<input id='updCell' type="text" name="cell" class="form-control" placeholder="請輸入手機"> 
+								<label class="input-group-addon glyphicon glyphicon-phone"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" name="birthday" class="form-control" placeholder="請輸入生日"> 
-								<label class="input-group-addon glyphicon glyphicon-user"></label>
+								<input id='updBirthday' type="text" name="birthday" class="form-control" placeholder="請輸入生日"> 
+								<label class="input-group-addon glyphicon glyphicon-calendar"></label>
 							</div>
 						</div>
 
@@ -827,6 +845,14 @@ body {
 								<label class="input-group-addon glyphicon glyphicon-picture"></label>
 							</div>
 						</div>
+						
+<!-- 						<div class="form-group"> -->
+<!-- 							<div class="input-group"> -->
+<!-- 								<label id='RegDate'></label> -->
+<!-- 								<label class="input-group-addon glyphicon glyphicon-calendar"></label> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+						
 						<div class="modal-footer">
 							<button id="updatebutton" class="form-control btn btn-primary"	name="memaction" value="Update">確定。修</button>
 						</div>
@@ -840,10 +866,57 @@ body {
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
+	
+	<script type="text/javascript">
+	
+		var options = {
+			contentType : false,
+			type : 'post',
+			dataType : 'json',
+			success : function(json) {
+				$('#updateform').resetForm();
+				$('#myUpdate').modal('toggle');
+				$('#updateSuccess').modal('toggle');
+				console.log(json);
+				return false;
+			},
+			error : function() {
+				console.log('error happened');
+				return false;
+			}
+		}
+
+		$('#updateform').ajaxForm(options);
+	</script>
+	
+	<!--已修改確認畫面 -->
+	<div class="modal fade" id="updateSuccess" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="padding-top:200px">
+			<div class="modal-content">
+				<div class="panel-login">
+					<div class="panel-body">
+						<div>
+							<h3 class="modal-title">成功修改享。閱人</h3>
+							<div>
+								<button id="updateSuccessBtn" class="btn" style="background-color:#80beb0 ; color: white">確定。</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#updateSuccessBtn').click(
+			function(event) {
+				event.preventDefault();
+				$('#updateSuccess').modal('toggle');
+			})
+	</script>
 
 	<!-- 顯示會員資料的跳視窗 -->
 	<div class="modal fade" id="myShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="width:1650px">
+		<div class="modal-dialog" style="width:1800px">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button id="xxx" type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
@@ -857,17 +930,18 @@ body {
 							<thead>
 								<tr>
 									<th style="width:150px; padding:10px; text-align: center;">享。閱人編號</th>
-									<th style="width:250px; padding:10px">註冊帳號</th>
-									<th style="width:150px; padding:10px">享。閱人</th>
+									<th style="width:250px; padding:10px">帳號</th>
+									<th style="width:150px; padding:10px">姓名</th>
 									<th style="width:100px; padding:10px">暱稱</th>
-									<th style="width:450px; padding:10px">住在哪裡</th>
-									<th style="width:150px; padding:10px">享。電聯</th>
+									<th style="width:450px; padding:10px">住在</th>
+									<th style="width:150px; padding:10px">手機</th>
 									<th style="width:150px; padding:10px">壽星日</th>
-									<th style="width:150px; padding:10px">加入享。閱</th>
+									<th style="width:150px; padding:10px">註冊日期</th>
 									<th style="width:50px; padding:10px">性別</th>
-									<th style="width:100px; padding:10px">享。收入</th>
-									<th style="width:200px; padding:10px">享。真相</th>
+									<th style="width:100px; padding:10px">收入</th>
+									<th style="width:200px; padding:10px">真相</th>
 									<th style="width:50px; padding:10px">權限</th>
+									<th style="width:50px; padding:5px">修改</th>
 								</tr>
 							</thead>
 							<tbody id = "showmem">	
@@ -889,7 +963,38 @@ body {
 	<!-- /.modal -->
 
 	<script type="text/javascript">
-		$(function() {
+	function updateTransfer(idin){
+		$.ajax({
+		    type: 'POST',
+		    url: '/ireading/user/member.controller/ShowRepost',
+		    data: {
+		        'memberID':idin
+		    },
+		    success: function(json){
+		        $('#updMemberID').val(json[0].MemberID).prop('readonly',true).css('background-color','LightGray');
+		        $('#updAccount').val(json[0].Account);
+		        $('#updPwd').val(json[0].Pwd);
+		        $('#updMName').val(json[0].MName);
+		        $('#updNickName').val(json[0].NickName);
+		        $('#updAddr').val(json[0].Addr);
+		        $('#updCell').val(json[0].Cell);
+		        $('#updBirthday').val(json[0].Birthday);
+		        
+		        if(json[0].Gender==0){
+		        	$('#updmale').prop('checked',true);
+		        }else if(json[0].Gender==1){
+		        	$('#updfemale').prop('checked',true);
+		        }
+		        
+		        
+		        
+		        $('#myShow').modal('toggle');
+		        $('#myUpdate').modal('toggle');
+		    }
+		});
+	}
+	
+	$(function() {
 			
 			$('#ShowClosebutton, #xxx').click(
 				function(event) {
@@ -899,6 +1004,8 @@ body {
 					location.reload();
 				}		
 			)
+			
+
 					
 			$('#querybutton').click(
 					function(event) {
@@ -907,12 +1014,12 @@ body {
 						var data = $('#queryform').serialize();
 						$.post('/ireading/user/member.controller/Show', data,
 								function(data) {
-									
 									var tb =  $('#showmem');
 									tb.text('');			
 									$.each(data, function(i, value) {
 										console.log(value);
-										var cell1 = $('<td></td>').text(value.MemberID).attr('padding','10px').attr('margin','10px').css('text-align','center');
+										var tdidmem = 'cellmem' + i;
+										var cell1 = $('<td></td>').attr('id',tdidmem).text(value.MemberID).attr('padding','10px').attr('margin','10px').css('text-align','center');
 										var cell2 = $('<td></td>').text(value.Account).attr('padding','10px').attr('margin','10px');
 										var cell3 = $('<td></td>').text(value.MName).attr('padding','10px').attr('margin','10px');
 										var cell4 = $('<td></td>').text(value.NickName).attr('padding','10px').attr('margin','10px');
@@ -937,19 +1044,24 @@ body {
 											imgAuth = $('<img />').attr('src', "/ireading/images/AuthStop.png").attr('width','60%');
 										}
 										var cell12 = $('<td></td>').append(imgAuth).attr('padding','10px').attr('margin','10px');
+										var moveSpan= $('<span/>').addClass('glyphicon').addClass('glyphicon-edit');
+										var moveBlock = $('<a/>').attr('href', 'javascript:void(0)').attr('onclick','updateTransfer("' + value.MemberID + '")').append(moveSpan);
+										var idvar = 'cell' + i;
+										var cell13 = $('<td></td>').attr('id', idvar).append(moveBlock);
 										var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4, cell5, cell6
-											, cell7, cell8, cell9, cell10, cell11, cell12]).attr('height','90px').css('margin','10px').css('border-bottom','solid 1px #D3D3D3');
+											, cell7, cell8, cell9, cell10, cell11, cell12, cell13]).attr('height','90px').css('margin','10px').css('border-bottom','solid 1px #D3D3D3');
 										if(i%2==0){
 											row.css('background-color','#d1ffe5')
 										}
 										tb.append(row);
-									})
+									});
+									
+									
 									
 									$('#memTable').DataTable({
 										"paging":true,
 										"searching":false
-						// 				"pagingType": "full_numbers"
-										})
+									})
 									$('#myQuery').modal('toggle');
 									$('#myShow').modal('toggle');
 								})
@@ -960,7 +1072,7 @@ body {
 	</script>
 
 
-	<c:import url="/pages/templates/user/userfooter.jsp"></c:import>
+	<c:import url="/pages/templates/manager/managerfooter.jsp"></c:import>
 </body>
 
 </html>

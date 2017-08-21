@@ -71,6 +71,7 @@
 		<!-- 內容寫這 -->
 		<div class="forselllist">
 			<div class="row col-md-8 col-md-offset-1 custyle">
+				<h1><span class="glyphicon glyphicon-tags"></span>二手書上架管理</h1>
 				<div>
 					<span><input class="btn btn-info" type="button"
 						onclick="history.back()" value="回到上一頁"></input></span>
@@ -121,7 +122,7 @@
 
 								<td class="ProductID">${product.ProductID}</td>
 								<td class="Title">${product.Title}</td>
-								<td class="StatusName">${product.StatusName}</td>
+								<td class="StatusName">${product.StatusName}<span class="hidden StatusID">${product.StatusID}</span></td>
 								<td class="ProductPrice"><fmt:formatNumber type="number"
 										value="${product.ProductPrice}" /></td>
 								<td class="status">${product.status}</td>
@@ -189,17 +190,18 @@
 						</div>
 						<div class="form-gorup col-xs-12">
 							<label for="rate">狀態 <!-- 							<input type="text" class="form-control" id="status" name="status" value=""></input> -->
-							</label><br /> <select id="status" name="status">
-								<option>全新</option>
-								<option>九成新</option>
-								<option>八成新</option>
-								<option>七成新</option>
-								<option>六成新</option>
-								<option>五成新</option>
-								<option>四成新</option>
-								<option>三成新</option>
-								<option>二成新</option>
-								<option>一成新</option>
+							</label><br /> 
+							<select id="status" name="status">
+								<option value="全新">全新</option>
+								<option value="九成新">九成新</option>
+								<option value="八成新">八成新</option>
+								<option value="七成新">七成新</option>
+								<option value="六成新">六成新</option>
+								<option value="五成新">五成新</option>
+								<option value="四成新">四成新</option>
+								<option value="三成新">三成新</option>
+								<option value="二成新">二成新</option>
+								<option value="一成新">一成新</option>
 							</select>
 						</div>
 						<div class="form-gorup col-xs-12">
@@ -239,7 +241,7 @@
 								var ProductID = tr.children(".ProductID")
 										.text();
 								var Title = tr.children(".Title").text();
-								var StatusName = tr.children(".StatusName")
+								var StatusID = tr.find(".StatusID")
 										.text();
 								var ProductPrice = tr.children(".ProductPrice")
 										.text();
@@ -253,11 +255,24 @@
 								form.find('#ProductID2').text(ProductID);
 								form.find('#Title').attr("value", Title);
 								form.find('#Title2').text(Title);
-								form.find('#StatusName').attr("value",
-										StatusName);
+								var option1=form.find('#StatusName option')
+								$.each(option1,function(i,opt){
+									if($(opt).val()==StatusID){
+										$(opt).prop("selected",true);
+									}
+									
+								})
 								form.find('#ProductPrice').attr("value",
 										ProductPrice);
-								form.find('#status').attr("value", status);
+								
+								var option2=form.find('#status option');
+								$.each(option2,function(i,opt){
+									if($(opt).val()==status){
+										$(opt).prop("selected",true);
+									}
+									
+								})
+								
 								form.find('#Detail').attr("value", Detail);
 
 								//Update
@@ -265,9 +280,7 @@
 										.click(
 												function(event) {
 													event.preventDefault();
-													var data = $(
-															'#newProductCont')
-															.serialize();
+													var data = $('#newProductCont').serialize();
 													// 					var ProductID = $('#newProductCont').find('#ProductID').val();
 													// 					var Title = $('#newProductCont').find('#Title').val();
 													// 					var StatusName = $('#newProductCont').find('#StatusName').val();
@@ -277,18 +290,13 @@
 
 													// 					alert(StatusName);
 
-													$
-															.post(
-																	"/ireading/manager/productlaunched.controller/update",
-																	data,
-																	function(
+													$.post("/ireading/manager/productlaunched.controller/update",data,function(
 																			data) {
 																		console
 																				.log(data[0].change);
 																		if (data[0].change == "1") {
 																			alert("資料更新成功");
-																			location
-																					.reload();
+																			location.reload();
 																		} else {
 																			alert("資料更新失敗");
 																		}
@@ -299,14 +307,7 @@
 		});
 	</script>
 <!-- 	<script type="text/javascript" src="./html2canvas.js"></script> -->
-	<script>
-// 		html2canvas(document.body, {
-// 			onrendered : function(canvas) {
-// 				document.body.appendChild(canvas)
-				
-// 			}
-// 		})
-	</script>
+	
 
 </body>
 <script type="text/javascript" src="<c:url value="/js/slidemenu.js"/>"></script>

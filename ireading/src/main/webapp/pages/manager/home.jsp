@@ -43,7 +43,7 @@ padding: 20px;
    <div class="container">
     <h1><span class="glyphicon glyphicon-home"></span>功能選單</h1>
      <div class="col-xs-6 col-sm-4">
-        <a class="btn btn-block btn-lg btn-success menubtn"  style="background-color: rgba(86, 120, 193, 0.67);">
+        <a class="btn btn-block btn-lg btn-success menubtn" href="<c:url value="/pages/member/member_manage.jsp"/>"  style="background-color: rgba(86, 120, 193, 0.67);">
             <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-user"></span><br><br>
             <span class="texto_grande">會員管理</span></a>
       </div>
@@ -55,7 +55,7 @@ padding: 20px;
             <span class="texto_grande">訂單管理</span></a>
       </div>
       <div class="col-xs-6 col-sm-4">
-        <a class="btn btn-block btn-lg btn-success menubtn" style="background-color: rgba(193, 86, 91, 0.71);
+        <a class="btn btn-block btn-lg btn-success menubtn" href="<c:url value="/user/productlaunched.controller/SearchList?search="/>" style="background-color: rgba(193, 86, 91, 0.71);
     border: none;
     padding: 20px;">
             <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-tags"></span><br><br>

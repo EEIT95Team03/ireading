@@ -45,7 +45,7 @@
                 </div>  
                  <li>
                 
-                    <a href=""><span class="glyphicon glyphicon-user"></span>&nbsp;會員管理</a>
+                    <a href="<c:url value="/pages/member/member_manage.jsp"/>"><span class="glyphicon glyphicon-user"></span>&nbsp;會員管理</a>
                 </li>
                 <li>
                 
@@ -53,7 +53,7 @@
                 </li>
      
                 <li>
-                    <a href=""><span class="glyphicon glyphicon-tags"></span>&nbsp;二手書上架管理</a>
+                    <a href="<c:url value="/user/productlaunched.controller/SearchList?search="/>"><span class="glyphicon glyphicon-tags"></span>&nbsp;二手書上架管理</a>
                 </li>
                 <li>
                     <a href=""><span class="glyphicon glyphicon-home"></span>&nbsp;商品管理</a>

@@ -67,7 +67,7 @@ public class ProductLaunchedController {
 		// System.out.println("sqlText:" + sqlText);
 		
 		if (searchName.trim().length() != 0) {//SellListID
-			String sqlText = "SELECT DISTINCT s.SellListID, s.MemberID, sl.StatusName, p.Detail, p.Status "
+			String sqlText = "SELECT DISTINCT s.SellListID,s.ApplyDate,s.MemberID, sl.StatusName, p.Detail, p.Status "
 					+ "FROM SellList s "
 					+ "JOIN Product p " + "ON p.SellListID = s.SellListID "
 					+ "JOIN SellListStatus sl " + "ON sl.StatusID = s.StatusID "
@@ -78,7 +78,7 @@ public class ProductLaunchedController {
 			
 			model.addAttribute("dataList", dataList);
 		} else {
-			String sqlText ="SELECT DISTINCT s.SellListID, s.MemberID, sl.StatusName "
+			String sqlText ="SELECT DISTINCT s.SellListID,s.ApplyDate, s.MemberID, sl.StatusName "
 					+ "FROM SellList s "
 					+ "JOIN Product p " + "ON p.SellListID = s.SellListID "
 					+ "JOIN SellListStatus sl " + "ON sl.StatusID = s.StatusID ";
@@ -98,11 +98,11 @@ public class ProductLaunchedController {
 
 		String searchName = MapUtils.getString(param, "searchstatus");
 
-		String sqlText = "SELECT DISTINCT s.SellListID, s.MemberID, sl.StatusName "
+		String sqlText = "SELECT DISTINCT s.SellListID,s.ApplyDate, s.MemberID, sl.StatusName "
 				+ "FROM SellList s "
 				+ "JOIN Product p " + "ON p.SellListID = s.SellListID "
 				+ "JOIN SellListStatus sl " + "ON sl.StatusID = s.StatusID "
-				+ "WHERE s.StatusID = '" + searchName +"' ";
+				+ "WHERE s.StatusID like '%" + searchName +"%' ";
 		
 		System.out.println("searchName:" + searchName);
 		
@@ -123,7 +123,7 @@ public class ProductLaunchedController {
 //		join ProductStatus ps
 //		on ps.StatusID = p.StatusID 
 		
-		String sqltext = "select p.ProductID, p.ProductPrice, ps.StatusName, p.Detail, p.status, p.selllistID, b.Title " +
+		String sqltext = "select p.ProductID, p.ProductPrice,p.StatusID, ps.StatusName, p.Detail, p.status, p.selllistID, b.Title " +
 				         "from Product p join Books b on b.ISBN = p.ISBN " +
 				         "join ProductStatus ps on ps.StatusID = p.StatusID " +
 				         "where SellListID = '" + SellListID+"' ";
