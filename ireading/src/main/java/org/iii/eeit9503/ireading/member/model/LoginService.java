@@ -26,6 +26,19 @@ public class LoginService {
 		return null;
 	}
 	
+	public MemberBean Managerlogin(String account, String password){
+		MemberBean bean = memberDao.selectByAccount(account);
+		if(bean!=null){
+			if(password!=null && password.length()!=0){
+				if(password.equals(bean.getPwd())){
+					if(bean.getAuth()==2){
+					return bean;}
+				}
+			}
+		}
+		return null;
+	}
+	
 	
 	
 	

@@ -147,11 +147,13 @@ border-radius: 5px;
 								<label for="Cont">評論 <textarea
 										style='width: 30em; height: 8em;' type="text"
 										class="form-control" id="n_Cont" name="Cont" value=""></textarea>
+										<span id="ContErr1" style="color:red;"></span>
 								</label>
 							</div>
 							<div class="form-gorup col-xs-12">
-								<label for="rate">評分 <input type="number"
-									class="form-control" id="n_rate" name="rate" value=""></input>
+								<label for="rate">評分 (1~5分)<input type="number"
+									class="form-control" id="n_rate" name="rate" value="" min="1" max="5" ></input>
+								<span id="ContErr2" style="color:red;"></span>
 								</label>
 							</div>
 							<input class='memberID' name="MemberID" style="display: none;" />
@@ -236,14 +238,25 @@ border-radius: 5px;
 		$('#newCon #btn_ContS').click(
 				function(event) {
 					event.preventDefault();
-				$('#ContErr').remove();
+				$('#ContErr1').empty();
+				$('#ContErr2').empty();
 					var data = $('#neBookCont').serialize();
 					var Cont = $('#neBookCont').find('#n_Cont').val();
+					var rate=$('#neBookCont').find('#n_rate').val();
+					if(Cont=="" || parseInt(rate)<1 || parseInt(rate)>5){
 					if(Cont==""){
-						var ContErr = $('<div id="ContErr" style="color:red;">請輸入評論</div>');
+						var ContErr = $('#ContErr1').text("請輸入評論");
 						$('#neBookCont').find('#n_Cont').after(ContErr);
-						return;
-					}										
+					}
+										
+					if(parseInt(rate)<1 || parseInt(rate)>5 ){
+						var ContErr = $('#ContErr2').text("請輸入1~5分");
+						$('#neBookCont').find('#n_rate').after(ContErr);
+					}
+					
+					return;
+					}
+					
 					$.post("/ireading/manager/review.controller/update", data,
 							function(data) {														
 								console.log(data[0].change);

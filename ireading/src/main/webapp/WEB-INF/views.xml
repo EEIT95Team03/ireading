@@ -181,7 +181,26 @@
 	</bean>
 
 <!-- Manager功能 -->
+<bean id="manager.login"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/manager/login.jsp"></property>
+	</bean>
+	
+	<bean id="manager.home" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="url" value="/pages/manager/home.jsp"></property>
+		<property name="contextRelative" value="true"></property>
+	</bean>
+	
+	<bean id="manager.orderlist"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/manager/OrderList.jsp"></property>
+	</bean>
 
+<bean id= "manager.editorder"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/manager/editOrder.jsp"></property>
+	</bean>
+	
 	<bean id="productlaunched.list"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/manager/ProductLaunchedList.jsp"></property>

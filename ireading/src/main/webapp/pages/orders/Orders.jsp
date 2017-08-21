@@ -32,7 +32,7 @@
 							<td>${order.odate}</td>
 							<td>${order.memberID}</td>
 							<td>${order.orderStatusBean.statusName}</td>
-							<td class="text-center"> 
+							<td class="text-center"> 				
 								<a class='btn btn-info btn-xs editbtn'> <span
 									class="glyphicon glyphicon-edit"></span>Edit</a>
 									<button class="btn btn-danger btn-xs deletebtn">

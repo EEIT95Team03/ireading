@@ -4,7 +4,9 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.iii.eeit9503.ireading.member.model.OutputService;
 import org.iii.eeit9503.ireading.order.bean.OrderBean;
 import org.iii.eeit9503.ireading.order.bean.OrderDetailBean;
@@ -21,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -45,18 +49,109 @@ public class OrderController {
 	private OrderDetailService orderDetailService;
 	@Autowired
 	private IDGgenerator idGgenerator;
-	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 	@RequestMapping(method={RequestMethod.GET})
 	public String OrederList(Model model){
 			System.out.println("--------------");
-			List<OrderBean> list=orderService.getAll();
+			String sqltext = "SELECT OrderID,MemberID,StatusName,Odate,Ototal,Paid "
+					+ " FROM Orders o "
+					+ " join OrderStatus os "
+					+ " on o.StatusID = os.StatusID ";
+			List<Map<String,Object>> list = jdbcTemplate.queryForList(sqltext.toString());
 			model.addAttribute("orders", list);
 			
-			return "order.list";
+			return "manager.orderlist";
 
 		}
 
+	
+	@RequestMapping(value="/search",method={RequestMethod.GET})
+	public String search(Model model,@RequestParam Map<String,Object> param){
+			
+			String OrderID = MapUtils.getString(param, "OrderID");
+			String MemberID = MapUtils.getString(param, "MemberID");
+			String OrderStatus = MapUtils.getString(param, "OrderStatus");
+			
+			String sqltext = null;
+			
+			if(OrderID.trim().length()==0 && MemberID.trim().length()==0 && OrderStatus.trim().length()==0){
+				sqltext = "SELECT OrderID,MemberID,StatusName,Odate,Ototal,Paid "
+						+ " FROM Orders o "
+						+ " join OrderStatus os "
+						+ " on o.StatusID = os.StatusID ";
+				
+			}else{
+				sqltext = "SELECT OrderID,MemberID,StatusName,Odate,Ototal,Paid "
+						+ " FROM Orders o "
+						+ " join OrderStatus os "
+						+ " on o.StatusID = os.StatusID "
+						+ " where (OrderID like '%"+OrderID+"%') "
+						+ " AND (MemberID like '%"+MemberID+"%') "
+						+ " AND (o.StatusID like '%"+OrderStatus+"%')";
+			}
+			
+			List<Map<String,Object>> list = jdbcTemplate.queryForList(sqltext.toString());
+			
+			model.addAttribute("orders", list);
+			
+			return "manager.orderlist";
+
+		}
+	
+	@RequestMapping(value="/edit/{OrderID}",method={RequestMethod.GET})
+	public String editOrder(@PathVariable("OrderID") String OrderID,Model model){
+		OrderBean orderbean=orderService.findByID(OrderID);
+		
+		List<OrderDetailBean> odbean=orderDetailService.findByOrderID(OrderID);
+		model.addAttribute("OrderID", OrderID);
+		model.addAttribute("order", orderbean);
+		model.addAttribute("OrderDetails", odbean);
+		
+		return "manager.editorder";				
+	}
+	
+	@RequestMapping(value="/edit/update",method={RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String saveOrder(Model model,@RequestParam Map<String,Object> param){
+		try{
+		String OrderID = MapUtils.getString(param, "OrderID");
+		
+		OrderBean orderbean=orderService.findByID(OrderID);
+		
+		String Oinvoice=MapUtils.getString(param, "Oinvoice");
+		String status=MapUtils.getString(param, "status");
+		int Ototal=MapUtils.getInteger(param, "Ototal");
+		String Reciepient=MapUtils.getString(param, "Reciepient");
+		String Oaddr=MapUtils.getString(param, "Oaddr");
+		String Omemo=MapUtils.getString(param, "Omemo");
+		
+		
+		orderbean.setInvoice(Oinvoice);
+		orderbean.setOrderStatusBean(orderStatusService.findByID(status));
+		orderbean.setOtotal(Ototal);
+		orderbean.setReciepient(Reciepient);
+		orderbean.setOaddr(Oaddr);
+		orderbean.setOmemo(Omemo);
+		
+		JSONArray arrary=new JSONArray();
+		JSONObject obj=new JSONObject();
+		obj.put("change", "1");
+		arrary.put(obj);
+		
+		return arrary.toString();		
+		}catch(Exception e){
+			JSONArray arrary=new JSONArray();
+			JSONObject obj=new JSONObject();
+			obj.put("change", "0");
+			arrary.put(obj);
+			
+			return arrary.toString();		
+		}
+	}
+	
+	
 	
 	public String update(String OrderID,String Odate,String Oinvoice,String memberid
 			             ,String status,String Ototal,String pay,String Reciepient,String Oaddr
