@@ -1,4 +1,4 @@
-﻿ * {
+ * {
     font-family:微軟正黑體;
 }
      body {
@@ -13,19 +13,10 @@ margin-right:50px;
 margin-bottom:100px;
 }
 
-/*售出書籍清單*/
- .head-title {
-        font-size:30px;
-        font-weight:800;
-        line-height:50px;
-        font-family:微軟正黑體;
-        }
-
-        #selloutTable th:hover{
-        background-color:rgba(152, 215, 247,0.5);
-        }
-        
-
+.head-title{
+	color:white;
+	
+}
 
 body,
 html { height: 100%;}
@@ -43,7 +34,6 @@ html { height: 100%;}
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    overflow:-webkit-paged-y;
 }
 
 #wrapper.toggled {
@@ -58,7 +48,7 @@ html { height: 100%;}
     margin-left: -220px;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #0782a7;
+    background: #80beb0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -75,8 +65,7 @@ html { height: 100%;}
 
 #page-content-wrapper {
     width: 100%;
-    padding-top: 20px;
-    height: 700px;
+    padding-top: 70px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -158,7 +147,7 @@ html { height: 100%;}
 
 .sidebar-nav li a {
     display: block;
-    color: #ddd;
+    color: white;
     text-decoration: none;
     padding: 10px 15px 10px 30px;    
 }

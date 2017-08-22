@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>usermenu</title>
 </head>
 <body>
-<header>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="list">
                     <li class="active"><a href="<c:url value="/browse/searchBooks.controller/searchBooksList?search="/>">享。找書<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">享。賣書</a></li>
+                    <li><a  href="javascript:void(0)" onclick="sellbook()" >享。賣書</a></li>
                     <li><a href="<c:url value="/browse/joinevent.controller/joinEventList"/>">享。活動</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -229,56 +229,44 @@
 	</div>
 	</div>
 
-<div id="wrapper">
-        <div class="overlay"></div>
-    
-        <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-            <div>
-            
-            </div>
-            <ul class="nav sidebar-nav">
-                <!--<li class="sidebar-brand">-->
-                <div class="container-fluid" style="text-align:center;background-color: #98d7f7;padding:5%;border-bottom-left-radius:50px;border-bottom-right-radius:50px;margin-bottom:20px;">
-                <h1 id="username" style="color:white;font-family:微軟正黑體;font-weight:700;"><span>${Name}</span></h1>
-                <div id="userPic" style="margin:25px">
-                <c:choose>
-                <c:when test="${empty Photo}">
-                 <img src="http://pic.gomaji.com/uploads/stores/072/72/50241/1.jpg" alt="username" class="img-circle img-responsive" style="background-color:white;margin:auto;border:8px solid #efefef; box-shadow:2px 2px 5px gray; width:220px;height:220px">
-                </c:when>
-                <c:otherwise>
-                 <img src="data:image/png;base64,${Photo}" alt="username" class="img-circle img-responsive" style="background-color:white;margin:auto;border:8px solid #efefef; box-shadow:2px 2px 5px gray; width:220px;height:220px">
-                </c:otherwise>
-                </c:choose>
-                </div>
-                    <button type="button" class="btn btn-warning" style="font-family:微軟正黑體;font-weight:500;"><span class="glyphicon glyphicon-pencil"></span>&nbsp;個人資料</button>  
-                </div>  
-                <li>
-                
-                    <a href="<c:url value="/user/myorder/getOrders"/>"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的訂單</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/user/account"/>"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的帳戶</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/pages/user/ApplyToSell.jsp"/>"><span class="glyphicon glyphicon-tags"></span>&nbsp;申請賣書</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/user/product/sellBook"/>"><span class="glyphicon glyphicon-home"></span>&nbsp;我的書店</a>
-                </li>
-                <li>
-                    <a href="<c:url value='/user/bookcase'/>"><span class="glyphicon glyphicon-book"></span>&nbsp;我的書櫃</a>
-                </li>
-                <li>
-                    <a href="<c:url value='/user/review.controller/getReview'/>"><span class="glyphicon glyphicon-comment"></span>&nbsp;我的書評</a>
-                </li>
-                <li>
-                    <a  href="<c:url value="/user/joinevent.controller/myEventList"/>"><span class="glyphicon glyphicon-calendar"></span>&nbsp;我的活動</a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /#sidebar-wrapper -->
-        
+
+	<div id="wrapper">
+		<div class="overlay"></div>
+
+		<!-- Sidebar -->
+		<nav class="navbar navbar-inverse navbar-fixed-top"
+			id="sidebar-wrapper" role="navigation">
+		<div></div>
+		<ul class="nav sidebar-nav">
+			<!--<li class="sidebar-brand">-->
+			<div class="container-fluid" style="text-align: center; background-color: lightgray; padding: 5%; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px; margin-bottom: 20px;">
+				<h1 id="sideUserName" style="color: white; font-family: 微軟正黑體; font-weight: 700;">米小奇</h1>
+				<div style="margin: 25px">
+					<img id="sideUserPic" src="" alt="username" class="img-circle img-responsive"
+						style="background-color: white; margin: auto; border: 8px solid #efefef; box-shadow: 2px 2px 5px gray; width: 220px; height: 220px">
+				</div>
+				<a class="btn" style='background-color: #80beb0;color:white' href='/ireading/pages/user/member_user.jsp'
+					style="font-family: 微軟正黑體; font-weight: 500;">
+					<span class="glyphicon glyphicon-pencil"></span>&nbsp;個人資料
+				</a>
+			</div>
+			<li><a href="<c:url value="/user/myorder/getOrders"/>">
+				<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的訂單</a></li>
+			<li><a href="<c:url value="/user/account"/>">
+				<span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的帳戶</a></li>
+			<li><a href="<c:url value="/pages/user/ApplyToSell.jsp"/>">
+				<span class="glyphicon glyphicon-tags"></span>&nbsp;申請賣書</a></li>
+			<li><a href="<c:url value="/user/product/sellBook"/>">
+				<span class="glyphicon glyphicon-home"></span>&nbsp;我的書店</a></li>
+			<li><a href="<c:url value='/user/bookcase'/>">
+				<span class="glyphicon glyphicon-book"></span>&nbsp;我的書櫃</a></li>
+			<li><a href="<c:url value='/user/review.controller/getReview'/>">
+				<span class="glyphicon glyphicon-comment"></span>&nbsp;我的書評</a></li>
+			<li><a href="<c:url value="/user/joinevent.controller/myEventList"/>">
+				<span class="glyphicon glyphicon-calendar"></span>&nbsp;我的活動</a></li>
+		</ul>
+		</nav>
+		<!-- /#sidebar-wrapper -->
                 <!-- Page Content -->
         <div id="page-content-wrapper">
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
@@ -291,8 +279,62 @@
                 
                 
                 
-                
-                 
+       
     </div>
 </body>
+<script type="text/javascript">
+$(function() {
+	var memberID = getCookie('login_id');
+// 	var memberID = 'M170000029';
+	
+	$.ajax({
+	    type: 'POST',
+	    url: '/ireading/user/member.controller/ShowRepost',
+	    data: {
+	        'memberID':memberID
+	    },
+	    success: function(json){
+	    	if(json[0].NickName!=""){
+	    		$('#sideUserName').text(json[0].NickName);	
+	    	}
+	    	else if(json[0].MName!=""){
+	    		$('#sideUserName').text(json[0].MName);	
+	    	}
+	    	else if(json[0].Account!=""){
+	    		var temp = json[0].Account;
+	    		var n = temp.indexOf('@');
+	    		$('#sideUserName').text(temp.substr(0,n));	
+	    	}
+	    	else{
+	    		$('#sideUserName').text('享。閱人');
+	    	}
+	    	
+	    	if(json[0].Photo!=""){
+	    		$('#sideUserPic').attr('src', "data:image/png;base64 ," + json[0].Photo).attr('width','100%');	
+	    	}
+	    	else{
+	    		$('#sideUserPic').attr('src', "/ireading/images/MEMPHOTO.png").attr('width','100%');
+	    	}
+	    }
+	});
+	
+	
+})
+function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					var cookieout = c.substring(name.length, c.length);
+					return cookieout;
+				}
+			}
+			return "";
+		}
+</script>
 </html>

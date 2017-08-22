@@ -68,7 +68,7 @@
 <c:forEach var="bookcase" items="${bookCases}" varStatus="index">
             <div class="bookcase col-xs-12">                                                 
             <div class="col-xs-12 media-body">
-                <div class="col-xs-12 col-md-8"><h4 class="head-title label bookCaseName">${bookcase.BCName}</h4></div>               				
+                <div class="col-xs-12 col-md-8"><h2 class="head-title bookCaseName">${bookcase.BCName}</h2></div>               				
 							<div class="text-right col-xs-12 col-md-4 btnblock">
                                 <a class="btn btn-success editbtn" data-toggle="modal" data-target="#updatebc">
 									<span class="glyphicon glyphicon-pencil"></span>

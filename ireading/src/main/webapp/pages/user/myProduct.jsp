@@ -36,7 +36,7 @@
             <div class="container-fluid">
 
                 <div class="navbar-header">
-                 <h1 class="label head-title">上架中二手書</h1>                   
+                 <h1 class="head-title">上架中二手書</h1>                   
                 </div>
 
                 <div class="navbar-right col-xs-12 col-sm-4"><h4 class="text-right"></h4></div>                  
