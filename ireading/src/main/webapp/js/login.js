@@ -227,6 +227,8 @@ $(function() {
 	});
 	
 	
+	
+	
 })
 
 
@@ -275,6 +277,16 @@ function loggout() {
 	$('#loginlink').removeClass().addClass("show");
 	deleteCookie();
 	window.location.replace("/ireading/");
+}
+
+
+function sellbook(){
+	if(getCookie("login_id")!="")
+		{window.location.href ="/ireading/pages/user/ApplyToSell.jsp";}
+	else{
+		$('#LoginBlock').modal('show');
+	}
+	
 }
 
 //清除表格

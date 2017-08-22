@@ -17,6 +17,8 @@ public class OutputBean implements Serializable {
 	private String BankAccount;
 	private int Amount;
 	private int TotalTransfer;
+	private String AccountName;
+	private String BankID;
 	
 	public String getMemberID() {
 		return MemberID;
@@ -49,4 +51,17 @@ public class OutputBean implements Serializable {
 	public void setTotalTransfer(int totalTransfer) {
 		TotalTransfer = totalTransfer;
 	}
+	public String getAccountName() {
+		return AccountName;
+	}
+	public void setAccountName(String accountName) {
+		AccountName = accountName;
+	}
+	public String getBankID() {
+		return BankID;
+	}
+	public void setBankID(String bankID) {
+		BankID = bankID;
+	}
+	
 }

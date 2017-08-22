@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="list">
                     <li class="active"><a href="<c:url value="/browse/searchBooks.controller/searchBooksList?search="/>">享。找書<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">享。賣書</a></li>
+                    <li><a  href="javascript:void(0)" onclick="sellbook()" >享。賣書</a></li>
                      <li><a href="<c:url value="/browse/joinevent.controller/joinEventList"/>">享。活動</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
