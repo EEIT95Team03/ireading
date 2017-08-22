@@ -171,7 +171,7 @@ public class BooksController {
 			
 			 booksService.insert(bean);
 			
-			return "Books.Index";
+			return "manager.Bookslist";
 		}
 		
 		
@@ -197,10 +197,10 @@ public class BooksController {
 			} else {
 				model.addAttribute("update", result);
 			}
-			return "Books.Index";
+			return "/manager/books.controller/booksMainPage?Title=&CategoryID=&Year=&ISBN=&Author=&Publisher=";
 		}else  {
 			errors.put("action", "Unknown Action:"+prodaction);
-			return "Books.Index";
+			return "manager.Bookslist";
 		}
 		
 	}

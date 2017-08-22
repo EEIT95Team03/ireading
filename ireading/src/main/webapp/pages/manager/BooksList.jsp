@@ -98,18 +98,14 @@
                         <table id="bookslist">
 				<thead>
 					<tr>
-						<th style="text-align: center;">ISBN編號</th>
-						
-						<th style="text-align: center;">書名</th>
-						<th style="text-align: center;">封面</th>
-						<th style="text-align: center;">作者</th>
-						<th style="text-align: center;">出版社</th>
-						<th style="text-align: center;">分類</th>
-						<th style="text-align: center;">語言</th>
-						<th style="text-align: center;">出版日期</th>
-						<th style="text-align: center;">售價</th>
-						<th style="text-align: center;">點擊率</th>
-						<th style="text-align: center;">評分平均</th>
+						<th class="text-center">書籍</th>
+						<th class="text-center">作者</th>
+						<th class="text-center">出版社</th>
+						<th class="text-center">分類</th>
+						<th class="text-center">出版日期</th>
+						<th class="text-center">售價</th>
+						<th class="text-center">點擊率</th>
+						<th class="text-center">評分平均</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -117,20 +113,14 @@
 					<c:forEach var="books" items="${dataLs}">
 						<tr>
 						
-							<td class="bid">${books.ISBN}</td>
-							
-							<td>${books.title}</td>
-							<td ><img style="width: 20px" src="data:image/png;base64, ${books.Cover}"/></td>
-<%--  							<td ><img style="width: 20px" src="https://media.taaze.tw/showLargeImage.html?sc=${books.Img}"/></td> --%>
-							<td>${books.author}</td>
-							<td>${books.publisher}</td>
-							<td >${books.categoryID}</td>
-							<td>
-							<c:if test="${books.language eq 1}"> 外文</c:if>
-            				<c:if test="${books.language eq 0}"> 中文</c:if>
-            				</td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${books.pub_Date}"/></td>
-							<td>
+							<td class="bid col-xs-4" style="padding-bottom: 10px;"><div class="col-xs-3"><img style="width: 50px" src="data:image/png;base64, ${books.Cover}"/></div>
+							<div class="col-xs-9"><label class="label label-success">ISBN</label>${books.ISBN}<br>${books.title}</div>
+							</td>
+							<td class="col-xs-1">${books.author}</td>
+							<td class="col-xs-2">${books.publisher}</td>
+							<td class="col-xs-1">${books.categoryID}</td>
+							<td class="col-xs-2"><fmt:formatDate pattern="yyyy-MM-dd" value="${books.pub_Date}"/></td>
+							<td class="col-xs-1">
 							<fmt:parseNumber integerOnly="true" value="${books.ori_Price}"/></td>
 							<td>${books.click}</td>
 							<td>${books.rateAvg}</td>
