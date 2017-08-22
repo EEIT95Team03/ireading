@@ -15,19 +15,19 @@
               <div class="col-md-4">
                 <center>
                   <br>
-                  <h4 class="footertext"><a target="_blank" href="aboutus.html">關於：享。閱</a></h4>
+                  <h4 class="footertext"><a target="_blank" href="/ireading/pages/report/Profile.jsp">關於：享。閱</a></h4>
                 </center>
               </div>
               <div class="col-md-4">
                 <center>
                   <br>
-                  <h4 class="footertext"><a target="_blank" href="team.html">我們是：享。閱</a></h4>
+                  <h4 class="footertext"><a target="_blank" href="/ireading/pages/report/Profile.jsp#team">我們是：享。閱</a></h4>
                 </center>
               </div>
               <div class="col-md-4">
                 <center>
                   <br>
-                  <h4 class="footertext"><a target="_blank" href="contact.html">聯絡我們</a></h4>
+                  <h4 class="footertext"><a target="_blank" href="/ireading/pages/report/Profile.jsp#contact">聯絡我們</a></h4>
                 </center>
               </div>
             </div>

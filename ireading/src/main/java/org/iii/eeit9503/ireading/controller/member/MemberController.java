@@ -3,7 +3,6 @@ package org.iii.eeit9503.ireading.controller.member;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,9 @@ import java.util.Map;
 import org.iii.eeit9503.ireading.member.bean.MemberBean;
 import org.iii.eeit9503.ireading.member.model.MemberService;
 import org.iii.eeit9503.ireading.misc.FileUploader;
+//import org.iii.eeit9503.ireading.misc.PageParam;
+//import org.iii.eeit9503.ireading.misc.Pagination;
+//import org.iii.eeit9503.ireading.misc.PaginationMk2;
 import org.iii.eeit9503.ireading.transfer.IDGgenerator;
 import org.iii.eeit9503.ireading.transfer.PrimitiveNumberEditor;
 import org.json.JSONArray;
@@ -204,7 +206,9 @@ public class MemberController {
 			tempbean.setPhoto(fileUploader.toFileBean(file).getFileBinary());
 		}
 		else{
-			bean.setPhoto(tempbean.getPhoto());
+			Object img = memberService.getPhoto(bean.getMemberID());
+			bean.setPhoto((byte[]) img);
+//			bean.setPhoto(tempbean.getPhoto());
 		}
 		System.out.println(tempbean.getRegDate());
 		JSONArray arry = new JSONArray();
@@ -293,5 +297,21 @@ public class MemberController {
 	}
 
 	
+
+	// public FileBean toFileBean(CommonsMultipartFile multipartFile) {
+	// FileBean fileBean = new FileBean();
+	// String[] temp = multipartFile.getOriginalFilename().split("\\.");
+	// String fileName = temp[0];
+	// String fileExtension = temp[1];
+	// long fileLength = multipartFile.getSize();
+	// byte[] fileBytes = multipartFile.getBytes();
+	//
+	// fileBean.setFileName(fileName);
+	// fileBean.setFileBinary(fileBytes);
+	// fileBean.setFileLengtn(fileLength);
+	// fileBean.setFileExtension(fileExtension);
+	//
+	// return fileBean;
+	// }
 
 }

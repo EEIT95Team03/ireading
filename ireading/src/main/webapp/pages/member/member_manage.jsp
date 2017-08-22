@@ -24,8 +24,12 @@
 	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script> 
-
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+<script
+	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link
+	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="<c:url value='/css/frontpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
@@ -845,13 +849,13 @@ body {
 								<label class="input-group-addon glyphicon glyphicon-picture"></label>
 							</div>
 						</div>
-						
-<!-- 						<div class="form-group"> -->
-<!-- 							<div class="input-group"> -->
-<!-- 								<label id='RegDate'></label> -->
-<!-- 								<label class="input-group-addon glyphicon glyphicon-calendar"></label> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+
+						<div class="form-group">
+							<div class="input-group">
+<!-- 								<input type="checkbox" checked data-width='200' data-toggle="toggle" data-on="權限正常" data-off="停權狀態" data-onstyle="success" data-offstyle="danger"> -->
+							</div>
+						</div>						
+
 						
 						<div class="modal-footer">
 							<button id="updatebutton" class="form-control btn btn-primary"	name="memaction" value="Update">確定。修</button>
@@ -911,6 +915,7 @@ body {
 			function(event) {
 				event.preventDefault();
 				$('#updateSuccess').modal('toggle');
+				location.reload();
 			})
 	</script>
 
