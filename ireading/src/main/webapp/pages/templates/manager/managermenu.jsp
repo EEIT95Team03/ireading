@@ -53,16 +53,16 @@
                 </li>
      
                 <li>
-                    <a href="<c:url value="/user/productlaunched.controller/SearchList?search="/>"><span class="glyphicon glyphicon-tags"></span>&nbsp;二手書上架管理</a>
+                    <a href="<c:url value="/manager/productlaunched.controller/SearchList?search="/>"><span class="glyphicon glyphicon-tags"></span>&nbsp;二手書上架管理</a>
                 </li>
                 <li>
-                    <a href=""><span class="glyphicon glyphicon-home"></span>&nbsp;商品管理</a>
+                    <a href="<c:url value="/manager/Manager.product/selectProduct?search=&search2=&search3="/>"><span class="glyphicon glyphicon-home"></span>&nbsp;商品管理</a>
+                </li>
+                 <li>
+                   <a href="/ireading/manager/books.controller/booksMainPage?Title=&CategoryID=&Year=&ISBN=&Author=&Publisher="><span class="glyphicon glyphicon-book"></span>&nbsp;書籍資料維護</a>
                 </li>
                 <li>
-                   <a href=""><span class="glyphicon glyphicon-comment"></span>&nbsp;書評管理</a>
-                </li>
-                <li>
-                   <a href="<c:url value="/manager/event.controller/seeAllEvent"/>"></span>&nbsp;活動管理</a>
+                   <a href="<c:url value="/manager/event.controller/seeAllEvent"/>"><span  class="glyphicon glyphicon-calendar"></span>&nbsp;活動管理</a>
                 </li>
             </ul>
         </nav>

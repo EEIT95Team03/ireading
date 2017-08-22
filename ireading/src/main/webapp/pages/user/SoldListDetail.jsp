@@ -40,7 +40,9 @@
 		<br>
 		<span><input class="btn btn-info" type="button" onclick="history.back()"
 				value="回到上一頁"></input></span>
-			<h4><strong>商品清單編號： ${SellListID}</strong></h4>
+			<h4><label class="label label-warning">商品清單編號 </label><strong>${SellListID}</strong>&nbsp; 
+			<span><a href="<c:url value="/user/soldproduct.controller/print/${SellListID}"/>"
+				id="printlist" class="btn btn-info" type="button"><span class="glyphicon glyphicon-print"></span>列印您的清單</a></span></h4>
 			
 		</div>
 

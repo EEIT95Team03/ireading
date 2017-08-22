@@ -95,4 +95,31 @@ public class SoldProductController {
 
 		return "solddetail.list";
 	}
+	
+	@RequestMapping(value = "print/{SellListID}", method = { RequestMethod.GET })
+	public String printPDF(@PathVariable("SellListID") String SellListID, ProductBean productBean, Model model) {
+		
+		String sqltext = "select p.ProductID, p.ProductPrice, p.Detail, p.status, p.selllistID, b.Title " +
+				         "from Product p join Books b on b.ISBN = p.ISBN " +
+				         "where SellListID = " + SellListID;
+		
+		String sqltext2 ="select MemberID, ApplyDate from SellList where SellListID = " + SellListID;
+
+		List<Map<String, Object>> dataLs = jdbcTemplate.queryForList(sqltext.toString());
+		List<Map<String, Object>> dataLs2 = jdbcTemplate.queryForList(sqltext2.toString());
+		
+		model.addAttribute("dataLs", dataLs);
+		model.addAttribute("SellListID", SellListID);
+		model.addAttribute("dataLs2", dataLs2);
+		System.out.println(dataLs2);
+
+//		List<ProductBean> list = productService.findByPrimaryKey(SellListID);
+
+		// List<ReviewBean> list= reviewService.findByMemberID(MemberID);
+		// model.addAttribute("findByMemberID",list);
+		// model.addAttribute("MemberID", MemberID);
+		// System.out.println(MemberID);
+
+		return "user.printPDF";
+	}
 }

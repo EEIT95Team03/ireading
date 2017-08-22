@@ -63,16 +63,51 @@ public class BooksController {
 	 * @return Books.select
 	 */
 	@RequestMapping(value="/booksMainPage",method=RequestMethod.GET)
-	public String select(BooksBean bean, Model model,@RequestParam(name = "action") String action) {
+	public String select(BooksBean bean, Model model,@RequestParam Map<String,Object> param) {
 
-		List<BooksBean> list=booksService.select(bean);
-//		List<Map<String,Object>> dataLs = jdbcTemplate.queryForList("SELECT T1.ISBN,T2.CategoryName,"
-//				+ "T1.Title,T1.Cover,T1.Author,T1.Publisher,T1.Language,T1.Pub_Date,"
-//				+ "T1.Ori_Price,T1.Abstract,T1.Click,T1.RateAvg,T1.Img FROM Books "
-//				+ "T1 INNER JOIN Category T2 ON T1.CategoryID = T2.CategoryID".toString());
-		   model.addAttribute("dataLs", list);
+		String ISBN = MapUtils.getString(param, "ISBN");
+		String Title = MapUtils.getString(param, "Title");
+		String CategoryID = MapUtils.getString(param, "CategoryID");
+		String Author = MapUtils.getString(param, "Author");
+		String Publisher = MapUtils.getString(param, "Publisher");
+		String Year = MapUtils.getString(param, "Year");
+		if(Year==null){
+			Year="";
+		}
 		
-		return "Books.list";
+		String sqltext = null;
+		
+		if(ISBN.trim().length()==0 && Title.trim().length()==0 && CategoryID.trim().length()==0 && Author.trim().length()==0 && Publisher.trim().length()==0 && Year.trim().length()==0){
+			sqltext = "select * from books ";
+			
+		}else{
+			sqltext = "select * from books "
+					+ "where (Title like '%"+Title+"%' OR Title is null) "
+					+ "AND (CategoryID like '%"+CategoryID+"%' OR CategoryID is null)"
+					+ "AND (Author like '%"+Author+"%' OR Author is null)"
+					+ "AND (Publisher like '%"+Publisher+"%' OR Publisher is null)"
+					+ "AND (ISBN like '%"+ISBN+"%' OR ISBN is null) ";
+
+			if(Year.trim().length()!=0){
+				sqltext=sqltext+" AND YEAR(Pub_Date) ="+Year+" ";
+			}
+		}
+		
+
+		List<Map<String,Object>> booksdataList = jdbcTemplate.queryForList(sqltext.toString());
+		int index=0;
+		for(Map<String,Object> map:booksdataList)
+		{ BooksBean bbean=booksService.findByID((String)map.get("ISBN"));
+		booksdataList.get(index).put("Cover",bbean.getByteArrayString());
+		
+		Object count=booksService.getSellBookByISBN((String)map.get("ISBN"));		
+		booksdataList.get(index).put("Count",count);
+		
+		index++;
+		}
+		model.addAttribute("dataLs", booksdataList);
+		
+		return "manager.Bookslist";
 				
 	}
 	

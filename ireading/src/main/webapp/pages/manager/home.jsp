@@ -62,19 +62,18 @@ padding: 20px;
             <span class="texto_grande">二手書上架管理</span></a>
       </div>
            <div class="col-xs-6 col-sm-4">
-        <a class="btn btn-block btn-lg btn-success menubtn" style="background-color: rgba(30, 125, 42, 0.48);
+        <a class="btn btn-block btn-lg btn-success menubtn" href="<c:url value="/manager/Manager.product/selectProduct?search=&search2=&search3="/>" style="background-color: rgba(30, 125, 42, 0.48);
     border: none;
     padding: 20px;">
-            <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-home"></span><br><br>
+            <span style="font-size:100px;padding:5px;"  class="glyphicon glyphicon-home"></span><br><br>
             <span class="texto_grande">商品管理</span></a>
       </div>
-
-          <div class="col-xs-6 col-sm-4">
-        <a class="btn btn-block btn-lg btn-success menubtn"  style="background-color: rgba(199, 194, 21, 0.55);
+ <div class="col-xs-6 col-sm-4">
+        <a class="btn btn-block btn-lg btn-success menubtn" href="/ireading/manager/books.controller/booksMainPage?Title=&CategoryID=&Year=&ISBN=&Author=&Publisher="  style="background-color: rgba(224, 133, 40, 0.6);
     border: none;
     padding: 20px;">
-            <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-comment"></span><br><br>
-            <span class="texto_grande">書評管理</span></a>
+            <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-book"></span><br><br>
+            <span class="texto_grande">書籍資料維護</span></a>
       </div>
         <div class="col-xs-6 col-sm-4">
         <a class="btn btn-block btn-lg btn-success menubtn" href="<c:url value="/manager/event.controller/seeAllEvent"/>" style="background-color: rgba(197, 112, 159, 0.67);
