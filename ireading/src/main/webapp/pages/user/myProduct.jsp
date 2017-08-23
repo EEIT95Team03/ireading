@@ -60,7 +60,7 @@
                 <tr>
                         <td class="col-md-5">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"><img class="media-object" src="data:image/png;base64,${product.Cover}" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"><img class="media-object" src="data:image/png;base64,${product.Cover}" style="width: 72px; height: 100px;"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="<c:url value="/browse/searchBooks.controller/${product.ISBN}"/>">${product.Title}</a></h4>
                                 <h5 class="media-heading"> 編號 <a href="<c:url value="/browse/searchBooks.controller/${product.ISBN}?action=buy"/>" class="pid">${product.productID}</a></h5>

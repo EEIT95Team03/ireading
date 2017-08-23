@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>會員中心</title>
+<title>享閱管理者後台</title>
 
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
 <!--jQuery-->

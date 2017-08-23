@@ -36,7 +36,7 @@
             <div class="container-fluid">
 
                 <div class="navbar-header">
-                 <h1 class="label head-title">已出售商品清單</h1>                   
+                 <h1 class="head-title" style="color:white">已出售商品清單</h1>                   
                 </div>
               
                     <div class="navbar-form navbar-left col-xs-12 col-sm-4">
