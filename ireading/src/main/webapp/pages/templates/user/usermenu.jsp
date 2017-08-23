@@ -309,7 +309,7 @@ $(function() {
 	    		$('#sideUserName').text('享。閱人');
 	    	}
 	    	
-	    	if(json[0].Photo!=""){
+	    	if(json[0].Photo!= undefined){
 	    		$('#sideUserPic').attr('src', "data:image/png;base64 ," + json[0].Photo).attr('width','100%');	
 	    	}
 	    	else{

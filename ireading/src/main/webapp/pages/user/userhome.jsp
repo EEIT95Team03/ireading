@@ -43,7 +43,7 @@ padding: 20px;
    <div class="container">
     <h1><span class="glyphicon glyphicon-home"></span>會員中心</h1>
      <div class="col-xs-6 col-sm-4 col-md-3">
-        <a class="btn btn-block btn-lg btn-success menubtn"  style="background-color: rgba(86, 120, 193, 0.67);">
+        <a class="btn btn-block btn-lg btn-success menubtn" href='/ireading/pages/user/member_user.jsp' style="background-color: rgba(86, 120, 193, 0.67);">
             <span style="font-size:100px;padding:5px;" class="glyphicon glyphicon-user"></span><br><br>
             <span class="texto_grande">編輯帳號資訊</span></a>
       </div>

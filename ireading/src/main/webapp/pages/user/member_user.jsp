@@ -446,7 +446,7 @@ $(function() {
           								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="margin-top: 100px" class="fa fa-ellipsis-v pull-right"></span></a>
           								<ul class="dropdown-menu pull-right">
             								<li><a href="javascript:void(0)" onclick="updateTransfer()" style="line-height: 60px;display: inline;">修改檔案<i class="fa fa-edit"></i></a></li>
-            								<li><a href="#"  style="line-height: 60px;display: inline;">匯出金額<i class="fa fa-dollar"></i></a></li>
+            								<li><a href="<c:url value="/user/account"/>" style="line-height: 60px;display: inline;">匯出金額<i class="fa fa-dollar"></i></a></li>
 							          	</ul>
         							</li>
       							</ul>
@@ -492,25 +492,26 @@ $(function() {
 					   method="POST" enctype="multipart/form-data" role="form">
 						<div class="form-group">
 							<div class="input-group">
-								<input id='updMemberID' type="text" name="memberID" class="form-control" placeholder="請輸入會員編號"> 
+								<input id='updMemberID' type="text" name="memberID" class="form-control" placeholder="請輸入會員編號" readonly="readonly"> 
 								<label class="input-group-addon glyphicon glyphicon-search"></label>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<input id='updAccount' type="text" name="account" class="form-control" placeholder="請輸入電子郵件"> 
+								<input id='updAccount' type="text" name="account" class="form-control" placeholder="請輸入電子郵件" readonly="readonly"> 
 								<label class="input-group-addon glyphicon glyphicon-envelope"></label>
 							</div>
 						</div>
 
+						<div id='pwdMsg' class='hidden' style="color: red"></div>
 						<div class="form-group">
 							<div class="input-group">
 								<input id='updPwd' type="password" name="pwd" class="form-control" placeholder="請輸入密碼"> 
 								<label class="input-group-addon glyphicon glyphicon-lock"></label>
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<div class="input-group">
 								<input id='updMName' type="text" name="MName" class="form-control" placeholder="請輸入姓名"> 
@@ -602,6 +603,23 @@ $(function() {
 <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
 <script type="text/javascript">
 $(function() {
+	
+	$('#updPwd').blur(
+			function (event) {
+				event.preventDefault();
+				if(!passwordValid($("#updPwd").val())){
+					$('#pwdMsg').removeClass("hidden");
+					$('#pwdMsg').addClass("show");
+					$('#pwdMsg').text("密碼必須至少8碼，而且必須含數字大小寫的英文字元唷！");
+				}
+				else{
+					$('#pwdMsg').removeClass("show");
+					$('#pwdMsg').addClass("hidden");
+					$('#pwdMsg').text("");
+				}
+			}
+	)
+	
 	var memberID = getCookie('login_id');
 // 	var memberID = 'M170000029';
 	
@@ -668,7 +686,7 @@ function updateTransfer(){
 		        'memberID':memberID
 		    },
 		    success: function(json){
-		        $('#updMemberID').val(json[0].MemberID).prop('readonly',true).css('background-color','LightGray');
+		        $('#updMemberID').val(json[0].MemberID).css('background-color','LightGray');
 		        $('#updAccount').val(json[0].Account);
 		        $('#updPwd').val(json[0].Pwd);
 		        $('#updMName').val(json[0].MName);
@@ -751,6 +769,13 @@ function getCookie(cname) {
 			var cookies = document.cookie.split(";");
 			for (var i = 0; i < cookies.length; i++)
 				eraseCookie(cookies[i].split("=")[0]);
+		}
+		
+		//密碼驗證
+		//8碼，其中數字最少1碼，a-z最少一碼，A-Z最少一碼
+		function passwordValid(pwd) {
+			var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+			return regex.test(pwd);
 		}
 
 </script>

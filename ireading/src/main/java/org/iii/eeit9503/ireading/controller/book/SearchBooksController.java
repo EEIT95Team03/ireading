@@ -139,7 +139,7 @@ public class SearchBooksController {
 		
 		List<ProductBean> productList=productService.findByISBN(ISBN);
 		model.addAttribute("products", productList);
-		System.out.println(productList.get(0).getDigital());
+		//System.out.println(productList.get(0).getDigital());
 		
 		return "SearchBooks.singleBook";
 				

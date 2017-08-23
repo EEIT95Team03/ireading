@@ -92,10 +92,18 @@ $(function() {
 	$("input[name='Raccount']").blur(
 		function (event) {
 			event.preventDefault();
+			console.log($("input[name='Raccount']").val());
+			console.log(IsEmail($("input[name='Raccount']").val()));
 			if($("input[name='Raccount']").val()==""){
 				$('#reg_account').removeClass("hidden");
 				$('#reg_account').addClass("show");
-				$('#reg_account').text("帳號不能空白唷");
+				$('#reg_account').text("帳號不能空白唷！");
+			}
+			
+			else if(!IsEmail($("input[name='Raccount']").val())){
+				$('#reg_account').removeClass("hidden");
+				$('#reg_account').addClass("show");
+				$('#reg_account').text("帳號必須為E-mail唷！");
 			}
 			else{
 				$('#reg_account').removeClass("show");
@@ -131,6 +139,11 @@ $(function() {
 				$('#reg_pwd').addClass("show");
 				$('#reg_pwd').text("密碼不能空白唷");
 			}
+			else if(!passwordValid($("input[name='Rpwd']").val())){
+				$('#reg_pwd').removeClass("hidden");
+				$('#reg_pwd').addClass("show");
+				$('#reg_pwd').text("密碼必須至少8碼，而且必須含數字大小寫的英文字元唷！");
+			}
 			else{
 				$('#reg_pwd').removeClass("show");
 				$('#reg_pwd').addClass("hidden");
@@ -143,9 +156,6 @@ $(function() {
 	$("input[name='Rconfirmpwd']").blur(
 		function (event) {
 			event.preventDefault();
-//				console.log($("input[name='Rpwd']").val());
-//				console.log($("input[name='Rconfirmpwd']").val());
-//				console.log($("input[name='Rconfirmpwd']").val()!==$("input[name='Rpwd']").val());
 			
 			if(($("input[name='Rconfirmpwd']").val())!=($("input[name='Rpwd']").val())){
 				$('#reg_confirmpwd').removeClass("hidden");
@@ -292,4 +302,17 @@ function sellbook(){
 //清除表格
 function clearForm() {
 	$('form :input').val('');
+}
+
+//Email格式驗證
+function IsEmail(email) {
+	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
+}
+
+//密碼驗證
+//8碼，其中數字最少1碼，a-z最少一碼，A-Z最少一碼
+function passwordValid(pwd) {
+	var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+	return regex.test(pwd);
 }
