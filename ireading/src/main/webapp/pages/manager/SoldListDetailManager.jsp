@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="<c:url value='/css/userpage.css'/>">
 </head>
 <body>
-	<c:import url="/pages/templates/user/usermenu.jsp"></c:import>
+	<c:import url="/pages/templates/manager/managermenu.jsp"></c:import>
 
 	<script>
 		//編輯商品清單的按鈕
@@ -230,7 +230,7 @@
 	</div>
 
 	<!-- dialog -->
-	<c:import url="/pages/templates/user/userfooter.jsp"></c:import>
+	<c:import url="/pages/templates/manager/managerfooter.jsp"></c:import>
 
 	<script>
 		//塞值到更新的跳出視窗
