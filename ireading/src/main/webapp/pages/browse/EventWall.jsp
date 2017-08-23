@@ -462,6 +462,7 @@ img {
 <c:import url="/pages/templates/front/frontfooter.jsp"></c:import>
 </body>
 <script src="/ireading/js/login.js"></script>
+<script src="<c:url value="/js/cart.js"/>"></script>
 <script>
 
 	function getCookie(cname) {
