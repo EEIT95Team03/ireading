@@ -80,7 +80,6 @@ public class BooksBean {
 		String out=null;
 		if(this.Cover!=null){
 			out = Base64.getEncoder().encodeToString(this.Cover);
-			System.out.println(out);
 		}
 		return out;
 	}

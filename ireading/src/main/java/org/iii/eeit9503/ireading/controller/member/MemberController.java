@@ -56,8 +56,8 @@ public class MemberController {
 	public String Process(MemberBean bean, Model model, @RequestParam(name = "memaction") String memaction,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file,
 			@RequestHeader(value = "referer", required = false) final String referer) throws IOException {
-		System.out.println("----------------");
-		System.out.println(referer);
+//		System.out.println("----------------");
+//		System.out.println(referer);
 		// 接收資料
 		// 轉換資料
 		Map<String, String> errors = new HashMap<String, String>();
@@ -251,7 +251,7 @@ public class MemberController {
 				obj.put("Gender", list.get(i).getGender());
 				obj.put("Income", list.get(i).getIncome());
 				obj.put("Photo", list.get(i).getByteArrayString());
-				System.out.println(list.get(i).getByteArrayString());
+//				System.out.println(list.get(i).getByteArrayString());
 				obj.put("Auth", list.get(i).getAuth());
 				list.get(i);
 				arry.put(obj);
@@ -259,7 +259,7 @@ public class MemberController {
 
 		}
 
-		System.out.println("arry:" + arry.toString());
+//		System.out.println("arry:" + arry.toString());
 		return arry.toString();
 	}
 	
@@ -268,7 +268,7 @@ public class MemberController {
 	public String processShowRepost(String memberID, Model model) {
 		MemberBean bean = null;
 		JSONArray arry = new JSONArray();
-		System.out.println(memberID);
+//		System.out.println(memberID);
 
 		if (memberID.trim().length() == 0 || memberService.select(memberID) != null) {
 			bean = memberService.select(memberID);
@@ -286,13 +286,11 @@ public class MemberController {
 			obj.put("Gender", bean.getGender());
 			obj.put("Income", bean.getIncome());
 			obj.put("Photo", bean.getByteArrayString());
-			System.out.println(bean.getByteArrayString());
+//			System.out.println(bean.getByteArrayString());
 			obj.put("Auth", bean.getAuth());
 			arry.put(obj);
-
 		}
-
-		System.out.println("arry:" + arry.toString());
+//		System.out.println("arry:" + arry.toString());
 		return arry.toString();
 	}
 

@@ -131,7 +131,7 @@ public class BooksController {
 		List<BooksBean> responseList = booksService.select(bean);
 		model.addAttribute("responseData", responseList.get(0));
 		
-		System.out.println("responseData:"+ responseList);
+//		System.out.println("responseData:"+ responseList);
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		
@@ -166,8 +166,6 @@ public class BooksController {
 				bean.setCover(fileUploader.toFileBean(file).getFileBinary());
 //				System.out.println(bean.getByteArrayString());
 			}
-			
-			System.out.println("controller:" + bean.getISBN() + "\t" + bean.getTitle());
 			
 			 booksService.insert(bean);
 			
