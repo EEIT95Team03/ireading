@@ -104,11 +104,11 @@
 					<div class='2'>
 						<input type='text' id='n_ISBN' name='ISBN' value="${ISBN}" class="hidden"/>
 					</div>
-					<div class='3' style='display:inline-block;'><lable>評論</lable>
-						<textarea style='width: 50em; height: 8em;' type="text"
+					<div class='col-xs-12'><lable>評論</lable>
+						<textarea  rows="5" style="resize:none;" type="text"
 							  placeholder="請輸入五百字以內的評論"class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
 					</div>
-					<div class='4' style='width:5em;'><label>評分(1~5分)</label>
+					<div class='4' style='width:6em;'><label>評分(1~5分)</label>
 						<input min='1' max='5' type="number" class="form-control" id="n_rate" name="rate" value="">
 					</div>
 				
@@ -129,11 +129,11 @@
 					<div class='2'>
 						<input type='text' id='n_ISBN' name='ISBN' value="${ISBN}" class="hidden"/>
 					</div>
-					<div class='3' style='display:inline-block;'><lable>評論</lable>
-						<textarea style='width: 50em; height: 8em;' type="text"
-							  placeholder="請輸入五百字以內的評論"class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
+					<div class='col-xs-12' style='display:inline-block;'><lable>評論</lable>
+						<textarea rows="5" type="text" style="resize:none;"
+							  placeholder="請輸入五百字以內的評論" class="form-control" id="w_Cont" name="Cont" value="" ></textarea>
 					</div>
-					<div class='4' style='width:5em;'><label>評分(1~5分)</label>
+					<div class='4' style='width:7em;'><label>評分(1~5分)</label>
 						<input min='1' max='5' type="number" class="form-control" id="n_rate" name="rate" value="">
 					</div>
 				
