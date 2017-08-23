@@ -141,7 +141,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-6 col-sm-offset-3">
-										<button id="regbutton" class="form-control btn btn-login" name="memaction" value="Insert">快速註冊</button>
+										<button id="regbutton" class="form-control btn btn-login" name="memaction" value="Insert" disabled="disabled">快速註冊</button>
 									</div>
 								</div>
 							</div>

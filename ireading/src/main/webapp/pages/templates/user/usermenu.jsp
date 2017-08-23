@@ -240,7 +240,7 @@
 		<ul class="nav sidebar-nav">
 			<!--<li class="sidebar-brand">-->
 			<div class="container-fluid" style="text-align: center; background-color: lightgray; padding: 5%; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px; margin-bottom: 20px;">
-				<h1 id="sideUserName" style="color: white; font-family: 微軟正黑體; font-weight: 700;">米小奇</h1>
+				<h1 id="sideUserName" style="color: white; font-family: 微軟正黑體; font-weight: 700;">享。閱人</h1>
 				<div style="margin: 25px">
 					<img id="sideUserPic" src="" alt="username" class="img-circle img-responsive"
 						style="background-color: white; margin: auto; border: 8px solid #efefef; box-shadow: 2px 2px 5px gray; width: 220px; height: 220px">

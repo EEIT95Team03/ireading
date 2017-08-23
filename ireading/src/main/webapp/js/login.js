@@ -125,8 +125,13 @@ $(function() {
 						$('#reg_account').addClass("hidden");
 						$('#reg_account').text("");
 					}
+					
+					if($('#reg_account').empty() && $('#reg_pwd').empty() && $('#reg_confirmpwd').empty()){
+						$('#regbutton').prop('disabled',false);
+					}
 				});	
 			}
+			
 			return;
 		})
 		
@@ -149,6 +154,10 @@ $(function() {
 				$('#reg_pwd').addClass("hidden");
 				$('#reg_pwd').text("");
 			}
+			
+			if($('#reg_account').empty() && $('#reg_pwd').empty() && $('#reg_confirmpwd').empty()){
+				$('#regbutton').prop('disabled',false);
+			}
 			return;
 		})
 
@@ -167,6 +176,15 @@ $(function() {
 				$('#reg_confimrpwd').addClass("hidden");
 				$('#reg_confirmpwd').text("");
 			}
+			console.log(!$('#reg_account').empty());
+			console.log(!$('#reg_pwd').empty());
+			console.log(!$('#reg_confirmpwd').empty());
+//			console.log();
+			
+			
+			if($('#reg_account').empty() && $('#reg_pwd').empty() && $('#reg_confirmpwd').empty()){
+				$('#regbutton').prop('disabled',false);
+			}
 			return;
 		})			
 	
@@ -176,21 +194,21 @@ $(function() {
 			function(event) {
 				event.preventDefault();
 
-				var data = $('#register-form').serialize();
-				
-				$.post('/ireading/browse/login.controller/reg', data,
-						function(data) {
-							if(data[0].RegMsg == "註冊失敗"){
-								console.log("註冊失敗");
-							}
-							else if(data[0].RegMsg == "註冊成功"){
-								console.log("註冊成功");
-								$('#LoginBlock').modal('toggle');
-								$('#ConfirmBlock').modal('show');
-								$('#dropdownMenuLink').text(data[0].useraccount + "，日安！");
-								location.reload();
-							}
-						});
+					var data = $('#register-form').serialize();
+					
+					$.post('/ireading/browse/login.controller/reg', data,
+							function(data) {
+								if(data[0].RegMsg == "註冊失敗"){
+									console.log("註冊失敗");
+								}
+								else if(data[0].RegMsg == "註冊成功"){
+									console.log("註冊成功");
+									$('#LoginBlock').modal('toggle');
+									$('#ConfirmBlock').modal('show');
+									$('#dropdownMenuLink').text(data[0].useraccount + "，日安！");
+									location.reload();
+								}
+							});
 
 			});
 	
