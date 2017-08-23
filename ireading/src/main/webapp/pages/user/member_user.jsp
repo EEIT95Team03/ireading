@@ -631,12 +631,26 @@ $(function() {
 	    },
 	    success: function(json){
 	    	
+	    	
+	    	
 	    	var addr = json[0].Addr;
-	    	var blockAddr = $('<i></i>').addClass('fa fa-map-marker').append($('<small></small').text("\t" + addr.substr(0,3) + '\t' + addr.substr(3,3)));
+	    	var blockAddr;
+	    	if(addr!=undefined){
+	    		blockAddr = $('<i></i>').addClass('fa fa-map-marker').append($('<small></small').text("\t" + addr.substr(0,3) + '\t' + addr.substr(3,3)));
+	    	}else{
+	    		blockAddr = '';	
+	    	}
 	    	
-	    	$('#MName').text(json[0].MName + "\t").append(blockAddr);
 	    	
-	    	console.log(addr.substr(0,3) + ' ' + addr.substr(3,3));
+	    	if(json[0].MName!=undefined){
+	    		$('#MName').text(json[0].MName + "\t").append(blockAddr);	
+	    	}
+	    	else{
+	    		$('#MName').text('享。閱人').append(blockAddr);
+	    	}
+	    	
+	    	
+// 	    	console.log(addr.substr(0,3) + ' ' + addr.substr(3,3));
 	    	$('#Account').text(json[0].Account);
 	    	$('#NickName').text(json[0].NickName);
 	    	$('#Addr').text(addr);
@@ -662,7 +676,7 @@ $(function() {
 	    		$('#Auth').text(auth);	
 	    	}
 	    	
-	    	if(json[0].Photo!=""){
+	    	if(json[0].Photo!=undefined){
 	    		$('#Photo').attr('src', "data:image/png;base64 ," + json[0].Photo).attr('width','100%');	
 	    	}
 	    	else{
