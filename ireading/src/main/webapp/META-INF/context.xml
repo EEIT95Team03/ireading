@@ -3,5 +3,5 @@
                maxTotal="100" maxIdle="30" maxWaitMillis="10000"
                username="sa" password="P@ssw0rd" 
                driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-               url="jdbc:sqlserver://192.168.23.8:1433;database=ireadDB"/>
+               url="jdbc:sqlserver://localhost:1433;database=ireadDB"/>
 </Context>

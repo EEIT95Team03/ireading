@@ -71,7 +71,7 @@
                 <tr>
                         <td class="col-md-5">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="data:image/png;base64,${Payment.productBean.booksBean.byteArrayString}" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${Payment.productBean.booksBean.title}</a></h4>
                                 <h5 class="media-heading"> 編號 <a href="#">${Payment.productBean.productID}</a></h5>

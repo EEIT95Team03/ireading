@@ -286,7 +286,7 @@
 			</h2>
 			<br>
 			<p class="teachers">
-				邱華傑老師&nbsp; &nbsp; <span>陳奕兆老師</span>&nbsp; &nbsp; <span>劉漢卿老師</span>&nbsp;
+				邱華傑老師&nbsp; &nbsp; <span>陳奕兆老師</span>&nbsp; &nbsp; <span>劉翰卿老師</span>&nbsp;
 				&nbsp; <span>潘麗珍老師</span>
 			</p>
 			<p class="teachers">

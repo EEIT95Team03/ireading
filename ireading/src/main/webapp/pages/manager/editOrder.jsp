@@ -190,9 +190,9 @@
 				console.log(data);
 				
 				if(data[0].change=="1"){
-					console.log("更新成功");
+					alert("更新成功");
 				}
-				else{console.log("更新失敗");}
+				else{alert("更新失敗");}
 				
 			})
 		});
