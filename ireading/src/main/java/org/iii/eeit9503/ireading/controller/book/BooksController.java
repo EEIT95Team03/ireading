@@ -195,7 +195,7 @@ public class BooksController {
 			} else {
 				model.addAttribute("update", result);
 			}
-			return "/manager/books.controller/booksMainPage?Title=&CategoryID=&Year=&ISBN=&Author=&Publisher=";
+			return "manager.Bookslist";
 		}else  {
 			errors.put("action", "Unknown Action:"+prodaction);
 			return "manager.Bookslist";
