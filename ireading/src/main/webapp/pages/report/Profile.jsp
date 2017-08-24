@@ -278,8 +278,7 @@
 	</div>
 
 
-	<div class="container" id="contact"
-		style="margin-left: 0px; width: 100%; height: 800px;">
+	<div class="container" id="contact" style="margin-left: 0px; width: 100%; height: 800px;">
 		<div class="row destacados" style="margin-top: 50px;">
 			<h2 class="text-center"
 				style="color: black; font-family: 微軟正黑體; letter-spacing: 10x">
@@ -308,7 +307,7 @@
 
 		</div>
 	</div>
-
+	
 	<div class="container"
 		style="background-color: #80beb0; margin-left: 0px; width: 100%; height: 800px;">
 		<div class="row destacados" style="margin-top: 50px;">
@@ -331,7 +330,7 @@
 			</p>
 
 		</div>
-	</div>
+	</div>	
 
 
 </body>
