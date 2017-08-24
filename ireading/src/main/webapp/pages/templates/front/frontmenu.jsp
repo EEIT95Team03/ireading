@@ -136,7 +136,7 @@
 									<label class="input-group-addon glyphicon glyphicon-lock"></label>
 								</div>
 							</div>
-							<div id="reg_confirmpwd" class="alert alert-danger hidden" role="alert"></div>
+							<div id="reg_confimrpwd" class="alert alert-danger hidden" role="alert"></div>
 							
 							<div class="form-group">
 								<div class="row">

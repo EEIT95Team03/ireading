@@ -96,17 +96,14 @@ $(function() {
 			console.log(IsEmail($("input[name='Raccount']").val()));
 			if($("input[name='Raccount']").val()==""){
 				$('#reg_account').removeClass("hidden");
-				$('#reg_account').addClass("show");
 				$('#reg_account').text("帳號不能空白唷！");
 			}
 			
 			else if(!IsEmail($("input[name='Raccount']").val())){
 				$('#reg_account').removeClass("hidden");
-				$('#reg_account').addClass("show");
 				$('#reg_account').text("帳號必須為E-mail唷！");
 			}
 			else{
-				$('#reg_account').removeClass("show");
 				$('#reg_account').addClass("hidden");
 				$('#reg_account').text("");
 				
@@ -117,16 +114,14 @@ $(function() {
 					console.log(data[0].AccountCheck);
 					if(data[0].AccountCheck == "帳號已註冊"){
 						$('#reg_account').removeClass("hidden");
-						$('#reg_account').addClass("show");
 						$('#reg_account').text("帳號已經被註冊了唷~");
 					}
 					else{
-						$('#reg_account').removeClass("show");
 						$('#reg_account').addClass("hidden");
 						$('#reg_account').text("");
 					}
 					
-					if($('#reg_account').empty() && $('#reg_pwd').empty() && $('#reg_confirmpwd').empty()){
+					if($('#reg_account').text()=='' && $('#reg_pwd').text()=='' && $('#reg_confirmpwd').text()==''){
 						$('#regbutton').prop('disabled',false);
 					}
 				});	
@@ -141,21 +136,22 @@ $(function() {
 			event.preventDefault();
 			if($("input[name='Rpwd']").val()==""){
 				$('#reg_pwd').removeClass("hidden");
-				$('#reg_pwd').addClass("show");
 				$('#reg_pwd').text("密碼不能空白唷");
 			}
 			else if(!passwordValid($("input[name='Rpwd']").val())){
 				$('#reg_pwd').removeClass("hidden");
-				$('#reg_pwd').addClass("show");
 				$('#reg_pwd').text("密碼必須至少8碼，而且必須含數字大小寫的英文字元唷！");
 			}
+			else if($("input[name='Rconfirmpwd']").val()!='' && ($("input[name='Rconfirmpwd']").val())!=($("input[name='Rpwd']").val())){
+				$('#reg_confimrpwd').removeClass("hidden");
+				$('#reg_confimrpwd').text("請再次確認密碼唷");
+			}
 			else{
-				$('#reg_pwd').removeClass("show");
 				$('#reg_pwd').addClass("hidden");
 				$('#reg_pwd').text("");
 			}
 			
-			if($('#reg_account').empty() && $('#reg_pwd').empty() && $('#reg_confirmpwd').empty()){
+			if($('#reg_account').text()=='' && $('#reg_pwd').text()=='' && $('#reg_confirmpwd').text()==''){
 				$('#regbutton').prop('disabled',false);
 			}
 			return;
@@ -167,22 +163,21 @@ $(function() {
 			event.preventDefault();
 			
 			if(($("input[name='Rconfirmpwd']").val())!=($("input[name='Rpwd']").val())){
-				$('#reg_confirmpwd').removeClass("hidden");
-				$('#reg_confirmpwd').addClass("show");
-				$('#reg_confirmpwd').text("請再次確認密碼唷");
+				$('#reg_confimrpwd').removeClass("hidden");
+				$('#reg_confimrpwd').text("請再次確認密碼唷");
 			}
 			else{
-				$('#reg_confirmpwd').removeClass("show");
+				console.log('here we are');
 				$('#reg_confimrpwd').addClass("hidden");
 				$('#reg_confirmpwd').text("");
 			}
-			console.log(!$('#reg_account').empty());
-			console.log(!$('#reg_pwd').empty());
-			console.log(!$('#reg_confirmpwd').empty());
+//			console.log(!$('#reg_account').empty());
+//			console.log(!$('#reg_pwd').empty());
+//			console.log(!$('#reg_confirmpwd').empty());
 //			console.log();
 			
 			
-			if($('#reg_account').empty() && $('#reg_pwd').empty() && $('#reg_confirmpwd').empty()){
+			if($('#reg_account').text()=='' && $('#reg_pwd').text()=='' && $('#reg_confirmpwd').text()==''){
 				$('#regbutton').prop('disabled',false);
 			}
 			return;
