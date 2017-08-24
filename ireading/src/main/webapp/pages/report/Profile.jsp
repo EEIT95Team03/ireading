@@ -277,34 +277,9 @@
 		</div>
 	</div>
 
-	<div class="container"
-		style="background-color: #80beb0; margin-left: 0px; width: 100%; height: 500px;">
-		<div class="row destacados" style="margin-top: 50px;">
-			<h2 class="text-center"
-				style="color: #ececec; font-family: 微軟正黑體; letter-spacing: 10x">
-				<strong>技術指導團隊</strong>
-			</h2>
-			<br>
-			<p class="teachers">
-				邱華傑老師&nbsp; &nbsp; <span>陳奕兆老師</span>&nbsp; &nbsp; <span>劉翰卿老師</span>&nbsp;
-				&nbsp; <span>潘麗珍老師</span>
-			</p>
-			<p class="teachers">
-				紀宜昕老師&nbsp; &nbsp; <span>陳銀華老師</span>&nbsp; &nbsp; <span>王憲春老師</span>&nbsp;
-				&nbsp; <span>王孝弘老師</span>
-			</p>
-			<p class="teachers">
-				吳永志老師&nbsp; &nbsp; <span>馬全德老師</span>&nbsp; &nbsp; <span>蘇國鈞老師</span>&nbsp;
-				&nbsp; <span>林昭吟老師</span>
-			</p>
-
-		</div>
-	</div>
-
-
 
 	<div class="container" id="contact"
-		style="margin-left: 0px; width: 100%; height: 500px;">
+		style="margin-left: 0px; width: 100%; height: 800px;">
 		<div class="row destacados" style="margin-top: 50px;">
 			<h2 class="text-center"
 				style="color: black; font-family: 微軟正黑體; letter-spacing: 10x">
@@ -333,6 +308,31 @@
 
 		</div>
 	</div>
+
+	<div class="container"
+		style="background-color: #80beb0; margin-left: 0px; width: 100%; height: 800px;">
+		<div class="row destacados" style="margin-top: 50px;">
+			<h2 class="text-center"
+				style="color: #ececec; font-family: 微軟正黑體; letter-spacing: 10x">
+				<strong>技術指導團隊</strong>
+			</h2>
+			<br>
+			<p class="teachers">
+				邱華傑老師&nbsp; &nbsp; <span>陳奕兆老師</span>&nbsp; &nbsp; <span>劉翰卿老師</span>&nbsp;
+				&nbsp; <span>潘麗珍老師</span>
+			</p>
+			<p class="teachers">
+				紀宜昕老師&nbsp; &nbsp; <span>陳銀華老師</span>&nbsp; &nbsp; <span>王憲春老師</span>&nbsp;
+				&nbsp; <span>王孝弘老師</span>
+			</p>
+			<p class="teachers">
+				吳永志老師&nbsp; &nbsp; <span>馬全德老師</span>&nbsp; &nbsp; <span>蘇國鈞老師</span>&nbsp;
+				&nbsp; <span>林昭吟老師</span>
+			</p>
+
+		</div>
+	</div>
+
 
 </body>
 </html>
